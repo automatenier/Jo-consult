@@ -1,368 +1,228 @@
-<!DOCTYPE html><html class="dark" lang="id"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Execution Squad | Tantangan Eksekusi AI</title>
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI NEXUS | Automating the Future</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Oswald:wght@600;700&amp;family=Archivo+Narrow:wght@400;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Geist:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-container": "#201f1f",
-                        "secondary": "#c8bfff",
-                        "on-tertiary": "#2f3131",
-                        "secondary-fixed": "#e5deff",
-                        "on-tertiary-fixed-variant": "#454747",
-                        "outline": "#87929a",
-                        "on-primary-fixed-variant": "#004d66",
-                        "tertiary-fixed": "#e2e2e2",
-                        "on-primary-container": "#00435a",
-                        "on-tertiary-container": "#3c3e3e",
-                        "on-secondary": "#2f256b",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "on-primary-fixed": "#001e2b",
-                        "surface-container-high": "#2a2a2a",
-                        "inverse-surface": "#e5e2e1",
-                        "on-secondary-fixed": "#190b56",
-                        "primary-fixed-dim": "#71d2ff",
-                        "on-error": "#690005",
-                        "tertiary": "#c6c6c7",
-                        "primary-container": "#00b6ed",
-                        "surface-container-highest": "#353534",
-                        "secondary-container": "#483f86",
-                        "on-secondary-container": "#b9affe",
-                        "inverse-primary": "#006687",
-                        "secondary-fixed-dim": "#c8bfff",
-                        "error-container": "#93000a",
-                        "on-background": "#e5e2e1",
-                        "on-surface": "#e5e2e1",
-                        "inverse-on-surface": "#313030",
-                        "primary-fixed": "#c0e8ff",
-                        "outline-variant": "#3d484f",
-                        "tertiary-container": "#a8a9a9",
-                        "error": "#ffb4ab",
-                        "surface": "#131313",
-                        "on-surface-variant": "#bcc8d0",
-                        "on-secondary-fixed-variant": "#463d83",
-                        "surface-container-low": "#1c1b1b",
-                        "surface-dim": "#131313",
-                        "tertiary-fixed-dim": "#c6c6c7",
-                        "background": "#131313",
-                        "on-error-container": "#ffdad6",
-                        "surface-bright": "#3a3939",
-                        "on-primary": "#003547",
-                        "surface-tint": "#71d2ff",
-                        "primary": "#71d2ff",
-                        "surface-container-lowest": "#0e0e0e",
-                        "surface-variant": "#353534",
-                        "signal-blue": "#00b6ed",
-                        "pure-black": "#000000",
-                        "high-emphasis-white": "#FFFFFF",
-                        "surface-border": "rgba(255, 255, 255, 0.1)",
-                        "muted-gray": "rgba(255, 255, 255, 0.6)"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "gutter": "16px",
-                        "unit": "4px",
-                        "margin-desktop": "48px",
-                        "container-max": "1440px",
-                        "margin-mobile": "16px",
-                        "section-gap-mobile": "64px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Oswald"],
-                        "label-caps": ["JetBrains Mono"],
-                        "body-md": ["Archivo Narrow"],
-                        "headline-lg-mobile": ["Oswald"],
-                        "display-lg": ["Oswald"],
-                        "body-lg": ["Archivo Narrow"],
-                        "data-mono": ["JetBrains Mono"],
-                        "headline-md": ["Oswald"],
-                        "metadata": ["Archivo Narrow"],
-                        "label-md": ["JetBrains Mono"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["48px", {"lineHeight": "52px", "fontWeight": "600"}],
-                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "headline-lg-mobile": ["32px", {"lineHeight": "36px", "fontWeight": "600"}],
-                        "display-lg": ["80px", {"lineHeight": "88px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
-                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
-                        "headline-md": ["24px", {"lineHeight": "28px", "fontWeight": "500"}],
-                        "metadata": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}],
-                        "label-md": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}]
-                    }
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#dfb7ff",
+                    "on-primary-container": "#006970",
+                    "primary-container": "#00f0ff",
+                    "on-primary": "#00363a",
+                    "tertiary": "#f4f6ff",
+                    "secondary-fixed-dim": "#dfb7ff",
+                    "surface-container-lowest": "#070d1f",
+                    "secondary-container": "#9d05ff",
+                    "on-secondary": "#4b007e",
+                    "surface-container-highest": "#2e3447",
+                    "inverse-on-surface": "#2a3043",
+                    "on-primary-fixed-variant": "#004f54",
+                    "inverse-surface": "#dce1fb",
+                    "tertiary-fixed-dim": "#bcc7de",
+                    "primary-fixed": "#7df4ff",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#3b494b",
+                    "secondary-fixed": "#f1daff",
+                    "on-tertiary-container": "#545f73",
+                    "tertiary-container": "#cfdaf2",
+                    "on-background": "#dce1fb",
+                    "surface-container-low": "#151b2d",
+                    "outline": "#849495",
+                    "on-tertiary": "#263143",
+                    "surface-container-high": "#23293c",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#2d004f",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed-dim": "#00dbe9",
+                    "on-secondary-fixed-variant": "#6b00b0",
+                    "surface-variant": "#2e3447",
+                    "on-tertiary-fixed": "#111c2d",
+                    "primary": "#dbfcff",
+                    "background": "#0c1324",
+                    "inverse-primary": "#006970",
+                    "surface-dim": "#0c1324",
+                    "surface-tint": "#00dbe9",
+                    "tertiary-fixed": "#d8e3fb",
+                    "surface-container": "#191f31",
+                    "surface": "#0c1324",
+                    "on-primary-fixed": "#002022",
+                    "on-surface": "#dce1fb",
+                    "on-surface-variant": "#b9cacb",
+                    "on-tertiary-fixed-variant": "#3c475a",
+                    "on-secondary-container": "#f7e6ff",
+                    "surface-bright": "#33394c"
             },
-        }
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "48px",
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "sm": "12px",
+                    "base": "8px",
+                    "xl": "80px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Geist"],
+                    "label-sm": ["JetBrains Mono"],
+                    "code": ["JetBrains Mono"],
+                    "body-md": ["Geist"],
+                    "headline-md": ["Sora"],
+                    "headline-lg-mobile": ["Sora"],
+                    "headline-lg": ["Sora"],
+                    "headline-xl": ["Sora"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "code": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
     </script>
 <style>
-        body { background-color: #000000; color: #e5e2e1; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .execution-gradient { background: linear-gradient(180deg, rgba(0, 182, 237, 0.1) 0%, rgba(0,0,0,0) 100%); }
-        .blue-glow { text-shadow: 0 0 10px rgba(0, 182, 237, 0.5); }
+        body {
+            background-color: #0c1324;
+            background-image: 
+                radial-gradient(circle at 50% -20%, rgba(0, 240, 255, 0.15), transparent),
+                radial-gradient(circle at 0% 100%, rgba(157, 5, 255, 0.1), transparent);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(21, 27, 45, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #00f0ff 0%, #9d05ff 100%);
+        }
+        .animate-glow {
+            animation: glow 4s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.3)); }
+            100% { filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6)); }
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(0, 240, 255, 0.2), transparent);
+            position: absolute;
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
     </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
 </head>
-<body class="font-body-md text-body-md overflow-x-hidden">
-<!-- TopAppBar -->
-<header class="bg-pure-black dark:bg-pure-black border-b border-surface-border docked full-width top-0 z-50 sticky">
-<div class="flex justify-between items-center w-full px-gutter h-16 max-w-container-max mx-auto">
-<div class="flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0J0UHxks6NYXJausSzOqESOdxkc1Mj5TVWdoj0yucxygr6876QFLde1gRn_irRaPsx2c59pIbDe4TuAe56VkmwkgLbOiNyrtT8ka16d-foyY_aUDgwUhgTeeYbFAhxh_oNl1iswBPAsStbUEn_wxFPS9slrXi3xGD_FuORFieOmfLNg4aSTsHv9J2b1EaBP7v0LDFyAmnpvj0Fofmtpz70q06K-y4oUjnISXN8-ILfazGvCEiTmuFQaPRFjNJf_5sI2X7ZB6Rbek" alt="Execution Squad Logo" class="h-8 w-auto object-contain"></div>
-<button class="font-label-md text-label-md text-signal-blue font-bold hover:text-signal-blue transition-colors active:scale-95 transition-transform">MASUK</button>
-</div>
+<body class="font-body-md text-on-surface antialiased flex flex-col items-center">
+<!-- Header Section -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl flex items-center justify-between px-md h-16 w-full border-b border-white/10 shadow-[0_0_20px_rgba(0,240,255,0.1)]">
+<div class="flex items-center gap-base"><img alt="JO Consults Logo" class="w-8 h-8 object-contain rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrZ7uunVnair-dKxCk7gNxjfCU7I-aFghZ2niWq0SB864IrQRakuQUbEXCTpOvTQJyRG4sXtGYDIfKMcUAxlhPCmf2RY8XUfPiR4D7aCFuHGK2NvZXJ2ZPDsiGAePvikzDvQseoQgMstdG6TEsc6ONMLOt3bBDZ2zxWUr-YN1iKaBEGLqnSQEyVGoytUsGzPcr4XlfjHBf5Le7mFuBiLZPLokOaG0BoXFAnWnRlFumQf2zxojaD6epFPsb6VVnpCeY2NlQIesnVYw"/><span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">JO Consults</span></div>
 </header>
-<main class="max-w-container-max mx-auto px-gutter pb-32">
-<!-- Hero Section -->
-<section class="py-section-gap-mobile flex flex-col gap-6">
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-high-emphasis-white uppercase tracking-tight">Tantangan Eksekusi AI</h1>
-<div class="rounded-lg overflow-hidden border border-surface-border">
-<img alt="Execution Squad Hero" class="w-full object-cover aspect-video" src="https://lh3.googleusercontent.com/aida/ADBb0uiXtIoE-K5cp9_4mMqFhkUFgLs4POyDtWmOBr2Ym4SoBKnnJIUBkvqjlg23UDxTJaRJf8XTFp6pH1Ul64ck6itKwR5revUAj9d0q41mTIOcq-yfkWMQVs8K-cObkWZhuJEaV5xcS23hrfwCbCnr-gsfp3wgEZMKAOveYgR-CFdQvSKi6pYrNTtPvNA_vtfIPcNuXiGjEMXh2X3uBpaIaq5391ZO2Et5Sc7vBqGASAOcy44fgUfbyWMuXw">
-</div>
-<div class="flex flex-wrap items-center gap-4 py-2 border-y border-surface-border/50 text-muted-gray">
-<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">lock</span><span class="font-metadata text-metadata">Privat</span></div>
-<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">group</span><span class="font-metadata text-metadata">444 Member</span></div>
-<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">calendar_today</span><span class="font-metadata text-metadata">11 Bulanan</span></div>
-<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">stars</span><span class="font-metadata text-metadata">60 Tahunan</span></div>
-</div>
-<div class="flex items-center -space-x-2">
-<img alt="Member" class="w-8 h-8 rounded-full border-2 border-pure-black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1jS_7-JD-7pYNBGJ4kj6j1jppSjvUKvRgOuz03ka3yHrZmZPG2rLlZRQMLiaN0UNTa2lPAfBjpfBuIMBT9DAvu4AGwzOlKOc9GrCavP5XcjDVSZSMrhx4SR4weihYrqgFcrR1Y6DdhAx7Hv8gaVmKzqCbqVf5mmJZd0qaZnwQ4SiqeqaJ84xca5Sv4zSYx0o8n5U6dknkP8IB8elvO3m_CfsSCTOC5AOIq-2kzsS9y4zbIl00Zesftxt7xjtU8N5BwbTHLhJohR8">
-<img alt="Member" class="w-8 h-8 rounded-full border-2 border-pure-black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXpFU4gD3-NFTCIURfo3NVg0zy4de9SwC7rKCSE-HySaNsPZ1OLJcYjHe5CZw23VZssty7Q3xEyVxXFhysF9tGyu0k3gtCORbAuZ4aTgwY4c1uvOE2Id7wYWDrmlLp1sGLWiClGzwmzKSuisgmteJlLmxOe5ohp8r0euLwXr4UJ16r0idSQAlzT7bPW8qiiEbSANeFL1eKy-5SaFz4YDzzHfHTZaSoymoxFYbWkjyN6GmYstHi6m2xsZhlYpgDNQqw9lGnD8PUMuk">
-<img alt="Member" class="w-8 h-8 rounded-full border-2 border-pure-black" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQfiB_JSRWRHkItsKoI5Zji4V1x2b1S6pGPGQ9gx9C_nj71lVvaNar1wMiODi2tByorWvgoc66G8HCeMWBcSTBOxB-jXblhCvXFW1K93xxlmplx14Cqa2YHNPowTgNvVnvpmyvOgAsdszPceewb4mQjgE2IHzzx9YUAfOuAEBlz8065gvDm_tKAfyxKeNM9SCpD3Ee9wevIbLqCe_K9Y718CWgYWLv7Lhz4BdMcVzB96lUsYpEQUjwc1x_afbxHy6tcUYn03C5siA">
-<div class="w-8 h-8 rounded-full border-2 border-pure-black bg-surface-container-high flex items-center justify-center font-metadata text-metadata text-high-emphasis-white">+441</div>
-<span class="ml-4 font-metadata text-metadata text-muted-gray">Oleh Chris Lee</span>
-</div>
-</section>
-<!-- Hook Section -->
-<section class="py-12 flex flex-col gap-6">
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile">
-            Eksekusi bisnis AI. <span class="text-signal-blue">Metodologi yang terstruktur.</span>
-</h2>
-<div class="space-y-6">
-<p class="font-body-lg text-body-lg text-on-surface">
-<strong class="text-high-emphasis-white">1 juta pembelajar AI</strong> mengejar alat baru setiap bulan. <strong class="text-high-emphasis-white">Sebagian besar tidak pernah beranjak dari tutorial ke membangun.</strong> Execution Squad adalah untuk mereka yang berani melangkah.
-            </p>
-<p class="font-body-md text-body-md text-muted-gray">
-                Saya pribadi telah membangun dan mengoperasikan dua praktik konsultasi AI dari nol. Metodologi yang sama di kedua kesempatan. Saya membagikannya hari ini, gratis.
-            </p>
-</div>
-</section>
-<!-- Benefits Section -->
-<section class="py-8 bg-surface-container-lowest rounded-xl p-6 border border-surface-border">
-<p class="font-label-md text-label-md uppercase tracking-widest text-signal-blue mb-6">Di dalam, gratis hari ini ↓</p>
-<ul class="space-y-8">
-<li class="flex gap-4">
-<span class="text-2xl">🔥</span>
-<div>
-<p class="font-body-lg text-body-lg text-high-emphasis-white font-bold">The AI Execution Stack.</p>
-<p class="font-body-md text-body-md text-muted-gray">Claude Code 101 plus setiap keterampilan spesialis di folder Anda. Website, outreach, konten, secara autopilot.</p>
-</div>
-</li>
-<li class="flex gap-4">
-<span class="text-2xl">📖</span>
-<div>
-<p class="font-body-lg text-body-lg text-high-emphasis-white font-bold">Sebelum Anda Mulai.</p>
-<p class="font-body-md text-body-md text-muted-gray">Metode Past Self. Execution Flywheel. Daily Anchors. Kerangka kerja yang dijalankan oleh Squad.</p>
-</div>
-</li>
-<li class="flex gap-4">
-<span class="text-2xl">👥</span>
-<div>
-<p class="font-body-lg text-body-lg text-high-emphasis-white font-bold">Ruang Kelas + Kalender.</p>
-<p class="font-body-md text-body-md text-muted-gray">Tonton founder asli melakukan pengiriman. Live Execution Reviews dua kali seminggu, di depan kamera.</p>
-</div>
-</li>
-</ul>
-</section>
-<!-- Primary CTA -->
-<section class="py-12 flex flex-col gap-4 text-center">
-<button class="bg-signal-blue text-high-emphasis-white font-headline-md text-headline-md py-6 px-gutter rounded-lg uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">
-            Dapatkan sumber daya segera
-        </button>
-<p class="font-metadata text-metadata text-muted-gray">Nama, email, kata sandi. Atau Google. <strong class="text-high-emphasis-white uppercase">20 detik. Selesai.</strong></p>
-</section>
-<!-- Curriculum Grid (Bento Style) -->
-<section class="py-section-gap-mobile">
-<h2 class="font-headline-md text-headline-md text-high-emphasis-white mb-8 border-l-4 border-signal-blue pl-4">KURIKULUM</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-surface-container rounded-lg border border-surface-border overflow-hidden group">
-<div class="h-40 bg-pure-black relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-t from-pure-black to-transparent z-10"></div>
-<div class="absolute inset-0 flex items-center justify-center">
-<span class="font-headline-md text-high-emphasis-white text-center px-4 italic">SEBELUM<br><span class="text-signal-blue">Anda Mulai</span></span>
+<main class="w-full max-w-md px-gutter pt-32 pb-xl flex flex-col items-center">
+<!-- Profile Section -->
+<div class="flex flex-col items-center text-center mb-lg">
+<div class="relative mb-md group">
+<div class="absolute inset-0 rounded-full primary-gradient blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="relative w-24 h-24 rounded-full border-2 border-primary-container p-1 bg-surface-container-low">
+<img alt="AI Agency Logo" class="w-full h-full rounded-full object-cover animate-glow" data-alt="A futuristic, high-resolution 3D digital avatar representing artificial intelligence. The avatar features a sleek, metallic chrome head with glowing electric cyan optic sensors and intricate circuit patterns etched into the surface. It is set against a dark, deep-space midnight blue background with soft atmospheric light blooms. The overall aesthetic is clean, professional, and technologically advanced, reflecting the cutting-edge nature of an automation agency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh9Kw4I5u7Y1Y4wvFOCX-nbVMAQgmZY4yZZcdjgPTeBF6bgfETPR1vI4rgdU0piHMe7lKJl4l-wNnAiFHM4TJ2A3BXq4Hgl0CqKBsatp8vdfNPlAwZgkmF2GmO0t7e-ySj3ts14xz-sg_ev_il3tcDaqzqDl0UhIeWiM9czjUagNzpoJtuV1UIs46oRsSByKv0Ja_ZUS6SqH1tKdSf3kSGgCLHJLADinO0J2hPMQ-ClUnRIlpjAxjXF1AkHePyuNLl17lov_Kgt4c"/>
 </div>
 </div>
-<div class="p-4 space-y-3">
-<p class="font-label-md text-label-md font-bold text-high-emphasis-white">Sebelum Anda Mulai</p>
-<p class="font-metadata text-metadata text-muted-gray">Metode Past Self. Kerangka waktu TCD. Daily Anchors. The Flywheel.</p>
-<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
-<div class="bg-signal-blue h-full w-[0%]"></div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight mb-xs">Jordan_Engo</h1>
+<p class="font-body-md text-on-surface-variant max-w-[280px]">Ganti 1 Fungsi repetitif pakai karyawan AI dalam 30 Menit</p>
 </div>
-<p class="font-metadata text-metadata">0% Selesai</p>
-</div>
-</div>
-<div class="bg-surface-container rounded-lg border border-surface-border overflow-hidden group">
-<div class="h-40 bg-pure-black relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-t from-pure-black to-transparent z-10"></div>
-<div class="absolute inset-0 flex items-center justify-center">
-<span class="font-headline-md text-high-emphasis-white text-center px-4 italic">PERPUSTAKAAN<br><span class="text-signal-blue">Squad</span></span>
-</div>
-</div>
-<div class="p-4 space-y-3">
-<p class="font-label-md text-label-md font-bold text-high-emphasis-white">Perpustakaan Squad</p>
-<p class="font-metadata text-metadata text-muted-gray">Skrip outreach. Playbook 100-niche. Template.</p>
-<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
-<div class="bg-signal-blue h-full w-[0%]"></div>
-</div>
-<p class="font-metadata text-metadata">0% Selesai</p>
-</div>
-</div>
-<div class="bg-surface-container rounded-lg border border-surface-border overflow-hidden group">
-<div class="h-40 bg-pure-black relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-t from-pure-black to-transparent z-10"></div>
-<div class="absolute inset-0 flex items-center justify-center">
-<span class="font-headline-md text-high-emphasis-white text-center px-4 italic text-signal-blue uppercase">AI<br><span class="text-white">Stack</span></span>
-</div>
-</div>
-<div class="p-4 space-y-3">
-<p class="font-label-md text-label-md font-bold text-high-emphasis-white">The AI Stack</p>
-<p class="font-metadata text-metadata text-muted-gray">Claude Code. Server MCP. Kit keterampilan.</p>
-<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
-<div class="bg-signal-blue h-full w-[0%]"></div>
-</div>
-<p class="font-metadata text-metadata">0% Selesai</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Proof Section -->
-<section class="py-section-gap-mobile">
-<p class="font-label-md text-label-md text-muted-gray uppercase tracking-widest text-center mb-2">Member asli. Angka nyata.</p>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-high-emphasis-white text-center mb-12">Founder yang membangun di Squad.</h2>
-<div class="grid grid-cols-1 gap-12">
-<!-- Testimonial 1: Kooky AI -->
-<div class="bg-surface-container-low rounded-xl border border-surface-border p-6 flex flex-col gap-6">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full overflow-hidden bg-signal-blue">
-<img alt="Kooky AI" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2qMk6kBwi4GvKEsoLOM6w8RU5eZaPjHxw1wJMY3JYahZd675P3fMBv6J75k8PcyCeRD3FpjxCplMWf_sBTFSh5THhgibLVEHjoV-2H-SUKQW-uMRBW2pg6i0dxqJVFlJmwgV1lfvaYi-2ws9nTLVA2VLIsht501I8HlXbc2PlEjWFoEW3mKXZfDki6ASscc-9VzEQR1zNOVf6PhA1Tc8ANQCn1m1DJWq3cAlue23KnqnhPcchj8qLonTDbF2AAjduc6dHZ6dgXFY">
-</div>
-<div>
-<p class="font-label-md text-label-md text-high-emphasis-white font-bold">Kooky AI</p>
-<div class="flex text-signal-blue">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-</div>
-</div>
-</div>
-<div class="space-y-4">
-<h3 class="font-headline-md text-headline-md text-high-emphasis-white">$46K MRR dan 42.9K Subscriber dalam 6 Bulan</h3>
-<p class="font-body-md text-body-md text-on-surface">Saya tidak punya audiens dan tidak punya agensi. Chris memberi tahu saya apa yang harus dilakukan, dan saya langsung melakukannya. Tanpa menebak-nebak, tanpa mengubah rencana. Saya mengikuti sistem langkah demi langkah. Itulah cara saya mencapai pendapatan berulang bulanan $46K. Kecepatan datang dari tidak berpikir berlebihan. Saya hanya mengeksekusi.</p>
-<img alt="Kooky AI Result" class="w-full rounded-lg border border-surface-border" src="https://lh3.googleusercontent.com/aida/ADBb0ug-098D3YhAAR97SrkEh3PWHjWGenNTtjYjtoTR0W1IGyhjzPkQ1lrMxRfkJDUfXBmpD6mPfkXlMAICEIBX-3pQHNbm8BWnajq-Z3TY0l-PCIbnJrmq_WvFCE4XCCQ_K_yrvnh9Qw3l5W9Z8hf8dYywK851BL8Ug6V1HrcUl-WXvnScTUXVDDVkDFimigzBuCW8KkjeigYsv4LLGAPKfNVUwioSJu7XS0o-CCWXuwk150HMsQ1zBrx7Og">
-</div>
-<p class="font-metadata text-metadata text-muted-gray">24 Mar 2026</p>
-</div>
-<!-- Testimonial 2: Daniel Jindoo -->
-<div class="bg-surface-container-low rounded-xl border border-surface-border p-6 flex flex-col gap-6">
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full overflow-hidden bg-signal-blue">
-<img alt="Daniel Jindoo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDatkQJKNvHDaBslBYECp-iNCljEmKtmdPXHXFZgyapkZz5xEq07L4gytiBlZSag72WTVa_RZDFkT6vloTODt82D6gmpo41K5svvu6ub6CCHh5mFDwUXZkhXCdMzMSutVGVVjhp2t5fGAM8SUvrDe6eXkqSPLcH6kYFFpyplbNe3bg7akF783FL7UhBsPIn1OxPl87cbJ0EqQ1qZ80n2dPUdIFUSBaUrfWrwXEoxK43k2zCIg9Q2x8Zb8ALsXcvSV1F4KcgeKsBWm0">
-</div>
-<div>
-<p class="font-label-md text-label-md text-high-emphasis-white font-bold">Daniel Jindoo</p>
-<div class="flex text-signal-blue">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-</div>
-</div>
-</div>
-<div class="space-y-4">
-<h3 class="font-headline-md text-headline-md text-high-emphasis-white">Nol ke $30K dan 16.000 Subs YT dalam 3 bulan.</h3>
-<p class="font-body-md text-body-md text-on-surface">Sebelum Execution Squad, saya punya nol follower, nol klien, nol momentum. Saya sedang mencuci piring. Dalam 70 hari, saya mendapatkan pelanggan pertama saya, membangun dashboard untuk restoran lokal, dan menutup proyek sampingan $30K.</p>
-<img alt="Daniel Result" class="w-full rounded-lg border border-surface-border" src="https://lh3.googleusercontent.com/aida/ADBb0ui1oer6NAWz7G2KpVJ-9mYVxxdc_w4Li9osy5K4FkTbNpW2OyogI77FTGz8PHYJFKYeAvF0LaNLZv800oGY0mYUU6k7g6vHQ2U15wuv9GR2s4Mxt9y4n05HbNpBej9ejReJxyZoCl7P1oqo9r38gSEevU5Vlh8Sqpd23PUTVxS1ORQ-jIV1Ca-a6xOtjSAszsX_OQfg-NCDwhsNkyaYCmT5-12sR0MyHd4-PJYcDEAZRZPaIs6CsB1N5uI">
-</div>
-<p class="font-metadata text-metadata text-muted-gray">8 Mar 2026</p>
-</div>
-</div>
-</section>
-<!-- Pricing Section -->
-<section class="py-section-gap-mobile flex flex-col gap-8">
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-center uppercase tracking-tighter">Pilih kecepatan Anda</h2>
-<div class="bg-signal-blue text-high-emphasis-white rounded-xl p-8 border border-white/20 relative overflow-hidden group">
-<div class="absolute top-0 right-0 p-4 opacity-20">
-<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
-</div>
-<p class="font-label-md text-label-md uppercase tracking-widest mb-2 font-bold bg-white/20 inline-block px-2 py-1 rounded">60 DARI HANYA 100 FOUNDER TERSISA</p>
-<h3 class="font-headline-lg text-headline-lg mb-4">Yearly Founding Member - $997/tahun</h3>
-<ul class="space-y-3 mb-8">
-<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm mt-1">check_circle</span> <span class="">Termasuk satu panggilan strategi 1:1 selama 60 menit dengan Chris.</span></li>
-<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm mt-1">check_circle</span> <span class="">Perpustakaan penuh hari pertama. Hemat $1,271 vs bulanan (diskon 56%). Perpanjangan harga terkunci seumur hidup.</span></li>
-</ul>
-<button class="w-full bg-high-emphasis-white text-signal-blue font-headline-md text-headline-md py-4 rounded uppercase active:scale-95 transition-transform">AMANKAN SLOT FOUNDING</button>
-</div>
-<div class="bg-surface-container rounded-xl p-8 border border-surface-border">
-<h3 class="font-headline-md text-headline-md text-high-emphasis-white mb-2">Gabung - $189/bulan</h3>
-<p class="font-body-md text-body-md text-muted-gray mb-8">Bulan 1 terbuka hari ini. Bulan 2-6 diberikan bertahap selama 5 bulan. Tidak ada panggilan 1:1.</p>
-<button class="w-full border border-high-emphasis-white text-high-emphasis-white font-headline-md text-headline-md py-4 rounded uppercase hover:bg-white hover:text-black active:scale-95 transition-all">MULAI BULANAN</button>
-</div>
-<p class="text-center font-metadata text-metadata text-muted-gray">
-            Tidak puas? Email hi@aichrislee.com dalam 14 hari untuk pengembalian dana penuh. Tanpa pertanyaan. <br>
-            Batal kapan saja - tersedia juga pengembalian dana bersyarat 30 hari.
-        </p>
-</section>
-</main>
-<!-- BottomNavBar / Sticky CTA -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 bg-pure-black border-t border-surface-border shadow-2xl">
-<a class="flex flex-col items-center justify-center bg-primary-container text-high-emphasis-white w-full py-4 brightness-125 transition-all" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
-<span class="font-label-md text-label-md uppercase tracking-widest">Dapatkan sumber daya segera</span>
+<!-- Links Section -->
+<div class="w-full space-y-sm"><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><img alt="MBG Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBud-jQ2xFcz2NP5E5tE4CbD2JKv92cRH0Z4O9M-AdspcwoyG_Fj8WJJntdjK8PrSqXLnAOWMlF_oRrx1xZ1ogkdYK8eub9hLQL70NZYK0l3zKve-WRH6phKNnrqkFZ1y3rm-RTeq85CytpQcFH1cty4V3_yKF0Lp4RVYr0Epi7XWU4JtXCc0246Ev8DogdQzeTLaVodfbZZ9I5CI0t1S_l70UeQO678jd79xtIeg_vfCcWkT6xA_RmpW54uhTKN7m-vKXX6v6EaC0"/></div><div class="flex-grow text-left"><div class="font-body-md font-semibold text-primary">MBG, Mesin Bantu Gawe</div><div class="text-xs text-on-surface-variant">Rekrut Karyawan AI Gratis</div></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><img alt="Ironman System Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrZ7uunVnair-dKxCk7gNxjfCU7I-aFghZ2niWq0SB864IrQRakuQUbEXCTpOvTQJyRG4sXtGYDIfKMcUAxlhPCmf2RY8XUfPiR4D7aCFuHGK2NvZXJ2ZPDsiGAePvikzDvQseoQgMstdG6TEsc6ONMLOt3bBDZ2zxWUr-YN1iKaBEGLqnSQEyVGoytUsGzPcr4XlfjHBf5Le7mFuBiLZPLokOaG0BoXFAnWnRlFumQf2zxojaD6epFPsb6VVnpCeY2NlQIesnVYw"/></div><div class="flex-grow text-left"><div class="font-body-md font-semibold text-primary">Setup Sistem Ironman</div><div class="text-xs text-on-surface-variant">Monitor karyawan AI anda di laptop / Hp</div></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><span class="material-symbols-outlined text-primary-fixed-dim">smart_toy</span></div><div class="flex-grow text-left"><div class="font-body-md font-semibold text-primary">AI Beresin</div><div class="text-xs text-on-surface-variant">jadwalkan konsultasi on-site</div></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><img alt="Hermes AI" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc-7Qn440KfFdgJZzGruumkvecRoYHYJeyME1owK2Y5cG_f1NHCNIVIq8l6WuIk-ePxERW77rdOnwsml8aEnDgl1vAKX8D2Nmzo2qzkJMWjI6-RMi55DzZgSiZdKDXFH64k6cVuW250N_GSRWCNI7n9cU8pXI8IPfBrKz9JQFv7fotyOdWwJ9923_obpR5qG5aO5c7XaZIwTMUUuQvJz51yTYkwAF4BBVK9Rn98aekEW2f9uGR73lEtfc3ZgloJYWYmnhh2okml98"/></div><div class="flex-grow text-left"><span class="font-body-md font-semibold text-primary">Hermes Setup Agent</span></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><img alt="WhatsApp" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRHbNZ81cmODmgrbk_9GmEWbH_jWlSTJF7DlN5Dnoi41Udog5gNHHzOpHkrYcumMijzP97ul16lKUCrfOoKh2dc4pj9uaslnw_JoHwZREqi-y9AUdBlgDpXjDTXw5HCjcP8rmqNCW81u990vDu_YcIO1C4Zj0waoeOPUS7DOb6AkTpcASCeYSYRIqJYCoAW33ahMZRAHtFn4_pyBSlZmYgy8OLkauYPeDKFFy4FJrWfHYS0wXLvCupITQkejoQV9a_SEmfpAD5S1Q"/></div><div class="flex-grow text-left"><span class="font-body-md font-semibold text-primary">Whatsapp Chatbot Gratis</span></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><img alt="CapCut" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRSpXosTrh3TLiVjAJjTGlHuo36YCUQFB-Q9-wjSdqGMqZALCaWN2FECwHAzf-Nme1S580yUXsD3QJUOBxCSWdncsj31TOGKIt4jpPLl9UKchLDZuCcdPf47QlS7ru4mEkeDRd_AM6Ra5-beXqL6s4aWy5dEVRlNLeaO_v41HWSz_unT5PajjsVTW7uHFGGJhVRRW6gSJa58NaZytmBD8uWgSV7OZHgTqzQUwAnRClBEaHGFMaF29yDuFuaKU_tayY7Jy7LBFwi3k"/></div><div class="flex-grow text-left"><span class="font-body-md font-semibold text-primary">Video Editor AI Gratis</span></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a><a class="glass-card w-full flex items-center p-md rounded-xl active:scale-95" href="#"><div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center mr-md"><span class="material-symbols-outlined text-on-surface-variant">dns</span></div><div class="flex-grow text-left"><span class="font-body-md font-semibold text-primary">Ubah laptop jadi server AI kamu 24/7</span></div><span class="material-symbols-outlined text-on-surface-variant text-sm">chevron_right</span></a></div>
+<!-- Social Icons -->
+<div class="flex gap-lg mt-xl mb-lg"><a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg></a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.063-2.633-.333-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.063-1.366.333-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.353 2.612 6.766 6.97 6.97 1.28.057 1.688.072 4.958.072s3.678-.014 4.958-.072c4.354-.2 6.765-2.613 6.97-6.97.058-1.28.072-1.688.072-4.958s-.014-3.678-.072-4.958c-.2-4.354-2.613-6.765-6.97-6.97C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path></svg></a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.31-.75.42-1.24 1.25-1.31 2.1-.05.56.06 1.15.31 1.65.58.93 1.7 1.46 2.76 1.33.74-.03 1.44-.35 1.96-.88.63-.59.98-1.42 1.03-2.27.02-3.96.01-7.92.01-11.88z"></path></svg></a><a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a></div>
+</main><div class="fixed bottom-24 w-full max-w-md px-gutter z-40"><a class="primary-gradient w-full flex items-center justify-center p-md rounded-xl shadow-[0_0_30px_rgba(0,240,255,0.3)] hover:shadow-[0_0_40px_rgba(157,5,255,0.4)] transition-all active:scale-95" href="#"><span class="font-body-lg font-bold text-on-primary">Book a Discovery Call</span><span class="material-symbols-outlined ml-base text-on-primary">call</span></a></div>
+<!-- Navigation Shell (Bottom Bar for Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-low/90 backdrop-blur-xl border-t border-white/10 shadow-[0_-4px_20px_rgba(0,0,0,0.5)] flex justify-around items-center h-20 pb-safe px-4">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
 </a>
-<a class="flex flex-col items-center justify-center text-muted-gray w-full py-4 hover:bg-signal-blue hover:text-high-emphasis-white transition-all" href="#">
-<span class="material-symbols-outlined">group_add</span>
-<span class="font-label-md text-label-md uppercase tracking-widest">GABUNG SQUAD</span>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+<span class="font-label-sm text-label-sm">Services</span>
 </a>
-</nav>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Portfolio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+<span class="font-label-sm text-label-sm">Contact</span>
+</a>
+</nav><div class="fixed right-4 bottom-44 z-50 flex flex-col items-end gap-2 group"><div class="bg-surface-container-high text-on-surface text-xs py-1.5 px-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap mb-2">Konsultasi sekarang</div><a class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform" href="#"><svg class="w-8 h-8 fill-white" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a></div>
 <!-- Footer -->
-<footer class="w-full py-section-gap-mobile px-gutter flex flex-col items-center text-center gap-unit bg-surface-container-lowest border-t border-surface-border pb-32">
-<span class="font-headline-md text-headline-md text-signal-blue italic">Execution Squad</span>
-<p class="font-metadata text-metadata text-muted-gray uppercase tracking-widest">© 2024 AI EXECUTION CHALLENGE. PERFORMA TANPA BASA-BASI.</p>
-<div class="flex gap-6 mt-4">
-<a class="font-metadata text-metadata text-muted-gray hover:text-signal-blue" href="#">Kebijakan Privasi</a>
-<a class="font-metadata text-metadata text-muted-gray hover:text-signal-blue" href="#">Syarat Layanan</a>
-<a class="font-metadata text-metadata text-muted-gray hover:text-signal-blue" href="#">Dukungan</a>
-</div>
+<footer class="w-full py-xl border-t border-white/5 mt-xl flex flex-col items-center gap-sm text-center px-gutter mb-24 bg-transparent text-on-surface-variant">
 </footer>
 <script>
-    // Micro-interactions
-    document.querySelectorAll('button, a').forEach(el => {
-        el.addEventListener('mousedown', () => el.style.transform = 'scale(0.95)');
-        el.addEventListener('mouseup', () => el.style.transform = 'scale(1)');
-        el.addEventListener('mouseleave', () => el.style.transform = 'scale(1)');
-    });
-
-    // Atmospheric effects: Subtle cursor glow (only for desktop)
-    if (window.innerWidth > 768) {
-        const glow = document.createElement('div');
-        glow.className = 'fixed w-64 h-64 bg-signal-blue/5 rounded-full pointer-events-none z-[-1] blur-3xl transition-opacity duration-300';
-        document.body.appendChild(glow);
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX - 128 + 'px';
-            glow.style.top = e.clientY - 128 + 'px';
+        // Micro-interaction: Subtle hover glow follows mouse on glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Active highlight effect
+                const glow = `radial-gradient(400px circle at ${x}px ${y}px, rgba(0, 240, 255, 0.08), transparent 40%)`;
+                card.style.backgroundImage = glow;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.backgroundImage = 'none';
+            });
         });
-    }
-</script>
+
+        // Tap feedback for mobile
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('touchstart', () => {
+                link.classList.add('scale-[0.98]');
+            });
+            link.addEventListener('touchend', () => {
+                link.classList.remove('scale-[0.98]');
+            });
+        });
+    </script>
 </body></html>
