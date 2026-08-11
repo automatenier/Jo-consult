@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jo Consult | Platform E-Learning untuk Coaches & Consultants</title>
+    <title>AGentZ | Revenue Infrastructure untuk Personal Brands & Service Businesses</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; }
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         .btn-pulse { animation: pulse 2s infinite; }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
@@ -31,34 +31,80 @@
 <body class="bg-white text-gray-900 leading-tight">
 
     <div class="absolute top-4 left-4 z-50">
-        <img src="images/logo.jpg" alt="Jo Consult Logo" class="h-12 md:h-16 w-auto">
+        <img src="images/agentzlogo.png" alt="AGentZ Logo" class="h-12 md:h-16 w-auto">
     </div>
 
     <header class="pt-24 pb-12 px-4 text-center border-b-4 border-black relative">
         <div class="max-w-4xl mx-auto">
-            <p class="font-black text-blue-600 tracking-tighter uppercase mb-4 text-lg">UNTUK COACH, KONSULTAN & CREATOR YANG MAU JUAL KNOWLEDGE</p>
+            <p class="font-black text-blue-600 tracking-tighter uppercase mb-4 text-lg">UNTUK PERSONAL BRAND & SERVICE BUSINESS</p>
 
             <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-black text-center">
-                Bangun <span class="italic underline decoration-blue-500">Platform E-Learning</span> yang Bikin <span class="text-[#22c55e]">Ilmu Anda Mudah Dipahami</span>, <span class="text-[#E1306C]">Mudah Dibeli</span>, dan <span class="text-[#2563eb]">Mudah Diulang</span>
+                Bangun <span class="italic underline decoration-blue-500">Revenue Infrastructure™</span> yang Bikin <span class="text-[#22c55e]">Perhatian Konten Jadi Deal</span>, <span class="text-[#E1306C]">Mencegah Lead Hangus</span>, dan <span class="text-[#2563eb]">Menjadi Aset Permanen</span>
             </h1>
 
             <p class="text-xl md:text-2xl mb-8 font-medium text-gray-700 leading-relaxed text-center">
                 Dengan sistem <span class="bg-yellow-300 px-2 font-bold italic text-black whitespace-nowrap">Terima beres,</span><br>
-                Transisi dari Jualan<br>
-                <span class="bg-yellow-300 px-2 font-bold text-black italic">Ilmu</span> —> <span class="bg-yellow-300 px-2 font-bold text-black italic">Access, Community & Lifetime Updates</span>
+                Transisi dari<br>
+                <span class="bg-yellow-300 px-2 font-bold text-black italic">Sewa Software / Kerja Manual</span> —> <span class="bg-yellow-300 px-2 font-bold text-black italic">Revenue Infrastructure & AI Operations</span>
             </p>
             
             <div class="mb-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
                 <wistia-player media-id="9c05czsx0i" aspect="1.7777777777777777"></wistia-player>
             </div>
 
-            <a href="https://calendar.app.google/Qfwg2mdSqASSx1Q56" target="_blank" class="inline-block btn-pulse bg-blue-600 text-white text-2xl md:text-3xl font-black py-6 px-12 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-2px] transition-all uppercase text-center">
-                Minta Akses
+            <a href="#booking" class="inline-block btn-pulse bg-blue-600 text-white text-2xl md:text-3xl font-black py-6 px-12 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-2px] transition-all uppercase text-center">
+                Jadwalkan Audit Kebocoran
             </a>
             <p class="mt-6 font-bold text-xl text-red-600 mb-10 text-center">Batch onboarding terbatas: 23 seat</p>
 
-            <div class="border-4 border-black p-2 bg-gray-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-10">
-                <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2vlbsofw7qAj__fYzA8eCA4aD0IXy7foGQykejmUtxFxV-pM7ZQYko0cq84o2NcWk17pVsRzea?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+            <div id="booking" class="border-4 border-black p-2 bg-gray-50 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-10">
+                <div class="bg-white p-4">
+                    <!-- Cal.com inline embed -->
+                    <div id="my-cal-inline" style="width:100%;height:600px;overflow:scroll;"></div>
+                    <script type="text/javascript">
+                      (function (C, A, L) {
+                        let p = function (a, ar) { a.q.push(ar); };
+                        let d = C.document;
+                        C.Cal = C.Cal || function () {
+                          let cal = C.Cal;
+                          let ar = arguments;
+                          if (!cal.loaded) {
+                            cal.ns = {};
+                            cal.q = cal.q || [];
+                            d.head.appendChild(d.createElement("script")).src = A;
+                            cal.loaded = true;
+                          }
+                          if (ar[0] === L) {
+                            let api = function () { p(api, arguments); };
+                            let namespace = ar[1];
+                            api.q = api.q || [];
+                            if (typeof namespace === "string") {
+                              cal.ns[namespace] = cal.ns[namespace] || api;
+                              p(cal.ns[namespace], ar);
+                              p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
+                            } else {
+                              p(cal, ar);
+                            }
+                            return;
+                          }
+                          p(cal, ar);
+                        };
+                      })(window, "https://app.cal.com/embed/embed.js", "init");
+
+                      Cal("init", { origin: "https://cal.com" });
+                      Cal("inline", {
+                        elementOrSelector: "#my-cal-inline",
+                        calLink: "mathew-jordan-p2ha2t",
+                        config: { layout: "month_view", theme: "light" }
+                      });
+                      Cal("ui", {
+                        theme: "light",
+                        styles: { branding: { brandColor: "#2563eb" } },
+                        hideEventTypeDetails: false,
+                        layout: "month_view"
+                      });
+                    </script>
+                </div>
             </div>
         </div>
     </header>
@@ -68,31 +114,31 @@
         <div class="max-w-4xl mx-auto text-center">
             <p class="font-black text-blue-400 tracking-widest uppercase text-sm mb-6">Kenapa Anda Stuck</p>
             <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight text-white">
-                Anda Tidak Kekurangan Ilmu.<br>
-                <span class="text-blue-400">Anda Kekurangan Bentuk Produk yang Jelas.</span>
+                Anda Tidak Kekurangan Lead.<br>
+                <span class="text-blue-400">Anda Kekurangan Revenue Infrastructure.</span>
             </h2>
             <p class="text-xl text-gray-300 font-medium mb-16 max-w-2xl mx-auto">
-                Ilmu Anda bagus, tapi kalau masih tercecer di konten, chat, dan file random, orang susah paham kenapa mereka harus bayar untuk aksesnya.
+                Konten Anda ramai dan viewers Anda banyak, tapi kalau tidak ada sistem konversi otomatis, prospek akan hilang begitu saja di DM, chat, atau slow response.
             </p>
 
             <div class="grid md:grid-cols-3 gap-6 text-left">
                 <div class="border-4 border-green-500 bg-gray-900 p-8 shadow-[6px_6px_0px_0px_#16a34a]">
                     <div class="inline-block bg-green-500 text-white text-xs font-black uppercase px-3 py-1 mb-4 tracking-widest">1</div>
-                    <h3 class="font-black text-2xl mb-3 uppercase text-white">The Expert</h3>
-                    <p class="text-green-400 font-bold text-sm uppercase tracking-wide mb-4">✓ Anda punya substansi</p>
-                    <p class="text-gray-300 font-medium leading-relaxed">Anda sudah punya pengalaman, framework, dan hasil nyata. Masalahnya bukan di ilmu — masalahnya ilmu itu belum dirapikan jadi e-learning yang gampang diikuti.</p>
+                    <h3 class="font-black text-2xl mb-3 uppercase text-white">The Brand</h3>
+                    <p class="text-green-400 font-bold text-sm uppercase tracking-wide mb-4">✓ Anda punya attention</p>
+                    <p class="text-gray-300 font-medium leading-relaxed">Anda punya konten, audiens, dan kepercayaan. Masalahnya bukan di marketing — masalahnya attention itu belum dihubungkan ke conversion engine otomatis.</p>
                 </div>
                 <div class="border-4 border-yellow-500 bg-gray-900 p-8 shadow-[6px_6px_0px_0px_#ca8a04]">
                     <div class="inline-block bg-yellow-500 text-black text-xs font-black uppercase px-3 py-1 mb-4 tracking-widest">2</div>
-                    <h3 class="font-black text-2xl mb-3 uppercase text-white">The Creator</h3>
-                    <p class="text-yellow-400 font-bold text-sm uppercase tracking-wide mb-4">⚠ Terlalu tersebar</p>
-                    <p class="text-gray-300 font-medium leading-relaxed">Konten, live, webinar, carousel, reels. Semua bagus — tapi tanpa struktur, audiens cuma lihat potongan-potongan, bukan perjalanan belajar yang utuh.</p>
+                    <h3 class="font-black text-2xl mb-3 uppercase text-white">The Conversion</h3>
+                    <p class="text-yellow-400 font-bold text-sm uppercase tracking-wide mb-4">⚠ Kebocoran Prospek</p>
+                    <p class="text-gray-300 font-medium leading-relaxed">Lead masuk tapi hangus karena lambat direspon di WhatsApp/DM (>5 menit) dan follow-up manual yang melelahkan serta tidak konsisten.</p>
                 </div>
                 <div class="border-4 border-red-500 bg-gray-900 p-8 shadow-[6px_6px_0px_0px_#dc2626]">
                     <div class="inline-block bg-red-500 text-white text-xs font-black uppercase px-3 py-1 mb-4 tracking-widest">3</div>
-                    <h3 class="font-black text-2xl mb-3 uppercase text-white">The Operator</h3>
-                    <p class="text-red-400 font-bold text-sm uppercase tracking-wide mb-4">✕ Bikin capek</p>
-                    <p class="text-gray-300 font-medium leading-relaxed">Kalau belum ada platform, Anda yang ngurus semuanya sendiri: page, akses member, update, follow-up, dan tracking. Harusnya belajar, bukan jadi admin.</p>
+                    <h3 class="font-black text-2xl mb-3 uppercase text-white">The Asset</h3>
+                    <p class="text-red-400 font-bold text-sm uppercase tracking-wide mb-4">✕ Ketergantungan Tools</p>
+                    <p class="text-gray-300 font-medium leading-relaxed">Anda terus menyewa belasan tools terpisah yang mahal dan tidak terintegrasi, alih-alih memiliki aset infrastruktur permanen milik sendiri.</p>
                 </div>
             </div>
         </div>
@@ -103,28 +149,28 @@
         <div class="max-w-3xl mx-auto">
             <p class="font-black text-blue-600 tracking-widest uppercase text-sm mb-6 text-left">Solusinya</p>
             <h2 class="text-3xl md:text-5xl font-black mb-10 leading-tight text-black text-left">
-                Bagaimana Kalau Anda Bisa Jual Akses Belajar<br>
-                <span class="italic underline decoration-blue-500">Tanpa Ribet Bangun dari Nol?</span>
+                Bagaimana Kalau Anda Bisa Mengonversi Setiap Lead<br>
+                <span class="italic underline decoration-blue-500">Menjadi Deal Secara Otomatis?</span>
             </h2>
 
             <p class="text-xl md:text-2xl font-medium mb-8 text-gray-800 leading-relaxed">
-                Lihat brand-brand edukasi yang kuat: mereka bukan cuma jual file. Mereka jual <strong>akses</strong>, <strong>kejelasan</strong>, dan <strong>jalur belajar</strong> yang bikin orang betah balik lagi.
+                Lihat brand-brand besar yang menghasilkan miliaran: mereka bukan cuma posting konten. Mereka memiliki <strong>Revenue Infrastructure</strong> kuat yang menangkap setiap lead dalam hitungan detik.
             </p>
             <p class="text-xl md:text-2xl font-medium mb-8 text-gray-800 leading-relaxed">
-                Itulah kenapa orang join membership, komunitas, dan platform belajar. Mereka mau struktur yang rapi — bukan kumpulan materi acak. Anda tidak butuh 128 tools. Anda butuh <span class="bg-yellow-300 px-2 font-bold italic text-black">platform</span> yang bikin ilmu Anda terasa premium.
+                Itulah kenapa prospek segera membeli dan repeat order. Mereka mendapat respon instan dan alur yang profesional — bukan chat manual yang dibalas berjam-jam kemudian. Anda tidak butuh 128 tools terpisah. Anda butuh <span class="bg-yellow-300 px-2 font-bold italic text-black">Revenue Infrastructure</span> yang bekerja 24/7.
             </p>
             <p class="text-xl md:text-2xl font-medium mb-10 text-gray-800 leading-relaxed">
-                Itulah tepatnya yang dilakukan <span class="font-black text-blue-600">Jo Consult</span> untuk brand Anda.
+                Itulah tepatnya yang dibangun <span class="font-black text-blue-600">AGentZ</span> untuk bisnis Anda.
             </p>
 
             <div class="space-y-4 border-l-4 border-blue-600 pl-6 mb-12">
-                <p class="text-xl md:text-2xl font-black text-black">→ Positioning yang bikin orang paham kenapa join</p>
-                <p class="text-xl md:text-2xl font-black text-black">→ Kurikulum yang bikin materi terasa berurutan</p>
-                <p class="text-xl md:text-2xl font-black text-black">→ Copy page yang menjual access, bukan cuma fitur</p>
-                <p class="text-xl md:text-2xl font-black text-black">→ Community flow yang bikin member stay</p>
+                <p class="text-xl md:text-2xl font-black text-black">→ Funnel & VSL yang mengubah viewers menjadi lead</p>
+                <p class="text-xl md:text-2xl font-black text-black">→ Speed-to-Lead System (Respon WhatsApp & Voice Agent)</p>
+                <p class="text-xl md:text-2xl font-black text-black">→ CRM & Tracking terintegrasi untuk mencegah kebocoran lead</p>
+                <p class="text-xl md:text-2xl font-black text-black">→ Dedicated Infrastructure (Server/VPS milik Anda sendiri)</p>
             </div>
 
-            <p class="text-3xl md:text-4xl font-black text-blue-600 tracking-tight text-left">Anda cukup ajar. Platform yang mengatur experience-nya.</p>
+            <p class="text-3xl md:text-4xl font-black text-blue-600 tracking-tight text-left">Anda cukup buat konten & layani client. Sistem kami yang mengurus konversinya.</p>
         </div>
     </section>
 
@@ -134,10 +180,10 @@
             <div class="text-center mb-16">
                 <p class="font-black text-blue-600 tracking-widest uppercase text-sm mb-4">Apa yang Anda Dapatkan</p>
                 <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight uppercase text-black">
-                    Jo Consult<br>Membership & Learning Platform™
+                    AGentZ<br>Revenue Infrastructure™
                 </h2>
                 <p class="text-xl md:text-2xl font-medium text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                    Dapatkan blueprint untuk content, kurikulum, halaman akses, komunitas, dan alur belajar yang dipakai untuk membangun platform edukasi premium.
+                    Dapatkan sistem funnel lengkap, automasi WhatsApp, Speed-to-Lead voice agent, CRM terintegrasi, dan VPS hosting pribadi yang didesain untuk memaksimalkan revenue bisnis Anda.
                 </p>
             </div>
 
@@ -150,56 +196,56 @@
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-blue-600 border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">1</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-blue-600">Offer Activation</h3>
-                        <p class="text-lg font-medium text-gray-700">Tentukan janji utama platform Anda supaya orang langsung paham kenapa mereka harus join dan belajar dari Anda.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-blue-600">Offer Positioning & Funnel Copy</h3>
+                        <p class="text-lg font-medium text-gray-700">Tentukan positioning, penawaran menarik, dan struktur copywriting landing page agar prospek langsung paham value bisnis Anda dalam hitungan detik.</p>
                     </div>
                 </div>
 
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-black border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">2</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight">AI Curriculum Blueprint</h3>
-                        <p class="text-lg font-medium text-gray-700">Gunakan AI untuk merapikan modul, lesson flow, struktur bab, dan urutan belajar agar experience terasa simpel dan premium.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight">High-Converting Funnel & VSL</h3>
+                        <p class="text-lg font-medium text-gray-700">Landing page conversion-rate optimized dengan struktur Video Sales Letter (VSL) yang terbukti memicu pemesanan langsung.</p>
                     </div>
                 </div>
 
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-blue-600 border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">3</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-blue-600">Sales Page / Membership Page</h3>
-                        <p class="text-lg font-medium text-gray-700">Dapatkan struktur halaman yang menjelaskan value, akses, dan benefit membership tanpa hard selling berlebihan.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-blue-600">Speed-to-Lead Voice & Chat Agent</h3>
+                        <p class="text-lg font-medium text-gray-700">Deploy AI Voice Agent dan WhatsApp Auto-Reply otomatis untuk menghubungi dan memfilter lead baru dalam waktu kurang dari 60 detik.</p>
                     </div>
                 </div>
 
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-black border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">4</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight">Member Access Dashboard</h3>
-                        <p class="text-lg font-medium text-gray-700">Lacak akses, progres, enrollment, dan follow-up pakai sheet dan dashboard supaya experience member tetap rapi dan terukur.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight">Visual CRM & Automated Pipeline</h3>
+                        <p class="text-lg font-medium text-gray-700">Integrasi pipeline visual untuk memantau status lead secara real-time dari kontak masuk hingga berhasil closed deal.</p>
                     </div>
                 </div>
 
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-green-600 border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">5</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-green-600">Content Engine</h3>
-                        <p class="text-lg font-medium text-gray-700">Bikin konten yang mengarahkan orang ke library Anda — bukan sekadar likes. Konten harus jadi pintu masuk ke platform.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-green-600">Content-to-Booking Engine</h3>
+                        <p class="text-lg font-medium text-gray-700">Rangkaian hook dan template konten terstruktur (Remotion) yang secara khusus dirancang untuk mengarahkan viewers menuju booking link Anda.</p>
                     </div>
                 </div>
 
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-black border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">6</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight">Community Playbook</h3>
-                        <p class="text-lg font-medium text-gray-700">Buat jalur komunitas, diskusi, dan support yang bikin member aktif dan merasa punya tempat untuk kembali.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight">Dedicated VPS Setup & Ownership</h3>
+                        <p class="text-lg font-medium text-gray-700">Sistem dideploy langsung di server pribadi (VPS) Anda sendiri. Anda menguasai penuh data pelanggan dan kontrol sistem tanpa ketergantungan.</p>
                     </div>
                 </div>
 
                 <div class="flex gap-6 p-8 border-4 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <div class="w-12 h-12 bg-blue-600 border-4 border-black flex items-center justify-center text-white font-black text-xl shrink-0">7</div>
                     <div>
-                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-blue-600">Retention & Update Playbook</h3>
-                        <p class="text-lg font-medium text-gray-700">Dapatkan sistem untuk menjaga member stay, balik lagi, dan upgrade ke level berikutnya lewat update dan learning path baru.</p>
+                        <h3 class="font-black text-xl md:text-2xl mb-3 uppercase leading-tight text-blue-600">SOP & Team Handover Playbook</h3>
+                        <p class="text-lg font-medium text-gray-700">Dokumentasi operasional lengkap dan training untuk tim Anda agar sistem ini bisa terus dijalankan secara mandiri dalam jangka panjang.</p>
                     </div>
                 </div>
 
@@ -210,49 +256,49 @@
     <section class="py-24 px-6 bg-white">
         <div class="max-w-3xl mx-auto">
             <p class="text-2xl md:text-4xl font-black mb-12 text-black leading-tight uppercase text-left">
-                Kepada Para Expert, Coach, dan Creator
+                Kepada Para Founder, Coach, dan Service Owner
             </p>
             <p class="text-xl md:text-2xl font-medium mb-12 text-left text-gray-800">
-                Kalau Anda punya ilmu yang bisa diajarkan, tapi belum dibungkus jadi platform belajar yang rapi dan premium, baca ini.
+                Kalau Anda mendatangkan leads dari media sosial tapi belum memiliki conversion engine otomatis yang terstruktur, baca ini.
             </p>
-            <p class="text-xl md:text-2xl font-medium mb-2 text-left">Di luar sana semua orang bikin konten.</p>
-            <p class="text-xl md:text-2xl font-medium mb-2 text-left">Semua orang bilang mereka expert.</p>
-            <p class="text-xl md:text-2xl font-medium mb-12 leading-relaxed text-left text-gray-800"><span class="bg-yellow-300 px-2 font-bold italic text-black">AI</span> bikin edukasi gratis makin banyak, makin cepat, makin mirip-mirip.</p>
-            <p class="text-xl md:text-2xl font-medium mb-12 italic text-left">Kalau rencana Anda cuma <span class="bg-yellow-300 px-2 font-bold italic text-black">“jual course”</span> tanpa access dan community, Anda bakal capek di konten terus.</p>
+            <p class="text-xl md:text-2xl font-medium mb-2 text-left">Di luar sana semua orang membuat konten.</p>
+            <p class="text-xl md:text-2xl font-medium mb-2 text-left">Semua orang bersaing memperebutkan viewers.</p>
+            <p class="text-xl md:text-2xl font-medium mb-12 leading-relaxed text-left text-gray-800"><span class="bg-yellow-300 px-2 font-bold italic text-black">AI</span> membuat konten makin melimpah, makin cepat, dan makin mirip satu sama lain.</p>
+            <p class="text-xl md:text-2xl font-medium mb-12 italic text-left">Kalau strategi Anda cuma <span class="bg-yellow-300 px-2 font-bold italic text-black">“posting terus”</span> tanpa diimbangi conversion & follow-up yang instan, Anda hanya membuang budget dan tenaga.</p>
 
             <div class="mb-4 text-xl md:text-3xl leading-relaxed text-left">
-                "Satu-satunya hal yang tetap menciptakan bukti nyata, uang, dan kepercayaan di awal adalah <span class="bg-yellow-300 px-2 font-black italic text-black underline decoration-2">tanggapan pasar</span>"
+                "Satu-satunya hal yang membuktikan nilai bisnis Anda adalah <span class="bg-yellow-300 px-2 font-black italic text-black underline decoration-2">Closed Deals & Revenue</span>"
             </div>
             <p class="text-xl md:text-2xl font-black mb-4 tracking-tight text-black italic text-left uppercase leading-relaxed">
-                <span class="bg-yellow-300 px-2">Join</span>. <span class="bg-yellow-300 px-2">Watch</span>. <span class="bg-yellow-300 px-2">Implement</span>. <span class="bg-yellow-300 px-2">Repeat</span>.
+                <span class="bg-yellow-300 px-2">Lead In</span>. <span class="bg-yellow-300 px-2">Instant Response</span>. <span class="bg-yellow-300 px-2">Qualify</span>. <span class="bg-yellow-300 px-2">Close</span>.
             </p>
-            <p class="text-xl md:text-2xl font-medium mb-12 text-left">Itulah angka yang <span class="bg-yellow-300 px-2 font-bold italic text-black">membuktikan</span>.</p>
+            <p class="text-xl md:text-2xl font-medium mb-12 text-left">Itulah kecepatan yang <span class="bg-yellow-300 px-2 font-bold italic text-black">meningkatkan konversi</span>.</p>
             <p class="text-xl md:text-2xl font-medium mb-2 text-left">Kebenaran yang <span class="bg-yellow-300 px-2 font-bold italic text-black">PAHIT</span> itu:</p>
-            <p class="text-xl md:text-2xl font-medium mb-2 leading-relaxed text-gray-800 text-left">Kebanyakan creator yang masih berada di angka Rp0 bukan kekurangan ilmu.</p> 
-            <p class="text-xl md:text-2xl font-medium mb-12 text-left text-gray-800">Mereka belum punya <span class="bg-yellow-300 px-2 font-bold italic text-black">platform pembelajaran</span> yang jelas.</p>
+            <p class="text-xl md:text-2xl font-medium mb-2 leading-relaxed text-gray-800 text-left">Kebanyakan bisnis yang stuck bukan karena produknya kurang bagus.</p> 
+            <p class="text-xl md:text-2xl font-medium mb-12 text-left text-gray-800">Mereka belum memiliki <span class="bg-yellow-300 px-2 font-bold italic text-black">Revenue Infrastructure</span> yang andal.</p>
 
             <p class="text-xl md:text-2xl font-medium mb-4 text-left">Sehingga mereka terjebak dalam siklus:</p>
             <p class="text-3xl md:text-5xl font-black leading-[1.1] text-black mb-12 tracking-tighter uppercase text-left">
-                Bikin konten → Tulis materi → Edit sendiri → Ganti fokus → Belajar lagi → TETAP BELUM LAUNCH.
+                Bikin konten → Dapat lead → Slow reply → Lead hangus → Post lagi → TETAP STUCK DI REVENUE.
             </p>
-            <p class="text-3xl md:text-4xl font-black text-blue-600 tracking-tight text-left">Inilah fungsi Jo Consult.</p>
+            <p class="text-3xl md:text-4xl font-black text-blue-600 tracking-tight text-left">Inilah fungsi AGentZ.</p>
         </div>
     </section>
 
     <section class="py-24 px-4 bg-white border-t-4 border-black text-center">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-6xl font-black mb-12 leading-tight uppercase">anda tidak eksperimen, anda membangun aset</h2>
+            <h2 class="text-4xl md:text-6xl font-black mb-12 leading-tight uppercase">anda tidak sewa software, anda membangun revenue infrastructure</h2>
             
             <p class="text-xl md:text-2xl font-bold mb-12 italic text-gray-700">Inilah yang kami instal langsung ke brand Anda:</p>
 
             <div class="max-w-3xl mx-auto text-left mb-12 space-y-6 border-l-4 border-blue-600 pl-6 italic text-gray-800">
-                <p class="text-xl md:text-2xl font-medium leading-relaxed">Kebanyakan program hanya memberikan teori dan menyebutnya sebagai "kursus."</p>
-                <p class="text-xl md:text-2xl font-medium leading-relaxed">Kami memberikan Anda infrastruktur jadi: kurikulum, access flow, community flow, page, dan dashboard.</p>
-                <p class="text-xl md:text-2xl font-bold text-black leading-relaxed text-blue-600">Dengan begitu, Anda berhenti menebak-nebak dan mulai membangun aset belajar yang bisa dijual, diulang, dan di-update.</p>
+                <p class="text-xl md:text-2xl font-medium leading-relaxed">Kebanyakan agensi hanya memberikan konsultasi teori automasi sekali pakai lalu pergi.</p>
+                <p class="text-xl md:text-2xl font-medium leading-relaxed">Kami memberikan Anda infrastruktur pendapatan utuh: landing page, CRM pipeline, WhatsApp auto-reply, voice caller, dan server VPS pribadi.</p>
+                <p class="text-xl md:text-2xl font-bold text-black leading-relaxed text-blue-600">Dengan begitu, Anda memiliki aset bisnis permanen yang terus menghasilkan booking dan closed deal tanpa sewa tools mahal.</p>
             </div>
 
-            <a href="https://calendar.app.google/Qfwg2mdSqASSx1Q56" target="_blank" class="inline-block bg-blue-600 text-white text-2xl md:text-4xl font-black py-8 px-16 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase tracking-tighter text-center">
-                Minta Akses
+            <a href="#booking" class="inline-block bg-blue-600 text-white text-2xl md:text-4xl font-black py-8 px-16 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase tracking-tighter text-center">
+                Jadwalkan Audit Kebocoran
             </a>
         </div>
     </section>
@@ -267,10 +313,10 @@
                 <h3 class="text-5xl font-black mb-8 leading-tight tracking-tight text-white uppercase text-left">Saya Mathew Jordan.</h3>
                 
                 <div class="space-y-6 text-xl text-gray-300 leading-relaxed text-left">
-                    <p>Bedanya kami dengan saran generik di luar sana: kebanyakan orang kasih ide. Kami bantu merapikan ide itu jadi platform yang bisa dipakai orang untuk belajar.</p>
-                    <p class="text-white font-black uppercase tracking-tight text-2xl">Kami membangun e-learning experience yang rapi.</p>
-                    <p>Kami bantu Anda menyusun knowledge, kurikulum, access flow, page, dan community supaya brand Anda punya produk belajar yang terasa premium.</p>
-                    <p class="bg-blue-600 text-white px-2 inline-block font-bold italic">Di dalam sistem ini, Anda tidak sedang menjual file random. Anda sedang membangun pengalaman belajar.</p>
+                    <p>Bedanya kami dengan saran generik di luar sana: kebanyakan orang cuma memberi konsep automasi. Kami datang langsung membangun Revenue Infrastructure lengkap di sistem Anda.</p>
+                    <p class="text-white font-black uppercase tracking-tight text-2xl">Kami membangun sistem konversi penjualan 24/7.</p>
+                    <p>Kami membantu Anda mengintegrasikan funnel, WhatsApp automation, voice AI, CRM tracking, dan data pipeline agar operasional sales berjalan mandiri.</p>
+                    <p class="bg-blue-600 text-white px-2 inline-block font-bold italic">Di dalam sistem ini, Anda tidak sedang menyewa tools bulanan. Anda sedang membangun mesin pendapatan permanen.</p>
                 </div>
             </div>
         </div>
@@ -281,13 +327,13 @@
         <div class="max-w-3xl mx-auto text-center">
             <div class="border-4 border-yellow-500 bg-yellow-50 p-12 shadow-[10px_10px_0px_0px_#ca8a04]">
                 <div class="text-6xl mb-6">🏆</div>
-                <div class="inline-block bg-yellow-500 text-white text-sm font-black uppercase px-4 py-2 mb-6 tracking-widest">Jaminan Akses</div>
+                <div class="inline-block bg-yellow-500 text-white text-sm font-black uppercase px-4 py-2 mb-6 tracking-widest">100% Kepemilikan Aset</div>
                 <h2 class="text-3xl md:text-4xl font-black mb-6 leading-tight uppercase text-black">
-                    Akses Selamanya + Update Berkala —<br>
-                    <span class="text-yellow-600">Bukan Kursus Sekali Lihat</span>
+                    Sistem Terdeploy di Server Anda Sendiri —<br>
+                    <span class="text-yellow-600">Hak Milik Penuh Milik Anda</span>
                 </h2>
                 <p class="text-xl font-medium text-gray-700 leading-relaxed max-w-xl mx-auto">
-                    Anda dapat akses ke materi, update, dan learning path yang terus berkembang. Fokusnya bukan sekadar nonton sekali, tapi punya tempat belajar yang hidup.
+                    Seluruh kode, database, dan integrasi diinstal langsung di cloud server (VPS) milik Anda. Jika kerja sama selesai, sistem tetap aktif milik Anda selamanya.
                 </p>
             </div>
         </div>
@@ -302,51 +348,51 @@
 
                 <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
                     <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-black text-lg md:text-xl pr-4">Saya belum punya audience besar. Apakah tetap bisa?</span>
+                        <span class="font-black text-lg md:text-xl pr-4">Apakah ini cocok untuk bisnis saya?</span>
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Bisa. Platform belajar justru membantu Anda membangun trust lebih cepat, meski audience masih kecil. Yang penting bukan ramai duluan — tapi jelas duluan.</p>
+                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Jika bisnis Anda mendatangkan leads dari media sosial (Facebook, IG, TikTok, Ads) dan butuh respon cepat ke WhatsApp/telepon untuk closing, sistem ini sangat cocok untuk Anda.</p>
                     </div>
                 </div>
 
                 <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
                     <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-black text-lg md:text-xl pr-4">Berapa lama sampai platform saya siap?</span>
+                        <span class="font-black text-lg md:text-xl pr-4">Bagaimana dengan biaya API dan server setelah setup?</span>
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Biasanya 14–30 hari tergantung kelengkapan materi dan seberapa cepat keputusan diambil. Targetnya bukan lama-lamaan — targetnya launch dan jalan.</p>
+                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Sangat transparan. Biaya server VPS, AI tokens, dan telephony (ElevenLabs/Twilio) langsung terhubung menggunakan API Key Anda sendiri tanpa markup harga dari kami.</p>
                     </div>
                 </div>
 
                 <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
                     <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-black text-lg md:text-xl pr-4">Apakah ini cocok untuk niche saya?</span>
+                        <span class="font-black text-lg md:text-xl pr-4">Berapa lama sampai Revenue Infrastructure kami aktif?</span>
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Kalau Anda punya keahlian yang bisa diajarkan, jawabannya iya. Cocok untuk coach, consultant, creator, expert, atau brand edukasi yang ingin menjual access dan learning.</p>
+                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Untuk Stage 1 (Appointment Engine), kami men-setup dan men-deploy-nya dalam waktu 3-7 hari. Untuk full Revenue OS / Sprint 90 hari, kami bekerja secara paralel dalam roadmap 12 minggu.</p>
                     </div>
                 </div>
 
                 <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
                     <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-black text-lg md:text-xl pr-4">Saya tidak suka hard selling. Harus agresif?</span>
+                        <span class="font-black text-lg md:text-xl pr-4">Bagaimana jika Meta atau WhatsApp memblokir nomor kami?</span>
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Tidak. Sistem ini dibangun supaya orang masuk lewat nilai, memahami manfaat, lalu join dengan nyaman. Focus-nya access, clarity, dan trust.</p>
+                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Kami menggunakan fallback resmi WhatsApp Business Cloud API dan membatasi volume automasi sesuai compliance limit dari Meta untuk memitigasi risiko tersebut seminimal mungkin.</p>
                     </div>
                 </div>
 
                 <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
                     <button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-black text-lg md:text-xl pr-4">Apa bedanya dengan kursus biasa?</span>
+                        <span class="font-black text-lg md:text-xl pr-4">Apakah saya butuh tim IT untuk mengoperasikannya?</span>
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Kursus biasa kasih materi. Kami bantu Anda membangun <strong>platform belajar</strong> — struktur, access flow, page, community, dan update — supaya knowledge Anda terasa seperti aset nyata.</p>
+                        <p class="px-6 pb-6 text-lg text-gray-700 font-medium leading-relaxed">Tidak perlu. Seluruh sistem kami buat dengan prinsip 'Terima Beres' dan kami berikan SOP lengkap serta training tim saat serah terima aset.</p>
                     </div>
                 </div>
 
@@ -355,15 +401,15 @@
     </section>
 
     <footer class="py-12 bg-white text-center border-t-4 border-black">
-        <a href="https://calendar.app.google/Qfwg2mdSqASSx1Q56" target="_blank" class="mb-12 inline-block bg-blue-600 text-white text-xl md:text-2xl font-black py-4 px-10 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase text-center transition-transform hover:scale-105">
-            Minta Akses
+        <a href="#booking" class="mb-12 inline-block bg-blue-600 text-white text-xl md:text-2xl font-black py-4 px-10 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase text-center transition-transform hover:scale-105">
+            Jadwalkan Audit Kebocoran
         </a>
         
         <div class="mb-6 flex justify-center">
-            <img src="images/logo.jpg" alt="Jo Consult Logo" class="h-12 w-auto">
+            <img src="images/agentzlogo.png" alt="AGentZ Logo" class="h-12 w-auto">
         </div>
 
-        <p class="font-black text-lg text-black">© 2026 Mathew Jordan | Jo Consult</p>
+        <p class="font-black text-lg text-black">© 2026 Mathew Jordan | AGentZ</p>
         <p class="text-xs text-gray-500 mt-4 uppercase font-bold tracking-widest px-4">Program eksekusi - Bukan nasihat finansial. Hasil bergantung pada implementasi masing-masing.</p>
     </footer>
 
