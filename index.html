@@ -6,25 +6,11 @@
     <title>AGentZ | Revenue Infrastructure untuk Bisnis Coaching & Jasa</title>
     <meta name="description" content="Ubah setiap leads jadi jadwal meeting — tanpa tim tambahan. Kami bangun dan operasikan Revenue Infrastructure Anda.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        blue: {
-                            400: '#2563eb', // Darker blue (standard 600) for text previously using blue-400
-                            600: '#1e40af', // Darker blue (standard 800) for text previously using blue-600
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue: #1e40af;
-            --blue-light: #2563eb;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
             --green: #16a34a;
             --yellow: #fde047;
             --red: #dc2626;
@@ -88,7 +74,7 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-5 py-3">
         <span class="font-black text-lg text-black tracking-tight">AGentZ</span>
         <div class="flex gap-3">
-            <a href="https://automatenier.github.io/linktree/" target="_blank" class="bg-gray-100 text-black text-xs font-bold uppercase tracking-widest px-4 py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 transition-all">
+            <a href="https://jordanengo.com/" target="_blank" class="bg-gray-100 text-black text-xs font-bold uppercase tracking-widest px-4 py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 transition-all">
                 Resource Gratis
             </a>
             <a href="#booking" id="nav-cta" class="bg-blue-600 text-white text-xs font-bold uppercase tracking-widest px-4 py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all">
@@ -177,7 +163,7 @@
                 <a href="#booking" id="hero-cta" class="btn-pulse w-full sm:w-auto text-center bg-blue-600 text-white text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
                     Jadwalkan Konsultasi Gratis
                 </a>
-                <a href="https://automatenier.github.io/linktree/" target="_blank" class="w-full sm:w-auto text-center bg-gray-100 text-black text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
+                <a href="https://jordanengo.com/" target="_blank" class="w-full sm:w-auto text-center bg-gray-100 text-black text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
                     Resource Gratis
                 </a>
             </div>
@@ -512,7 +498,7 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5 text-left">
                 <!-- Stage 0 -->
                 <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-gray-500 transition-all">
                     <div class="flex justify-between items-start mb-4">
@@ -533,6 +519,7 @@
                         <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
                             Jadwalkan Konsultasi Gratis
                         </a>
+                        <p class="text-center text-[10px] text-gray-500 mt-2">⏱ 1-on-1 · Qualified Leads: <span class="bg-yellow-400 text-black px-1.5 py-0.5 rounded font-black">GRATIS</span></p>
                     </div>
                 </div>
 
@@ -543,21 +530,21 @@
                         <span class="text-xl">⚡</span>
                     </div>
                     <h3 class="text-lg font-black text-blue-400 mb-1">Appointment Engine 7-Hari</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Bangun sistem Booking Pertama Anda"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami bangun jalur langsung dari viewer konten ke booked call — dalam 7 hari. Untuk validasi booking flow dan membangun aset pipeline nyata sebelum Anda scaling.</p>
+                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Bangun &amp; Launch Pipeline Booking Pertama Anda"</p>
+                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami membangun jalur dari <strong>content → conversation → qualification → booked call</strong> dalam 7 hari — agar Anda memiliki pipeline nyata sebelum scaling.</p>
                     <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Landing page + VSL  dan Booking calendar</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Personal Brand Linktree + Free Resources</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">AI WhatsApp chatbot kualifikasi — script otomatis untuk pre-screen lead masuk</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Social Media DM Automation</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Content Scheduler Assistant</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">2 Remotion video editing draft  untuk membuat brand unik</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">2 Remotion video editing drafts untuk content conversion</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Landing page + VSL outline &amp; embed</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">AI WhatsApp qualification chatbot</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Click-to-chat CTA + Cal.com booking flow</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Warm DM outreach script</span></li>
                     </ul>
                     <div class="mt-auto pt-4 border-t border-gray-800">
                         <p class="text-blue-400 text-xs font-black mb-3">🚀 Appointment Pipeline — Live, Bukan Sekadar Setup</p>
                         <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
                             Jadwalkan Konsultasi Gratis
                         </a>
+                        <p class="text-center text-[10px] text-gray-500 mt-2">⚡ 7-Hari Sprint · Client-Owned System</p>
                     </div>
                 </div>
 
@@ -567,26 +554,26 @@
                         <span class="text-[9px] font-black text-white uppercase tracking-widest">★ Paling Direkomendasikan</span>
                     </div>
                     <div class="flex justify-between items-start mb-4 mt-2">
-                        <span class="text-xs font-mono text-blue-400 uppercase tracking-wider font-bold bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded">Stage 2 · Full System · ★ PALING DIREKOMENDASIKAN</span>
+                        <span class="text-xs font-mono text-blue-400 uppercase tracking-wider font-bold bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded">Stage 2 · Full System</span>
                         <span class="text-xl">🚀</span>
                     </div>
-                    <h3 class="text-lg font-black text-white mb-1">Sales Engine Build</h3>
-                    <p class="text-xs font-bold text-blue-300 italic mb-4">"Jangan Pernah Kehilangan Lead Lagi"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami otomasi seluruh conversational follow-up dan tracking Anda — sehingga tidak ada satu pun prospect yang lolos tanpa difollow-up.</p>
+                    <h3 class="text-lg font-black text-white mb-1">Sales Engine Build-14 Hari</h3>
+                    <p class="text-xs font-bold text-blue-300 italic mb-4">"Jangan Biarkan Lead Hilang di Tengah Jalan"</p>
+                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami membangun sistem <strong>response, qualification, follow-up, booking, dan tracking</strong> agar setiap opportunity memiliki next step yang jelas.</p>
                     <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium"><strong>Speed-to-Lead Whatsapp Dialler Agent:</strong> AI voice call otomatis 3 detik saat lead  baru masuk</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium"><strong>CRM Integration:</strong> Visual pipeline dari New Lead sampai Won/Lost</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Automated Follow-Up &amp; Nurture Sequence multiphase untuk (Cold, Warm, Hot Leads)</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium"><strong>Setter Playbook:</strong> Panduan qualifying percakapan di semua channel sosial &amp; chat</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium"><strong>Analytics:</strong> Dashboard konversi — cost-per-lead, booking rate, efisiensi pipeline</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Clipz Content Clipping Agent</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium"><strong>Personal VPS included:</strong> Migrasi infrastruktur untuk bantuan AI 24/7</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Speed-to-Lead Voice Agent — respons otomatis dalam hitungan detik</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">CRM Visual Pipeline — New Lead → Qualified → Booked → Won/Lost</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Automated Follow-Up — cold, warm, cancelled &amp; stalled leads</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Setter Playbook + Analytics Dashboard</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Dedicated VPS + Ads Strategy &amp; A/B Testing</span></li>
+                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">AI Video Editors — Content Bank</span></li>
                     </ul>
                     <div class="mt-auto pt-4 border-t border-blue-900/50">
                         <p class="text-blue-300 text-xs font-black mb-3">🛡 Sales Infrastructure — Semua Lead Masuk ke Sistem yang Sama</p>
                         <a href="#booking" class="block text-center py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-black transition-all text-xs uppercase tracking-wide shadow-lg shadow-blue-500/30">
                             Jadwalkan Konsultasi Gratis
                         </a>
+                        <p class="text-center text-[10px] text-blue-300 mt-2">🛡 Setup One-Time · Retainer Opsional · Client-Owned System</p>
                     </div>
                 </div>
 
@@ -611,6 +598,7 @@
                         <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
                             Jadwalkan Konsultasi Gratis
                         </a>
+                        <p class="text-center text-[10px] text-gray-500 mt-2">📋 90-Hari Build · Kustomisasi Penuh · Client-Owned System</p>
                     </div>
                 </div>
             </div>
