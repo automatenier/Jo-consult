@@ -6,11 +6,25 @@
     <title>AGentZ | Revenue Infrastructure untuk Bisnis Coaching & Jasa</title>
     <meta name="description" content="Ubah setiap leads jadi jadwal meeting — tanpa tim tambahan. Kami bangun dan operasikan Revenue Infrastructure Anda.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            400: '#2563eb', // Darker blue (standard 600) for text previously using blue-400
+                            600: '#1e40af', // Darker blue (standard 800) for text previously using blue-600
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue: #2563eb;
-            --blue-light: #3b82f6;
+            --blue: #1e40af;
+            --blue-light: #2563eb;
             --green: #16a34a;
             --yellow: #fde047;
             --red: #dc2626;
@@ -50,10 +64,32 @@
         .faq-item.open .faq-icon { transform: rotate(45deg); }
 
         .stage-card {
+            font-family: 'Inter', sans-serif;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .stage-card:hover {
             transform: translateY(-4px);
+        }
+
+        .neo-border {
+            border: 3px solid #0a0a0a;
+        }
+        .neo-border-sm {
+            border: 2px solid #0a0a0a;
+        }
+        .neo-shadow {
+            box-shadow: 4px 4px 0px #0a0a0a;
+        }
+        .neo-shadow-lg {
+            box-shadow: 6px 6px 0px #0a0a0a;
+        }
+        .highlight-badge {
+            background-color: #fde047;
+            color: #0a0a0a;
+            font-weight: 800;
+            font-style: italic;
+            padding: 2px 8px;
+            display: inline-block;
         }
 
         @keyframes ticker {
@@ -71,14 +107,14 @@
 </head>
 <body>
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-5 py-3">
-        <span class="font-black text-lg text-black tracking-tight">AGentZ</span>
-        <div class="flex gap-3">
-            <a href="https://jordanengo.com/" target="_blank" class="bg-gray-100 text-black text-xs font-bold uppercase tracking-widest px-4 py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 transition-all">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-3 sm:px-5 py-2 sm:py-3">
+        <span class="font-black text-base sm:text-lg text-black tracking-tight shrink-0">AGentZ</span>
+        <div class="flex gap-2 sm:gap-3">
+            <a href="https://jordanengo.com/" target="_blank" class="bg-gray-100 text-black text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 transition-all whitespace-nowrap">
                 Resource Gratis
             </a>
-            <a href="#booking" id="nav-cta" class="bg-blue-600 text-white text-xs font-bold uppercase tracking-widest px-4 py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all">
-                Jadwalkan Konsultasi Gratis →
+            <a href="#booking" id="nav-cta" class="bg-blue-600 text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all whitespace-nowrap">
+                <span class="hidden sm:inline">Jadwalkan </span>Konsultasi<span class="hidden sm:inline"> Gratis</span> →
             </a>
         </div>
     </nav>
@@ -149,14 +185,12 @@
                 <span class="hl">Follow up dan Closing 24/7</span>
             </p>
 
-            <!-- Demo placeholder -->
-            <div class="mb-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden bg-gray-950 aspect-video flex items-center justify-center max-w-3xl mx-auto">
-                <div class="text-center text-white p-8">
-                    <div class="text-5xl mb-4">⚡</div>
-                    <p class="text-xl font-black mb-2">DEMO: AGentZ Revenue Infrastructure</p>
-                    <p class="text-gray-400">Speed-to-Lead · AI Follow-Up · Auto Booking · Deal Closed</p>
-                    <p class="text-blue-400 mt-4 text-sm font-bold">[ Embed video demo di sini ]</p>
-                </div>
+            <!-- VSL Video Player -->
+            <div id="vsl-video" class="vsl-container mb-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden max-w-3xl mx-auto"
+                data-src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
+                data-analytics="https://analytics.jordanengo.com"
+                data-site-id="GANTI_DENGAN_SITE_ID_UMAMI"
+                data-accent="#2563eb">
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -498,107 +532,113 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5 text-left">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-7xl mx-auto">
                 <!-- Stage 0 -->
-                <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-gray-500 transition-all">
+                <div class="stage-card bg-white text-[#0f172a] neo-border neo-shadow p-6 flex flex-col hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0a0a0a] transition-all">
                     <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-mono text-gray-400 uppercase tracking-wider font-bold bg-gray-800 px-2 py-1 rounded">Stage 0 · Diagnosis</span>
+                        <div class="bg-[#0f172a] text-white font-black text-[10px] px-2.5 py-1 inline-block uppercase neo-border-sm">
+                            Stage 0 · Diagnosis
+                        </div>
                         <span class="text-xl">🔍</span>
                     </div>
-                    <h3 class="text-lg font-black text-blue-400 mb-1">Revenue Leak Audit</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Temukan Persis Di Mana Revenue Anda Bocor"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Audit mendalam 4 track untuk menemukan bottleneck terbesar dari <strong>attention → lead → booking → revenue</strong>.</p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Brand Architect:</strong> Hook, content, editing &amp; founder bottleneck</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Acquisition Breakdown:</strong> DM → WhatsApp → booking conversion</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Offer Advisory:</strong> Packaging, positioning &amp; lead magnet</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Techstack Consult:</strong> Meta, WhatsApp &amp; automation readiness</span></li>
+                    <h3 class="font-black text-xl text-[#0f172a] mb-1">Revenue Leak Audit</h3>
+                    <p class="text-xs font-bold text-[#475569] italic mb-4">"Temukan Persis Di Mana Revenue Anda Bocor"</p>
+                    <p class="text-[#475569] text-sm mb-5 leading-relaxed">Audit mendalam 4 track untuk menemukan bottleneck terbesar dari <strong>attention → lead → booking → revenue</strong>.</p>
+                    <ul class="space-y-2 mb-6 text-sm flex-1 text-[#475569] font-medium">
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Brand Architect:</strong> Hook, content, editing &amp; founder bottleneck</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Acquisition Breakdown:</strong> DM → WhatsApp → booking conversion</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Offer Advisory:</strong> Packaging, positioning &amp; lead magnet</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Techstack Consult:</strong> Meta, WhatsApp &amp; automation readiness</span></li>
                     </ul>
-                    <div class="mt-auto pt-4 border-t border-gray-800">
-                        <p class="text-green-400 text-xs font-black mb-3">📋 Revenue Leak Report — Prioritas perbaikan yang jelas</p>
-                        <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
+                    <div class="mt-auto pt-4 border-t-2 border-[#0f172a]">
+                        <p class="text-green-600 text-xs font-black mb-3">📋 Revenue Leak Report — Prioritas perbaikan yang jelas</p>
+                        <a href="#booking" class="block text-center py-3 bg-[#1e40af] hover:bg-blue-700 text-white rounded-none neo-border-sm neo-shadow text-xs uppercase tracking-wide font-black transition-all">
                             Jadwalkan Konsultasi Gratis
                         </a>
-                        <p class="text-center text-[10px] text-gray-500 mt-2">⏱ 1-on-1 · Qualified Leads: <span class="bg-yellow-400 text-black px-1.5 py-0.5 rounded font-black">GRATIS</span></p>
                     </div>
                 </div>
 
                 <!-- Stage 1 -->
-                <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-blue-600 transition-all">
+                <div class="stage-card bg-white text-[#0f172a] neo-border neo-shadow p-6 flex flex-col hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0a0a0a] transition-all">
                     <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-mono text-blue-400 uppercase tracking-wider font-bold bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded">Stage 1 · Pilot</span>
+                        <div class="bg-[#0f172a] text-white font-black text-[10px] px-2.5 py-1 inline-block uppercase neo-border-sm">
+                            Stage 1 · Pilot
+                        </div>
                         <span class="text-xl">⚡</span>
                     </div>
-                    <h3 class="text-lg font-black text-blue-400 mb-1">Appointment Engine 7-Hari</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Bangun &amp; Launch Pipeline Booking Pertama Anda"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami membangun jalur dari <strong>content → conversation → qualification → booked call</strong> dalam 7 hari — agar Anda memiliki pipeline nyata sebelum scaling.</p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">2 Remotion video editing drafts untuk content conversion</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Landing page + VSL outline &amp; embed</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">AI WhatsApp qualification chatbot</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Click-to-chat CTA + Cal.com booking flow</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Warm DM outreach script</span></li>
+                    <h3 class="font-black text-xl text-[#0f172a] mb-1">Appointment Engine 7-Hari</h3>
+                    <p class="text-xs font-bold text-[#475569] italic mb-4">"Bangun sistem Booking Pertama Anda"</p>
+                    <p class="text-[#475569] text-sm mb-5 leading-relaxed">Kami bangun jalur langsung dari viewer konten ke booked call — dalam 7 hari. Untuk validasi booking flow dan membangun aset pipeline nyata sebelum Anda scaling.</p>
+                    <ul class="space-y-2 mb-6 text-sm flex-1 text-[#475569] font-medium">
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>Landing page + VSL  dan Booking calendar</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>Personal Brand Linktree + Free Resources</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>AI WhatsApp chatbot kualifikasi — script otomatis untuk pre-screen lead masuk</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>Social Media DM Automation</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>Content Scheduler Assistant</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>2 Remotion video editing draft  untuk membuat brand unik</span></li>
                     </ul>
-                    <div class="mt-auto pt-4 border-t border-gray-800">
-                        <p class="text-blue-400 text-xs font-black mb-3">🚀 Appointment Pipeline — Live, Bukan Sekadar Setup</p>
-                        <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
+                    <div class="mt-auto pt-4 border-t-2 border-[#0f172a]">
+                        <p class="text-blue-600 text-xs font-black mb-3">🚀 Appointment Pipeline — Live, Bukan Sekadar Setup</p>
+                        <a href="#booking" class="block text-center py-3 bg-[#1e40af] hover:bg-blue-700 text-white rounded-none neo-border-sm neo-shadow text-xs uppercase tracking-wide font-black transition-all">
                             Jadwalkan Konsultasi Gratis
                         </a>
-                        <p class="text-center text-[10px] text-gray-500 mt-2">⚡ 7-Hari Sprint · Client-Owned System</p>
                     </div>
                 </div>
 
                 <!-- Stage 2 -->
-                <div class="stage-card bg-gradient-to-b from-gray-900 via-gray-900 to-blue-950/40 border-2 border-blue-500 rounded-2xl p-6 flex flex-col relative shadow-[0_0_28px_rgba(37,99,235,0.18)]">
-                    <div class="absolute -top-3 px-3 py-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full border border-blue-400/50 left-1/2 -translate-x-1/2">
-                        <span class="text-[9px] font-black text-white uppercase tracking-widest">★ Paling Direkomendasikan</span>
+                <div class="stage-card bg-white text-[#0f172a] border-4 border-[#1e40af] p-6 flex flex-col relative shadow-[4px_4px_0px_#0a0a0a] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0a0a0a] transition-all">
+                    <div class="absolute -top-4 left-6 bg-[#fde047] text-[#0f172a] font-black text-[10px] px-3 py-1 neo-border-sm uppercase tracking-wider">
+                        ★ Paling Direkomendasikan
                     </div>
                     <div class="flex justify-between items-start mb-4 mt-2">
-                        <span class="text-xs font-mono text-blue-400 uppercase tracking-wider font-bold bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded">Stage 2 · Full System</span>
+                        <div class="bg-[#1e40af] text-white font-black text-[10px] px-2.5 py-1 inline-block uppercase neo-border-sm">
+                            Stage 2 · Full System
+                        </div>
                         <span class="text-xl">🚀</span>
                     </div>
-                    <h3 class="text-lg font-black text-white mb-1">Sales Engine Build-14 Hari</h3>
-                    <p class="text-xs font-bold text-blue-300 italic mb-4">"Jangan Biarkan Lead Hilang di Tengah Jalan"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami membangun sistem <strong>response, qualification, follow-up, booking, dan tracking</strong> agar setiap opportunity memiliki next step yang jelas.</p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Speed-to-Lead Voice Agent — respons otomatis dalam hitungan detik</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">CRM Visual Pipeline — New Lead → Qualified → Booked → Won/Lost</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Automated Follow-Up — cold, warm, cancelled &amp; stalled leads</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Setter Playbook + Analytics Dashboard</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Dedicated VPS + Ads Strategy &amp; A/B Testing</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">AI Video Editors — Content Bank</span></li>
+                    <h3 class="font-black text-xl text-[#0f172a] mb-1">Sales Engine Build</h3>
+                    <p class="text-xs font-bold text-[#475569] italic mb-4">"Jangan Pernah Kehilangan Lead Lagi"</p>
+                    <p class="text-[#475569] text-sm mb-5 leading-relaxed">Kami otomasi seluruh conversational follow-up dan tracking Anda — sehingga tidak ada satu pun prospect yang lolos tanpa difollow-up.</p>
+                    <ul class="space-y-2 mb-6 text-sm flex-1 text-[#475569] font-medium">
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Speed-to-Lead Whatsapp Dialler Agent:</strong> AI voice call otomatis 3 detik saat lead  baru masuk</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>CRM Integration:</strong> Visual pipeline dari New Lead sampai Won/Lost</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>Automated Follow-Up &amp; Nurture Sequence multiphase untuk (Cold, Warm, Hot Leads)</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Setter Playbook:</strong> Panduan qualifying percakapan di semua channel sosial &amp; chat</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Analytics:</strong> Dashboard konversi — cost-per-lead, booking rate, efisiensi pipeline</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span>Clipz Content Clipping Agent</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Personal VPS included:</strong> Migrasi infrastruktur untuk bantuan AI 24/7</span></li>
                     </ul>
-                    <div class="mt-auto pt-4 border-t border-blue-900/50">
-                        <p class="text-blue-300 text-xs font-black mb-3">🛡 Sales Infrastructure — Semua Lead Masuk ke Sistem yang Sama</p>
-                        <a href="#booking" class="block text-center py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-black transition-all text-xs uppercase tracking-wide shadow-lg shadow-blue-500/30">
+                    <div class="mt-auto pt-4 border-t-2 border-[#0f172a]">
+                        <p class="text-blue-600 text-xs font-black mb-3">🛡 Sales Infrastructure — Semua Lead Masuk ke Sistem yang Sama</p>
+                        <a href="#booking" class="block text-center py-3 bg-[#1e40af] hover:bg-blue-700 text-white rounded-none neo-border-sm neo-shadow text-xs uppercase tracking-wide font-black transition-all">
                             Jadwalkan Konsultasi Gratis
                         </a>
-                        <p class="text-center text-[10px] text-blue-300 mt-2">🛡 Setup One-Time · Retainer Opsional · Client-Owned System</p>
                     </div>
                 </div>
 
                 <!-- Stage 3 -->
-                <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-gray-500 transition-all">
+                <div class="stage-card bg-white text-[#0f172a] neo-border neo-shadow p-6 flex flex-col hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0a0a0a] transition-all">
                     <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-mono text-purple-400 uppercase tracking-wider font-bold bg-purple-500/10 border border-purple-500/20 px-2 py-1 rounded">Stage 3 · Full OS</span>
+                        <div class="bg-[#0f172a] text-white font-black text-[10px] px-2.5 py-1 inline-block uppercase neo-border-sm">
+                            Stage 3 · Full OS
+                        </div>
                         <span class="text-xl">🧠</span>
                     </div>
-                    <h3 class="text-lg font-black text-purple-300 mb-1">Revenue OS Build</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Bangun Operating System untuk Growth Berikutnya"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami menghubungkan <strong>marketing, sales, operations, customer success, dan reporting</strong> ke dalam satu Revenue OS yang terdokumentasi.</p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Marketing:</strong> Content scheduling, lead scoring &amp; broadcast triggers</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Sales &amp; Research:</strong> Pre-call brief, lead enrichment &amp; CRM sync</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Operations:</strong> Command center, notifications &amp; approvals</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Customer Success:</strong> Automated onboarding &amp; feedback</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Reporting:</strong> Weekly visibility dari attention → revenue</span></li>
+                    <h3 class="font-black text-xl text-[#0f172a] mb-1">Revenue OS Build</h3>
+                    <p class="text-xs font-bold text-[#475569] italic mb-4">"Bangun Operating System untuk Growth Berikutnya"</p>
+                    <p class="text-[#475569] text-sm mb-5 leading-relaxed">Kami menghubungkan marketing, sales, operations, customer success, dan reporting ke dalam satu Revenue OS yang terdokumentasi.</p>
+                    <ul class="space-y-2 mb-6 text-sm flex-1 text-[#475569] font-medium">
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Marketing:</strong> Content scheduling, lead scoring &amp; broadcast triggers</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Sales &amp; Research:</strong> Pre-call brief, lead enrichment &amp; CRM sync</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Operations:</strong> Command center, notifications &amp; approvals</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Customer Success:</strong> Automated onboarding &amp; feedback</span></li>
+                        <li class="flex gap-2"><span class="text-green-600 font-black mt-0.5">✓</span><span><strong>Reporting:</strong> Weekly visibility dari attention → revenue</span></li>
                     </ul>
-                    <div class="mt-auto pt-4 border-t border-gray-800">
-                        <p class="text-purple-400 text-xs font-black mb-3">📋 Revenue OS — Didokumentasikan &amp; Diserahterimakan ke Tim Anda</p>
-                        <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
+                    <div class="mt-auto pt-4 border-t-2 border-[#0f172a]">
+                        <p class="text-[#0f172a] text-xs font-black mb-3">📋 Revenue OS — Didokumentasikan &amp; Diserahterimakan ke Tim Anda</p>
+                        <a href="#booking" class="block text-center py-3 bg-[#1e40af] hover:bg-blue-700 text-white rounded-none neo-border-sm neo-shadow text-xs uppercase tracking-wide font-black transition-all">
                             Jadwalkan Konsultasi Gratis
                         </a>
-                        <p class="text-center text-[10px] text-gray-500 mt-2">📋 90-Hari Build · Kustomisasi Penuh · Client-Owned System</p>
                     </div>
                 </div>
             </div>
@@ -743,18 +783,41 @@
     </footer>
 
     <!-- Floating Sticky WhatsApp Widget -->
-    <div class="fixed right-6 bottom-6 z-50 flex flex-col items-end gap-2 group">
-        <div class="bg-black text-white text-xs py-1.5 px-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap mb-1">
-            Konsultasi sekarang
+    <div class="fixed right-6 bottom-6 z-50 flex flex-col items-end">
+        <!-- Chat Popup Window -->
+        <div id="wa-chat-popup" class="hidden w-72 bg-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a] p-4 mb-4 flex flex-col font-sans transition-all">
+            <!-- Header -->
+            <div class="flex justify-between items-center pb-2 border-b border-gray-200 mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="font-black text-sm text-[#0f172a]">AGentZ Assistant</span>
+                </div>
+                <button onclick="toggleWaPopup()" class="text-gray-400 hover:text-black font-black text-lg">×</button>
+            </div>
+            <!-- Message Body -->
+            <div class="bg-gray-50 border-2 border-black p-3 mb-3 text-xs leading-relaxed text-gray-700">
+                Konsultasi Agentz dengan AI
+            </div>
+            <!-- CTA Button -->
+            <a href="https://wa.me/6281234567890?text=Halo%20Jordan,%20saya%20tertarik%20diskusi%20AGentZ" target="_blank" class="block text-center py-2 bg-[#25D366] text-white border-2 border-black font-bold text-xs uppercase tracking-wide shadow-[2px_2px_0px_#0a0a0a] hover:-translate-y-0.5 active:translate-y-0 transition-all">
+                Kirim Pesan WhatsApp
+            </a>
         </div>
-        <a class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform" href="https://wa.me/628123456789" target="_blank">
+        
+        <!-- Toggle Button -->
+        <button onclick="toggleWaPopup()" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:scale-110 active:scale-95 transition-transform" aria-label="Toggle WhatsApp Chat">
             <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-        </a>
+        </button>
     </div>
 
     <script>
+        function toggleWaPopup() {
+            const popup = document.getElementById('wa-chat-popup');
+            popup.classList.toggle('hidden');
+        }
+
         function toggleFaq(btn) {
             const item = btn.closest('.faq-item');
             const isOpen = item.classList.contains('open');
@@ -768,5 +831,8 @@
             }
         }
     </script>
+
+    <!-- VSL Player — self-hosted, zero dependencies -->
+    <script src="https://vsl.jordanengo.com/embed/vsl-player.js"></script>
 </body>
 </html>
