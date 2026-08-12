@@ -6,11 +6,25 @@
     <title>AGentZ | Revenue Infrastructure untuk Bisnis Coaching & Jasa</title>
     <meta name="description" content="Ubah setiap leads jadi jadwal meeting — tanpa tim tambahan. Kami bangun dan operasikan Revenue Infrastructure Anda.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blue: {
+                            400: '#2563eb', // Darker blue (standard 600) for text previously using blue-400
+                            600: '#1d4ed8', // Darker blue (standard 700) for text previously using blue-600
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue: #2563eb;
-            --blue-light: #3b82f6;
+            --blue: #1d4ed8;
+            --blue-light: #2563eb;
             --green: #16a34a;
             --yellow: #fde047;
             --red: #dc2626;
