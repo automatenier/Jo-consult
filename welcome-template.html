@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="meta-title">AGentZ | Welcome</title>
+    <meta name="description" content="Welcome to AGentZ Revenue Infrastructure.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #1e40af;
+            --blue-light: #2563eb;
+            --yellow: #fde047;
+            --ink: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .btn-pulse {
+            animation: ctaPulse 2.4s ease-in-out infinite;
+        }
+        @keyframes ctaPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(37,99,235,0.55); }
+            60%  { box-shadow: 0 0 0 14px rgba(37,99,235,0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+        }
+
+        .neo-border {
+            border: 3px solid #0a0a0a;
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px #0a0a0a;
+        }
+    </style>
+</head>
+<body class="pt-6 pb-16 px-4">
+
+    <!-- Header / Branding -->
+    <div class="max-w-3xl mx-auto flex justify-between items-center mb-10 pb-4 border-b-2 border-black">
+        <span class="font-black text-xl text-black tracking-tight">AGentZ</span>
+        <span class="text-xs font-bold uppercase tracking-widest bg-yellow-300 px-2.5 py-1 border-2 border-black">
+            Lead Magnet Delivered ⚡
+        </span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto text-center">
+        <!-- Badge / Label -->
+        <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-3" id="welcome-label">
+            Step 1 Selesai! File download Anda sedang dikirim ke email.
+        </p>
+
+        <!-- Dynamic Headline -->
+        <h1 class="text-2xl md:text-4xl font-black mb-6 leading-tight tracking-tight text-black" id="welcome-headline">
+            Sementara Menunggu, Tonton Video Singkat Ini:
+        </h1>
+
+        <!-- VSL Video Player -->
+        <div id="vsl-video" class="vsl-container mb-10 neo-border neo-shadow overflow-hidden max-w-3xl mx-auto"
+            data-src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
+            data-analytics="https://analytics.jordanengo.com"
+            data-site-id="GANTI_DENGAN_SITE_ID_UMAMI"
+            data-accent="#2563eb">
+        </div>
+
+        <!-- Call to Action -->
+        <div class="mt-8 mb-12">
+            <h2 class="text-lg md:text-xl font-bold mb-4" id="welcome-subline">
+                Siap mengotomasi sistem sales & scheduling Anda?
+            </h2>
+            <a href="https://agentz.jordanengo.com#booking" id="welcome-cta" class="btn-pulse inline-block text-center bg-blue-600 text-white text-lg font-black py-4 px-8 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase tracking-tight">
+                Jadwalkan Konsultasi Gratis
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-3xl mx-auto pt-8 border-t-2 border-black text-center text-xs text-gray-500">
+        <p>© 2026 AGentZ. All Rights Reserved.</p>
+    </footer>
+
+    <!-- VSL Player script -->
+    <script src="https://vsl.jordanengo.com/embed/vsl-player.js"></script>
+</body>
+</html>
