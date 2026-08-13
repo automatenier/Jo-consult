@@ -205,8 +205,63 @@
 
             <!-- Calendar embed -->
             <div id="booking" class="mt-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-gray-50">
-                <div class="bg-white min-h-[580px] flex items-center justify-center p-4">
-                    <div id="my-cal-inline" style="width:100%;height:100%;min-height:580px;overflow:scroll;"></div>
+                <div class="bg-white p-4 min-h-[600px] flex flex-col items-center justify-center">
+                    
+                    <!-- 1. Cal.com container -->
+                    <div id="cal-container" class="w-full hidden">
+                        <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
+                    </div>
+
+                    <!-- 2. Detailed Form container (shown by default) -->
+                    <div id="form-container" class="w-full max-w-2xl mx-auto p-6 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left my-4">
+                        <h3 class="text-2xl font-black mb-2 uppercase text-black">Formulir Kualifikasi Detail</h3>
+                        <p class="text-gray-600 mb-6 text-sm font-semibold">Silakan lengkapi data kualifikasi berikut agar sesi konsultasi Anda maksimal.</p>
+                        
+                        <form id="qualification-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
+                            <div>
+                                <label class="block font-black text-sm uppercase mb-1">Nama Lengkap</label>
+                                <input type="text" name="name" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-black text-sm uppercase mb-1">Nomor WhatsApp / Telegram</label>
+                                    <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
+                                </div>
+                                <div>
+                                    <label class="block font-black text-sm uppercase mb-1">Link Media Sosial / Website</label>
+                                    <input type="url" name="social" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="https://instagram.com/username">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-black text-sm uppercase mb-1">Estimasi Revenue Bulanan Saat Ini</label>
+                                <select name="revenue" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50">
+                                    <option value="" disabled selected>Pilih rentang revenue...</option>
+                                    <option value="under_1k">Di bawah $1,000 / bln ( Di bawah Rp 15 Juta )</option>
+                                    <option value="1k_5k">$1,000 - $5,000 / bln ( Rp 15 - 75 Juta )</option>
+                                    <option value="5k_10k">$5,000 - $10,000 / bln ( Rp 75 - 150 Juta )</option>
+                                    <option value="above_10k">Di atas $10,000 / bln ( Di atas Rp 150 Juta )</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-black text-sm uppercase mb-1">Bottleneck Terbesar dalam Bisnis Konten Anda</label>
+                                <textarea name="bottleneck" rows="3" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Apa hambatan terbesar Anda saat ini? (misal: habis waktu ngedit, bingung posting, leads nggak closing...)"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-[#22c55e] text-white text-lg font-black py-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#16a34a] transition-all uppercase">
+                                Kirim Kualifikasi & Lanjutkan ke Booking
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 3. Thank You container (hidden by default) -->
+                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-green-50 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-center my-4">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h3 class="text-3xl font-black mb-3 uppercase text-black">Pendaftaran Berhasil!</h3>
+                        <p class="text-xl font-bold text-gray-700 mb-6">Kami telah menerima data kualifikasi Anda. Tim AGentZ akan menghubungi Anda melalui WhatsApp / Telegram dalam waktu dekat untuk konfirmasi jadwal.</p>
+                        <button onclick="resetBookingFlow()" class="inline-block bg-blue-600 text-white font-black py-3 px-6 border-4 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase">
+                            Isi Ulang Form
+                        </button>
+                    </div>
+
                     <script type="text/javascript">
                       (function (C, A, L) {
                         let p = function (a, ar) { a.q.push(ar); };
@@ -236,18 +291,60 @@
                           p(cal, ar);
                         };
                       })(window, "https://app.cal.com/embed/embed.js", "init");
-                      Cal("init", "discovery-call", { origin: "https://cal.com" });
-                      Cal.ns["discovery-call"]("inline", {
+
+                      // CONFIGURATION: Ganti dengan Link Cal.com Anda
+                      // ==========================================
+                      const CAL_LINK = "mathew-jordan-p2ha2t/30min"; 
+                      // Contoh: "username/event-slug" atau "johndoe/30min"
+
+                      // Initialize the Cal namespace or default instance
+                      Cal("init", { origin: "https://app.cal.com" });
+                      Cal("inline", {
                         elementOrSelector: "#my-cal-inline",
-                        calLink: "mathew-jordan-p2ha2t/30min",
+                        calLink: CAL_LINK,
                         config: { layout: "month_view", theme: "light" }
                       });
-                      Cal.ns["discovery-call"]("ui", {
+                      Cal("ui", {
                         theme: "light",
                         styles: { branding: { brandColor: "#2563eb" } },
                         hideEventTypeDetails: false,
                         layout: "month_view"
                       });
+
+                      // Listen to Cal events
+                      Cal("on", {
+                        action: "*",
+                        callback: (e) => {
+                          console.log("Cal.com event triggered:", e.detail);
+                          // Show thank you when booking is successful
+                          if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
+                            showThankYou();
+                          }
+                        }
+                      });
+
+                      // Functions to control the booking flow visibility
+                      function showThankYou() {
+                        document.getElementById("cal-container").classList.add("hidden");
+                        document.getElementById("form-container").classList.add("hidden");
+                        document.getElementById("thank-you-container").classList.remove("hidden");
+                        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+                      }
+
+                      function handleFormSubmit(event) {
+                        event.preventDefault();
+                        // Hide form, show calendar so they can schedule
+                        document.getElementById("form-container").classList.add("hidden");
+                        document.getElementById("cal-container").classList.remove("hidden");
+                        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+                      }
+
+                      function resetBookingFlow() {
+                        document.getElementById("cal-container").classList.add("hidden");
+                        document.getElementById("form-container").classList.remove("hidden");
+                        document.getElementById("thank-you-container").classList.add("hidden");
+                        document.getElementById("qualification-form").reset();
+                      }
                     </script>
                 </div>
             </div>
