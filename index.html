@@ -5,23 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGentZ | Revenue Infrastructure untuk Bisnis Coaching & Jasa</title>
     <meta name="description" content="Ubah setiap leads jadi jadwal meeting — tanpa tim tambahan. Kami bangun dan operasikan Revenue Infrastructure Anda.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        blue: {
-                            400: '#2563eb', // Darker blue (standard 600) for text previously using blue-400
-                            600: '#1e40af', // Darker blue (standard 800) for text previously using blue-600
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="tailwind.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        .hidden { display: none !important; }
         :root {
             --blue: #1e40af;
             --blue-light: #2563eb;
@@ -160,7 +147,7 @@
 
     <!-- Logo Centered Under Ticker -->
     <div class="flex justify-center mt-8">
-        <img src="images/agentzlogo.png" alt="AGentZ Logo" class="h-14 md:h-20 w-auto">
+        <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-14 md:h-20 w-auto">
     </div>
 
     <!-- ═══════════ HERO ═══════════ -->
@@ -263,67 +250,65 @@
                     </div>
 
                     <script type="text/javascript">
-                      (function (C, A, L) {
-                        let p = function (a, ar) { a.q.push(ar); };
-                        let d = C.document;
-                        C.Cal = C.Cal || function () {
-                          let cal = C.Cal;
-                          let ar = arguments;
-                          if (!cal.loaded) {
-                            cal.ns = {};
-                            cal.q = cal.q || [];
-                            d.head.appendChild(d.createElement("script")).src = A;
-                            cal.loaded = true;
-                          }
-                          if (ar[0] === L) {
-                            let api = function () { p(api, arguments); };
-                            let namespace = ar[1];
-                            api.q = api.q || [];
-                            if (typeof namespace === "string") {
-                              cal.ns[namespace] = cal.ns[namespace] || api;
-                              p(cal.ns[namespace], ar);
-                              p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
-                            } else {
-                              p(cal, ar);
+                      function loadCalEmbed() {
+                        if (window.CalLoaded) return;
+                        window.CalLoaded = true;
+
+                        (function (C, A, L) {
+                          let p = function (a, ar) { a.q.push(ar); };
+                          let d = C.document;
+                          C.Cal = C.Cal || function () {
+                            let cal = C.Cal;
+                            let ar = arguments;
+                            if (!cal.loaded) {
+                              cal.ns = {};
+                              cal.q = cal.q || [];
+                              d.head.appendChild(d.createElement("script")).src = A;
+                              cal.loaded = true;
                             }
-                            return;
+                            if (ar[0] === L) {
+                              let api = function () { p(api, arguments); };
+                              let namespace = ar[1];
+                              api.q = api.q || [];
+                              if (typeof namespace === "string") {
+                                cal.ns[namespace] = cal.ns[namespace] || api;
+                                p(cal.ns[namespace], ar);
+                                p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
+                              } else {
+                                p(cal, ar);
+                              }
+                              return;
+                            }
+                            p(cal, ar);
+                          };
+                        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+                        const CAL_LINK = "mathew-jordan-p2ha2t/30menitkonsultasi"; 
+
+                        Cal("init", { origin: "https://cal.com" });
+                        Cal("inline", {
+                          elementOrSelector: "#my-cal-inline",
+                          calLink: CAL_LINK,
+                          config: { layout: "month_view", theme: "light" }
+                        });
+                        Cal("ui", {
+                          theme: "light",
+                          styles: { branding: { brandColor: "#2563eb" } },
+                          hideEventTypeDetails: false,
+                          layout: "month_view"
+                        });
+
+                        Cal("on", {
+                          action: "*",
+                          callback: (e) => {
+                            console.log("Cal.com event triggered:", e.detail);
+                            if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
+                              showThankYou();
+                            }
                           }
-                          p(cal, ar);
-                        };
-                      })(window, "https://app.cal.com/embed/embed.js", "init");
+                        });
+                      }
 
-                      // CONFIGURATION: Ganti dengan Link Cal.com Anda
-                      // ==========================================
-                      const CAL_LINK = "mathew-jordan-p2ha2t/30menitkonsultasi"; 
-                      // Contoh: "username/event-slug" atau "johndoe/30min"
-
-                      // Initialize the Cal namespace or default instance
-                      Cal("init", { origin: "https://cal.com" });
-                      Cal("inline", {
-                        elementOrSelector: "#my-cal-inline",
-                        calLink: CAL_LINK,
-                        config: { layout: "month_view", theme: "light" }
-                      });
-                      Cal("ui", {
-                        theme: "light",
-                        styles: { branding: { brandColor: "#2563eb" } },
-                        hideEventTypeDetails: false,
-                        layout: "month_view"
-                      });
-
-                      // Listen to Cal events
-                      Cal("on", {
-                        action: "*",
-                        callback: (e) => {
-                          console.log("Cal.com event triggered:", e.detail);
-                          // Show thank you when booking is successful
-                          if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
-                            showThankYou();
-                          }
-                        }
-                      });
-
-                      // Functions to control the booking flow visibility
                       function showThankYou() {
                         document.getElementById("cal-container").classList.add("hidden");
                         document.getElementById("form-container").classList.add("hidden");
@@ -333,17 +318,33 @@
 
                       function handleFormSubmit(event) {
                         event.preventDefault();
-                        // Hide form, show calendar so they can schedule
+                        loadCalEmbed();
                         document.getElementById("form-container").classList.add("hidden");
                         document.getElementById("cal-container").classList.remove("hidden");
                         document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
                       }
 
                       function resetBookingFlow() {
+                        loadCalEmbed();
                         document.getElementById("cal-container").classList.remove("hidden");
                         document.getElementById("form-container").classList.add("hidden");
                         document.getElementById("thank-you-container").classList.add("hidden");
                         document.getElementById("qualification-form").reset();
+                      }
+
+                      // Lazy load Cal.com when the booking section enters viewport
+                      if ('IntersectionObserver' in window) {
+                        const observer = new IntersectionObserver((entries) => {
+                          entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                              loadCalEmbed();
+                              observer.disconnect();
+                            }
+                          });
+                        }, { rootMargin: "200px" });
+                        observer.observe(document.getElementById("booking"));
+                      } else {
+                        loadCalEmbed();
                       }
                     </script>
                 </div>
@@ -873,7 +874,7 @@
         </a>
 
         <div class="mb-5 flex justify-center">
-            <img src="images/agentzlogo.png" alt="AGentZ Logo" class="h-10 w-auto">
+            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-10 w-auto">
         </div>
 
         <p class="font-black text-sm text-gray-500 uppercase tracking-widest mb-2">Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa</p>
