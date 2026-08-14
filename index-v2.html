@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGentZ | Revenue Infrastructure untuk Personal Brand & Bisnis Jasa</title>
-    <meta name="description" content="Ubah setiap lead Meta jadi jadwal meeting — tanpa tim tambahan. AGentZ membangun Revenue Infrastructure yang mengkonversi attention jadi revenue secara otomatis.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>AGentZ | Revenue Infrastructure untuk Bisnis Coaching & Jasa</title>
+    <meta name="description" content="Ubah setiap leads jadi jadwal meeting — tanpa tim tambahan. Kami bangun dan operasikan Revenue Infrastructure Anda.">
+    <link rel="stylesheet" href="tailwind.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        .hidden { display: none !important; }
         :root {
-            --blue: #2563eb;
-            --blue-light: #3b82f6;
+            --blue: #1e40af;
+            --blue-light: #2563eb;
             --green: #16a34a;
             --yellow: #fde047;
             --red: #dc2626;
@@ -27,7 +29,6 @@
             line-height: 1.5;
         }
 
-        /* ── Highlight ── */
         .hl {
             background: var(--yellow);
             padding: 0 5px;
@@ -36,7 +37,6 @@
             color: #000;
         }
 
-        /* ── Pulse CTA ── */
         .btn-pulse {
             animation: ctaPulse 2.4s ease-in-out infinite;
         }
@@ -46,21 +46,40 @@
             100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
         }
 
-        /* ── FAQ ── */
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
         .faq-item.open .faq-answer { max-height: 600px; }
         .faq-icon { transition: transform 0.3s ease; display: inline-block; }
         .faq-item.open .faq-icon { transform: rotate(45deg); }
 
-        /* ── Stage card hover ── */
         .stage-card {
+            font-family: 'Inter', sans-serif;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .stage-card:hover {
             transform: translateY(-4px);
         }
 
-        /* ── Ticker ── */
+        .neo-border {
+            border: 3px solid #0a0a0a;
+        }
+        .neo-border-sm {
+            border: 2px solid #0a0a0a;
+        }
+        .neo-shadow {
+            box-shadow: 4px 4px 0px #0a0a0a;
+        }
+        .neo-shadow-lg {
+            box-shadow: 6px 6px 0px #0a0a0a;
+        }
+        .highlight-badge {
+            background-color: #fde047;
+            color: #0a0a0a;
+            font-weight: 800;
+            font-style: italic;
+            padding: 2px 8px;
+            display: inline-block;
+        }
+
         @keyframes ticker {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -73,29 +92,103 @@
         }
         .ticker-track .t-item { padding: 0 2rem; }
 
-        /* ── Separator rule ── */
-        .rule { border: none; border-top: 3px solid var(--ink); }
-
-        /* ── Flow connector ── */
-        .flow-step + .flow-step::before {
-            content: '↓';
+        /* ── Brutal Cards (Offer Section) ── */
+        .brutal-card {
+            background: #FFFFFF;
+            border: 3px solid #0F172A;
+            box-shadow: 4px 4px 0px #0F172A;
+            transition: all 0.2s ease;
+        }
+        .brutal-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #0F172A;
+        }
+        .brutal-button-offer {
             display: block;
+            width: 100%;
+            padding: 1rem;
             text-align: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--blue);
-            margin: 4px 0;
+            background: #2563EB;
+            color: #FFFFFF;
+            border: 3px solid #0F172A;
+            box-shadow: 4px 4px 0px #0F172A;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.07em;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            text-decoration: none;
+        }
+        .brutal-button-offer:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 5px 5px 0px #0F172A;
+            background: #1d4ed8;
+        }
+        .brutal-button-offer:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #0F172A;
+        }
+        .brutal-button-yellow {
+            background: #FACC15 !important;
+            color: #0F172A !important;
+        }
+        .brutal-button-yellow:hover {
+            background: #EAB308 !important;
+        }
+        .offer-highlight-badge {
+            background-color: #FACC15;
+            color: #0F172A;
+            border: 2px solid #0F172A;
+            padding: 3px 10px;
+            font-weight: 800;
+            font-style: italic;
+            font-size: 13px;
+            display: inline-block;
+        }
+        .offer-stage-badge {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #2563eb;
+            background: #dbe1ff;
+            border: 2px solid #0F172A;
+            padding: 3px 10px;
+        }
+        .offer-section-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .offer-deliverable-box {
+            background: #ffe083;
+            border: 2px solid #0F172A;
+            box-shadow: 2px 2px 0px #0F172A;
+            padding: 12px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 700;
         }
     </style>
 </head>
 <body>
 
-    <!-- ═══════════ NAV ═══════════ -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-5 py-3">
-        <img src="images/agentzlogo.png" alt="AGentZ Logo" class="h-9 w-auto">
-        <a href="#booking" id="nav-cta" class="bg-blue-600 text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all">
-            Jadwalkan Konsultasi Gratis →
-        </a>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-3 sm:px-5 py-2 sm:py-3">
+        <span class="font-black text-base sm:text-lg text-black tracking-tight shrink-0">AGentZ</span>
+        <div class="flex gap-2 sm:gap-3">
+            <a href="https://jordanengo.com/" target="_blank" class="bg-gray-100 text-black text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 transition-all whitespace-nowrap">
+                Resource Gratis
+            </a>
+            <a href="#booking" id="nav-cta" class="bg-blue-600 text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all whitespace-nowrap">
+                <span class="hidden sm:inline">Jadwalkan </span>Konsultasi<span class="hidden sm:inline"> Gratis</span> →
+            </a>
+        </div>
     </nav>
 
     <!-- ═══════════ TICKER ═══════════ -->
@@ -119,17 +212,16 @@
         (function() {
             var original = document.getElementById('ticker-original');
             var track = document.getElementById('ticker-track');
-            // Clone enough times to fill at least 3x the viewport
             for (var i = 0; i < 6; i++) {
                 track.appendChild(original.cloneNode(true));
             }
             var singleWidth = original.offsetWidth;
             var pos = 0;
-            var speed = 0.8; // px per frame
+            var speed = 0.8;
             function animate() {
                 pos -= speed;
                 if (Math.abs(pos) >= singleWidth) {
-                    pos += singleWidth; // reset by one copy width — seamless
+                    pos += singleWidth;
                 }
                 track.style.transform = 'translateX(' + pos + 'px)';
                 requestAnimationFrame(animate);
@@ -138,96 +230,338 @@
         })();
     </script>
 
-    <!-- ═══════════ HERO ═══════════ -->
-    <header id="hero" class="pt-20 pb-16 px-5 text-center border-b-4 border-black">
-        <div class="max-w-4xl mx-auto">
+    <!-- Logo Centered Under Ticker -->
+    <div class="flex justify-center mt-8">
+        <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-14 md:h-20 w-auto">
+    </div>
 
-            <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-5 letter-spacing">
-                Untuk Personal Brand &amp; Bisnis Jasa
+    <!-- ═══════════ HERO ═══════════ -->
+    <header id="hero" class="pt-10 pb-16 px-5 text-center border-b-4 border-black">
+        <div class="max-w-4xl mx-auto">
+            <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-5">
+                UNTUK Bisnis Coaching &amp; Jasa
             </p>
 
             <h1 class="text-3xl md:text-5xl font-black mb-5 leading-[1.1] tracking-tight text-black">
-                Ubah Setiap Lead Meta Jadi<br>
-                <span class="italic underline decoration-blue-500 decoration-4">Jadwal Meeting</span> —<br>
-                Tanpa Tim Tambahan
+                Ubah Setiap Leads Jadi Jadwal Meeting — <br class="hidden md:block"><span class="italic underline decoration-blue-500 decoration-4">Tanpa Tim Tambahan</span>
             </h1>
 
-            <p class="text-base md:text-lg font-medium text-gray-600 mb-3 max-w-2xl mx-auto">
-                Kami bangun dan operasikan <strong>Revenue Infrastructure</strong> Anda —<br class="hidden md:block">
-                dari konten sampai deal closed.
+            <p class="text-base md:text-lg font-medium text-gray-600 mb-3 max-w-3xl mx-auto">
+                Kami bangun dan operasikan Revenue Infrastructure Anda — Sistem yang menghubungkan lead response, qualification, follow-up, booking, CRM, dan reporting.
             </p>
 
             <p class="text-lg md:text-xl font-bold text-gray-800 mb-10 max-w-xl mx-auto leading-relaxed">
                 Transisi dari<br>
-                <span class="hl">Leads menghilang tanpa follow-up</span>
+                <span class="hl">Leads menghilang</span>
                 <span class="mx-2 text-blue-600 font-black">→</span>
-                <span class="hl">Pipeline yang jalan sendiri 24/7</span>
+                <span class="hl">Follow up dan Closing 24/7</span>
             </p>
 
-            <!-- Demo placeholder -->
-            <div class="mb-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden bg-gray-950 aspect-video flex items-center justify-center max-w-3xl mx-auto">
-                <div class="text-center text-white p-8">
-                    <div class="text-5xl mb-4">⚡</div>
-                    <p class="text-xl font-black mb-2">DEMO: AGentZ Revenue Infrastructure</p>
-                    <p class="text-gray-400">Speed-to-Lead · AI Follow-Up · Auto Booking · Deal Closed</p>
-                    <p class="text-blue-400 mt-4 text-sm font-bold">[ Embed video demo di sini ]</p>
-                </div>
+            <!-- VSL Video Player -->
+            <div id="vsl-video" class="vsl-container mb-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden max-w-3xl mx-auto"
+                data-src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
+                data-analytics="https://analytics.jordanengo.com"
+                data-site-id="GANTI_DENGAN_SITE_ID_UMAMI"
+                data-accent="#2563eb">
             </div>
 
-            <a href="#booking" id="hero-cta" class="btn-pulse inline-block bg-blue-600 text-white text-xl md:text-2xl font-black py-5 px-12 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
-                Jadwalkan Konsultasi Gratis
-            </a>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#booking" id="hero-cta" class="btn-pulse w-full sm:w-auto text-center bg-blue-600 text-white text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
+                    Jadwalkan Konsultasi Gratis
+                </a>
+                <a href="https://jordanengo.com/" target="_blank" class="w-full sm:w-auto text-center bg-gray-100 text-black text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
+                    Resource Gratis
+                </a>
+            </div>
             <p class="mt-4 text-red-600 font-bold text-sm uppercase tracking-wide">⚠ Slot Terbatas</p>
 
             <!-- Calendar embed -->
             <div id="booking" class="mt-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-gray-50">
-                <div class="bg-white min-h-[580px] flex items-center justify-center p-4">
-                    <div id="my-cal-inline" style="width:100%;height:100%;min-height:580px;overflow:scroll;"></div>
+                <div class="bg-white p-4 min-h-[600px] flex flex-col items-center justify-center">
+                    
+                    <!-- 1. Cal.com container -->
+                    <div id="cal-container" class="w-full">
+                        <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
+                    </div>
+
+                    <!-- 2. Detailed Form container (hidden by default) -->
+                    <div id="form-container" class="w-full max-w-2xl mx-auto p-6 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left my-4 hidden">
+                        <h3 class="text-2xl font-black mb-2 uppercase text-black">Formulir Kualifikasi Detail</h3>
+                        <p class="text-gray-600 mb-6 text-sm font-semibold">Silakan lengkapi data kualifikasi berikut agar sesi konsultasi Anda maksimal.</p>
+                        
+                        <form id="qualification-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
+                            <div>
+                                <label class="block font-black text-sm uppercase mb-1">Nama Lengkap</label>
+                                <input type="text" name="name" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block font-black text-sm uppercase mb-1">Nomor WhatsApp / Telegram</label>
+                                    <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
+                                </div>
+                                <div>
+                                    <label class="block font-black text-sm uppercase mb-1">Link Media Sosial / Website</label>
+                                    <input type="url" name="social" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="https://instagram.com/username">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block font-black text-sm uppercase mb-1">Estimasi Revenue Bulanan Saat Ini</label>
+                                <select name="revenue" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50">
+                                    <option value="" disabled selected>Pilih rentang revenue...</option>
+                                    <option value="under_1k">Di bawah $1,000 / bln ( Di bawah Rp 15 Juta )</option>
+                                    <option value="1k_5k">$1,000 - $5,000 / bln ( Rp 15 - 75 Juta )</option>
+                                    <option value="5k_10k">$5,000 - $10,000 / bln ( Rp 75 - 150 Juta )</option>
+                                    <option value="above_10k">Di atas $10,000 / bln ( Di atas Rp 150 Juta )</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-black text-sm uppercase mb-1">Bottleneck Terbesar dalam Bisnis Konten Anda</label>
+                                <textarea name="bottleneck" rows="3" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Apa hambatan terbesar Anda saat ini? (misal: habis waktu ngedit, bingung posting, leads nggak closing...)"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-[#22c55e] text-white text-lg font-black py-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#16a34a] transition-all uppercase">
+                                Kirim Kualifikasi & Lanjutkan ke Booking
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 3. Thank You container (hidden by default) -->
+                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-green-50 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-center my-4">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h3 class="text-3xl font-black mb-3 uppercase text-black">Pendaftaran Berhasil!</h3>
+                        <p class="text-xl font-bold text-gray-700 mb-6">Kami telah menerima data kualifikasi Anda. Tim AGentZ akan menghubungi Anda melalui WhatsApp / Telegram dalam waktu dekat untuk konfirmasi jadwal.</p>
+                        <button onclick="resetBookingFlow()" class="inline-block bg-blue-600 text-white font-black py-3 px-6 border-4 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase">
+                            Isi Ulang Form
+                        </button>
+                    </div>
+
                     <script type="text/javascript">
-                      (function (C, A, L) {
-                        let p = function (a, ar) { a.q.push(ar); };
-                        let d = C.document;
-                        C.Cal = C.Cal || function () {
-                          let cal = C.Cal;
-                          let ar = arguments;
-                          if (!cal.loaded) {
-                            cal.ns = {};
-                            cal.q = cal.q || [];
-                            d.head.appendChild(d.createElement("script")).src = A;
-                            cal.loaded = true;
-                          }
-                          if (ar[0] === L) {
-                            let api = function () { p(api, arguments); };
-                            let namespace = ar[1];
-                            api.q = api.q || [];
-                            if (typeof namespace === "string") {
-                              cal.ns[namespace] = cal.ns[namespace] || api;
-                              p(cal.ns[namespace], ar);
-                              p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
-                            } else {
-                              p(cal, ar);
+                      function loadCalEmbed() {
+                        if (window.CalLoaded) return;
+                        window.CalLoaded = true;
+
+                        (function (C, A, L) {
+                          let p = function (a, ar) { a.q.push(ar); };
+                          let d = C.document;
+                          C.Cal = C.Cal || function () {
+                            let cal = C.Cal;
+                            let ar = arguments;
+                            if (!cal.loaded) {
+                              cal.ns = {};
+                              cal.q = cal.q || [];
+                              d.head.appendChild(d.createElement("script")).src = A;
+                              cal.loaded = true;
                             }
-                            return;
+                            if (ar[0] === L) {
+                              let api = function () { p(api, arguments); };
+                              let namespace = ar[1];
+                              api.q = api.q || [];
+                              if (typeof namespace === "string") {
+                                cal.ns[namespace] = cal.ns[namespace] || api;
+                                p(cal.ns[namespace], ar);
+                                p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
+                              } else {
+                                p(cal, ar);
+                              }
+                              return;
+                            }
+                            p(cal, ar);
+                          };
+                        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+                        const CAL_LINK = "mathew-jordan-p2ha2t/30menitkonsultasi"; 
+
+                        Cal("init", { origin: "https://cal.com" });
+                        Cal("inline", {
+                          elementOrSelector: "#my-cal-inline",
+                          calLink: CAL_LINK,
+                          config: { layout: "month_view", theme: "light" }
+                        });
+                        Cal("ui", {
+                          theme: "light",
+                          styles: { branding: { brandColor: "#2563eb" } },
+                          hideEventTypeDetails: false,
+                          layout: "month_view"
+                        });
+
+                        Cal("on", {
+                          action: "*",
+                          callback: (e) => {
+                            console.log("Cal.com event triggered:", e.detail);
+                            if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
+                              showThankYou();
+                            }
                           }
-                          p(cal, ar);
-                        };
-                      })(window, "https://app.cal.com/embed/embed.js", "init");
-                      Cal("init", "discovery-call", { origin: "https://cal.com" });
-                      Cal.ns["discovery-call"]("inline", {
-                        elementOrSelector: "#my-cal-inline",
-                        calLink: "mathew-jordan-p2ha2t/30menitkonsultasi",
-                        config: { layout: "month_view", theme: "light" }
-                      });
-                      Cal.ns["discovery-call"]("ui", {
-                        theme: "light",
-                        styles: { branding: { brandColor: "#2563eb" } },
-                        hideEventTypeDetails: false,
-                        layout: "month_view"
-                      });
+                        });
+                      }
+
+                      function showThankYou() {
+                        document.getElementById("cal-container").classList.add("hidden");
+                        document.getElementById("form-container").classList.add("hidden");
+                        document.getElementById("thank-you-container").classList.remove("hidden");
+                        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+                      }
+
+                      function handleFormSubmit(event) {
+                        event.preventDefault();
+                        loadCalEmbed();
+                        document.getElementById("form-container").classList.add("hidden");
+                        document.getElementById("cal-container").classList.remove("hidden");
+                        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+                      }
+
+                      function resetBookingFlow() {
+                        loadCalEmbed();
+                        document.getElementById("cal-container").classList.remove("hidden");
+                        document.getElementById("form-container").classList.add("hidden");
+                        document.getElementById("thank-you-container").classList.add("hidden");
+                        document.getElementById("qualification-form").reset();
+                      }
+
+                      // Lazy load Cal.com when the booking section enters viewport
+                      if ('IntersectionObserver' in window) {
+                        const observer = new IntersectionObserver((entries) => {
+                          entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                              loadCalEmbed();
+                              observer.disconnect();
+                            }
+                          });
+                        }, { rootMargin: "200px" });
+                        observer.observe(document.getElementById("booking"));
+                      } else {
+                        loadCalEmbed();
+                      }
                     </script>
                 </div>
             </div>
 
+            <!-- ═══════════ TESTIMONIAL VIDEO GRID (2x2 Landscape) ═══════════ -->
+            <div class="mt-16 text-left">
+                <h3 class="text-2xl md:text-3xl font-black text-black mb-2 uppercase tracking-tight">Kisah Sukses Partner Kami</h3>
+                <p class="text-gray-600 mb-8 text-sm md:text-base">Melihat bagaimana Revenue Infrastructure membantu bisnis coaching dan jasa melipatgandakan booked appointment mereka.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Card 1 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-gray-900 aspect-video flex flex-col justify-between p-4 text-white relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/0 transition-colors"></div>
+                        <div class="z-10 bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 self-start">COACHING INFRASTRUCTURE</div>
+                        <div class="z-10 text-left mt-auto">
+                            <h4 class="font-bold text-sm">Andika Pratama</h4>
+                            <p class="text-gray-400 text-xs">"Meeting booking naik 210% dalam 14 hari."</p>
+                        </div>
+                        <div class="absolute right-4 bottom-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold group-hover:scale-110 transition-transform">▶</div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-gray-900 aspect-video flex flex-col justify-between p-4 text-white relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/0 transition-colors"></div>
+                        <div class="z-10 bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 self-start">KURSUS ONLINE</div>
+                        <div class="z-10 text-left mt-auto">
+                            <h4 class="font-bold text-sm">Budi Santoso</h4>
+                            <p class="text-gray-400 text-xs">"Sistem follow-up menyelamatkan 45 leads dingin."</p>
+                        </div>
+                        <div class="absolute right-4 bottom-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold group-hover:scale-110 transition-transform">▶</div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-gray-900 aspect-video flex flex-col justify-between p-4 text-white relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/0 transition-colors"></div>
+                        <div class="z-10 bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 self-start">JASA KONSULTASI</div>
+                        <div class="z-10 text-left mt-auto">
+                            <h4 class="font-bold text-sm">Citra Lestari</h4>
+                            <p class="text-gray-400 text-xs">"Respons speed-to-lead <60 detik mengubah segalanya."</p>
+                        </div>
+                        <div class="absolute right-4 bottom-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold group-hover:scale-110 transition-transform">▶</div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-gray-900 aspect-video flex flex-col justify-between p-4 text-white relative group overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/0 transition-colors"></div>
+                        <div class="z-10 bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 self-start">AGENCY OWNER</div>
+                        <div class="z-10 text-left mt-auto">
+                            <h4 class="font-bold text-sm">Dedi Kurniawan</h4>
+                            <p class="text-gray-400 text-xs">"Gantikan admin manual dengan CRM otomatis."</p>
+                        </div>
+                        <div class="absolute right-4 bottom-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold group-hover:scale-110 transition-transform">▶</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════ BEFORE AFTER SCROLLABLE CAROUSEL ═══════════ -->
+            <div class="mt-16 text-left">
+                <h3 class="text-2xl md:text-3xl font-black text-black mb-2 uppercase tracking-tight">Hasil Sebelum &amp; Sesudah</h3>
+                <p class="text-gray-600 mb-8 text-sm md:text-base">Geser untuk melihat transformasi metrik pipeline booking klien kami.</p>
+                
+                <div class="flex overflow-x-auto gap-6 pb-6 scrollbar-hide snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch; scroll-behavior: smooth;">
+                    <!-- Case 1 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 min-w-[280px] md:min-w-[340px] snap-align-start flex-shrink-0">
+                        <div class="bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 text-white inline-block mb-4">FITNESS COACH</div>
+                        <h4 class="font-black text-lg mb-4">Transformasi Andika P.</h4>
+                        <div class="grid grid-cols-2 gap-4 border-t border-black pt-4">
+                            <div>
+                                <p class="text-xs text-red-600 font-bold uppercase">SEBELUM</p>
+                                <p class="text-2xl font-black text-gray-500">12 Call/Bulan</p>
+                                <p class="text-[10px] text-gray-400">Balas DM manual &amp; slow response</p>
+                            </div>
+                            <div class="border-l border-gray-300 pl-4">
+                                <p class="text-xs text-green-600 font-bold uppercase">SESUDAH</p>
+                                <p class="text-2xl font-black text-blue-600">45 Call/Bulan</p>
+                                <p class="text-[10px] text-gray-600">Otomasi speed-to-lead <60s</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 2 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 min-w-[280px] md:min-w-[340px] snap-align-start flex-shrink-0">
+                        <div class="bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 text-white inline-block mb-4">BUSINESS CONSULTING</div>
+                        <h4 class="font-black text-lg mb-4">Transformasi Citra L.</h4>
+                        <div class="grid grid-cols-2 gap-4 border-t border-black pt-4">
+                            <div>
+                                <p class="text-xs text-red-600 font-bold uppercase">SEBELUM</p>
+                                <p class="text-2xl font-black text-gray-500">30% Ghosting</p>
+                                <p class="text-[10px] text-gray-400">No CRM, lead tracker di HP</p>
+                            </div>
+                            <div class="border-l border-gray-300 pl-4">
+                                <p class="text-xs text-green-600 font-bold uppercase">SESUDAH</p>
+                                <p class="text-2xl font-black text-blue-600">5% Ghosting</p>
+                                <p class="text-[10px] text-gray-600">Automated Follow-up sequence</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 3 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 min-w-[280px] md:min-w-[340px] snap-align-start flex-shrink-0">
+                        <div class="bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 text-white inline-block mb-4">E-COURSE OWNER</div>
+                        <h4 class="font-black text-lg mb-4">Transformasi Budi S.</h4>
+                        <div class="grid grid-cols-2 gap-4 border-t border-black pt-4">
+                            <div>
+                                <p class="text-xs text-red-600 font-bold uppercase">SEBELUM</p>
+                                <p class="text-2xl font-black text-gray-500">Rp 12M / Bln</p>
+                                <p class="text-[10px] text-gray-400">Tim kewalahan balas WA</p>
+                            </div>
+                            <div class="border-l border-gray-300 pl-4">
+                                <p class="text-xs text-green-600 font-bold uppercase">SESUDAH</p>
+                                <p class="text-2xl font-black text-blue-600">Rp 38M / Bln</p>
+                                <p class="text-[10px] text-gray-600">AI qualification chatbot filter</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 4 -->
+                    <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 min-w-[280px] md:min-w-[340px] snap-align-start flex-shrink-0">
+                        <div class="bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 text-white inline-block mb-4">AGENCY OWNER</div>
+                        <h4 class="font-black text-lg mb-4">Transformasi Dedi K.</h4>
+                        <div class="grid grid-cols-2 gap-4 border-t border-black pt-4">
+                            <div>
+                                <p class="text-xs text-red-600 font-bold uppercase">SEBELUM</p>
+                                <p class="text-2xl font-black text-gray-500">20 Jam/Minggu</p>
+                                <p class="text-[10px] text-gray-400">Manual input &amp; follow-up</p>
+                            </div>
+                            <div class="border-l border-gray-300 pl-4">
+                                <p class="text-xs text-green-600 font-bold uppercase">SESUDAH</p>
+                                <p class="text-2xl font-black text-blue-600">2 Jam/Minggu</p>
+                                <p class="text-[10px] text-gray-600">Full Revenue OS build</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -237,7 +571,7 @@
             <p class="font-black text-blue-400 tracking-widest uppercase text-xs mb-5">Kenapa Viewers Tidak Jadi Revenue</p>
             <h2 class="text-3xl md:text-5xl font-black mb-5 leading-tight">
                 Anda Tidak Kekurangan Views.<br>
-                <span class="text-blue-400">Anda Kekurangan Infrastruktur.</span>
+                <span class="text-blue-400">Anda Kekurangan sistem follow up.</span>
             </h2>
             <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-16 leading-relaxed">
                 Dan inilah kenapa Anda bisa punya ribuan views per hari — tapi booking tetap sepi. Leads masuk, lalu menghilang. Energi habis, revenue stagnan.
@@ -245,25 +579,25 @@
 
             <div class="grid md:grid-cols-3 gap-5 text-left">
                 <!-- Card 1 -->
-                <div class="stage-card border-4 border-green-500 bg-gray-900 p-7 shadow-[5px_5px_0px_0px_#16a34a]">
-                    <div class="inline-block bg-green-500 text-white text-[10px] font-black uppercase px-3 py-1 mb-4 tracking-widest">✓ Anda Hebat Di Sini</div>
-                    <h3 class="font-black text-xl mb-3 uppercase text-white">The Creator</h3>
-                    <p class="text-green-400 font-bold text-xs uppercase tracking-wide mb-3">Attention sudah ada</p>
-                    <p class="text-gray-300 leading-relaxed text-sm">Konten Anda sudah menarik perhatian. Ide, storytelling, koneksi dengan audiens — itu bukan masalahnya.</p>
+                <div class="stage-card border-4 border-red-500 bg-gray-900 p-7 shadow-[5px_5px_0px_0px_#dc2626]">
+                    <div class="inline-block bg-red-500 text-white text-[10px] font-black uppercase px-3 py-1 mb-4 tracking-widest">✕ Bottleneck #1</div>
+                    <h3 class="font-black text-xl mb-3 uppercase text-white">The Acquisition Gap</h3>
+                    <p class="text-red-400 font-bold text-xs uppercase tracking-wide mb-3">Attention tidak berubah menjadi lead</p>
+                    <p class="text-gray-300 leading-relaxed text-sm">CTA tidak jelas, offer tidak terhubung, atau tidak ada jalur yang mudah dari content menuju inquiry.</p>
                 </div>
                 <!-- Card 2 -->
-                <div class="stage-card border-4 border-yellow-400 bg-gray-900 p-7 shadow-[5px_5px_0px_0px_#ca8a04]">
-                    <div class="inline-block bg-yellow-400 text-black text-[10px] font-black uppercase px-3 py-1 mb-4 tracking-widest">⚠ Di Sini Revenue Bocor</div>
-                    <h3 class="font-black text-xl mb-3 uppercase text-white">The Follow-Up Gap</h3>
-                    <p class="text-yellow-400 font-bold text-xs uppercase tracking-wide mb-3">391% lebih tinggi dalam 5 menit pertama</p>
-                    <p class="text-gray-300 leading-relaxed text-sm">Lead masuk dari DM, form, atau komentar — lalu Anda balas 2 jam kemudian. Sudah terlambat. Setiap jam yang terlewat = uang yang hilang.</p>
+                <div class="stage-card border-4 border-red-500 bg-gray-900 p-7 shadow-[5px_5px_0px_0px_#dc2626]">
+                    <div class="inline-block bg-red-500 text-white text-[10px] font-black uppercase px-3 py-1 mb-4 tracking-widest">✕ Bottleneck #2</div>
+                    <h3 class="font-black text-xl mb-3 uppercase text-white">The Conversion Gap</h3>
+                    <p class="text-red-400 font-bold text-xs uppercase tracking-wide mb-3">Lead masuk tetapi tidak menjadi booking</p>
+                    <p class="text-gray-300 leading-relaxed text-sm">Response lambat, qualification tidak konsisten, atau follow-up berhenti setelah satu pesan.</p>
                 </div>
                 <!-- Card 3 -->
                 <div class="stage-card border-4 border-red-500 bg-gray-900 p-7 shadow-[5px_5px_0px_0px_#dc2626]">
-                    <div class="inline-block bg-red-500 text-white text-[10px] font-black uppercase px-3 py-1 mb-4 tracking-widest">✕ Nggak Bisa Scale</div>
-                    <h3 class="font-black text-xl mb-3 uppercase text-white">The Operator</h3>
+                    <div class="inline-block bg-red-500 text-white text-[10px] font-black uppercase px-3 py-1 mb-4 tracking-widest">✕ Bottleneck #3</div>
+                    <h3 class="font-black text-xl mb-3 uppercase text-white">The Operations Gap</h3>
                     <p class="text-red-400 font-bold text-xs uppercase tracking-wide mb-3">Bisnis berhenti saat Anda berhenti</p>
-                    <p class="text-gray-300 leading-relaxed text-sm">Balas DM satu-satu, follow-up manual, input data ke spreadsheet, lupa jadwal call. Tidak ada sistem yang menjaga pipeline tetap berjalan tanpa Anda.</p>
+                    <p class="text-gray-300 leading-relaxed text-sm">DM manual, spreadsheet, follow-up, booking, reporting—semuanya bergantung pada manusia.</p>
                 </div>
             </div>
         </div>
@@ -274,146 +608,395 @@
         <div class="max-w-3xl mx-auto">
             <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-5">Solusinya</p>
             <h2 class="text-3xl md:text-5xl font-black mb-10 leading-tight">
-                Bagaimana Kalau Setiap Lead<br>
-                <span class="italic underline decoration-blue-500 decoration-4">Langsung Direspons, Diqualifikasi,<br class="hidden md:block"> dan Dijadwalkan — Otomatis?</span>
+                Bagaimana Kalau Revenue Journey Anda<br>
+                <span class="italic underline decoration-blue-500 decoration-4">Memiliki Sistem yang Jelas?</span>
             </h2>
+            <p class="text-xl md:text-2xl font-black text-blue-600 mb-8">Dari Attention Sampai Revenue.</p>
 
             <p class="text-lg md:text-xl font-medium mb-6 text-gray-800 leading-relaxed">
-                Pikirkan Jeff Bezos. Ketika Amazon mulai scaling, apakah dia packing barang sendiri? Apakah dia balas email customer service satu-satu?
-            </p>
-            <p class="text-lg md:text-xl font-medium mb-6 text-gray-800 leading-relaxed">
-                Tidak. Dia membangun <span class="hl">SISTEM</span> yang membuat operasional berjalan sendiri. Order masuk, diproses, dikirim — <span class="hl">tanpa dia sentuh.</span>
+                Kami tidak langsung memasang automation.
             </p>
             <p class="text-lg md:text-xl font-medium mb-10 text-gray-800 leading-relaxed">
-                Itulah tepatnya yang dilakukan <strong class="text-blue-600">Revenue Infrastructure</strong> AGentZ untuk bisnis Anda.
+                Kami mulai dengan memahami di mana bottleneck terbesar Anda.
             </p>
 
-            <div class="space-y-4 border-l-4 border-blue-600 pl-6 mb-12">
-                <p class="text-lg md:text-xl font-black text-black">→ AGentZ yang merespons lead baru dalam hitungan detik</p>
-                <p class="text-lg md:text-xl font-black text-black">→ AGentZ yang setup sistem booking terintegrasi langsung dari konten Anda</p>
-                <p class="text-lg md:text-xl font-black text-black">→ AGentZ yang lacak setiap lead dari kontak pertama sampai deal</p>
-                <p class="text-lg md:text-xl font-black text-black">→ AGentZ yang follow-up otomatis untuk lead yang belum closing</p>
+            <p class="text-base md:text-lg font-black text-black mb-3">Kemudian kami menentukan:</p>
+            <div class="space-y-3 border-l-4 border-blue-600 pl-6 mb-12">
+                <p class="text-lg md:text-xl font-black text-black">Apa yang perlu diperbaiki.</p>
+                <p class="text-lg md:text-xl font-black text-black">Apa yang perlu dibangun.</p>
+                <p class="text-lg md:text-xl font-black text-black">Apa yang perlu diotomasi.</p>
+                <p class="text-lg md:text-xl font-black text-black">Apa yang tetap harus dilakukan manusia.</p>
             </div>
 
-            <p class="text-2xl md:text-3xl font-black text-blue-600">Anda cukup fokus ngonten dan handle customer. Sisanya AGentZ yang kerjakan.</p>
+            <hr class="border-t-2 border-black my-12">
+
+            <!-- ═══════════ THE SYSTEM ═══════════ -->
+            <div class="text-left">
+                <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-3">THE SYSTEM</p>
+                <h3 class="text-2xl md:text-4xl font-black mb-10 leading-tight">Kami Membangun Layer Antara Marketing dan Revenue.</h3>
+
+                <div class="space-y-0">
+                    <!-- Step 01 -->
+                    <div class="flex gap-5 border-b-2 border-gray-100 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">01</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">ATTENTION</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Content dan positioning menarik orang yang tepat.</p>
+                        </div>
+                    </div>
+                    <!-- Step 02 -->
+                    <div class="flex gap-5 border-b-2 border-gray-100 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">02</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">LEAD CAPTURE</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Interest diarahkan ke jalur inquiry yang jelas.</p>
+                        </div>
+                    </div>
+                    <!-- Step 03 -->
+                    <div class="flex gap-5 border-b-2 border-gray-100 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">03</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">QUALIFICATION</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Lead disaring berdasarkan kriteria bisnis Anda.</p>
+                        </div>
+                    </div>
+                    <!-- Step 04 -->
+                    <div class="flex gap-5 border-b-2 border-gray-100 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">04</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">FOLLOW-UP</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Lead yang belum siap tidak langsung hilang.</p>
+                        </div>
+                    </div>
+                    <!-- Step 05 -->
+                    <div class="flex gap-5 border-b-2 border-gray-100 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">05</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">BOOKING</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Qualified lead diarahkan menuju appointment.</p>
+                        </div>
+                    </div>
+                    <!-- Step 06 -->
+                    <div class="flex gap-5 border-b-2 border-gray-100 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">06</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">SALES PIPELINE</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Setiap opportunity memiliki status yang jelas.</p>
+                        </div>
+                    </div>
+                    <!-- Step 07 -->
+                    <div class="flex gap-5 py-6 items-start">
+                        <div class="shrink-0 w-14 h-14 bg-blue-600 text-white flex items-center justify-center font-black text-sm border-2 border-black shadow-[3px_3px_0px_#0a0a0a]">07</div>
+                        <div>
+                            <h4 class="font-black text-lg text-black uppercase mb-1">REPORTING</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Anda dapat melihat perjalanan:</p>
+                            <p class="mt-2 font-black text-blue-600 text-sm">Attention → Lead → Booking → Sales → Revenue</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ WHY AGENTZ ═══════════ -->
+    <section class="py-24 px-5 bg-black text-white border-t-4 border-blue-600">
+        <div class="max-w-4xl mx-auto">
+            <!-- WHY AGENTZ -->
+            <p class="font-black text-blue-400 tracking-widest uppercase text-xs mb-3">WHY AGENTZ</p>
+            <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">
+                Kenapa AGentZ?
+            </h2>
+            <p class="text-gray-300 text-lg mb-10 leading-relaxed">Kami Revenue Infrastructure Builder — Bukan Agensi AI Generik.</p>
+
+            <div class="grid md:grid-cols-2 gap-10 mb-16">
+                <div class="border-l-4 border-red-500 pl-6">
+                    <p class="text-red-400 font-black text-xs uppercase tracking-widest mb-3">Kebanyakan vendor mulai dari:</p>
+                    <p class="text-white text-xl font-black italic">"Tools apa yang ingin Anda gunakan?"</p>
+                </div>
+                <div class="border-l-4 border-blue-500 pl-6">
+                    <p class="text-blue-400 font-black text-xs uppercase tracking-widest mb-3">Kami mulai dari:</p>
+                    <p class="text-white text-xl font-black italic">"Di mana revenue Anda bocor?"</p>
+                </div>
+            </div>
+            <p class="text-gray-300 text-base leading-relaxed mb-16">Baru setelah itu kami menentukan sistem yang benar-benar dibutuhkan.</p>
+
+            <hr class="border-t-2 border-gray-800 mb-16">
+
+            <!-- OWNERSHIP -->
+            <p class="font-black text-blue-400 tracking-widest uppercase text-xs mb-3">OWNERSHIP</p>
+            <h3 class="text-2xl md:text-4xl font-black mb-4 leading-tight text-white">
+                Sistemnya Milik Anda.<br>
+                Kami Tidak Mengunci Anda.
+            </h3>
+            <p class="text-gray-300 text-base leading-relaxed mb-8">Infrastructure dibangun menggunakan account, data, permission, dan stack Anda sejauh memungkinkan.</p>
+            <p class="text-gray-300 text-base mb-6">Setelah implementasi selesai, Anda mendapatkan:</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center">
+                    <p class="text-white font-black text-sm">System</p>
+                </div>
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center">
+                    <p class="text-white font-black text-sm">Documentation</p>
+                </div>
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center">
+                    <p class="text-white font-black text-sm">SOP</p>
+                </div>
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center">
+                    <p class="text-white font-black text-sm">Workflow Logic</p>
+                </div>
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center">
+                    <p class="text-white font-black text-sm">Credentials</p>
+                </div>
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center">
+                    <p class="text-white font-black text-sm">Training</p>
+                </div>
+                <div class="border-2 border-blue-600 bg-gray-900 px-4 py-3 text-center col-span-2">
+                    <p class="text-white font-black text-sm">Handover</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-600 border-2 border-black px-8 py-5 shadow-[4px_4px_0px_#0a0a0a] mb-8 inline-block">
+                <p class="text-white font-black text-xl uppercase tracking-tight">Build Once. Own Forever.</p>
+            </div>
+
+            <p class="text-gray-300 text-base leading-relaxed mb-4">Tidak ada kewajiban membayar biaya bulanan hanya untuk mempertahankan akses ke sistem yang sudah Anda miliki.</p>
+            <p class="text-gray-300 text-base leading-relaxed">Jika Anda membutuhkan capability atau sistem baru di masa depan, kami dapat membangunnya sebagai project baru.</p>
         </div>
     </section>
 
     <!-- ═══════════ OFFER / STAGES ═══════════ -->
     <section class="py-24 px-5 bg-gray-950 border-b-4 border-black">
-        <div class="max-w-6xl mx-auto">
-
+        <div class="max-w-7xl mx-auto">
             <div class="text-center mb-14">
-                <div class="inline-block px-4 py-1 mb-4 rounded-full bg-blue-500/10 border border-blue-500/30">
-                    <span class="text-xs font-mono text-blue-400 uppercase tracking-widest">Revenue Infrastructure™</span>
+                <div class="inline-block px-4 py-1 mb-4 bg-blue-500/10 border border-blue-500/30">
+                    <span class="text-xs font-mono text-blue-400 uppercase tracking-widest">REVENUE INFRASTRUCTURE™</span>
                 </div>
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-4">Pilih Titik Masuk Anda</h2>
-                <p class="text-gray-400 max-w-lg mx-auto text-sm md:text-base">
-                    Setiap bisnis punya kesiapan yang berbeda. Kami bangun infrastruktur sesuai tahap pertumbuhan Anda — dari audit hingga sistem revenue penuh.
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-4">Pilih Tahap Revenue Anda</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base mb-4">
+                    Setiap bisnis punya bottleneck dan kesiapan yang berbeda.<br>
+                    Karena itu kami tidak memaksa semua bisnis membeli sistem yang sama.
                 </p>
+                <p class="text-gray-300 font-bold text-base mb-2">Kami bergerak dari:</p>
+                <p class="text-blue-400 font-black text-lg tracking-wide">Diagnosis → Prove → Build → Scale</p>
             </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-start">
 
-            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5 text-left">
-
-                <!-- Stage 0 -->
-                <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-gray-500 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-mono text-gray-400 uppercase tracking-wider font-bold bg-gray-800 px-2 py-1 rounded">Stage 0 · Diagnosis</span>
-                        <span class="text-xl">🔍</span>
+                <!-- Stage 0 — Diagnosis -->
+                <div class="brutal-card p-6 flex flex-col relative">
+                    <div class="flex justify-between items-start mb-6 border-b-4 border-[#0F172A] pb-4">
+                        <span class="offer-stage-badge">STAGE 0</span>
+                        <span class="material-symbols-outlined text-[#0F172A] text-3xl">search</span>
                     </div>
-                    <h3 class="text-lg font-black text-blue-400 mb-1">Revenue Leak Audit</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Temukan Persis Di Mana Revenue Anda Bocor"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Audit mendalam 4 track yang men-scan brand, funnel, offer, dan tech stack Anda — untuk menemukan titik bocor terbesar antara konten dan booked appointment.</p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Brand Architect:</strong> Hook quality, editing, bottleneck konten</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Acquisition Breakdown:</strong> DM-ke-WhatsApp, konversi kalender</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Advisory Group:</strong> Packaging offer, posisi lead magnet</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Techstack Consult:</strong> Setup Meta/WhatsApp, kesiapan otomasi</span></li>
+                    <h3 class="font-black text-xl text-[#0F172A] mb-3 uppercase tracking-tight">Diagnosis</h3>
+                    <div class="mb-5">
+                        <span class="offer-highlight-badge">"Temukan Persis Di Mana Revenue Anda Bocor"</span>
+                    </div>
+                    <p class="text-sm font-bold text-[#0F172A] mb-6 border-b-2 border-dashed border-[#0F172A] pb-4">
+                        Audit mendalam 4 track untuk menemukan bottleneck terbesar dari:<br>
+                        <span class="text-blue-600 mt-2 block font-black uppercase">Attention → Lead → Booking → Revenue</span>
+                    </p>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="underline">Brand Architect:</strong> Hook, content, editing &amp; founder bottleneck</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="underline">Acquisition Breakdown:</strong> DM → WhatsApp → booking conversion</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="underline">Offer Advisory:</strong> Packaging, positioning &amp; lead magnet</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="underline">Techstack Consult:</strong> Meta, WhatsApp &amp; automation readiness</span>
+                        </li>
                     </ul>
-                    <div class="mt-auto pt-4 border-t border-gray-800">
-                        <p class="text-green-400 text-xs font-black mb-3">Audit Report — Anda tahu persis apa yang harus dibenahi</p>
-                        <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
-                            Jadwalkan Konsultasi Gratis
-                        </a>
-                        <p class="text-center text-[10px] text-gray-500 mt-2">⏱ 1-on-1 · Qualified Leads: <span class="bg-yellow-400 text-black px-1.5 py-0.5 rounded font-black">GRATIS</span></p>
+                    <div class="offer-deliverable-box mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[22px] text-[#0F172A] mt-0.5">assignment</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="uppercase">Revenue Leak Report:</strong> Bottleneck utama + prioritas perbaikan + rekomendasi build berikutnya.</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#booking" class="brutal-button-offer">Jadwalkan Konsultasi Gratis</a>
                     </div>
                 </div>
 
-                <!-- Stage 1 -->
-                <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-blue-600 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-mono text-blue-400 uppercase tracking-wider font-bold bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded">Stage 1 · Pilot</span>
-                        <span class="text-xl">⚡</span>
+                <!-- Stage 1 — Prove -->
+                <div class="brutal-card p-6 flex flex-col relative">
+                    <div class="flex justify-between items-start mb-6 border-b-4 border-[#0F172A] pb-4">
+                        <span class="offer-stage-badge">STAGE 1</span>
+                        <span class="material-symbols-outlined text-[#0F172A] text-3xl">bolt</span>
                     </div>
-                    <h3 class="text-lg font-black text-blue-400 mb-1">Appointment Engine 7-Hari</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Bangun &amp; Launch Pipeline Booking Pertama Anda"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami bangun jalur langsung dari viewer konten ke booked call — dalam 7 hari. Untuk memvalidasi booking flow dan membangun aset pipeline nyata sebelum Anda scaling.</p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">2 Remotion video draft / hook terstruktur untuk mendorong aksi</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">Landing page + VSL outline dan embed</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">AI WhatsApp qualification — script pre-screen lead otomatis</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200">WhatsApp click-to-chat CTA + integrasi Cal.com</span></li>
-                    </ul>
-                    <div class="mt-auto pt-4 border-t border-gray-800">
-                        <p class="text-blue-400 text-xs font-black mb-3">🔑 Sistem milik Anda sepenuhnya</p>
-                        <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
-                            Jadwalkan Konsultasi Gratis
-                        </a>
-                        <p class="text-center text-[10px] text-gray-500 mt-2">🚀 Sistem Live, Bukan Sekadar Setup</p>
+                    <h3 class="font-black text-xl text-[#0F172A] mb-3 uppercase tracking-tight">Prove</h3>
+                    <div class="mb-5">
+                        <span class="offer-highlight-badge">"Bangun Jalur Pertama dari Content → Booked Call"</span>
+                    </div>
+                    <p class="text-sm font-bold text-[#0F172A] mb-4 border-b-2 border-dashed border-[#0F172A] pb-4">
+                        Kami membangun dan meluncurkan appointment pipeline pertama Anda untuk membuktikan bahwa attention dapat berubah menjadi qualified lead dan booked appointment.
+                    </p>
+                    <div class="mb-5 flex items-center gap-2 bg-[#dbe1ff] border-2 border-[#0F172A] px-3 py-2">
+                        <span class="material-symbols-outlined text-[16px] text-[#2563eb]">library_add_check</span>
+                        <span class="text-[11px] font-black text-[#0F172A] uppercase tracking-widest">Audit (Stage 0) Included</span>
+                    </div>
+                    <div class="mb-6">
+                        <span class="offer-section-label">Attention → Lead</span>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Personal Brand Linktree + Free Resources</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Content Scheduler Assistant</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">2 Remotion Video Editing Draft</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">CTA &amp; conversion path</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-8 flex-1">
+                        <span class="offer-section-label">Lead → Booking</span>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Landing Page + VSL</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">AI WhatsApp Qualification</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Social Media DM Automation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Booking Calendar</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="offer-deliverable-box mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[22px] text-[#0F172A] mt-0.5">rocket_launch</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="uppercase">Appointment Pipeline:</strong> Live, digunakan, dan menjadi aset milik Anda.</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#booking" class="brutal-button-offer">Jadwalkan Konsultasi Gratis</a>
                     </div>
                 </div>
 
-                <!-- Stage 2 — RECOMMENDED -->
-                <div class="stage-card bg-gradient-to-b from-gray-900 via-gray-900 to-blue-950/40 border-2 border-blue-500 rounded-2xl p-6 flex flex-col relative shadow-[0_0_28px_rgba(37,99,235,0.18)]">
-                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full border border-blue-400/50">
-                        <span class="text-[10px] font-black text-white uppercase tracking-widest">★ Paling Direkomendasikan</span>
+                <!-- Stage 2 — Build (Recommended) -->
+                <div class="brutal-card p-6 flex flex-col relative">
+                    <!-- Recommended banner sits inside card flow, not clipped -->
+                    <div class="-mx-6 -mt-6 mb-5 bg-[#FACC15] border-b-2 border-[#0F172A] px-4 py-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[16px] text-[#0F172A]">star</span>
+                        <span class="text-[11px] font-black text-[#0F172A] uppercase tracking-widest">Paling Direkomendasikan</span>
                     </div>
-                    <div class="flex justify-between items-start mb-4 mt-3">
-                        <span class="text-xs font-mono text-blue-400 uppercase tracking-wider font-bold bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded">Stage 2 · Full System</span>
-                        <span class="text-xl">🚀</span>
+                    <div class="flex justify-between items-start mb-6 border-b-4 border-[#0F172A] pb-4">
+                        <span class="offer-stage-badge">STAGE 2</span>
+                        <span class="material-symbols-outlined text-[#0F172A] text-3xl">rocket_launch</span>
                     </div>
-                    <h3 class="text-lg font-black text-white mb-1">Sales Engine Build</h3>
-                    <p class="text-xs font-bold text-blue-300 italic mb-4">"Jangan Pernah Kehilangan Lead Lagi"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami otomasi seluruh conversational follow-up dan tracking Anda — sehingga tidak ada satu pun prospect yang lolos tanpa difollow-up. <em>(14-Hari Setup)</em></p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Speed-to-Lead Voice Agent (ElevenLabs) — respons dalam detik</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">CRM visual pipeline — New Lead sampai Won/Lost</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Automated follow-up multiphase (dingin, hangat, cancel)</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Setter Playbook &amp; Analytics Dashboard</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Dedicated VPS + Ads Strategy &amp; A/B Testing</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-100 font-medium">Transparent API billing — tanpa markup tersembunyi</span></li>
-                    </ul>
-                    <div class="mt-auto pt-4 border-t border-blue-900/50">
-                        <p class="text-blue-300 text-xs font-black mb-3">🔑 Sistem milik Anda sepenuhnya</p>
-                        <a href="#booking" class="block text-center py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl font-black transition-all text-xs uppercase tracking-wide shadow-lg shadow-blue-500/30">
-                            Jadwalkan Konsultasi Gratis
-                        </a>
-                        <p class="text-center text-[10px] text-blue-300 mt-2">🛡 Setup One-Time · Retainer Bulanan Opsional</p>
+                    <h3 class="font-black text-xl text-[#0F172A] mb-3 uppercase tracking-tight"><span class="italic underline">Build</span></h3>
+                    <div class="mb-5">
+                        <span class="offer-highlight-badge">"Bangun Sistem yang Menangani Lead dari Masuk hingga Follow-Up."</span>
+                    </div>
+                    <p class="text-sm font-bold text-[#0F172A] mb-4 border-b-2 border-dashed border-[#0F172A] pb-4">
+                        Kami tidak langsung memasang tools. Kami terlebih dahulu merancang offer, conversion process, dan sales workflow, lalu membangun infrastructure yang menjalankannya.
+                    </p>
+                    <div class="mb-5 flex items-center gap-2 bg-[#dbe1ff] border-2 border-[#0F172A] px-3 py-2">
+                        <span class="material-symbols-outlined text-[16px] text-[#2563eb]">library_add_check</span>
+                        <span class="text-[11px] font-black text-[#0F172A] uppercase tracking-widest">Stage 1 (Prove) Included</span>
+                    </div>
+                    <div class="mb-6">
+                        <span class="offer-section-label">Sales Infrastructure</span>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Speed-to-Lead WhatsApp Dialler Agent</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">CRM &amp; visual sales pipeline</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Automated Follow-Up &amp; Nurture</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Setter Playbook</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Analytics &amp; conversion dashboard</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Clipz Content Clipping Agent</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-[20px] text-blue-600 mt-0.5">check_box</span>
+                                <span class="text-sm font-bold text-[#0F172A]">Personal VPS infrastructure</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 border-4 border-[#0F172A] p-4 bg-[#F8FAFC]">
+                        <p class="text-[11px] font-black text-blue-600 mb-1 uppercase tracking-widest text-center">Build → Test → Launch → Handover</p>
+                        <p class="text-[11px] text-[#0F172A] text-center font-bold leading-tight">Design → Build → Integrate → Test → Launch → Train → Handover</p>
+                    </div>
+                    <div class="offer-deliverable-box mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[22px] text-[#0F172A] mt-0.5">security</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="uppercase">Sales Infrastructure:</strong> Semua lead masuk ke sistem yang sama. Dan setelah selesai, sistem menjadi milik Anda.</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#booking" class="brutal-button-offer brutal-button-yellow">Jadwalkan Konsultasi Gratis</a>
                     </div>
                 </div>
 
-                <!-- Stage 3 -->
-                <div class="stage-card bg-gray-900/70 border border-gray-700 rounded-2xl p-6 flex flex-col hover:border-gray-500 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-mono text-purple-400 uppercase tracking-wider font-bold bg-purple-500/10 border border-purple-500/20 px-2 py-1 rounded">Stage 3 · Full OS</span>
-                        <span class="text-xl">🧠</span>
+                <!-- Stage 3 — Scale -->
+                <div class="brutal-card p-6 flex flex-col relative">
+                    <div class="flex justify-between items-start mb-6 border-b-4 border-[#0F172A] pb-4">
+                        <span class="offer-stage-badge">STAGE 3</span>
+                        <span class="material-symbols-outlined text-[#0F172A] text-3xl">psychology</span>
                     </div>
-                    <h3 class="text-lg font-black text-purple-300 mb-1">Revenue OS Build</h3>
-                    <p class="text-xs font-bold text-gray-400 italic mb-4">"Gantikan Hire Pertama Anda dengan AI"</p>
-                    <p class="text-gray-300 text-sm mb-5 leading-relaxed">Kami unifikasi seluruh operasional front-office Anda di bawah satu operating system terotomasi — marketing, sales, ops, CS, dan reporting. <em>(90-Hari)</em></p>
-                    <ul class="space-y-2 mb-6 text-sm flex-1">
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Marketing:</strong> Penjadwalan konten, lead scoring, trigger broadcast</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Sales &amp; Research:</strong> Pre-call brief, lead enrichment, CRM sync</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Operations:</strong> Command center notifikasi &amp; approval</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Customer Success:</strong> Onboarding &amp; feedback otomatis</span></li>
-                        <li class="flex gap-2"><span class="text-green-400 font-black mt-0.5">✓</span><span class="text-gray-200"><strong>Reporting:</strong> Weekly report attention → revenue</span></li>
+                    <h3 class="font-black text-xl text-[#0F172A] mb-3 uppercase tracking-tight">Scale</h3>
+                    <div class="mb-5">
+                        <span class="offer-highlight-badge">"Hubungkan Seluruh Bisnis Anda ke Satu Revenue Operating System."</span>
+                    </div>
+                    <p class="text-sm font-bold text-[#0F172A] mb-6 border-b-2 border-dashed border-[#0F172A] pb-4">
+                        Setelah Sales Engine berjalan, kami memperluas infrastructure ke seluruh operasi bisnis.
+                    </p>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li>
+                            <span class="offer-section-label">Reporting:</span>
+                            <div class="flex flex-col gap-2 mt-2 border-2 border-[#0F172A] p-3 bg-white">
+                                <span class="text-sm font-bold text-[#0F172A] flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-blue-600">check_box</span> Weekly revenue visibility</span>
+                                <span class="text-sm font-bold text-[#0F172A] flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-blue-600">check_box</span> Attention → Lead</span>
+                                <span class="text-sm font-bold text-[#0F172A] flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-blue-600">check_box</span> Lead → Booking</span>
+                                <span class="text-sm font-bold text-[#0F172A] flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-blue-600">check_box</span> Booking → Sales</span>
+                                <span class="text-sm font-bold text-[#0F172A] flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-blue-600">check_box</span> Sales → Revenue</span>
+                            </div>
+                        </li>
                     </ul>
-                    <div class="mt-auto pt-4 border-t border-gray-800">
-                        <p class="text-purple-400 text-xs font-black mb-3">📋 Didokumentasikan &amp; di-handover ke tim Anda</p>
-                        <a href="#booking" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all text-xs uppercase tracking-wide">
-                            Jadwalkan Konsultasi Gratis
-                        </a>
-                        <p class="text-center text-[10px] text-gray-500 mt-2">📋 Kustomisasi Penuh · Diserahterimakan ke Tim</p>
+                    <div class="offer-deliverable-box mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-[22px] text-[#0F172A] mt-0.5">assignment</span>
+                            <span class="text-sm font-bold text-[#0F172A]"><strong class="uppercase">Revenue OS:</strong> Dibangun, didokumentasikan, dan diserahterimakan kepada tim Anda.</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#booking" class="brutal-button-offer">Jadwalkan Konsultasi Gratis</a>
                     </div>
                 </div>
 
@@ -421,109 +1004,21 @@
         </div>
     </section>
 
-    <!-- ═══════════ KRISIS LEADS ═══════════ -->
-    <section class="py-24 px-5 bg-white border-b-4 border-black">
-        <div class="max-w-3xl mx-auto">
-            <p class="text-2xl md:text-4xl font-black mb-8 text-black leading-tight uppercase">
-                Kepada Para Personal Brand &amp; Pemilik Bisnis Jasa
-            </p>
-            <p class="text-lg md:text-xl font-medium mb-8 text-gray-800 leading-relaxed">
-                Jika Anda sedang mencari cara scale bisnis tanpa nambah jam kerja dan tanpa hire tim besar — baca ini.
-            </p>
-
-            <p class="text-lg md:text-xl font-medium mb-2">Anda sudah punya attention.</p>
-            <p class="text-lg md:text-xl font-medium mb-2">Masalahnya bukan di konten.</p>
-            <p class="text-lg md:text-xl font-medium mb-8 text-gray-800 leading-relaxed">
-                Masalahnya ada di <span class="hl">apa yang terjadi setelah orang klik.</span>
-            </p>
-
-            <p class="text-lg md:text-xl font-medium mb-2 text-gray-800 leading-relaxed">
-                Setiap bulan, bisnis seperti Anda kehilangan leads — bukan karena nggak ada yang tertarik, tapi karena <span class="hl">tidak ada yang merespons dalam 5 menit pertama.</span>
-            </p>
-            <p class="text-lg md:text-xl font-medium mb-2">Setelah 5 menit, peluang closing turun drastis.</p>
-            <p class="text-lg md:text-xl font-medium mb-10 text-gray-800">Setelah 1 jam — sebagian besar leads sudah lanjut ke kompetitor.</p>
-
-            <!-- Pull quote -->
-            <blockquote class="border-l-4 border-blue-600 pl-6 mb-10">
-                <p class="text-xl md:text-2xl text-gray-800 leading-relaxed">
-                    "Satu-satunya hal yang bikin bisnis jasa scale tanpa burnout adalah <span class="hl">infrastruktur yang mengkonversi attention jadi revenue secara otomatis.</span> Bukan tools baru. Infrastruktur."
-                </p>
-            </blockquote>
-
-            <p class="text-lg md:text-xl font-black mb-4 tracking-tight uppercase leading-relaxed">
-                <span class="hl">Lead masuk</span>. <span class="hl">Direspons dalam detik</span>. <span class="hl">Dijadwalkan otomatis</span>. <span class="hl">Deal closed</span>.
-            </p>
-            <p class="text-lg md:text-xl font-medium mb-10">Itulah pipeline yang <span class="hl">membuktikan</span> sistem Anda bekerja.</p>
-
-            <p class="text-lg md:text-xl font-medium mb-2">Kebenaran yang <span class="hl">PAHIT</span> itu:</p>
-            <p class="text-lg md:text-xl font-medium mb-2 text-gray-800 leading-relaxed">Kebanyakan personal brand yang stuck di plateau pendapatan tidak kekurangan konten.</p>
-            <p class="text-lg md:text-xl font-medium mb-10 text-gray-800">Mereka kekurangan <span class="hl">revenue infrastructure</span> yang mengkonversi perhatian jadi appointment — secara sistematis, tanpa mereka harus hadir.</p>
-
-            <p class="text-lg md:text-xl font-medium mb-4">Sehingga mereka terjebak dalam siklus:</p>
-            <p class="text-2xl md:text-4xl font-black leading-tight text-black mb-10 uppercase tracking-tight">
-                Bikin konten → Leads masuk → Balas manual → Follow-up terlambat → Leads hangus → TETAP segitu-segitu aja.
-            </p>
-
-            <p class="text-2xl md:text-3xl font-black text-blue-600">Inilah mengapa AGentZ ada.</p>
-        </div>
-    </section>
-
-    <!-- ═══════════ PHILOSOPHY ═══════════ -->
-    <section class="py-24 px-5 bg-white border-t-4 border-black text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-black mb-10 leading-tight uppercase">
-                Anda Tidak Butuh Tools Baru.<br>Anda Butuh Infrastruktur yang Bekerja.
-            </h2>
-            <p class="text-lg md:text-xl font-bold mb-10 italic text-gray-700">Inilah yang kami bangun langsung untuk bisnis Anda:</p>
-
-            <div class="max-w-3xl mx-auto text-left mb-12 space-y-5 border-l-4 border-blue-600 pl-6">
-                <p class="text-lg md:text-xl font-medium leading-relaxed text-gray-800">Kebanyakan agensi kasih Anda list tools AI dan bilang "coba sendiri."</p>
-                <p class="text-lg md:text-xl font-medium leading-relaxed text-gray-800">Kami masuk, bangun infrastrukturnya, dan serahkan sistem yang sudah jalan ke tangan Anda.</p>
-                <p class="text-lg md:text-xl font-black text-blue-600 leading-relaxed">Dengan begitu, Anda berhenti eksperimen tools dan mulai mengkonversi leads jadi revenue.</p>
-            </div>
-
-            <a href="#booking" id="philosophy-cta" class="inline-block bg-blue-600 text-white text-xl md:text-3xl font-black py-7 px-14 border-4 border-black shadow-[7px_7px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
-                Jadwalkan Konsultasi Gratis
-            </a>
-        </div>
-    </section>
-
-    <!-- ═══════════ ABOUT ═══════════ -->
-    <section class="py-24 px-5 bg-black text-white border-t-4 border-blue-600">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-14 items-center">
-            <div class="border-4 border-blue-600 overflow-hidden shadow-[10px_10px_0px_0px_#2563eb] bg-gray-800 aspect-square flex items-center justify-center">
-                <div class="text-center p-8">
-                    <div class="text-8xl mb-4">🧑‍💻</div>
-                    <p class="text-blue-400 font-black text-sm">[Foto Founder]</p>
-                </div>
-            </div>
-            <div>
-                <p class="text-blue-400 font-black text-xs uppercase mb-3 tracking-widest">Kenapa AGentZ?</p>
-                <h2 class="text-4xl md:text-5xl font-black mb-7 leading-tight text-white uppercase">
-                    Kami Revenue Infrastructure Builder — Bukan Agensi AI Generik.
-                </h2>
-                <div class="space-y-5 text-gray-300 leading-relaxed text-base">
-                    <p>Inilah yang membedakan kami: kebanyakan vendor kasih Anda tool, lalu ninggalin Anda bingung saat integrasi gagal.</p>
-                    <p class="text-white font-black uppercase tracking-tight text-xl">Kami melakukan hal yang sebaliknya.</p>
-                    <p>Kami bangun infrastruktur revenue untuk bisnis Anda — dari funnel, AI qualification, voice agent, CRM, sampai sistem follow-up otomatis — dan serahkan kepemilikan penuh ke Anda. Bukan langganan software yang bisa dicabut kapan saja.</p>
-                    <p class="bg-blue-600 text-white px-3 py-1 inline-block font-bold italic rounded">Di dalam sistem ini, Anda tidak sedang beli software. Anda sedang membangun aset bisnis permanen.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ═══════════ GUARANTEE ═══════════ -->
-    <section class="py-24 px-5 bg-white border-t-4 border-black">
-        <div class="max-w-3xl mx-auto text-center">
+    <section class="py-24 px-5 bg-white border-t-4 border-black text-center">
+        <div class="max-w-3xl mx-auto">
             <div class="border-4 border-yellow-500 bg-yellow-50 p-12 shadow-[10px_10px_0px_0px_#ca8a04]">
                 <div class="text-6xl mb-6">🏆</div>
                 <div class="inline-block bg-yellow-500 text-white text-xs font-black uppercase px-4 py-2 mb-6 tracking-widest">Jaminan Delivery</div>
-                <h2 class="text-3xl md:text-4xl font-black mb-6 leading-tight uppercase text-black">
-                    Sistem Anda Live dalam 48 Jam —<br>
-                    <span class="text-yellow-600">atau Kami Lanjut Setup Gratis</span>
+                <h2 class="text-2xl md:text-4xl font-black mb-6 leading-tight uppercase text-black">
+                    Milestone yang Disepakati Harus Selesai.
                 </h2>
-                <p class="text-lg font-medium text-gray-700 leading-relaxed max-w-xl mx-auto">
-                    Kalau dalam 48 jam sistem Anda belum live dan berfungsi sesuai spek yang disepakati, kami lanjutkan setup tanpa biaya tambahan sampai semua jalan. <strong>Tidak ada syarat tersembunyi.</strong>
+                <p class="text-gray-700 text-left text-base leading-relaxed mb-6">
+                    Kami menetapkan scope, deliverables, dependency, dan timeline sebelum implementasi.
+                </p>
+                <p class="text-gray-700 text-left text-base leading-relaxed">
+                    Jika milestone implementasi yang berada dalam tanggung jawab AGentZ tidak selesai sesuai timeline yang disepakati, kami melanjutkan pekerjaan implementasi tersebut tanpa biaya implementasi tambahan sampai milestone tersebut selesai.
                 </p>
             </div>
         </div>
@@ -532,10 +1027,9 @@
     <!-- ═══════════ FAQ ═══════════ -->
     <section class="py-24 px-5 bg-gray-50 border-t-4 border-black border-b-4">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-black mb-14 uppercase text-center">Pertanyaan yang Sering Ditanya</h2>
+            <h2 class="text-3xl md:text-5xl font-black mb-14 uppercase text-center font-bold">Pertanyaan yang Sering Ditanya</h2>
 
             <div class="space-y-3" id="faq-list">
-
                 <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
                     <button class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
                         <span class="font-black text-base md:text-lg pr-4">Saya nggak ngerti coding atau teknis. Apakah tetap bisa pakai?</span>
@@ -552,7 +1046,23 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Campuran — ada yang gratis, ada yang berbayar berdasarkan usage. Yang penting: biaya API langsung terhubung ke akun Anda sendiri, transparan, tanpa markup. <strong>Total biaya operasional sistem ini jauh di bawah gaji satu admin/setter manusia per bulan.</strong></p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">
+                            Biaya API langsung terhubung ke akun Anda.<br>
+                            • Tools yang kami gunakan 90% open-source dan industry leading sehingga cost per-task sangat rendah tanpa kompromi pada hasil.<br>
+                            • Total biaya operasional sistem ini secara konsisten jauh di bawah gaji satu admin atau setter manusia per bulan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white">
+                    <button class="w-full flex justify-between items-center p-5 text-left hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-black text-base md:text-lg pr-4">Lebih hemat dibanding cari vendor sendiri?</span>
+                        <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">
+                            Hampir pasti iya. Riset vendor, bandingkan harga, trial berbayar, setup ulang — semua ada biayanya, termasuk waktu Anda. Gunakan ROI Calculator kami untuk melihat angkanya secara langsung dan bandingkan total cost of ownership vs. konsultasi bersama kami.
+                        </p>
                     </div>
                 </div>
 
@@ -562,7 +1072,7 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed"><strong>Stage 1 (Appointment Engine) live dalam 7 hari.</strong> Stage 2 (Sales Engine) 14 hari kerja. Begitu live, sistem langsung bekerja — speed-to-lead, follow-up otomatis, booking flow, semuanya aktif.</p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Stage 1 (Appointment Engine) live dalam 7 hari. Stage 2 (Sales Engine) 14 hari kerja. Begitu live, sistem langsung bekerja — speed-to-lead, follow-up otomatis, booking flow, semuanya aktif.</p>
                     </div>
                 </div>
 
@@ -572,7 +1082,7 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Sistem kami nggak tidur, nggak cuti, nggak resign, dan merespons lead dalam hitungan detik — bukan jam. Biaya operasional bulanannya adalah fraksi kecil dari gaji satu admin manusia (Rp4–6jt/bulan). <strong>Setup sekali, sistem kerja 24/7.</strong> Dan Anda punya kepemilikan penuh — bukan bergantung pada orang.</p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Sistem kami nggak tidur, nggak cuti, nggak resign, dan merespons lead dalam hitungan detik — bukan jam. Biaya operasional bulanannya adalah fraksi kecil dari gaji satu admin manusia (Rp4–6jt/bulan). Setup sekali, sistem kerja 24/7. Dan Anda punya kepemilikan penuh — bukan bergantung pada orang.</p>
                     </div>
                 </div>
 
@@ -582,7 +1092,7 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Ya. Setiap sistem dibangun khusus untuk bisnis Anda — bukan template generik. <strong>Workflow, script AI, integrasi channel, dan pipeline CRM disesuaikan</strong> dengan offer, audiens, dan cara Anda closing deal.</p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Ya. Setiap sistem dibangun khusus untuk bisnis Anda — bukan template generik. Workflow, script AI, integrasi channel, dan pipeline CRM disesuaikan dengan offer, audiens, dan cara Anda closing deal.</p>
                     </div>
                 </div>
 
@@ -592,7 +1102,7 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed"><strong>Sistem diserahkan penuh ke Anda, lengkap dengan dokumentasi dan SOP.</strong> Kami juga punya opsi Revenue Partnership bulanan bagi yang ingin kami maintain, update, dan optimasi sistem secara berkelanjutan — tapi bukan kewajiban.</p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Sistem diserahkan penuh ke Anda, lengkap dengan dokumentasi dan SOP. Kami juga punya opsi Revenue Partnership bulanan bagi yang ingin kami maintain, update, dan optimasi sistem secara berkelanjutan — tapi bukan kewajiban.</p>
                     </div>
                 </div>
 
@@ -602,7 +1112,7 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Bisa. <strong>Selama ada API atau webhook, kami sambungkan</strong> ke infrastruktur yang kami bangun. Anda tidak perlu buang tools yang sudah berjalan.</p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Bisa. Selama ada API atau webhook, kami sambungkan ke infrastruktur yang kami bangun. Anda tidak perlu buang tools yang sudah berjalan.</p>
                     </div>
                 </div>
 
@@ -612,10 +1122,9 @@
                         <span class="faq-icon text-2xl font-black text-blue-600 shrink-0">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Tidak ada tekanan. Kami mulai dari Revenue Leak Audit untuk mendiagnosa kesiapan bisnis Anda. Kalau fondasi offer belum kuat, kami akan bilang jujur dan arahkan ke Free Resource Library dulu — karena <strong>teknologi di atas fondasi yang lemah hanya mempercepat kebingungan.</strong></p>
+                        <p class="px-5 pb-5 text-base text-gray-700 font-medium leading-relaxed">Tidak ada tekanan. Kami mulai dari Revenue Leak Audit untuk mendiagnosa kesiapan bisnis Anda. Kalau fondasi offer belum kuat, kami akan bilang jujur dan arahkan ke Free Resource Library dulu — karena teknologi di atas fondasi yang lemah hanya mempercepat kebingungan.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -627,17 +1136,48 @@
         </a>
 
         <div class="mb-5 flex justify-center">
-            <img src="images/agentzlogo.png" alt="AGentZ Logo" class="h-10 w-auto">
+            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-10 w-auto">
         </div>
 
-        <p class="font-black text-sm text-gray-500 uppercase tracking-widest mb-2">Revenue Infrastructure untuk Personal Brand &amp; Bisnis Jasa</p>
-        <p class="font-bold text-base text-black mb-4">© 2026 Mathew Jordan | AGentZ</p>
-        <p class="text-xs text-gray-400 uppercase font-bold tracking-widest px-5 max-w-xl mx-auto">
-            Program setup &amp; implementasi. Hasil tergantung pada kualitas offer, konsistensi penggunaan sistem, dan faktor pasar masing-masing bisnis. Bukan nasihat finansial.
-        </p>
+        <p class="font-black text-sm text-gray-500 uppercase tracking-widest mb-2">Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa</p>
     </footer>
 
+    <!-- Floating Sticky WhatsApp Widget -->
+    <div class="fixed right-6 bottom-6 z-50 flex flex-col items-end">
+        <!-- Chat Popup Window -->
+        <div id="wa-chat-popup" class="hidden w-72 bg-white border-3 border-black shadow-[4px_4px_0px_#0a0a0a] p-4 mb-4 flex flex-col font-sans transition-all">
+            <!-- Header -->
+            <div class="flex justify-between items-center pb-2 border-b border-gray-200 mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="font-black text-sm text-[#0f172a]">AGentZ Assistant</span>
+                </div>
+                <button onclick="toggleWaPopup()" class="text-gray-400 hover:text-black font-black text-lg">×</button>
+            </div>
+            <!-- Message Body -->
+            <div class="bg-gray-50 border-2 border-black p-3 mb-3 text-xs leading-relaxed text-gray-700">
+                Konsultasi Agentz dengan AI
+            </div>
+            <!-- CTA Button -->
+            <a href="https://wa.me/6281234567890?text=Halo%20Jordan,%20saya%20tertarik%20diskusi%20AGentZ" target="_blank" class="block text-center py-2 bg-[#25D366] text-white border-2 border-black font-bold text-xs uppercase tracking-wide shadow-[2px_2px_0px_#0a0a0a] hover:-translate-y-0.5 active:translate-y-0 transition-all">
+                Kirim Pesan WhatsApp
+            </a>
+        </div>
+        
+        <!-- Toggle Button -->
+        <button onclick="toggleWaPopup()" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center border-3 border-black shadow-[4px_4px_0px_#0a0a0a] hover:scale-110 active:scale-95 transition-transform" aria-label="Toggle WhatsApp Chat">
+            <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+        </button>
+    </div>
+
     <script>
+        function toggleWaPopup() {
+            const popup = document.getElementById('wa-chat-popup');
+            popup.classList.toggle('hidden');
+        }
+
         function toggleFaq(btn) {
             const item = btn.closest('.faq-item');
             const isOpen = item.classList.contains('open');
@@ -652,5 +1192,7 @@
         }
     </script>
 
+    <!-- VSL Player — self-hosted, zero dependencies -->
+    <script src="https://vsl.jordanengo.com/embed/vsl-player.js"></script>
 </body>
 </html>
