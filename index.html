@@ -316,8 +316,37 @@
                         document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
                       }
 
-                      function handleFormSubmit(event) {
+                      async function handleFormSubmit(event) {
                         event.preventDefault();
+
+                        const form = event.target;
+                        const formData = new FormData(form);
+
+                        const payload = {
+                          name: formData.get('name'),
+                          whatsapp: formData.get('contact'),
+                          username: formData.get('social'),
+                          revenue: formData.get('revenue'),
+                          notes: formData.get('bottleneck'),
+                          source: 'agentz.jordanengo.com',
+                          platform: 'Web'
+                        };
+
+                        try {
+                          const hostname = window.location.hostname;
+                          const submitUrl = `${window.location.protocol}//${hostname}:8080/submit-lead`;
+
+                          fetch(submitUrl, {
+                            method: 'POST',
+                            headers: {
+                              'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                          }).catch(err => console.error("Background lead sync failed:", err));
+                        } catch (err) {
+                          console.error("Failed to build submit URL:", err);
+                        }
+
                         loadCalEmbed();
                         document.getElementById("form-container").classList.add("hidden");
                         document.getElementById("cal-container").classList.remove("hidden");
