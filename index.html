@@ -321,8 +321,8 @@
                         </button>
                     </div>
 
-                    <script type="text/javascript">
-                      function loadCalEmbed() {
+                     <script type="text/javascript">
+                      function loadCalEmbed(prefills = {}) {
                         if (window.CalLoaded) return;
                         window.CalLoaded = true;
 
@@ -361,7 +361,12 @@
                         Cal("inline", {
                           elementOrSelector: "#my-cal-inline",
                           calLink: CAL_LINK,
-                          config: { layout: "month_view", theme: "light" }
+                          config: { 
+                            layout: "month_view", 
+                            theme: "light",
+                            name: prefills.name || "",
+                            phone: prefills.phone || ""
+                          }
                         });
                         Cal("ui", {
                           theme: "light",
@@ -419,7 +424,10 @@
                           console.error("Failed to build submit URL:", err);
                         }
 
-                        loadCalEmbed();
+                        loadCalEmbed({
+                          name: payload.name,
+                          phone: payload.whatsapp
+                        });
                         document.getElementById("form-container").classList.add("hidden");
                         document.getElementById("cal-container").classList.remove("hidden");
                         document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
