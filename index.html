@@ -210,37 +210,61 @@
                         <p class="text-gray-600 mb-6 text-sm font-semibold">Langkah <span id="current-step-num">1</span> dari 5</p>
                         
                         <form id="qualification-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
-                            <!-- Step 1: Nama Lengkap -->
+                            <!-- Step 1: Model Bisnis -->
                             <div class="quiz-step" data-step="1">
-                                <label class="block font-black text-sm uppercase mb-2">Nama Lengkap</label>
-                                <input type="text" name="name" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
-                                <div class="mt-6 flex justify-end">
-                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
+                                <label class="block font-black text-sm uppercase mb-4">Model Bisnis Anda</label>
+                                <div class="space-y-3">
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="business_model" value="Agency / B2B Services" required class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Agency / B2B Services</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="business_model" value="Coaching / Consulting" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Coaching / Consulting</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="business_model" value="Content Creator / Personal Brand" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Content Creator / Personal Brand</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="business_model" value="Online Course / Edukasi" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Online Course / Edukasi</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="business_model" value="Lainnya" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Lainnya</span>
+                                    </label>
                                 </div>
                             </div>
 
-                            <!-- Step 2: Nomor WhatsApp / Telegram -->
+                            <!-- Step 2: Bottleneck Terbesar -->
                             <div class="quiz-step hidden" data-step="2">
-                                <label class="block font-black text-sm uppercase mb-2">Nomor WhatsApp / Telegram</label>
-                                <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
-                                <div class="mt-6 flex justify-between">
+                                <label class="block font-black text-sm uppercase mb-4">Bottleneck Terbesar Saat Ini</label>
+                                <div class="space-y-3">
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="bottleneck" value="Habis waktu editing konten B-Roll" required class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Habis waktu editing konten / posting</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="bottleneck" value="Bingung cara datangkan leads berkualitas" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Bingung cara datangkan leads berkualitas</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="bottleneck" value="Leads banyak tapi chat sales tidak closing" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Leads banyak tapi chat sales tidak closing</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="bottleneck" value="Tidak ada sistem follow-up otomatis" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Tidak ada sistem follow-up otomatis</span>
+                                    </label>
+                                </div>
+                                <div class="mt-6 flex justify-start">
                                     <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
-                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
                                 </div>
                             </div>
 
-                            <!-- Step 3: Link Media Sosial / Website -->
+                            <!-- Step 3: Estimasi Revenue Bulanan -->
                             <div class="quiz-step hidden" data-step="3">
-                                <label class="block font-black text-sm uppercase mb-2">Link Media Sosial / Website</label>
-                                <input type="url" name="social" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="https://instagram.com/username">
-                                <div class="mt-6 flex justify-between">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
-                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
-                                </div>
-                            </div>
-
-                            <!-- Step 4: Estimasi Revenue Bulanan -->
-                            <div class="quiz-step hidden" data-step="4">
                                 <label class="block font-black text-sm uppercase mb-4">Estimasi Revenue Bulanan Saat Ini</label>
                                 <div class="space-y-3">
                                     <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
@@ -265,10 +289,20 @@
                                 </div>
                             </div>
 
-                            <!-- Step 5: Bottleneck Terbesar -->
+                            <!-- Step 4: Nomor WhatsApp -->
+                            <div class="quiz-step hidden" data-step="4">
+                                <label class="block font-black text-sm uppercase mb-2">Nomor WhatsApp / Telegram</label>
+                                <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
+                                <div class="mt-6 flex justify-between">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: Nama Lengkap -->
                             <div class="quiz-step hidden" data-step="5">
-                                <label class="block font-black text-sm uppercase mb-2">Bottleneck Terbesar dalam Bisnis Konten Anda</label>
-                                <textarea name="bottleneck" rows="4" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Apa hambatan terbesar Anda saat ini? (misal: habis waktu ngedit, bingung posting, leads nggak closing...)"></textarea>
+                                <label class="block font-black text-sm uppercase mb-2">Nama Lengkap Anda</label>
+                                <input type="text" name="name" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
                                 <div class="mt-6 flex justify-between">
                                     <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
                                     <button type="submit" class="bg-[#22c55e] text-white font-black px-8 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#16a34a] transition-all uppercase text-sm">Kirim & Jadwalkan Konsultasi</button>
@@ -363,9 +397,9 @@
                         const payload = {
                           name: formData.get('name'),
                           whatsapp: formData.get('contact'),
-                          username: formData.get('social'),
+                          username: formData.get('contact'),
                           revenue: formData.get('revenue'),
-                          notes: formData.get('bottleneck'),
+                          notes: `Model Bisnis: ${formData.get('business_model')}\nBottleneck: ${formData.get('bottleneck')}`,
                           source: 'agentz.jordanengo.com',
                           platform: 'Web'
                         };
