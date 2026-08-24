@@ -89,7 +89,36 @@
             animation: ticker 22s linear infinite;
             white-space: nowrap;
         }
-        .ticker-track .t-item { padding: 0 2rem; }
+        .progress-bar-transition {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .option-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: 2px solid #e0e3e5;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 16px;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            outline: none;
+        }
+        
+        .option-card:hover {
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.12);
+            border-color: #006a61;
+            transform: translateY(-2px);
+        }
+
+        .option-card.selected {
+            background-color: #F0FDFA;
+            border-color: #006a61;
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
@@ -201,111 +230,148 @@
 
                     <!-- 2. Detailed Form container (shown first as interactive quiz) -->
                     <div id="form-container" class="w-full max-w-2xl mx-auto p-6 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left my-4">
-                        <!-- Progress Bar -->
-                        <div class="w-full bg-gray-200 h-4 border-2 border-black mb-6 relative overflow-hidden">
-                            <div id="quiz-progress" class="bg-blue-600 h-full transition-all duration-300" style="width: 20%;"></div>
+                        <!-- Progress Indicator Header -->
+                        <div class="w-full h-3 bg-gray-200 relative overflow-hidden mb-6 border-2 border-black">
+                            <div class="absolute top-0 left-0 h-full bg-[#006a61] progress-bar-transition" id="progress-bar" style="width: 20%;"></div>
                         </div>
 
-                        <h3 class="text-2xl font-black mb-2 uppercase text-black">Formulir Kualifikasi</h3>
-                        <p class="text-gray-600 mb-6 text-sm font-semibold">Langkah <span id="current-step-num">1</span> dari 5</p>
-                        
+                        <!-- Meta Info -->
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-bold text-xs uppercase tracking-widest text-gray-500">Pertanyaan <span id="current-step-num">1</span> dari 5</span>
+                        </div>
+
                         <form id="qualification-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
                             <!-- Step 1: Model Bisnis -->
                             <div class="quiz-step" data-step="1">
-                                <label class="block font-black text-sm uppercase mb-4">Model Bisnis Anda</label>
-                                <div class="space-y-3">
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="business_model" value="Agency / B2B Services" required class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Agency / B2B Services</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="business_model" value="Coaching / Consulting" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Coaching / Consulting</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="business_model" value="Content Creator / Personal Brand" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Content Creator / Personal Brand</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="business_model" value="Online Course / Edukasi" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Online Course / Edukasi</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="business_model" value="Lainnya" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Lainnya</span>
-                                    </label>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Model Bisnis Anda Saat Ini:</h1>
+                                <input type="hidden" name="business_model" id="input_business_model" required>
+                                <div class="flex flex-col gap-3">
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'business_model', 'Agency / B2B Services')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
+                                        <span class="font-bold text-base text-gray-800">Agency / B2B Services</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'business_model', 'Coaching / Consulting')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
+                                        <span class="font-bold text-base text-gray-800">Coaching / Consulting</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'business_model', 'Content Creator / Personal Brand')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
+                                        <span class="font-bold text-base text-gray-800">Content Creator / Personal Brand</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'business_model', 'Online Course / Edukasi')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
+                                        <span class="font-bold text-base text-gray-800">Online Course / Edukasi</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'business_model', 'Lainnya')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">E</span>
+                                        <span class="font-bold text-base text-gray-800">Lainnya</span>
+                                    </button>
+                                </div>
+                                <div class="mt-8 flex justify-end pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-1">
+                                        Lanjut
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </button>
                                 </div>
                             </div>
 
                             <!-- Step 2: Bottleneck Terbesar -->
                             <div class="quiz-step hidden" data-step="2">
-                                <label class="block font-black text-sm uppercase mb-4">Bottleneck Terbesar Saat Ini</label>
-                                <div class="space-y-3">
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="bottleneck" value="Habis waktu editing konten B-Roll" required class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Habis waktu editing konten / posting</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="bottleneck" value="Bingung cara datangkan leads berkualitas" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Bingung cara datangkan leads berkualitas</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="bottleneck" value="Leads banyak tapi chat sales tidak closing" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Leads banyak tapi chat sales tidak closing</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="bottleneck" value="Tidak ada sistem follow-up otomatis" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Tidak ada sistem follow-up otomatis</span>
-                                    </label>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Bottleneck Terbesar Saat Ini:</h1>
+                                <input type="hidden" name="bottleneck" id="input_bottleneck" required>
+                                <div class="flex flex-col gap-3">
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Habis waktu editing konten / posting')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
+                                        <span class="font-bold text-base text-gray-800">Habis waktu editing konten / posting</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Bingung cara datangkan leads berkualitas')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
+                                        <span class="font-bold text-base text-gray-800">Bingung cara datangkan leads berkualitas</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Leads banyak tapi chat sales tidak closing')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
+                                        <span class="font-bold text-base text-gray-800">Leads banyak tapi chat sales tidak closing</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Tidak ada sistem follow-up otomatis')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
+                                        <span class="font-bold text-base text-gray-800">Tidak ada sistem follow-up otomatis</span>
+                                    </button>
                                 </div>
-                                <div class="mt-6 flex justify-start">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                        <span class="material-symbols-outlined">arrow_back</span>
+                                        Kembali
+                                    </button>
+                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-2">
+                                        Lanjut
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </button>
                                 </div>
                             </div>
 
                             <!-- Step 3: Estimasi Revenue Bulanan -->
                             <div class="quiz-step hidden" data-step="3">
-                                <label class="block font-black text-sm uppercase mb-4">Estimasi Revenue Bulanan Saat Ini</label>
-                                <div class="space-y-3">
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="revenue" value="under_1k" required class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Di bawah Rp 15 Juta ($1,000 / bln)</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="revenue" value="1k_5k" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Rp 15 - 75 Juta ($1,000 - $5,000 / bln)</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="revenue" value="5k_10k" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Rp 75 - 150 Juta ($5,000 - $10,000 / bln)</span>
-                                    </label>
-                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
-                                        <input type="radio" name="revenue" value="above_10k" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
-                                        <span>Di atas Rp 150 Juta ($10,000 / bln)</span>
-                                    </label>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Estimasi Revenue Bulanan Saat Ini:</h1>
+                                <input type="hidden" name="revenue" id="input_revenue" required>
+                                <div class="flex flex-col gap-3">
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', 'under_1k')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
+                                        <span class="font-bold text-base text-gray-800">Di bawah Rp 15 Juta ($1,000 / bln)</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', '1k_5k')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
+                                        <span class="font-bold text-base text-gray-800">Rp 15 - 75 Juta ($1,000 - $5,000 / bln)</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', '5k_10k')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
+                                        <span class="font-bold text-base text-gray-800">Rp 75 - 150 Juta ($5,000 - $10,000 / bln)</span>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', 'above_10k')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
+                                        <span class="font-bold text-base text-gray-800">Di atas Rp 150 Juta ($10,000 / bln)</span>
+                                    </button>
                                 </div>
-                                <div class="mt-6 flex justify-start">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                        <span class="material-symbols-outlined">arrow_back</span>
+                                        Kembali
+                                    </button>
+                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-3">
+                                        Lanjut
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </button>
                                 </div>
                             </div>
 
                             <!-- Step 4: Nomor WhatsApp -->
                             <div class="quiz-step hidden" data-step="4">
-                                <label class="block font-black text-sm uppercase mb-2">Nomor WhatsApp / Telegram</label>
-                                <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
-                                <div class="mt-6 flex justify-between">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
-                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Nomor WhatsApp / Telegram Anda:</h1>
+                                <input type="tel" name="contact" required oninput="validateInputAndEnableNext(this, 4)" class="w-full border-4 border-black p-4 font-bold text-lg focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
+                                <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                        <span class="material-symbols-outlined">arrow_back</span>
+                                        Kembali
+                                    </button>
+                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-4">
+                                        Lanjut
+                                        <span class="material-symbols-outlined">arrow_forward</span>
+                                    </button>
                                 </div>
                             </div>
 
                             <!-- Step 5: Nama Lengkap -->
                             <div class="quiz-step hidden" data-step="5">
-                                <label class="block font-black text-sm uppercase mb-2">Nama Lengkap Anda</label>
-                                <input type="text" name="name" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
-                                <div class="mt-6 flex justify-between">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
-                                    <button type="submit" class="bg-[#22c55e] text-white font-black px-8 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#16a34a] transition-all uppercase text-sm">Kirim & Jadwalkan Konsultasi</button>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Nama Lengkap Anda:</h1>
+                                <input type="text" name="name" required oninput="validateInputAndEnableNext(this, 5)" class="w-full border-4 border-black p-4 font-bold text-lg focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
+                                <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                        <span class="material-symbols-outlined">arrow_back</span>
+                                        Kembali
+                                    </button>
+                                    <button type="submit" class="bg-[#22c55e] text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-[#16a34a] active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-5">
+                                        Kirim & Jadwalkan
+                                        <span class="material-symbols-outlined">check</span>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -447,20 +513,77 @@
 
                         // Update progress bar
                         const progressPercent = (step / totalSteps) * 100;
-                        document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
+                        document.getElementById('progress-bar').style.width = `${progressPercent}%`;
                         document.getElementById('current-step-num').textContent = step;
+                      }
+
+                      function selectQuizOption(element, fieldName, value) {
+                        const stepEl = element.closest('.quiz-step');
+                        
+                        stepEl.querySelectorAll('.option-card').forEach(opt => {
+                          opt.classList.remove('selected');
+                          const badge = opt.querySelector('span:first-child');
+                          if (badge) {
+                            badge.classList.remove('bg-[#006a61]', 'text-white');
+                            badge.classList.add('bg-gray-200', 'text-black');
+                          }
+                        });
+
+                        element.classList.add('selected');
+                        const selectedBadge = element.querySelector('span:first-child');
+                        if (selectedBadge) {
+                          selectedBadge.classList.remove('bg-gray-200', 'text-black');
+                          selectedBadge.classList.add('bg-[#006a61]', 'text-white');
+                        }
+
+                        const hiddenInput = document.getElementById(`input_${fieldName}`);
+                        if (hiddenInput) {
+                          hiddenInput.value = value;
+                        }
+
+                        const stepNum = stepEl.getAttribute('data-step');
+                        const nextBtn = document.getElementById(`next-btn-${stepNum}`);
+                        if (nextBtn) {
+                          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                          nextBtn.removeAttribute('disabled');
+                        }
+
+                        setTimeout(() => {
+                          nextStep();
+                        }, 300);
+                      }
+
+                      function validateInputAndEnableNext(element, stepNum) {
+                        const nextBtn = document.getElementById(`next-btn-${stepNum}`);
+                        if (nextBtn) {
+                          if (element.checkValidity() && element.value.trim() !== '') {
+                            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                            nextBtn.removeAttribute('disabled');
+                          } else {
+                            nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                            nextBtn.setAttribute('disabled', 'true');
+                          }
+                        }
                       }
 
                       function nextStep() {
                         const activeStepEl = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
-                        const inputs = activeStepEl.querySelectorAll('input, textarea, select');
+                        const hiddenInput = activeStepEl.querySelector('input[type="hidden"]');
+                        const textInputs = activeStepEl.querySelectorAll('input[type="tel"], input[type="text"]');
+                        
                         let isValid = true;
-                        inputs.forEach(input => {
-                          if (!input.checkValidity()) {
+                        
+                        if (hiddenInput && !hiddenInput.value) {
+                          isValid = false;
+                        }
+                        
+                        textInputs.forEach(input => {
+                          if (!input.checkValidity() || input.value.trim() === '') {
                             input.reportValidity();
                             isValid = false;
                           }
                         });
+
                         if (!isValid) return;
 
                         if (currentStep < totalSteps) {
@@ -476,17 +599,29 @@
                         }
                       }
 
-                      function selectRadioAndNext() {
-                        setTimeout(() => {
-                          nextStep();
-                        }, 200);
-                      }
-
                       function resetBookingFlow() {
                         document.getElementById("cal-container").classList.add("hidden");
                         document.getElementById("form-container").classList.remove("hidden");
                         document.getElementById("thank-you-container").classList.add("hidden");
                         document.getElementById("qualification-form").reset();
+                        
+                        document.querySelectorAll('.option-card').forEach(opt => {
+                          opt.classList.remove('selected');
+                          const badge = opt.querySelector('span:first-child');
+                          if (badge) {
+                            badge.classList.remove('bg-[#006a61]', 'text-white');
+                            badge.classList.add('bg-gray-200', 'text-black');
+                          }
+                        });
+
+                        for (let i = 1; i <= 5; i++) {
+                          const btn = document.getElementById(`next-btn-${i}`);
+                          if (btn) {
+                            btn.classList.add('opacity-50', 'cursor-not-allowed');
+                            btn.setAttribute('disabled', 'true');
+                          }
+                        }
+
                         currentStep = 1;
                         showStep(currentStep);
                       }
