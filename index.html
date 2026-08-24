@@ -194,48 +194,86 @@
             <div id="booking" class="mt-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-gray-50">
                 <div class="bg-white p-4 min-h-[600px] flex flex-col items-center justify-center">
                     
-                    <!-- 1. Cal.com container -->
-                    <div id="cal-container" class="w-full">
+                    <!-- 1. Cal.com container (hidden by default, shown after form submission) -->
+                    <div id="cal-container" class="w-full hidden">
                         <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
                     </div>
 
-                    <!-- 2. Detailed Form container (hidden by default) -->
-                    <div id="form-container" class="w-full max-w-2xl mx-auto p-6 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left my-4 hidden">
-                        <h3 class="text-2xl font-black mb-2 uppercase text-black">Formulir Kualifikasi Detail</h3>
-                        <p class="text-gray-600 mb-6 text-sm font-semibold">Silakan lengkapi data kualifikasi berikut agar sesi konsultasi Anda maksimal.</p>
+                    <!-- 2. Detailed Form container (shown first as interactive quiz) -->
+                    <div id="form-container" class="w-full max-w-2xl mx-auto p-6 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left my-4">
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-gray-200 h-4 border-2 border-black mb-6 relative overflow-hidden">
+                            <div id="quiz-progress" class="bg-blue-600 h-full transition-all duration-300" style="width: 20%;"></div>
+                        </div>
+
+                        <h3 class="text-2xl font-black mb-2 uppercase text-black">Formulir Kualifikasi</h3>
+                        <p class="text-gray-600 mb-6 text-sm font-semibold">Langkah <span id="current-step-num">1</span> dari 5</p>
                         
-                        <form id="qualification-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
-                            <div>
-                                <label class="block font-black text-sm uppercase mb-1">Nama Lengkap</label>
+                        <form id="qualification-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                            <!-- Step 1: Nama Lengkap -->
+                            <div class="quiz-step" data-step="1">
+                                <label class="block font-black text-sm uppercase mb-2">Nama Lengkap</label>
                                 <input type="text" name="name" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block font-black text-sm uppercase mb-1">Nomor WhatsApp / Telegram</label>
-                                    <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
-                                </div>
-                                <div>
-                                    <label class="block font-black text-sm uppercase mb-1">Link Media Sosial / Website</label>
-                                    <input type="url" name="social" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="https://instagram.com/username">
+                                <div class="mt-6 flex justify-end">
+                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
                                 </div>
                             </div>
-                            <div>
-                                <label class="block font-black text-sm uppercase mb-1">Estimasi Revenue Bulanan Saat Ini</label>
-                                <select name="revenue" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50">
-                                    <option value="" disabled selected>Pilih rentang revenue...</option>
-                                    <option value="under_1k">Di bawah $1,000 / bln ( Di bawah Rp 15 Juta )</option>
-                                    <option value="1k_5k">$1,000 - $5,000 / bln ( Rp 15 - 75 Juta )</option>
-                                    <option value="5k_10k">$5,000 - $10,000 / bln ( Rp 75 - 150 Juta )</option>
-                                    <option value="above_10k">Di atas $10,000 / bln ( Di atas Rp 150 Juta )</option>
-                                </select>
+
+                            <!-- Step 2: Nomor WhatsApp / Telegram -->
+                            <div class="quiz-step hidden" data-step="2">
+                                <label class="block font-black text-sm uppercase mb-2">Nomor WhatsApp / Telegram</label>
+                                <input type="tel" name="contact" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
+                                <div class="mt-6 flex justify-between">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
+                                </div>
                             </div>
-                            <div>
-                                <label class="block font-black text-sm uppercase mb-1">Bottleneck Terbesar dalam Bisnis Konten Anda</label>
-                                <textarea name="bottleneck" rows="3" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Apa hambatan terbesar Anda saat ini? (misal: habis waktu ngedit, bingung posting, leads nggak closing...)"></textarea>
+
+                            <!-- Step 3: Link Media Sosial / Website -->
+                            <div class="quiz-step hidden" data-step="3">
+                                <label class="block font-black text-sm uppercase mb-2">Link Media Sosial / Website</label>
+                                <input type="url" name="social" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="https://instagram.com/username">
+                                <div class="mt-6 flex justify-between">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                    <button type="button" onclick="nextStep()" class="bg-blue-600 text-white font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase text-sm">Lanjut →</button>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full bg-[#22c55e] text-white text-lg font-black py-4 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#16a34a] transition-all uppercase">
-                                Kirim Kualifikasi & Lanjutkan ke Booking
-                            </button>
+
+                            <!-- Step 4: Estimasi Revenue Bulanan -->
+                            <div class="quiz-step hidden" data-step="4">
+                                <label class="block font-black text-sm uppercase mb-4">Estimasi Revenue Bulanan Saat Ini</label>
+                                <div class="space-y-3">
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="revenue" value="under_1k" required class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Di bawah Rp 15 Juta ($1,000 / bln)</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="revenue" value="1k_5k" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Rp 15 - 75 Juta ($1,000 - $5,000 / bln)</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="revenue" value="5k_10k" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Rp 75 - 150 Juta ($5,000 - $10,000 / bln)</span>
+                                    </label>
+                                    <label class="block p-4 border-4 border-black font-bold cursor-pointer hover:bg-blue-50 transition-colors flex items-center gap-3">
+                                        <input type="radio" name="revenue" value="above_10k" class="w-5 h-5 accent-blue-600" onchange="selectRadioAndNext()">
+                                        <span>Di atas Rp 150 Juta ($10,000 / bln)</span>
+                                    </label>
+                                </div>
+                                <div class="mt-6 flex justify-start">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: Bottleneck Terbesar -->
+                            <div class="quiz-step hidden" data-step="5">
+                                <label class="block font-black text-sm uppercase mb-2">Bottleneck Terbesar dalam Bisnis Konten Anda</label>
+                                <textarea name="bottleneck" rows="4" required class="w-full border-4 border-black p-3 font-bold focus:outline-none focus:bg-yellow-50" placeholder="Apa hambatan terbesar Anda saat ini? (misal: habis waktu ngedit, bingung posting, leads nggak closing...)"></textarea>
+                                <div class="mt-6 flex justify-between">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-200 text-black font-black px-6 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-300 transition-all uppercase text-sm">← Kembali</button>
+                                    <button type="submit" class="bg-[#22c55e] text-white font-black px-8 py-3 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#16a34a] transition-all uppercase text-sm">Kirim & Jadwalkan Konsultasi</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
 
@@ -353,12 +391,62 @@
                         document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
                       }
 
+                      let currentStep = 1;
+                      const totalSteps = 5;
+
+                      function showStep(step) {
+                        document.querySelectorAll('.quiz-step').forEach(el => {
+                          el.classList.add('hidden');
+                        });
+                        const activeEl = document.querySelector(`.quiz-step[data-step="${step}"]`);
+                        if (activeEl) {
+                          activeEl.classList.remove('hidden');
+                        }
+
+                        // Update progress bar
+                        const progressPercent = (step / totalSteps) * 100;
+                        document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
+                        document.getElementById('current-step-num').textContent = step;
+                      }
+
+                      function nextStep() {
+                        const activeStepEl = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+                        const inputs = activeStepEl.querySelectorAll('input, textarea, select');
+                        let isValid = true;
+                        inputs.forEach(input => {
+                          if (!input.checkValidity()) {
+                            input.reportValidity();
+                            isValid = false;
+                          }
+                        });
+                        if (!isValid) return;
+
+                        if (currentStep < totalSteps) {
+                          currentStep++;
+                          showStep(currentStep);
+                        }
+                      }
+
+                      function prevStep() {
+                        if (currentStep > 1) {
+                          currentStep--;
+                          showStep(currentStep);
+                        }
+                      }
+
+                      function selectRadioAndNext() {
+                        setTimeout(() => {
+                          nextStep();
+                        }, 200);
+                      }
+
                       function resetBookingFlow() {
-                        loadCalEmbed();
-                        document.getElementById("cal-container").classList.remove("hidden");
-                        document.getElementById("form-container").classList.add("hidden");
+                        document.getElementById("cal-container").classList.add("hidden");
+                        document.getElementById("form-container").classList.remove("hidden");
                         document.getElementById("thank-you-container").classList.add("hidden");
                         document.getElementById("qualification-form").reset();
+                        currentStep = 1;
+                        showStep(currentStep);
                       }
 
                       // Lazy load Cal.com when the booking section enters viewport
