@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGentZ | Revenue Infrastructure untuk Bisnis Coaching & Jasa</title>
     <meta name="description" content="Ubah setiap leads jadi jadwal meeting — tanpa tim tambahan. Kami bangun dan operasikan Revenue Infrastructure Anda.">
+    <link rel="icon" type="image/webp" href="images/agentzlogo.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/founder-left.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/founder-right.webp" type="image/webp">
     <link rel="stylesheet" href="tailwind.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -259,71 +264,72 @@
         </div>
     </nav>
 
-    <!-- ═══════════ TICKER ═══════════ -->
-    <div class="overflow-hidden bg-blue-600 text-white text-xs font-bold uppercase tracking-widest py-3 border-b-2 border-black mt-[66px] flex items-center">
-        <div id="ticker-track" style="display: flex; width: max-content; white-space: nowrap; align-items: center; line-height: 1;">
-            <div id="ticker-original" style="display: inline-flex; align-items: center; line-height: 1;">
-                <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Speed-to-Lead</span>
-                <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
-                <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">AI Follow-Up</span>
-                <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
-                <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Auto Booking</span>
-                <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
-                <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Revenue Infrastructure</span>
-                <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
-                <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Deal Closed</span>
-                <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
+    <main id="main-content">
+        <!-- ═══════════ TICKER ═══════════ -->
+        <div class="overflow-hidden bg-blue-600 text-white text-xs font-bold uppercase tracking-widest py-3 border-b-2 border-black mt-[66px] flex items-center">
+            <div id="ticker-track" style="display: flex; width: max-content; white-space: nowrap; align-items: center; line-height: 1;">
+                <div id="ticker-original" style="display: inline-flex; align-items: center; line-height: 1;">
+                    <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Speed-to-Lead</span>
+                    <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
+                    <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">AI Follow-Up</span>
+                    <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
+                    <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Auto Booking</span>
+                    <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
+                    <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Revenue Infrastructure</span>
+                    <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
+                    <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Deal Closed</span>
+                    <span style="padding: 0 0.5rem; display: inline-block; line-height: 1;">·</span>
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-        (function() {
-            var original = document.getElementById('ticker-original');
-            var track = document.getElementById('ticker-track');
-            for (var i = 0; i < 6; i++) {
-                track.appendChild(original.cloneNode(true));
-            }
-            var singleWidth = original.offsetWidth;
-            var pos = 0;
-            var speed = 0.8;
-            function animate() {
-                pos -= speed;
-                if (Math.abs(pos) >= singleWidth) {
-                    pos += singleWidth;
+        <script>
+            (function() {
+                var original = document.getElementById('ticker-original');
+                var track = document.getElementById('ticker-track');
+                for (var i = 0; i < 6; i++) {
+                    track.appendChild(original.cloneNode(true));
                 }
-                track.style.transform = 'translateX(' + pos + 'px)';
+                var singleWidth = original.offsetWidth;
+                var pos = 0;
+                var speed = 0.8;
+                function animate() {
+                    pos -= speed;
+                    if (Math.abs(pos) >= singleWidth) {
+                        pos += singleWidth;
+                    }
+                    track.style.transform = 'translateX(' + pos + 'px)';
+                    requestAnimationFrame(animate);
+                }
                 requestAnimationFrame(animate);
-            }
-            requestAnimationFrame(animate);
-        })();
-    </script>
+            })();
+        </script>
 
-    <!-- Logo Centered Under Ticker -->
-    <div class="flex justify-center mt-8">
-        <img src="images/agentzlogo.webp" alt="AGentZ Logo" style="height: 64px; width: auto; max-height: 64px; object-fit: contain;">
-    </div>
+        <!-- Logo Centered Under Ticker -->
+        <div class="flex justify-center mt-8">
+            <img src="images/agentzlogo.webp" alt="AGentZ Logo" style="height: 64px; width: auto; max-height: 64px; object-fit: contain;">
+        </div>
 
-    <!-- ═══════════ HERO ═══════════ -->
-    <header id="hero" class="pt-10 pb-16 px-4 sm:px-6 text-center border-b-4 border-black relative overflow-hidden bg-white">
-        <div class="max-w-5xl mx-auto relative">
-            <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-4">
-                UNTUK Bisnis Coaching &amp; Jasa
-            </p>
+        <!-- ═══════════ HERO ═══════════ -->
+        <header id="hero" class="pt-10 pb-16 px-4 sm:px-6 text-center border-b-4 border-black relative overflow-hidden bg-white">
+            <div class="max-w-5xl mx-auto relative">
+                <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-4">
+                    UNTUK Bisnis Coaching &amp; Jasa
+                </p>
 
-            <div class="flex items-end justify-center gap-1 sm:gap-3 md:gap-6 my-2 mb-6">
-                <!-- Left Founder Image (pointing right towards headline) -->
-                <img src="images/founder-left.png" alt="Jordan - Founder AGentZ" class="founder-left-img pointer-events-none select-none" style="aspect-ratio: 1312/3208;">
+                <div class="flex items-end justify-center gap-1 sm:gap-3 md:gap-6 my-2 mb-6">
+                    <!-- Left Founder Image (pointing right towards headline) -->
+                    <img src="images/founder-left.webp" alt="Jordan - Founder AGentZ" class="founder-left-img pointer-events-none select-none" style="aspect-ratio: 1312/3208;" fetchpriority="high">
 
-                <!-- Center H1 -->
-                <div class="max-w-3xl text-center px-1 sm:px-2">
-                    <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight text-black">
-                        Ubah Leads Jadi Jadwal Meeting <br class="hidden md:block"><span class="italic underline decoration-blue-500 decoration-4">Tanpa Tim Tambahan</span>
-                    </h1>
+                    <!-- Center H1 -->
+                    <div class="max-w-3xl text-center px-1 sm:px-2">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight text-black">
+                            Ubah Leads Jadi Jadwal Meeting <br class="hidden md:block"><span class="italic underline decoration-blue-500 decoration-4">Tanpa Tim Tambahan</span>
+                        </h1>
+                    </div>
+
+                    <!-- Right Founder Image (looking left towards headline) -->
+                    <img src="images/founder-right.webp" alt="Jordan - Founder AGentZ" class="founder-right-img pointer-events-none select-none" style="aspect-ratio: 228/609;" fetchpriority="high">
                 </div>
-
-                <!-- Right Founder Image (looking left towards headline) -->
-                <img src="images/founder-right.png" alt="Jordan - Founder AGentZ" class="founder-right-img pointer-events-none select-none" style="aspect-ratio: 228/609;">
-            </div>
 
             <p class="text-base md:text-lg font-medium text-gray-600 mb-3 max-w-3xl mx-auto">
                 Agentz bangun sistem yang menghubungkan konten anda dengan sistem sales sehingga setiap lead baru akan direspons, dikualifikasi, dan diarahkan ke sesi konsultasi secara otomatis.
@@ -850,7 +856,7 @@
                     <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
                         <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">New Release</span>
                         <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">$100M MONEY MODELS</h3>
-                        <img alt="$100M Money Models" class="w-full max-w-[200px] rounded-lg border-2 border-black shadow-sm mb-4 object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VV4NWrEkTkeTDPbyUa_2yZmiM6GOgIOru-EjGj7c4UXy-ZssyAne7x4ODUCe6Qr0E3uik4KY6LDqQkbHH9Zo-NRAupTKeyXocaNbT9QzPo77ZX-qvk2gIMaWgXgtHLs73eI6eIUCftomQLNprn4eSMZLP6WPGD44maeyHx-4x_lllyx_GLC90joshuOaOXU4heg0f2dn35Vp-gyIdUKxJ45WE_LGPGjti-vES62sf14qX1y81-EY8lQxui"/>
+                        <img alt="$100M Money Models" class="w-full max-w-[200px] rounded-lg border-2 border-black shadow-sm mb-4 object-cover" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida/AEtjO1VV4NWrEkTkeTDPbyUa_2yZmiM6GOgIOru-EjGj7c4UXy-ZssyAne7x4ODUCe6Qr0E3uik4KY6LDqQkbHH9Zo-NRAupTKeyXocaNbT9QzPo77ZX-qvk2gIMaWgXgtHLs73eI6eIUCftomQLNprn4eSMZLP6WPGD44maeyHx-4x_lllyx_GLC90joshuOaOXU4heg0f2dn35Vp-gyIdUKxJ45WE_LGPGjti-vES62sf14qX1y81-EY8lQxui"/>
                         <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Take This Course</a>
                     </div>
 
@@ -858,7 +864,7 @@
                     <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
                         <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">It's Free</span>
                         <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">OFFER CREATION COURSE</h3>
-                        <img alt="$100M Offers" class="w-full max-w-[200px] rounded-lg border-2 border-black shadow-sm mb-4 object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VcBLwAx5zjjHQfcM3Cfr0xelg4CTUq4uJFLURCBhjIMLy0vlrAeWNnF7Lk39nOYTfW_xQX-UDGakZnzuPdPXKB7X6kuIMZrTI5o5fY24hz7n4_wI7WzuxdgK82rv22Ph74jfsY8cLZJxKFzI0ksaBX3-LKG8xH5XFktwqgson8sG2ht1Kic_HBoXCV_tBpLnm2bvynmcnfU3VLmxgje8ELMJ6OG5vXpOVEOiBkJ4-E-QeWfYVTNyBFZZEJ"/>
+                        <img alt="$100M Offers" class="w-full max-w-[200px] rounded-lg border-2 border-black shadow-sm mb-4 object-cover" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida/AEtjO1VcBLwAx5zjjHQfcM3Cfr0xelg4CTUq4uJFLURCBhjIMLy0vlrAeWNnF7Lk39nOYTfW_xQX-UDGakZnzuPdPXKB7X6kuIMZrTI5o5fY24hz7n4_wI7WzuxdgK82rv22Ph74jfsY8cLZJxKFzI0ksaBX3-LKG8xH5XFktwqgson8sG2ht1Kic_HBoXCV_tBpLnm2bvynmcnfU3VLmxgje8ELMJ6OG5vXpOVEOiBkJ4-E-QeWfYVTNyBFZZEJ"/>
                         <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Take This Course</a>
                     </div>
 
@@ -866,7 +872,7 @@
                     <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
                         <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">It's Free</span>
                         <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">LEAD GENERATION COURSE</h3>
-                        <img alt="$100M Leads" class="w-full max-w-[200px] rounded-lg border-2 border-black shadow-sm mb-4 object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WiNukk61DOf3LwGihT8GgBk3ucOq6-IBeAh46_QSIxetxAk9oERbHW3VgRKXR3JKrobLHnvXU8EzOl80ToI165OtxIYlt6mIKQA5Io6XNCXnDaPbm9vSVo3ofbGIA-DkR61RkleXFNyfEyE1hxX47jpXHk2_hKykawuHxv2ZzMeREw8tSHeR7In1x-ifZvSiK3wxf7G7leZ_4ReesqA84K9SYvHBN9BBI9vFcLsOA11peCfA7z3qERZiCu"/>
+                        <img alt="$100M Leads" class="w-full max-w-[200px] rounded-lg border-2 border-black shadow-sm mb-4 object-cover" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida/AEtjO1WiNukk61DOf3LwGihT8GgBk3ucOq6-IBeAh46_QSIxetxAk9oERbHW3VgRKXR3JKrobLHnvXU8EzOl80ToI165OtxIYlt6mIKQA5Io6XNCXnDaPbm9vSVo3ofbGIA-DkR61RkleXFNyfEyE1hxX47jpXHk2_hKykawuHxv2ZzMeREw8tSHeR7In1x-ifZvSiK3wxf7G7leZ_4ReesqA84K9SYvHBN9BBI9vFcLsOA11peCfA7z3qERZiCu"/>
                         <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Take This Course</a>
                     </div>
 
@@ -874,7 +880,7 @@
                     <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
                         <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">Live In-Person</span>
                         <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">SCALING WORKSHOP</h3>
-                        <img alt="Scaling Workshop" class="w-full max-w-[200px] rounded-full border-2 border-black shadow-sm mb-4 aspect-square object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1Uz6t3dbrj1kr3fi-YuQvyOMBSG-QuE-yvAalSsj82BX2Gpne9z3g9m5qTmGZCbpl6gMTA-MtPqJpkPWaP0v3uFYI6dsbd-fkY6HqFMwJ2y84dKZS-ihlibyPQ5cPsQ-CVb_1Fntgp_I0PHOjMfzi923xHcHbZH43jlsMuMd0xsymYrpMILm2WTFlI73680zwFq_ZCEkoR8YBeZYPuD-pazuh-u2se84H6y6f5q7FaR4EVbUHAizinyzP0l"/>
+                        <img alt="Scaling Workshop" class="w-full max-w-[200px] rounded-full border-2 border-black shadow-sm mb-4 object-cover" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida/AEtjO1Uz6t3dbrj1kr3fi-YuQvyOMBSG-QuE-yvAalSsj82BX2Gpne9z3g9m5qTmGZCbpl6gMTA-MtPqJpkPWaP0v3uFYI6dsbd-fkY6HqFMwJ2y84dKZS-ihlibyPQ5cPsQ-CVb_1Fntgp_I0PHOjMfzi923xHcHbZH43jlsMuMd0xsymYrpMILm2WTFlI73680zwFq_ZCEkoR8YBeZYPuD-pazuh-u2se84H6y6f5q7FaR4EVbUHAizinyzP0l"/>
                         <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Attend a Workshop</a>
                     </div>
                 </div>
@@ -917,7 +923,7 @@
                 Layer antara Content anda dengan Sales <br class="hidden sm:block"><span class="text-blue-600">(visually our system)</span>
             </h2>
             <div class="border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden bg-black p-2 sm:p-4 inline-block max-w-full">
-                <img src="images/content-to-sales-layer.png" alt="Layer antara Content anda dengan Sales - AGentZ System" class="w-full h-auto object-contain mx-auto">
+                <img src="images/content-to-sales-layer.webp" alt="Layer antara Content anda dengan Sales - AGentZ System" loading="lazy" decoding="async" class="w-full h-auto object-contain mx-auto">
             </div>
         </div>
     </section>
@@ -937,7 +943,7 @@
                     We built your needs and set it up one time — 100% ownership.
                 </p>
                 <div class="bg-black border-2 border-blue-400 p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                    <p class="font-black text-blue-400 text-sm md:text-base uppercase tracking-wider mb-2">
+                    <p class="font-black text-sky-300 text-sm md:text-base uppercase tracking-wider mb-2">
                         ⚡ SISTEM AGENT AGNOSTIC BYOK MILIK ANDA
                     </p>
                     <p class="text-gray-300 text-xs md:text-sm font-medium leading-relaxed">
@@ -949,7 +955,7 @@
             <!-- Jaminan Delivery Milestone Box -->
             <div class="border-4 border-yellow-500 bg-yellow-50 p-8 md:p-12 shadow-[8px_8px_0px_0px_#ca8a04] text-center text-black">
                 <div class="text-5xl md:text-6xl mb-4">🏆</div>
-                <div class="inline-block bg-yellow-500 text-white text-xs font-black uppercase px-4 py-2 mb-4 tracking-widest border-2 border-black">Jaminan Delivery</div>
+                <div class="inline-block bg-yellow-400 text-black text-xs font-black uppercase px-4 py-2 mb-4 tracking-widest border-2 border-black">Jaminan Delivery</div>
                 <h2 class="text-2xl md:text-4xl font-black mb-4 leading-tight uppercase text-black">
                     Milestone yang Disepakati Harus Selesai.
                 </h2>
@@ -1054,6 +1060,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- ═══════════ FOOTER ═══════════ -->
     <footer class="py-14 bg-white text-center border-t-4 border-black">
