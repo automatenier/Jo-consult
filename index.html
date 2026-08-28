@@ -248,24 +248,29 @@
 </head>
 <body>
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-3 sm:px-6 py-2 sm:py-3">
-        <a href="index.html" class="flex items-center gap-2 text-black hover:opacity-80 transition-opacity">
-            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="nav-logo-img">
-            <span class="font-black text-lg sm:text-xl text-black tracking-tight">Agentz</span>
-        </a>
-        <div class="flex items-center gap-2 sm:gap-4">
-            <a href="courses.html" class="bg-gray-100 hover:bg-gray-200 text-black text-xs sm:text-sm font-bold uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all whitespace-nowrap">
-                Course Gratis
+    <!-- ═══════════ TOP APP BAR / NAVIGATION ═══════════ -->
+    <header class="fixed top-0 w-full z-50 bg-[#0a0a0a] text-white border-b-2 border-black flex justify-between items-center px-4 md:px-8 h-16 md:h-20 shadow-md">
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
+                <img alt="AGentZ Logo" class="h-8 md:h-9 w-auto" src="images/agentzlogo.webp"/>
+                <span class="font-black text-xl md:text-2xl text-white tracking-tight">Agentz</span>
             </a>
-            <a href="#booking" id="nav-cta" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all whitespace-nowrap">
-                <span class="hidden sm:inline">Jadwalkan </span>Konsultasi<span class="hidden sm:inline"> Gratis</span> →
+            <nav class="hidden md:flex items-center gap-6 text-sm font-bold">
+                <a href="index.html" class="text-yellow-300 font-extrabold relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-yellow-300">Beranda</a>
+                <a href="courses.html" class="text-gray-300 hover:text-white transition-colors">Course Gratis</a>
+                <a href="#booking" class="text-gray-300 hover:text-white transition-colors">Konsultasi</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="#booking" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-black uppercase tracking-wider px-3.5 sm:px-5 py-2 sm:py-2.5 border-2 border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-0.5 transition-all">
+                Jadwalkan Konsultasi Gratis →
             </a>
         </div>
-    </nav>
+    </header>
 
     <main id="main-content">
         <!-- ═══════════ TICKER ═══════════ -->
-        <div class="overflow-hidden bg-blue-600 text-white text-xs font-bold uppercase tracking-widest py-3 border-b-2 border-black mt-[66px] flex items-center">
+        <div class="overflow-hidden bg-blue-600 text-white text-xs font-bold uppercase tracking-widest py-3 border-b-2 border-black mt-16 md:mt-20 flex items-center">
             <div id="ticker-track" style="display: flex; width: max-content; white-space: nowrap; align-items: center; line-height: 1;">
                 <div id="ticker-original" style="display: inline-flex; align-items: center; line-height: 1;">
                     <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Speed-to-Lead</span>
@@ -1053,16 +1058,24 @@
     </main>
 
     <!-- ═══════════ FOOTER ═══════════ -->
-    <footer class="py-14 bg-white text-center border-t-4 border-black">
-        <a href="#booking" id="footer-cta" class="mb-10 inline-block bg-blue-600 text-white text-lg md:text-2xl font-black py-5 px-12 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase hover:bg-blue-700 hover:scale-105 transition-all">
+    <footer class="w-full bg-black text-white flex flex-col items-center text-center px-6 md:px-8 py-12 gap-6 border-t-4 border-black">
+        <a href="#booking" id="footer-cta" class="mb-4 inline-block bg-blue-600 text-white text-lg md:text-2xl font-black py-5 px-12 border-4 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] uppercase hover:bg-blue-700 hover:scale-105 transition-all">
             Jadwalkan Konsultasi Gratis →
         </a>
-
-        <div class="mb-5 flex justify-center">
-            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-10 w-auto">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 w-full max-w-6xl border-t border-gray-800 pt-6">
+            <a href="index.html" class="flex items-center gap-2">
+                <img alt="AGentZ Logo" class="h-8 brightness-0 invert" src="images/agentzlogo.webp"/>
+                <span class="font-black text-xl text-white">AGentZ</span>
+            </a>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6 font-bold text-xs uppercase tracking-wider text-gray-300">
+                <a class="hover:text-yellow-300 transition-colors" href="index.html">Beranda</a>
+                <a class="hover:text-yellow-300 transition-colors" href="courses.html">Course Gratis</a>
+                <a class="hover:text-yellow-300 transition-colors" href="#booking">Jadwalkan Konsultasi</a>
+            </div>
         </div>
-
-        <p class="font-black text-sm text-gray-500 uppercase tracking-widest mb-2">Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa</p>
+        <div class="max-w-4xl w-full text-xs text-gray-400 leading-relaxed text-center border-t border-gray-800 pt-6">
+            © 2026 AGentZ — Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa. Hak Cipta Dilindungi.
+        </div>
     </footer>
 
     <!-- Floating Sticky WhatsApp Widget -->
