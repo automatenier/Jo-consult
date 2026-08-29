@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Whop - Your wallet all in one place</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<style data-purpose="global">
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Clipz - Your video editor, inside Telegram.</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <style data-purpose="global">
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Inter', sans-serif;
       color: #111827;
       background-color: #ffffff;
     }
-    .brand-orange {
-      color: #F84F1B;
+    .brand-blue {
+      color: #0066FF;
     }
-    .bg-brand-orange {
-      background-color: #F84F1B;
+    .bg-brand-blue {
+      background-color: #0066FF;
     }
     .btn-primary {
-      background-color: #F84F1B;
+      background-color: #0066FF;
       color: white;
       font-weight: 600;
       border-radius: 8px;
@@ -27,219 +30,1044 @@
       text-align: center;
       display: inline-block;
       width: 100%;
-      box-shadow: 0 4px 6px -1px rgba(248, 79, 27, 0.2);
+      box-shadow: 0 4px 6px -1px rgba(0, 102, 255, 0.2);
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      background-color: #0052CC;
+      box-shadow: 0 4px 8px -1px rgba(0, 102, 255, 0.3);
+    }
+    
+    .progress-bar-transition {
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .option-card {
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      border: 2px solid #e0e3e5;
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      outline: none;
+    }
+    
+    .option-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 102, 255, 0.12);
+      border-color: #0066FF;
+      transform: translateY(-2px);
+    }
+
+    .option-card.selected {
+      background-color: #F0F6FF;
+      border-color: #0066FF;
+      box-shadow: none;
+    }
+
+    .option-grid-card {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 24px 12px 16px 12px !important;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      background-color: #ffffff;
+      min-height: 135px;
+      aspect-ratio: 1 / 0.95;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      width: 100%;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .option-grid-card:hover {
+      border-color: #0066FF;
+      box-shadow: 0 6px 20px rgba(0, 102, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .option-grid-card.selected {
+      background-color: #F0F6FF !important;
+      border-color: #0066FF !important;
+      box-shadow: 0 0 0 2px #0066FF !important;
+    }
+
+    .option-grid-card.selected .option-badge {
+      background-color: #0066FF !important;
+      color: #ffffff !important;
     }
   </style>
 </head>
 <body class="antialiased overflow-x-hidden">
-<!-- BEGIN: Navigation -->
-<nav class="flex items-center justify-between p-4 border-b border-gray-100 bg-white sticky top-0 z-50">
-<div class="flex items-center gap-2">
-<!-- Whop Logo Placeholder -->
-<svg class="text-brand-orange" fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"></path>
-<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-<span class="font-bold text-xl tracking-tight">Whop</span>
-</div>
-<div class="flex items-center gap-4 text-sm font-medium text-gray-600">
-<a class="hidden sm:block hover:text-gray-900" href="#">For enterprise</a>
-<a class="hidden sm:block hover:text-gray-900" href="#">API</a>
-<a class="hover:text-gray-900" href="#">Sign in</a>
-</div>
-</nav>
-<!-- END: Navigation -->
-<!-- BEGIN: Hero Section -->
-<section class="px-4 py-16 text-center max-w-md mx-auto">
-<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-      Your <span class="brand-orange">wallet</span><br/>
-      all in one place
+
+  <!-- BEGIN: Navigation -->
+  <nav class="flex items-center justify-between p-4 border-b border-gray-100 bg-white sticky top-0 z-50">
+    <div class="flex items-center gap-2">
+      <img src="images/Clipz.webp" alt="Clipz logo" class="h-6 w-6 object-contain rounded-full"/>
+      <span class="font-bold text-xl tracking-tight">Clipz</span>
+    </div>
+    <div class="flex items-center gap-4 text-sm font-medium text-gray-600">
+      <!-- Navigation Links Removed -->
+    </div>
+  </nav>
+  <!-- END: Navigation -->
+
+  <!-- BEGIN: Hero Section -->
+  <section class="px-4 py-16 text-center max-w-md mx-auto">
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+      Your <span class="brand-blue">video editor.</span><br/>
+      All in your Telegram.
     </h1>
-<!-- Hero Illustration Placeholder -->
-<div class="my-8 flex justify-center items-center h-32 relative">
-<img alt="Piggy bank illustration" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaq1MeMPAuJI1dEi9pe6a0qnk9gRw-cxZOTx7nfewHcqgUG_vtT2o-6px-_usN_XIOpWnvHjagHcr98U1dNJNpBhrH7VEBkljTzqPHFDi1oZuqyL9n_DHN9GbOdmJpvvBdxo_nU1DNrc2n-cpU3-i1-guVNpdfVdkPXcaEzHTIxa0nlKwcp8HivQ_FfcAZu57oQfBlMCINauupkpVIQem39nRepW1dGiW-XlIHLjuTT77BReiRZ2eS"/>
-</div>
-<a class="btn-primary mb-12" href="#">Get Started</a>
-</section>
-<!-- END: Hero Section -->
-<!-- BEGIN: Stats & Live Section -->
-<section class="px-4 py-12 bg-white max-w-md mx-auto">
-<h2 class="text-4xl font-extrabold tracking-tight leading-tight mb-8">
-<span class="brand-orange">$4.6B+</span> paid<br/>
-      to businesses<br/>
-      on Whop.
-    </h2>
-<a class="btn-primary mb-12" href="#">Get Started</a>
-<!-- Live Now Card Placeholder -->
-<div class="border border-gray-100 rounded-2xl p-6 shadow-sm">
-<div class="flex items-center gap-2 mb-6 text-xs font-semibold tracking-wider text-gray-500 uppercase">
-<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-        Live right now
+    
+    <!-- Hero Illustration -->
+    <div class="my-8 flex justify-center items-center h-48 relative">
+      <img alt="Videos illustration" class="h-full w-full object-cover rounded-2xl shadow-sm border border-gray-100" src="images/videos.jpeg"/>
+    </div>
+    
+    <div class="mb-8 text-left max-w-sm mx-auto space-y-4 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+      <p class="text-lg font-bold flex items-center gap-2 text-gray-900">
+        <span>🎬</span> Your Editor, 24/7
+      </p>
+      <div class="space-y-2 text-sm text-gray-600 font-medium">
+        <p>Send your video to ClipZ on Telegram.</p>
+        <p>Tell it what you want.</p>
+        <p class="text-base font-extrabold text-gray-900 mt-2">ClipZ edits it for you.</p>
       </div>
-<div class="space-y-4">
-<!-- Skeleton Item -->
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 bg-gray-100 rounded-lg shrink-0"></div>
-<div class="space-y-2 flex-1">
-<div class="h-3 bg-gray-100 rounded w-3/4"></div>
-<div class="h-3 bg-gray-100 rounded w-1/2"></div>
-</div>
-</div>
-<!-- Skeleton Item -->
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 bg-gray-100 rounded-lg shrink-0"></div>
-<div class="space-y-2 flex-1">
-<div class="h-3 bg-gray-100 rounded w-2/3"></div>
-<div class="h-3 bg-gray-100 rounded w-1/3"></div>
-</div>
-</div>
-<!-- Skeleton Item -->
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 bg-gray-100 rounded-lg shrink-0"></div>
-<div class="space-y-2 flex-1">
-<div class="h-3 bg-gray-100 rounded w-full"></div>
-<div class="h-3 bg-gray-100 rounded w-2/5"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Stats & Live Section -->
-<!-- BEGIN: Build Carousel Section -->
-<section class="py-16 bg-white overflow-hidden">
-<div class="px-4 max-w-md mx-auto mb-8 text-center">
-<h2 class="text-3xl font-extrabold tracking-tight">Build the next...</h2>
-</div>
-<!-- Carousel Track Placeholder -->
-<div class="flex gap-4 px-4 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar">
-<!-- Card 1 -->
-<div class="shrink-0 w-[280px] snap-center">
-<p class="font-bold mb-4">Shopping platform</p>
-<div class="bg-gray-50 rounded-[2rem] p-2 border border-gray-100 shadow-sm relative">
-<img alt="App screenshot" class="w-full rounded-[1.5rem] object-cover h-[400px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC0IP11HCm428vPrA-RrBHuKImTcQDvQOADFeYeTtNLuk7b_oTiFO0Wjj30rtuTJ_IHMcc3SE8PM49_rvuJkOb9QUCEzAVXH6V9vGEnSRXmEve8ERd4x4PDtLJJyXWO4U3scjbX2euF2704ag7NFdDxgdO-upDZbmZlDQfFh8xxlTcKSO9buKH6ITwmF15lxHfMWUC3p6STEhcf7qfCUpKP_VJ_MdnNql0uBi-2TMafIKZNLGHHwGF"/>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="shrink-0 w-[280px] snap-center">
-<p class="font-bold mb-4">Social network</p>
-<div class="bg-gray-50 rounded-[2rem] p-2 border border-gray-100 shadow-sm relative">
-<img alt="App screenshot" class="w-full rounded-[1.5rem] object-cover h-[400px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcLH0VBBtf8aYy5dnu-LR3Jhh-m8v6YI9lk_dyZqPS2nQ9NcSLAmm_AUrfpV7iPzBr155xyEqawm2ea_jXDM-2MureQtegfnbsTYsO8FG09Wol_tuLxlVI2xmPDz0DL9_bNkmmVNxnCYQnUHBTKl2-Jk3L_isi0clCpEOvR6T_EQ12akmPkRJ7T4pczCMQeIM_cPLGORU7MKO-_2e9iHn8viTK2Q1L_wurWGOs8KB2ymSN_g0sL7jG"/>
-</div>
-</div>
-</div>
-<div class="px-4 max-w-md mx-auto mt-4">
-<a class="btn-primary" href="#">Get Started</a>
-</div>
-</section>
-<!-- END: Build Carousel Section -->
-<!-- BEGIN: Embed Components Section -->
-<section class="py-16 px-4 bg-white text-center max-w-md mx-auto">
-<h2 class="text-3xl font-extrabold tracking-tight mb-4 leading-tight">
-      Embed<br/>components
+    </div>
+    
+    <!-- BEGIN: Booking & Qualification Section (Directly under Hero) -->
+    <div id="booking" class="scroll-mt-20">
+      <!-- 1. Cal.com container (hidden by default, shown after form submission) -->
+      <div id="cal-container" class="w-full hidden p-6 bg-white border-2 border-black rounded-2xl shadow-md">
+        <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
+      </div>
+
+      <!-- 2. Detailed Form container (shown first as interactive quiz) -->
+      <div id="form-container" class="w-full p-6 sm:p-8 bg-white border-2 border-black rounded-2xl shadow-md text-left">
+        <!-- Progress Indicator Header -->
+        <div class="w-full h-3 bg-gray-200 relative overflow-hidden mb-6 border border-gray-300 rounded-full">
+          <div class="absolute top-0 left-0 h-full bg-brand-blue progress-bar-transition" id="progress-bar" style="width: 20%;"></div>
+        </div>
+
+        <!-- Meta Info -->
+        <div class="flex justify-between items-center mb-6">
+          <span class="font-bold text-xs uppercase tracking-widest text-gray-500">Question <span id="current-step-num">1</span> of 5</span>
+        </div>
+
+        <form id="qualification-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+          <!-- Step 1: Profile -->
+          <div class="quiz-step" data-step="1">
+            <h1 class="text-lg font-extrabold mb-6 text-black uppercase tracking-tight">Your Role / Profile:</h1>
+            <input type="hidden" name="business_model" id="input_business_model" required>
+            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+              <!-- A: Founder -->
+              <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Founder / Business Owner')">
+                <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs shrink-0 border border-gray-300 transition-colors">A</span>
+                <div class="option-icon-box w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center shrink-0 mb-2 transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <span class="font-bold text-xs text-gray-900 text-center leading-tight">Founder / Business Owner</span>
+              </button>
+
+              <!-- B: Creator -->
+              <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Content Creator / Influencer')">
+                <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs shrink-0 border border-gray-300 transition-colors">B</span>
+                <div class="option-icon-box w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center shrink-0 mb-2 transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                  </svg>
+                </div>
+                <span class="font-bold text-xs text-gray-900 text-center leading-tight">Content Creator / Influencer</span>
+              </button>
+
+              <!-- C: Agency -->
+              <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Agency Owner')">
+                <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs shrink-0 border border-gray-300 transition-colors">C</span>
+                <div class="option-icon-box w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center shrink-0 mb-2 transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+                <span class="font-bold text-xs text-gray-900 text-center leading-tight">Agency Owner</span>
+              </button>
+
+              <!-- D: Marketer -->
+              <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Marketer / Marketing Team')">
+                <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs shrink-0 border border-gray-300 transition-colors">D</span>
+                <div class="option-icon-box w-10 h-10 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center shrink-0 mb-2 transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                </div>
+                <span class="font-bold text-xs text-gray-900 text-center leading-tight">Marketer / Marketing Team</span>
+              </button>
+
+              <!-- E: Other -->
+              <button type="button" class="option-card col-span-2 group relative p-4 flex items-center justify-between rounded-xl border-2 border-gray-200 bg-white hover:border-[#0066FF] hover:shadow-md transition-all text-left" onclick="selectQuizOption(this, 'business_model', 'Lainnya')">
+                <div class="flex items-center gap-3">
+                  <span class="option-badge w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs shrink-0 border border-gray-300 transition-colors">E</span>
+                  <span class="font-bold text-xs text-gray-900 leading-tight">Lainnya / Model Bisnis Lain</span>
+                </div>
+                <div class="option-icon-box w-7 h-7 rounded-lg bg-blue-50 text-brand-blue flex items-center justify-center shrink-0 transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="1.5"></circle>
+                    <circle cx="19" cy="12" r="1.5"></circle>
+                    <circle cx="5" cy="12" r="1.5"></circle>
+                  </svg>
+                </div>
+              </button>
+            </div>
+            <div class="mt-8 flex justify-end pt-4 border-t border-gray-100">
+              <button type="button" onclick="nextStep()" class="bg-[#0066FF] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-1">
+                Next →
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Bottleneck -->
+          <div class="quiz-step hidden" data-step="2">
+            <h1 class="text-lg font-extrabold mb-6 text-black uppercase tracking-tight">Your Biggest Video Bottleneck:</h1>
+            <input type="hidden" name="bottleneck" id="input_bottleneck" required>
+            <div class="flex flex-col gap-3">
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Habis waktu editing konten / posting')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
+                <span class="font-bold text-sm text-gray-800">Habis waktu editing konten / posting</span>
+              </button>
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Biaya video editor terlalu mahal')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
+                <span class="font-bold text-sm text-gray-800">Biaya video editor terlalu mahal</span>
+              </button>
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Tidak konsisten posting konten video')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
+                <span class="font-bold text-sm text-gray-800">Tidak konsisten posting konten video</span>
+              </button>
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Pusing mengurus workflow / manajemen editor')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
+                <span class="font-bold text-sm text-gray-800">Pusing mengurus workflow / manajemen editor</span>
+              </button>
+            </div>
+            <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+              <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2 text-xs">
+                ← Back
+              </button>
+              <button type="button" onclick="nextStep()" class="bg-[#0066FF] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-2">
+                Next →
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Monthly Revenue -->
+          <div class="quiz-step hidden" data-step="3">
+            <h1 class="text-lg font-extrabold mb-6 text-black uppercase tracking-tight">Your Current Monthly Revenue:</h1>
+            <input type="hidden" name="revenue" id="input_revenue" required>
+            <div class="flex flex-col gap-3">
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', 'under_1k')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
+                <span class="font-bold text-sm text-gray-800">Under Rp 15 Juta ($1,000 / mo)</span>
+              </button>
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', '1k_5k')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
+                <span class="font-bold text-sm text-gray-800">Rp 15 - 75 Juta ($1,000 - $5,000 / mo)</span>
+              </button>
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', '5k_10k')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
+                <span class="font-bold text-sm text-gray-800">Rp 75 - 150 Juta ($5,000 - $10,000 / mo)</span>
+              </button>
+              <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', 'above_10k')">
+                <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
+                <span class="font-bold text-sm text-gray-800">Above Rp 150 Juta ($10,000 / mo)</span>
+              </button>
+            </div>
+            <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+              <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2 text-xs">
+                ← Back
+              </button>
+              <button type="button" onclick="nextStep()" class="bg-[#0066FF] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-3">
+                Next →
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 4: Contact -->
+          <div class="quiz-step hidden" data-step="4">
+            <h1 class="text-lg font-extrabold mb-6 text-black uppercase tracking-tight">Your WhatsApp / Telegram Number:</h1>
+            <input type="tel" name="contact" required oninput="validateInputAndEnableNext(this, 4)" class="w-full border-2 border-black rounded-lg p-4 font-bold text-base focus:outline-none focus:bg-blue-50" placeholder="e.g. 08123456789">
+            <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+              <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2 text-xs">
+                ← Back
+              </button>
+              <button type="button" onclick="nextStep()" class="bg-[#0066FF] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-4">
+                Next →
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 5: Full Name -->
+          <div class="quiz-step hidden" data-step="5">
+            <h1 class="text-lg font-extrabold mb-6 text-black uppercase tracking-tight">Your Full Name:</h1>
+            <input type="text" name="name" required oninput="validateInputAndEnableNext(this, 5)" class="w-full border-2 border-black rounded-lg p-4 font-bold text-base focus:outline-none focus:bg-blue-50" placeholder="e.g. Mathew Jordan">
+            <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
+              <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2 text-xs">
+                ← Back
+              </button>
+              <button type="submit" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-green-700 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed text-xs" disabled id="next-btn-5">
+                Submit & Schedule ✓
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- 3. Thank You container (hidden by default) -->
+      <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-green-50 border-2 border-black rounded-2xl shadow-md text-center my-4">
+        <div class="text-6xl mb-4">🎉</div>
+        <h3 class="text-2xl font-black mb-3 uppercase text-black">Registration Successful!</h3>
+        <p class="text-sm font-semibold text-gray-700 mb-6">We have received your qualification details. We will contact you via WhatsApp / Telegram soon to confirm your schedule.</p>
+        <button onclick="resetBookingFlow()" class="inline-block bg-[#0066FF] text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-blue-700 transition-all uppercase text-xs">
+          Refill Form
+        </button>
+      </div>
+    </div>
+    <!-- END: Booking & Qualification Section -->
+  </section>
+  <!-- END: Hero Section -->
+
+  <!-- BEGIN: Always Available Section -->
+  <section class="px-4 py-12 bg-white max-w-md mx-auto border-t border-gray-100">
+    <h2 class="text-3xl font-extrabold tracking-tight leading-tight mb-2">
+      Your editor.
     </h2>
-<p class="text-gray-600 mb-8 leading-relaxed">
-      Spend your time building your business, not complex components. Our APIs unlock it all.
+    <h3 class="text-2xl font-bold brand-blue mb-8">
+      Always available.
+    </h3>
+    
+    <div class="space-y-4 text-gray-600 text-left max-w-sm mx-auto">
+      <div class="flex items-start gap-3 bg-red-50 p-3 rounded-xl border border-red-100/50">
+        <span class="text-red-500 font-bold">✕</span>
+        <p class="text-sm font-semibold text-red-950">No scheduling.</p>
+      </div>
+      <div class="flex items-start gap-3 bg-red-50 p-3 rounded-xl border border-red-100/50">
+        <span class="text-red-500 font-bold">✕</span>
+        <p class="text-sm font-semibold text-red-950">No waiting for your editor to come online.</p>
+      </div>
+      <div class="flex items-start gap-3 bg-red-50 p-3 rounded-xl border border-red-100/50">
+        <span class="text-red-500 font-bold">✕</span>
+        <p class="text-sm font-semibold text-red-950">No opening complicated editing software.</p>
+      </div>
+      <div class="flex items-start gap-3 bg-green-50 p-3 rounded-xl border border-green-100/50">
+        <span class="text-green-500 font-bold">✓</span>
+        <p class="text-sm font-semibold text-green-950">Just open Telegram and send a message.</p>
+      </div>
+      
+      <div class="pt-6 flex items-center justify-between">
+        <span class="text-lg font-bold text-gray-900">Coverage</span>
+        <span class="bg-blue-100 text-blue-800 font-extrabold px-4 py-1 rounded-full text-xs animate-pulse tracking-wider">24/7</span>
+      </div>
+    </div>
+  </section>
+  <!-- END: Always Available Section -->
+
+  <!-- BEGIN: How It Works Section -->
+  <section class="py-16 px-4 bg-white text-center max-w-md mx-auto border-t border-gray-100">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-1 leading-tight">
+      Send a video.
+    </h2>
+    <h3 class="text-2xl font-bold brand-blue mb-6">
+      Get an edited video.
+    </h3>
+    
+    <p class="text-gray-600 mb-8 text-left text-sm leading-relaxed">
+      Upload your footage directly to Telegram. Then tell ClipZ what you need:
     </p>
-<!-- Component Tabs -->
-<div class="flex bg-gray-100 rounded-full p-1 mb-12">
-<button class="flex-1 py-2 px-4 rounded-full bg-white font-semibold text-sm shadow-sm">Checkout</button>
-<button class="flex-1 py-2 px-4 rounded-full font-medium text-sm text-gray-500 hover:text-gray-900">Wallet</button>
-<button class="flex-1 py-2 px-4 rounded-full font-medium text-sm text-gray-500 hover:text-gray-900">Chat</button>
-</div>
-<!-- Code & Phone Mockup -->
-<div class="relative w-full aspect-[4/5] mx-auto mb-12 flex justify-center items-center">
-<img alt="Code snippet and phone mockup" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBToxuBYA5iMd5NGYYNaAG1z3z5FX4l9txkk9eqPo8R0ovbezYjHXbnoPDkr3vUc0rqXnkq3aV9VrLJE5WdGhGfeUz_UIMneBuC11O3Un7UtnZEOo0LQKU0cUGznVHa2Id4evxcqq1R2y9Mk2oJVLT-vnbo8oZIrdBWrNqaiBmCnZxFojs1paYKYsNmp085pDDJ7tiN-gJeDmfo8eDUs01EJWQWeSONKLlmrl7lr4XzhG4VJJHV3yPX"/>
-</div>
-<a class="btn-primary" href="#">Get Started</a>
-</section>
-<!-- END: Embed Components Section -->
-<!-- BEGIN: CTA Section -->
-<section class="bg-brand-orange text-white py-24 px-4 text-center">
-<div class="max-w-md mx-auto">
-<h2 class="text-5xl font-extrabold tracking-tight leading-none mb-10">
-        Bet on<br/>yourself.
+
+    <!-- Chat Sim -->
+    <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-left space-y-4 mb-8 font-mono text-xs shadow-inner">
+      <div class="flex gap-2 items-start">
+        <span class="text-blue-500">💬</span>
+        <p class="text-gray-700 font-medium leading-relaxed">“Turn this into a 30-second reel.”</p>
+      </div>
+      <div class="flex gap-2 items-start">
+        <span class="text-blue-500">💬</span>
+        <p class="text-gray-700 font-medium leading-relaxed">“Remove the dead air.”</p>
+      </div>
+      <div class="flex gap-2 items-start">
+        <span class="text-blue-500">💬</span>
+        <p class="text-gray-700 font-medium leading-relaxed">“Add captions.”</p>
+      </div>
+      <div class="flex gap-2 items-start">
+        <span class="text-blue-500">💬</span>
+        <p class="text-gray-700 font-medium leading-relaxed">“Make the first 3 seconds more engaging.”</p>
+      </div>
+      <div class="flex gap-2 items-start">
+        <span class="text-blue-500">💬</span>
+        <p class="text-gray-700 font-medium leading-relaxed">“Cut this into 5 short clips.”</p>
+      </div>
+      <div class="flex gap-2 items-start">
+        <span class="text-blue-500">💬</span>
+        <p class="text-gray-700 font-medium leading-relaxed">“Add B-roll where appropriate.”</p>
+      </div>
+    </div>
+
+    <p class="text-gray-600 mb-6 leading-relaxed text-sm text-left">
+      ClipZ handles the editing workflow and sends the result back to you.
+    </p>
+    
+    <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-8 text-left">
+      <p class="text-blue-900 font-semibold text-xs leading-relaxed">
+        📱 Your editor lives in the same app you already use every day.
+      </p>
+    </div>
+
+    <a class="btn-primary mb-4" href="#booking">TRY CLIPZ</a>
+  </section>
+  <!-- END: How It Works Section -->
+
+  <!-- BEGIN: Workflow Comparison Section -->
+  <section class="py-16 bg-gray-50 border-y border-gray-100">
+    <div class="px-4 max-w-md mx-auto">
+      <h2 class="text-3xl font-extrabold tracking-tight mb-1 text-center">Stop managing editors.</h2>
+      <h3 class="text-2xl font-bold brand-blue mb-8 text-center">Start shipping content.</h3>
+
+      <div class="space-y-6 text-left">
+        <!-- Traditional Workflow -->
+        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+          <h4 class="font-bold text-red-600 mb-3 uppercase tracking-wider text-xs">Traditional video editing:</h4>
+          <div class="flex flex-wrap gap-2 items-center text-xs font-semibold text-gray-500">
+            <span>Record</span>
+            <span class="text-gray-300">→</span>
+            <span>Upload</span>
+            <span class="text-gray-300">→</span>
+            <span>Brief editor</span>
+            <span class="text-gray-300">→</span>
+            <span>Wait</span>
+            <span class="text-gray-300">→</span>
+            <span>Review</span>
+            <span class="text-gray-300">→</span>
+            <span>Request changes</span>
+            <span class="text-gray-300">→</span>
+            <span>Wait again</span>
+          </div>
+        </div>
+
+        <!-- ClipZ Workflow -->
+        <div class="bg-white p-6 rounded-2xl border-2 border-blue-500 shadow-md relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-bl-lg">
+            Fast
+          </div>
+          <h4 class="font-bold brand-blue mb-3 uppercase tracking-wider text-xs">ClipZ Workflow:</h4>
+          <div class="flex flex-wrap gap-2 items-center text-xs font-bold text-gray-800">
+            <span>Record</span>
+            <span class="brand-blue">→</span>
+            <span>Send</span>
+            <span class="brand-blue">→</span>
+            <span>Tell ClipZ what you want</span>
+            <span class="brand-blue">→</span>
+            <span>Get your video</span>
+          </div>
+        </div>
+        
+        <div class="flex justify-around pt-6 text-sm font-semibold text-gray-700">
+          <div class="flex items-center gap-1">⚡ Less coordination</div>
+          <div class="flex items-center gap-1">🔄 Less back-and-forth</div>
+        </div>
+        <div class="text-center font-bold text-gray-900 mt-2 text-base">🚀 More content.</div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Workflow Comparison Section -->
+
+  <!-- BEGIN: Features List Section -->
+  <section class="py-16 bg-white border-b border-gray-100">
+    <div class="px-4 max-w-md mx-auto">
+      <h2 class="text-3xl font-extrabold tracking-tight text-center mb-10 leading-tight">
+        Built for the content you <span class="brand-blue">actually publish.</span>
       </h2>
-<a class="bg-white text-brand-orange font-bold text-lg py-4 px-8 rounded-xl block w-full shadow-lg" href="#">
-        Get Started
+
+      <div class="space-y-6">
+        <!-- Feature 1 -->
+        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100/50 text-left">
+          <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span>📱</span> Short-form
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Turn raw footage into polished Reels, TikToks, and Shorts.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100/50 text-left">
+          <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span>🗣️</span> Talking-head videos
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Remove silence, clean up pacing, add captions, and make your videos easier to watch.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100/50 text-left">
+          <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span>🔄</span> Repurposing
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Turn one long video into multiple short-form pieces.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100/50 text-left">
+          <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span>🎭</span> Content variations
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Create multiple versions of the same content for different platforms.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="bg-gray-50 p-6 rounded-2xl border-l-4 border-l-blue-500 border border-gray-100/50 text-left">
+          <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+            <span>⚡</span> Fast edits
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Need something edited now? Just send it to Telegram.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Features List Section -->
+
+  <!-- BEGIN: Telegram Agent Section -->
+  <section class="py-16 bg-white max-w-md mx-auto px-4">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-1 text-center">
+      Your editing agent.
+    </h2>
+    <h3 class="text-2xl font-bold brand-blue mb-8 text-center">
+      Inside Telegram.
+    </h3>
+
+    <div class="space-y-4 text-left max-w-sm mx-auto text-gray-600 mb-10">
+      <div class="flex items-start gap-3 bg-gray-50 p-3 rounded-xl">
+        <span class="text-red-500 font-bold">✕</span>
+        <p class="text-sm font-semibold">You don't need another dashboard.</p>
+      </div>
+      <div class="flex items-start gap-3 bg-gray-50 p-3 rounded-xl">
+        <span class="text-red-500 font-bold">✕</span>
+        <p class="text-sm font-semibold">You don't need another project management tool.</p>
+      </div>
+      <div class="flex items-start gap-3 bg-gray-50 p-3 rounded-xl">
+        <span class="text-red-500 font-bold">✕</span>
+        <p class="text-sm font-semibold">You don't need to learn another editing application.</p>
+      </div>
+    </div>
+
+    <div class="border-t border-b border-gray-100 py-8 my-8 text-center max-w-sm mx-auto">
+      <h4 class="font-extrabold text-lg text-gray-900 mb-4">Just use Telegram:</h4>
+      <div class="grid grid-cols-4 gap-2 text-center text-xs font-bold text-gray-700">
+        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100/50">
+          <div class="text-lg mb-1">📤</div>
+          Send.
+        </div>
+        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100/50">
+          <div class="text-lg mb-1">🗣️</div>
+          Describe.
+        </div>
+        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100/50">
+          <div class="text-lg mb-1">👀</div>
+          Review.
+        </div>
+        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100/50">
+          <div class="text-lg mb-1">🚀</div>
+          Publish.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: Telegram Agent Section -->
+
+  <!-- BEGIN: Chat Instructions Section -->
+  <section class="py-16 bg-gray-50 border-y border-gray-100">
+    <div class="px-4 max-w-md mx-auto">
+      <h2 class="text-3xl font-extrabold tracking-tight text-center mb-2">Tell it what to do.</h2>
+      <p class="text-gray-600 text-center mb-8 text-sm">ClipZ understands natural-language editing instructions.</p>
+
+      <!-- Chat Sim -->
+      <div class="space-y-3 max-w-xs mx-auto mb-8">
+        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-left text-xs ml-auto max-w-[85%] shadow-sm">
+          “Make this feel faster.”
+        </div>
+        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-left text-xs ml-auto max-w-[85%] shadow-sm">
+          “Keep the strongest parts.”
+        </div>
+        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-left text-xs ml-auto max-w-[85%] shadow-sm">
+          “Remove the pauses.”
+        </div>
+        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-left text-xs ml-auto max-w-[85%] shadow-sm">
+          “Add captions.”
+        </div>
+        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-left text-xs ml-auto max-w-[85%] shadow-sm">
+          “Make this suitable for Instagram Reels.”
+        </div>
+        <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none text-left text-xs ml-auto max-w-[85%] shadow-sm">
+          “Give me 3 different hooks.”
+        </div>
+      </div>
+
+      <div class="text-center space-y-4 max-w-sm mx-auto">
+        <p class="text-gray-600 text-sm">You don't have to explain every editing action.</p>
+        <h3 class="text-lg font-bold text-gray-900">Tell ClipZ the outcome you want.</h3>
+      </div>
+    </div>
+  </section>
+  <!-- END: Chat Instructions Section -->
+
+  <!-- BEGIN: Target Audience Section -->
+  <section class="py-16 bg-white max-w-md mx-auto px-4 border-b border-gray-100">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-1 text-center">
+      Built for people who need content.
+    </h2>
+    <h3 class="text-lg font-bold brand-blue text-center mb-10">
+      Not people who want to become video editors.
+    </h3>
+
+    <div class="space-y-4 text-left">
+      <!-- Founders -->
+      <div class="border border-gray-100 p-4 rounded-xl shadow-sm bg-gray-50/50">
+        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">💼 Founders</h4>
+        <p class="text-gray-600 text-xs leading-relaxed">Who need to consistently publish.</p>
+      </div>
+      
+      <!-- Creators -->
+      <div class="border border-gray-100 p-4 rounded-xl shadow-sm bg-gray-50/50">
+        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">🎨 Creators</h4>
+        <p class="text-gray-600 text-xs leading-relaxed">Who need to produce more content.</p>
+      </div>
+
+      <!-- Agencies -->
+      <div class="border border-gray-100 p-4 rounded-xl shadow-sm bg-gray-50/50">
+        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">🏢 Agencies</h4>
+        <p class="text-gray-600 text-xs leading-relaxed">Who manage content for multiple clients.</p>
+      </div>
+
+      <!-- Marketers -->
+      <div class="border border-gray-100 p-4 rounded-xl shadow-sm bg-gray-50/50">
+        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">📈 Marketers</h4>
+        <p class="text-gray-600 text-xs leading-relaxed">Who need creative assets quickly.</p>
+      </div>
+
+      <!-- Businesses -->
+      <div class="border border-gray-100 p-4 rounded-xl shadow-sm bg-gray-50/50">
+        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">🏪 Businesses</h4>
+        <p class="text-gray-600 text-xs leading-relaxed">Who want more video without building a larger editing team.</p>
+      </div>
+    </div>
+  </section>
+  <!-- END: Target Audience Section -->
+
+  <!-- BEGIN: Content Pipeline Section -->
+  <section class="py-16 bg-gray-50 border-y border-gray-100 px-4">
+    <div class="max-w-md mx-auto">
+      <h2 class="text-3xl font-extrabold tracking-tight mb-1 text-center">Your content pipeline.</h2>
+      <h3 class="text-2xl font-bold brand-blue text-center mb-10">On demand.</h3>
+
+      <div class="space-y-4 max-w-sm mx-auto text-left relative">
+        <!-- Step 1 -->
+        <div class="flex gap-4 items-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+          <span class="bg-blue-600 text-white font-extrabold text-xs w-6 h-6 flex items-center justify-center rounded-full shrink-0">01</span>
+          <div>
+            <h4 class="font-bold text-gray-900 text-sm">Record</h4>
+            <p class="text-gray-600 text-xs leading-relaxed">Shoot your content normally.</p>
+          </div>
+        </div>
+        <div class="w-14 flex justify-center text-blue-400 font-bold text-sm select-none">↓</div>
+
+        <!-- Step 2 -->
+        <div class="flex gap-4 items-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+          <span class="bg-blue-600 text-white font-extrabold text-xs w-6 h-6 flex items-center justify-center rounded-full shrink-0">02</span>
+          <div>
+            <h4 class="font-bold text-gray-900 text-sm">Send</h4>
+            <p class="text-gray-600 text-xs leading-relaxed">Drop the footage into your ClipZ Telegram.</p>
+          </div>
+        </div>
+        <div class="w-14 flex justify-center text-blue-400 font-bold text-sm select-none">↓</div>
+
+        <!-- Step 3 -->
+        <div class="flex gap-4 items-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+          <span class="bg-blue-600 text-white font-extrabold text-xs w-6 h-6 flex items-center justify-center rounded-full shrink-0">03</span>
+          <div>
+            <h4 class="font-bold text-gray-900 text-sm">Brief</h4>
+            <p class="text-gray-600 text-xs leading-relaxed">Tell ClipZ what you want.</p>
+          </div>
+        </div>
+        <div class="w-14 flex justify-center text-blue-400 font-bold text-sm select-none">↓</div>
+
+        <!-- Step 4 -->
+        <div class="flex gap-4 items-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+          <span class="bg-blue-600 text-white font-extrabold text-xs w-6 h-6 flex items-center justify-center rounded-full shrink-0">04</span>
+          <div>
+            <h4 class="font-bold text-gray-900 text-sm">Edit</h4>
+            <p class="text-gray-600 text-xs leading-relaxed">Your AI editing agent processes the video.</p>
+          </div>
+        </div>
+        <div class="w-14 flex justify-center text-blue-400 font-bold text-sm select-none">↓</div>
+
+        <!-- Step 5 -->
+        <div class="flex gap-4 items-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+          <span class="bg-blue-600 text-white font-extrabold text-xs w-6 h-6 flex items-center justify-center rounded-full shrink-0">05</span>
+          <div>
+            <h4 class="font-bold text-gray-900 text-sm">Review</h4>
+            <p class="text-gray-600 text-xs leading-relaxed">Receive the finished video back in Telegram.</p>
+          </div>
+        </div>
+        <div class="w-14 flex justify-center text-blue-400 font-bold text-sm select-none">↓</div>
+
+        <!-- Step 6 -->
+        <div class="flex gap-4 items-start bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+          <span class="bg-blue-600 text-white font-extrabold text-xs w-6 h-6 flex items-center justify-center rounded-full shrink-0">06</span>
+          <div>
+            <h4 class="font-bold text-gray-900 text-sm">Publish</h4>
+            <p class="text-gray-600 text-xs leading-relaxed">Post it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <h3 class="text-2xl font-black text-gray-900 tracking-tight">That's it.</h3>
+      </div>
+    </div>
+  </section>
+  <!-- END: Content Pipeline Section -->
+
+  <!-- BEGIN: final CTA Section -->
+  <section class="bg-brand-blue text-white py-24 px-4 text-center">
+    <div class="max-w-md mx-auto">
+      <h2 class="text-3xl font-extrabold tracking-tight mb-2 leading-tight">
+        Don't hire an editor for every edit.
+      </h2>
+      <h3 class="text-xl font-semibold text-blue-100 mb-8 leading-tight">
+        Give yourself an editor you can call anytime.
+      </h3>
+      
+      <div class="text-left text-blue-100 text-sm space-y-3 mb-10 max-w-xs mx-auto">
+        <p class="flex items-center gap-2"><span>⏰</span> Your business doesn't stop at 5 PM.</p>
+        <p class="flex items-center gap-2"><span>🔄</span> Neither should your content workflow.</p>
+        <p class="flex items-center gap-2 font-bold text-white text-base mt-2"><span>⚡</span> ClipZ is available 24/7.</p>
+      </div>
+
+      <a class="bg-white text-brand-blue font-bold text-lg py-4 px-8 rounded-xl block w-full shadow-lg hover:bg-blue-50 transition-colors" href="#booking">
+        GET YOUR VIDEO EDITING AGENT
       </a>
-</div>
-</section>
-<!-- END: CTA Section -->
-<!-- BEGIN: Footer -->
-<footer class="bg-white pt-16 pb-8 px-4 border-t border-gray-100">
-<div class="max-w-md mx-auto">
-<!-- Footer Logo -->
-<div class="mb-12">
-<svg class="text-brand-orange" fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"></path>
-<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<div class="grid grid-cols-2 gap-8 mb-12">
-<!-- Solutions -->
-<div>
-<h3 class="font-bold mb-4 text-gray-900 text-sm">Solutions</h3>
-<ul class="space-y-3 text-sm text-gray-500 font-medium">
-<li><a class="hover:text-gray-900" href="#">Coaching &amp; courses</a></li>
-<li><a class="hover:text-gray-900" href="#">Services</a></li>
-<li><a class="hover:text-gray-900" href="#">Physical products</a></li>
-<li><a class="hover:text-gray-900" href="#">Marketplaces</a></li>
-<li><a class="hover:text-gray-900" href="#">Gig economy</a></li>
-<li><a class="hover:text-gray-900" href="#">Paid groups</a></li>
-<li><a class="hover:text-gray-900" href="#">Software</a></li>
-<li><a class="hover:text-gray-900" href="#">Telehealth</a></li>
-<li><a class="hover:text-gray-900" href="#">Events</a></li>
-</ul>
-</div>
-<!-- Resources & Company & Social -->
-<div class="space-y-8">
-<div>
-<h3 class="font-bold mb-4 text-gray-900 text-sm">Resources</h3>
-<ul class="space-y-3 text-sm text-gray-500 font-medium">
-<li><a class="hover:text-gray-900" href="#">Examples</a></li>
-<li><a class="hover:text-gray-900" href="#">Docs</a></li>
-<li><a class="hover:text-gray-900" href="#">Help</a></li>
-<li><a class="hover:text-gray-900" href="#">Bug bounty</a></li>
-</ul>
-</div>
-<div>
-<h3 class="font-bold mb-4 text-gray-900 text-sm">Company</h3>
-<ul class="space-y-3 text-sm text-gray-500 font-medium">
-<li><a class="hover:text-gray-900" href="#">Blog</a></li>
-<li><a class="hover:text-gray-900" href="#">Careers</a></li>
-<li><a class="hover:text-gray-900" href="#">Affiliates</a></li>
-</ul>
-</div>
-<div>
-<h3 class="font-bold mb-4 text-gray-900 text-sm">Social</h3>
-<ul class="space-y-3 text-sm text-gray-500 font-medium">
-<li><a class="hover:text-gray-900" href="#">X/Twitter</a></li>
-<li><a class="hover:text-gray-900" href="#">Youtube</a></li>
-<li><a class="hover:text-gray-900" href="#">Linkedin</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="pt-8 border-t border-gray-100 flex flex-col gap-4 text-xs text-gray-400 font-medium">
-<p>© 2024 Whop Inc. All rights reserved.</p>
-<div class="flex gap-4">
-<a class="hover:text-gray-600" href="#">Terms</a>
-<a class="hover:text-gray-600" href="#">Privacy policy</a>
-</div>
-</div>
-</div>
-</footer>
-<!-- END: Footer -->
-<style>
-    /* Utility for hiding scrollbar in carousel while keeping functionality */
-    .hide-scrollbar::-webkit-scrollbar {
-      display: none;
+    </div>
+  </section>
+  <!-- END: final CTA Section -->
+
+  <!-- BEGIN: Pre-footer Section -->
+  <section class="py-16 px-4 bg-gray-50 border-t border-gray-100 text-center max-w-md mx-auto">
+    <h2 class="text-3xl font-extrabold tracking-tight mb-1">Your editor.</h2>
+    <h3 class="text-2xl font-bold brand-blue mb-2">In your Telegram.</h3>
+    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-6">24/7.</p>
+    
+    <div class="space-y-3 text-gray-600 text-sm mb-8 font-medium max-w-xs mx-auto text-left bg-white p-6 rounded-2xl border border-gray-100">
+      <p class="flex items-center gap-2"><span>📤</span> Send your footage.</p>
+      <p class="flex items-center gap-2"><span>🗣️</span> Tell it what you want.</p>
+      <p class="flex items-center gap-2"><span>📥</span> Get your video back.</p>
+    </div>
+    
+    <a class="btn-primary" href="#booking">GET STARTED</a>
+  </section>
+  <!-- END: Pre-footer Section -->
+
+  <!-- BEGIN: Footer -->
+  <footer class="bg-white pt-16 pb-8 px-4 border-t border-gray-100">
+    <div class="max-w-md mx-auto">
+      <!-- Footer Logo -->
+      <div class="mb-12 flex items-center gap-2">
+        <img src="images/Clipz.webp" alt="Clipz logo" class="h-8 w-8 object-contain rounded-full"/>
+        <span class="font-bold text-2xl tracking-tight">Clipz</span>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-100 flex flex-col gap-4 text-xs text-gray-400 font-medium">
+        <p>© 2026 Clipz. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a class="hover:text-gray-600" href="#">Terms</a>
+          <a class="hover:text-gray-600" href="#">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END: Footer -->
+
+  <!-- Interactive Form Script -->
+  <script type="text/javascript">
+    function loadCalEmbed(prefills = {}) {
+      if (window.CalLoaded) return;
+      window.CalLoaded = true;
+
+      (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            let api = function () { p(api, arguments); };
+            let namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
+            } else {
+              p(cal, ar);
+            }
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+
+      const CAL_LINK = "mathew-jordan-p2ha2t/30menitkonsultasi"; 
+
+      Cal("init", { origin: "https://cal.com" });
+      Cal("inline", {
+        elementOrSelector: "#my-cal-inline",
+        calLink: CAL_LINK,
+        config: { 
+          layout: "month_view", 
+          theme: "light",
+          name: prefills.name || "",
+          phone: prefills.phone || ""
+        }
+      });
+      Cal("ui", {
+        theme: "light",
+        styles: { branding: { brandColor: "#0066FF" } },
+        hideEventTypeDetails: false,
+        layout: "month_view"
+      });
+
+      Cal("on", {
+        action: "*",
+        callback: (e) => {
+          console.log("Cal.com event triggered:", e.detail);
+          if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
+            showThankYou();
+          }
+        }
+      });
     }
-    .hide-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+
+    function showThankYou() {
+      document.getElementById("cal-container").classList.add("hidden");
+      document.getElementById("form-container").classList.add("hidden");
+      document.getElementById("thank-you-container").classList.remove("hidden");
+      document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
     }
-  </style>
-</body></html>
+
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      const payload = {
+        name: formData.get('name'),
+        whatsapp: formData.get('contact'),
+        username: formData.get('contact'),
+        revenue: formData.get('revenue'),
+        notes: `Model Bisnis: ${formData.get('business_model')}\nBottleneck: ${formData.get('bottleneck')}`,
+        source: 'clipz.jordanengo.com',
+        platform: 'Web'
+      };
+
+      try {
+        const hostname = window.location.hostname;
+        const submitUrl = `${window.location.protocol}//${hostname}:8080/submit-lead`;
+
+        fetch(submitUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        }).catch(err => console.error("Background lead sync failed:", err));
+      } catch (err) {
+        console.error("Failed to build submit URL:", err);
+      }
+
+      loadCalEmbed({
+        name: payload.name,
+        phone: payload.whatsapp
+      });
+      document.getElementById("form-container").classList.add("hidden");
+      document.getElementById("cal-container").classList.remove("hidden");
+      document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    function showStep(step) {
+      document.querySelectorAll('.quiz-step').forEach(el => {
+        el.classList.add('hidden');
+      });
+      const activeEl = document.querySelector(`.quiz-step[data-step="${step}"]`);
+      if (activeEl) {
+        activeEl.classList.remove('hidden');
+      }
+
+      // Update progress bar
+      const progressPercent = (step / totalSteps) * 100;
+      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+      document.getElementById('current-step-num').textContent = step;
+    }
+
+    function selectQuizOption(element, fieldName, value) {
+      const stepEl = element.closest('.quiz-step');
+      
+      stepEl.querySelectorAll('.option-card').forEach(opt => {
+        opt.classList.remove('selected');
+        const badge = opt.querySelector('.option-badge') || opt.querySelector('span:first-child');
+        if (badge) {
+          badge.classList.remove('bg-[#0066FF]', 'text-white');
+          badge.classList.add('bg-gray-100', 'bg-gray-200', 'text-black');
+        }
+        const iconBox = opt.querySelector('.option-icon-box');
+        if (iconBox) {
+          iconBox.classList.remove('bg-[#0066FF]', 'text-white');
+          iconBox.classList.add('bg-blue-50', 'text-brand-blue');
+        }
+      });
+
+      element.classList.add('selected');
+      const selectedBadge = element.querySelector('.option-badge') || element.querySelector('span:first-child');
+      if (selectedBadge) {
+        selectedBadge.classList.remove('bg-gray-100', 'bg-gray-200', 'text-black');
+        selectedBadge.classList.add('bg-[#0066FF]', 'text-white');
+      }
+      const selectedIconBox = element.querySelector('.option-icon-box');
+      if (selectedIconBox) {
+        selectedIconBox.classList.remove('bg-blue-50', 'text-brand-blue');
+        selectedIconBox.classList.add('bg-[#0066FF]', 'text-white');
+      }
+
+      const hiddenInput = document.getElementById(`input_${fieldName}`);
+      if (hiddenInput) {
+        hiddenInput.value = value;
+      }
+
+      const stepNum = stepEl.getAttribute('data-step');
+      const nextBtn = document.getElementById(`next-btn-${stepNum}`);
+      if (nextBtn) {
+        nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        nextBtn.removeAttribute('disabled');
+      }
+
+      setTimeout(() => {
+        nextStep();
+      }, 300);
+    }
+
+    function validateInputAndEnableNext(element, stepNum) {
+      const nextBtn = document.getElementById(`next-btn-${stepNum}`);
+      if (nextBtn) {
+        if (element.checkValidity() && element.value.trim() !== '') {
+          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+          nextBtn.removeAttribute('disabled');
+        } else {
+          nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+          nextBtn.setAttribute('disabled', 'true');
+        }
+      }
+    }
+
+    function nextStep() {
+      const activeStepEl = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+      const hiddenInput = activeStepEl.querySelector('input[type="hidden"]');
+      const textInputs = activeStepEl.querySelectorAll('input[type="tel"], input[type="text"]');
+      
+      let isValid = true;
+      
+      if (hiddenInput && !hiddenInput.value) {
+        isValid = false;
+      }
+      
+      textInputs.forEach(input => {
+        if (!input.checkValidity() || input.value.trim() === '') {
+          input.reportValidity();
+          isValid = false;
+        }
+      });
+
+      if (!isValid) return;
+
+      if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+
+    function resetBookingFlow() {
+      document.getElementById("cal-container").classList.add("hidden");
+      document.getElementById("form-container").classList.remove("hidden");
+      document.getElementById("thank-you-container").classList.add("hidden");
+      document.getElementById("qualification-form").reset();
+      
+      document.querySelectorAll('.option-card').forEach(opt => {
+        opt.classList.remove('selected');
+        const badge = opt.querySelector('.option-badge') || opt.querySelector('span:first-child');
+        if (badge) {
+          badge.classList.remove('bg-[#0066FF]', 'text-white');
+          badge.classList.add('bg-gray-100', 'bg-gray-200', 'text-black');
+        }
+        const iconBox = opt.querySelector('.option-icon-box');
+        if (iconBox) {
+          iconBox.classList.remove('bg-[#0066FF]', 'text-white');
+          iconBox.classList.add('bg-blue-50', 'text-brand-blue');
+        }
+      });
+
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.getElementById(`next-btn-${i}`);
+        if (btn) {
+          btn.classList.add('opacity-50', 'cursor-not-allowed');
+          btn.setAttribute('disabled', 'true');
+        }
+      }
+
+      currentStep = 1;
+      showStep(1);
+    }
+  </script>
+
+</body>
+</html>
