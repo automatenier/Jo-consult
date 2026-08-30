@@ -3,6 +3,42 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <!-- Centralized Configuration & Tracking Setup -->
+    <script>
+      window.CONFIG = {
+        ga4: "G-QB438WRZDQ",
+        metaPixel: "1064572439618450",
+        api: "/submit-lead",
+        site: "agentz"
+      };
+
+      // Dynamically load GA4
+      if (window.CONFIG.ga4) {
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CONFIG.ga4;
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', window.CONFIG.ga4);
+      }
+
+      // Dynamically load Meta Pixel
+      if (window.CONFIG.metaPixel) {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', window.CONFIG.metaPixel);
+        fbq('track', 'PageView');
+      }
+    </script>
     <title>Course Gratis &amp; Pusat Materi - AGentZ</title>
     <meta name="description" content="Akses gratis bootcamp modul dan materi Revenue Infrastructure untuk scale bisnis coaching & jasa Anda tanpa tim tambahan."/>
     <link rel="icon" type="image/webp" href="images/agentzlogo.webp"/>
@@ -268,57 +304,173 @@
     </footer>
 
     <script>
-        function switchVideo(moduleNum, title, videoUrl) {
-            document.getElementById("video-module-badge").textContent = `MODULE ${moduleNum}`;
-            document.getElementById("video-module-title").textContent = title;
-            const videoEl = document.getElementById("course-video-element");
-            if (videoEl) {
-                videoEl.src = videoUrl;
-                videoEl.play().catch(() => {});
+        // 1. UTM Parameter Capture and Persistence
+    function getUtmParams() {
+      const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      const query = new URLSearchParams(window.location.search);
+      const utms = {};
+      
+      params.forEach(param => {
+        const val = query.get(param);
+        if (val) {
+          utms[param] = val;
+          sessionStorage.setItem(param, val);
+        } else {
+          utms[param] = sessionStorage.getItem(param) || '';
+        }
+      });
+      return utms;
+    }
+    
+    // Capture GA Client ID helper
+    function getGaClientId() {
+      try {
+        const match = document.cookie.match(/_ga=GA1\.\d+\.(\d+\.\d+)/);
+        if (match && match[1]) {
+          return match[1];
+        }
+      } catch (e) {
+        console.error("Failed to read GA Client ID cookie:", e);
+      }
+      return '';
+    }
+
+    // Video Tracking State
+    let tracked25 = false;
+    let tracked50 = false;
+    let tracked75 = false;
+    let currentVideoTitle = '$100M Money Models & Revenue Architecture'; // Default title
+
+    function initVideoTracking() {
+      const video = document.getElementById("course-video-element");
+      if (!video) return;
+
+      video.addEventListener("play", () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'video_start', {
+            'video_name': currentVideoTitle,
+            'current_time': video.currentTime
+          });
+        }
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'VideoStart', { video_name: currentVideoTitle });
+        }
+      });
+
+      video.addEventListener("timeupdate", () => {
+        if (!video.duration) return;
+        const percentage = (video.currentTime / video.duration) * 100;
+        
+        if (percentage >= 25 && !tracked25) {
+          if (typeof gtag === 'function') {
+            gtag('event', 'video_progress', { 'video_name': currentVideoTitle, 'progress': 25 });
+          }
+          tracked25 = true;
+        }
+        if (percentage >= 50 && !tracked50) {
+          if (typeof gtag === 'function') {
+            gtag('event', 'video_progress', { 'video_name': currentVideoTitle, 'progress': 50 });
+          }
+          tracked50 = true;
+        }
+        if (percentage >= 75 && !tracked75) {
+          if (typeof gtag === 'function') {
+            gtag('event', 'video_progress', { 'video_name': currentVideoTitle, 'progress': 75 });
+          }
+          tracked75 = true;
+        }
+      });
+
+      video.addEventListener("ended", () => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'video_complete', { 'video_name': currentVideoTitle });
+        }
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'VideoComplete', { video_name: currentVideoTitle });
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", initVideoTracking);
+
+    function switchVideo(moduleNum, title, videoUrl) {
+        document.getElementById("video-module-badge").textContent = `MODULE ${moduleNum}`;
+        document.getElementById("video-module-title").textContent = title;
+        const videoEl = document.getElementById("course-video-element");
+        if (videoEl) {
+            // Reset tracking states for the new video
+            tracked25 = false;
+            tracked50 = false;
+            tracked75 = false;
+            currentVideoTitle = title;
+
+            videoEl.src = videoUrl;
+            videoEl.play().catch(() => {});
+        }
+        
+        // Highlight active button
+        const buttons = document.querySelectorAll(".video-nav-btn");
+        buttons.forEach((btn, idx) => {
+            if (idx === moduleNum - 1) {
+                btn.classList.remove("bg-white", "text-black");
+                btn.classList.add("bg-blue-600", "text-white");
+            } else {
+                btn.classList.remove("bg-blue-600", "text-white");
+                btn.classList.add("bg-white", "text-black");
             }
-            
-            // Highlight active button
-            const buttons = document.querySelectorAll(".video-nav-btn");
-            buttons.forEach((btn, idx) => {
-                if (idx === moduleNum - 1) {
-                    btn.classList.remove("bg-white", "text-black");
-                    btn.classList.add("bg-blue-600", "text-white");
-                } else {
-                    btn.classList.remove("bg-blue-600", "text-white");
-                    btn.classList.add("bg-white", "text-black");
+        });
+    }
+
+    async function handleCourseFormSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        
+        const utms = getUtmParams();
+        const eventId = 'lead_' + (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15));
+        const payload = {
+            event_id: eventId,
+            name: `${formData.get("firstName")} ${formData.get("lastName")}`,
+            phone: formData.get("phone"),
+            email: formData.get("email") || '',
+            service: 'Free Course Access',
+            message: `Pendaftaran E-Learning / Free Course (Revenue: ${formData.get("revenue")})`,
+            site: window.CONFIG.site,
+            landing_page: window.location.pathname + window.location.search,
+            referrer: document.referrer || '',
+            ga_client_id: getGaClientId(),
+            utm_source: utms.utm_source,
+            utm_medium: utms.utm_medium,
+            utm_campaign: utms.utm_campaign,
+            utm_content: utms.utm_content
+        };
+
+        try {
+            fetch(window.CONFIG.api, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                // Fire Meta Pixel Contact and Lead Events with shared eventID for deduplication
+                if (typeof fbq === 'function') {
+                  fbq('track', 'Contact');
+                  fbq('track', 'Lead', { value: 0, currency: 'USD' }, { eventID: eventId });
                 }
-            });
+                // Fire GA4 Event
+                if (typeof gtag === 'function') {
+                  gtag('event', 'generate_lead', {
+                    site: window.CONFIG.site,
+                    service: 'Free Course Access'
+                  });
+                }
+            }).catch(err => console.error("Background lead sync failed:", err));
+        } catch (err) {
+            console.error("Submit error:", err);
         }
 
-        async function handleCourseFormSubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
-            const payload = {
-                name: `${formData.get("firstName")} ${formData.get("lastName")}`,
-                whatsapp: formData.get("phone"),
-                username: formData.get("email"),
-                revenue: formData.get("revenue"),
-                notes: "Pendaftaran E-Learning / Free Course",
-                source: "agentz.jordanengo.com/courses.html",
-                platform: "Web"
-            };
-
-            try {
-                const hostname = window.location.hostname;
-                const submitUrl = `${window.location.protocol}//${hostname}:8080/submit-lead`;
-                fetch(submitUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                }).catch(err => console.error("Background lead sync failed:", err));
-            } catch (err) {
-                console.error("Submit error:", err);
-            }
-
-            alert("Terima kasih! Akses course gratis & materi lengkap telah dikirimkan ke WhatsApp Anda.");
-            window.location.href = "index.html#booking";
-        }
+        alert("Terima kasih! Akses course gratis & materi lengkap telah dikirimkan ke WhatsApp Anda.");
+        window.location.href = "index.html#booking";
+    }
     </script>
 </body>
 </html>

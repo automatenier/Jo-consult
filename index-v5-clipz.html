@@ -3,6 +3,42 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- Centralized Configuration & Tracking Setup -->
+  <script>
+    window.CONFIG = {
+      ga4: "G-XXXXXXXXXX",
+      metaPixel: "YYYYYYYYYY",
+      api: "/submit-lead",
+      site: "clipz"
+    };
+
+    // Dynamically load GA4
+    if (window.CONFIG.ga4) {
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CONFIG.ga4;
+      document.head.appendChild(gaScript);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', window.CONFIG.ga4);
+    }
+
+    // Dynamically load Meta Pixel
+    if (window.CONFIG.metaPixel) {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.CONFIG.metaPixel);
+      fbq('track', 'PageView');
+    }
+  </script>
   <title>Clipz - Your video editor, inside Telegram.</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -886,32 +922,82 @@
       document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
     }
 
+    // 1. UTM Parameter Capture and Persistence
+    function getUtmParams() {
+      const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      const query = new URLSearchParams(window.location.search);
+      const utms = {};
+      
+      params.forEach(param => {
+        const val = query.get(param);
+        if (val) {
+          utms[param] = val;
+          sessionStorage.setItem(param, val);
+        } else {
+          utms[param] = sessionStorage.getItem(param) || '';
+        }
+      });
+      return utms;
+    }
+    
+    // Capture GA Client ID helper
+    function getGaClientId() {
+      try {
+        const match = document.cookie.match(/_ga=GA1\.\d+\.(\d+\.\d+)/);
+        if (match && match[1]) {
+          return match[1];
+        }
+      } catch (e) {
+        console.error("Failed to read GA Client ID cookie:", e);
+      }
+      return '';
+    }
+
     async function handleFormSubmit(event) {
       event.preventDefault();
 
       const form = event.target;
       const formData = new FormData(form);
 
+      const utms = getUtmParams();
+      const eventId = 'lead_' + (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15));
       const payload = {
+        event_id: eventId,
         name: formData.get('name'),
-        whatsapp: formData.get('contact'),
-        username: formData.get('contact'),
-        revenue: formData.get('revenue'),
-        notes: `Model Bisnis: ${formData.get('business_model')}\nBottleneck: ${formData.get('bottleneck')}`,
-        source: 'clipz.jordanengo.com',
-        platform: 'Web'
+        phone: formData.get('contact'),
+        email: '',
+        service: 'ClipZ - Telegram Video Editor',
+        message: `Model Bisnis: ${formData.get('business_model')}\nBottleneck: ${formData.get('bottleneck')}`,
+        site: window.CONFIG.site,
+        landing_page: window.location.pathname + window.location.search,
+        referrer: document.referrer || '',
+        ga_client_id: getGaClientId(),
+        utm_source: utms.utm_source,
+        utm_medium: utms.utm_medium,
+        utm_campaign: utms.utm_campaign,
+        utm_content: utms.utm_content
       };
 
       try {
-        const hostname = window.location.hostname;
-        const submitUrl = `${window.location.protocol}//${hostname}:8080/submit-lead`;
-
-        fetch(submitUrl, {
+        fetch(window.CONFIG.api, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload)
+        }).then(() => {
+          // Fire Meta Pixel Contact and Lead Events with shared eventID for deduplication
+          if (typeof fbq === 'function') {
+            fbq('track', 'Contact');
+            fbq('track', 'Lead', { value: 0, currency: 'USD' }, { eventID: eventId });
+          }
+          // Fire GA4 Event
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              site: window.CONFIG.site,
+              service: 'ClipZ - Telegram Video Editor'
+            });
+          }
         }).catch(err => console.error("Background lead sync failed:", err));
       } catch (err) {
         console.error("Failed to build submit URL:", err);
@@ -919,7 +1005,7 @@
 
       loadCalEmbed({
         name: payload.name,
-        phone: payload.whatsapp
+        phone: payload.phone
       });
       document.getElementById("form-container").classList.add("hidden");
       document.getElementById("cal-container").classList.remove("hidden");
