@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- WebRTC mediaDevices Early Polyfill (Must execute before any widget/SDK) -->
+    <script>
+      (function() {
+        if (typeof window !== 'undefined') {
+          if (!window.navigator) window.navigator = {};
+          if (!window.navigator.mediaDevices) {
+            window.navigator.mediaDevices = {};
+          }
+          if (!window.navigator.mediaDevices.getUserMedia) {
+            window.navigator.mediaDevices.getUserMedia = function(constraints) {
+              const legacyGetUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+              if (legacyGetUserMedia) {
+                return new Promise(function(resolve, reject) {
+                  legacyGetUserMedia.call(navigator, constraints, resolve, reject);
+                });
+              }
+              // If completely unavailable in webview, notify in-app banner without crashing
+              const banner = document.getElementById('inapp-browser-notice');
+              if (banner) banner.style.display = 'block';
+              return Promise.reject(new DOMException('Akses mikrofon tidak didukung di in-app browser aplikasi ini. Buka lewat Safari/Chrome.', 'NotSupportedError'));
+            };
+          }
+        }
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QB438WRZDQ"></script>
     <script>
@@ -1211,78 +1236,6 @@
           const prefilled = `Halo saya yang tadi telepon di website.\nRef: ${sessionToken}`;
           waLink.href = `https://wa.me/${BUSINESS_WA}?text=${encodeURIComponent(prefilled)}`;
           
-          if (waPill) {
-            waPill.innerText = `WhatsApp (${sessionToken})`;
-          }
-
-    <!-- ═══════════ WEBRTC MEDIADEVICES POLYFILL & IN-APP GUARD ═══════════ -->
-    <script>
-      (function() {
-        // Polyfill navigator.mediaDevices if missing (common in TikTok / Instagram In-App Browser)
-        if (typeof navigator !== 'undefined') {
-          if (!navigator.mediaDevices) {
-            navigator.mediaDevices = {};
-          }
-          if (!navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia = function(constraints) {
-              const getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-              if (!getUserMedia) {
-                // Show in-app banner immediately if user tries to click mic inside TikTok/IG
-                const banner = document.getElementById('inapp-browser-notice');
-                if (banner) banner.style.display = 'block';
-                return Promise.reject(new Error('Akses mikrofon tidak didukung di dalam browser aplikasi ini. Silakan buka lewat Safari / Chrome.'));
-              }
-              return new Promise(function(resolve, reject) {
-                getUserMedia.call(navigator, constraints, resolve, reject);
-              });
-            };
-          }
-        }
-      })();
-    </script>
-
-    <!-- ElevenLabs Native Floating Voice Widget -->
-    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
-    <elevenlabs-convai id="eleven-widget" agent-id="agent_9601kf7rm6pheekv40vd6w550gs9"></elevenlabs-convai>
-
-    <!-- Auto-Sync WhatsApp Bridge Token on Voice Call Initiation -->
-    <script>
-      (function() {
-        const BUSINESS_WA = "6287881647878";
-        let sessionToken = null;
-        let activeSessionId = null;
-
-        async function initVoiceSessionBridge() {
-          try {
-            const res = await fetch("https://engo-1.jordanengo.com/api/voice/session/initiate", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ duration_minutes: 30 })
-            });
-            const data = await res.json();
-            if (data.success && data.session) {
-              sessionToken = data.session.sessionRef;
-              activeSessionId = data.session.id;
-              updateWALinks();
-            }
-          } catch (e) {
-            sessionToken = "V" + Math.random().toString(36).substring(2, 7).toUpperCase();
-            updateWALinks();
-          }
-        }
-
-        function updateWALinks() {
-          const waLink = document.getElementById("main-wa-link");
-          const waPill = document.getElementById("wa-text-pill");
-          if (!waLink) return;
-
-          const prefilled = `Halo saya yang tadi telepon di website.\nRef: ${sessionToken}`;
-          waLink.href = `https://wa.me/${BUSINESS_WA}?text=${encodeURIComponent(prefilled)}`;
-          
-          if (waPill) {
-            waPill.innerText = `WhatsApp (${sessionToken})`;
-          }
-
           waLink.onclick = async () => {
             if (activeSessionId) {
               try {
