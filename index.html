@@ -1233,9 +1233,14 @@
           const waPill = document.getElementById("wa-text-pill");
           if (!waLink) return;
 
-          const prefilled = `Halo saya yang tadi telepon di website.\nRef: ${sessionToken}`;
+          // Clean, human-friendly message for the lead
+          const prefilled = `Halo Jordan, saya yang tadi telepon di website.\n\n[ID: ${sessionToken}]`;
           waLink.href = `https://wa.me/${BUSINESS_WA}?text=${encodeURIComponent(prefilled)}`;
           
+          if (waPill) {
+            waPill.innerText = `WhatsApp chat`;
+          }
+
           waLink.onclick = async () => {
             if (activeSessionId) {
               try {
