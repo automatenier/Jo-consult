@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <!-- Centralized Configuration & Tracking Setup -->
+    <script>
+      window.CONFIG = {
+        ga4: "G-QB438WRZDQ",
+        metaPixel: "1064572439618450",
+        api: "/submit-lead",
+        site: "learnz",
+        videoBaseUrl: "", 
+        defaultVideo: "https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
+      };
+
+      if (window.CONFIG.ga4) {
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CONFIG.ga4;
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', window.CONFIG.ga4);
+      }
+
+      if (window.CONFIG.metaPixel) {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', window.CONFIG.metaPixel);
+        fbq('track', 'PageView');
+      }
+    </script>
+    <title>LearnZ | AI Business Operating System — 0 → Operatable (10 Levels / 40 Lessons)</title>
+    <meta name="description" content="AI Business Operating System: Dari nol → AI-assisted operator → AI-powered business owner. 10 Level & 40 Pelajaran berbasis proyek nyata."/>
+    <link rel="icon" type="image/webp" href="images/learnzlogo.webp"/>
+    
+    <!-- Google Fonts: Poppins (Acquisition.com Primary Font) & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "ink-blue": "#131628",
+                        "dark-navy": "#131628",
+                        "electric-purple": "#6f00ff",
+                        "electric-purple-hover": "#5800cc",
+                        "module-active": "#455876",
+                        "page-bg": "#f9fafb"
+                    },
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                        body: ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #131628;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .sidebar-scroll {
+            max-height: calc(100vh - 180px);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-[#f9fafb] text-[#131628] antialiased">
+
+    <!-- ═══════════ TOP ANNOUNCEMENT BANNER ═══════════ -->
+    <div class="w-full bg-[#6f00ff] text-white py-2.5 px-4 text-center z-50 relative">
+        <a href="#audit-form" class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium hover:underline text-white no-underline transition-all">
+            <span class="text-[11px] py-[2px] px-[8px] font-bold text-black bg-white rounded-[50px] leading-[18px] uppercase">BARU</span>
+            <span><strong>AI Business Operating System 2026:</strong> Dapatkan Akses 40 Pelajaran &amp; AI Business Brain Gratis</span>
+            <svg class="inline-block w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- ═══════════ GLOBAL NAVIGATION HEADER (bg-ink-blue) ═══════════ -->
+    <header class="w-full bg-[#131628] text-white sticky top-0 z-40 shadow-md border-b border-white/10">
+        <div class="max-w-[1340px] mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="learnz.html" class="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
+                <img alt="LearnZ Logo" class="h-8 md:h-9 w-auto" src="images/learnzlogo.webp"/>
+                <span class="font-extrabold text-xl md:text-2xl text-white tracking-tight">LearnZ</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+                <a href="learnz.html" class="text-white/80 hover:text-white transition-colors">Beranda</a>
+                <a href="learnz-course.html" class="text-white font-semibold relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#6f00ff]">Kurikulum 10 Level</a>
+                <a href="agentz.html" class="text-white/80 hover:text-white transition-colors">AGentZ DFY</a>
+                <a href="https://cal.com/agentz/revenue-leak-audit" target="_blank" class="text-white/80 hover:text-white transition-colors">Konsultasi Audit</a>
+            </nav>
+
+            <!-- CTA & Mobile Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="#audit-form" class="hidden sm:inline-block bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs md:text-sm font-semibold py-2.5 px-6 rounded-full shadow-md transition-all duration-300">
+                    Buka Akses Master Template →
+                </a>
+                <!-- Mobile Hamburger Toggle -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white p-1 focus:outline-none" aria-label="Buka Navigasi">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-nav-drawer" class="hidden md:hidden bg-[#131628] border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="learnz.html" class="block text-white/80 hover:text-white py-2 text-sm font-medium">Beranda</a>
+            <a href="learnz-course.html" class="block text-white font-bold py-2 text-sm">Kurikulum 10 Level</a>
+            <a href="agentz.html" class="block text-white/80 hover:text-white py-2 text-sm font-medium">AGentZ DFY</a>
+            <a href="https://cal.com/agentz/revenue-leak-audit" target="_blank" class="block text-white/80 hover:text-white py-2 text-sm font-medium">Konsultasi Audit</a>
+            <div class="pt-2">
+                <a href="#audit-form" class="block w-full text-center bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs font-semibold py-3 px-4 rounded-full">
+                    Buka Akses Master Template →
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════ MAIN CONTENT AREA ═══════════ -->
+    <main id="main-content" class="w-full pb-16">
+        
+        <!-- ═══════════ PAGE TITLE SECTION ═══════════ -->
+        <div class="py-8 md:py-10 max-w-[1200px] mx-auto text-center px-4">
+            <div class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">
+                AI BUSINESS OPERATING SYSTEM • 0 → OPERATABLE
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#131628] tracking-tight leading-[1.15]">
+                Dari Nol → AI-Assisted Operator → AI-Powered Business Owner
+            </h1>
+            <hr class="w-[120px] md:w-[150px] border-[2.5px] border-[#6f00ff] mx-auto mt-4 mb-3"/>
+            <p class="text-gray-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto font-normal leading-relaxed">
+                Kami tidak sekadar mengajarkan trik chatbot. Anda mempelajari keahlian abadi: mengubah <strong>Masalah Bisnis → Konteks → Instruksi → Alur Kerja → Verifikasi → Sistem Mandiri</strong> yang menghasilkan uang.
+            </p>
+        </div>
+
+        <!-- ═══════════ 3-COLUMN CORE TRAINING LAYOUT ═══════════ -->
+        <div class="max-w-[1340px] mx-auto py-2 flex flex-col md:flex-row items-start gap-6 px-4 md:px-6">
+
+            <!-- ── COLUMN 1: COURSE MODULES NAVIGATION (Left Sidebar) ── -->
+            <aside class="w-full md:w-[26%] shrink-0">
+                <div class="bg-[#131628] rounded-2xl overflow-hidden shadow-lg border border-slate-800">
+                    
+                    <!-- Mobile Accordion Trigger -->
+                    <button onclick="toggleCourseNav()" type="button" class="w-full flex justify-between items-center px-5 py-4 cursor-pointer text-white font-medium text-base md:hidden focus:outline-none">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#6f00ff]">menu_book</span>
+                            <span>10 Level Kurikulum (40 Pelajaran)</span>
+                        </span>
+                        <svg id="course-nav-chevron" class="w-4 h-4 transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+
+                    <!-- Desktop Header Title -->
+                    <div class="hidden md:block py-4 px-4 bg-[#1b2038] border-b border-white/10 text-center font-bold text-white text-xs uppercase tracking-wider">
+                        Daftar 10 Level Kurikulum
+                    </div>
+
+                    <!-- Modules List (FAQ Accordion Style with Scroll) -->
+                    <div id="course-nav-list" class="flex flex-col transition-all divide-y divide-white/10 sidebar-scroll">
+                        
+                        <!-- ── LEVEL 0 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(0)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 0 — Model Mental AI</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">3 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-0" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-0" class="flex flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-0-1" onclick="switchModule(0, 1, 'Pelajaran 0.1 — Apa Itu AI Sebenarnya', 'Membongkar mitos: AI bukan sekadar chatbot. Pahami LLM, context window, token, reasoning, structured output, dan koordinasi workflow.', 'Lembar Kerja Struktur Operasional AI', 'Pemborosan Waktu Chatbot Coba-Coba')" class="sidebar-module-link py-2 px-5 text-left text-white text-xs font-medium transition-colors bg-[#455876] block border-l-4 border-[#6f00ff]">
+                                    0.1 · Apa Itu AI Sebenarnya
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-0-2" onclick="switchModule(0, 2, 'Pelajaran 0.2 — AI vs Otomatisasi vs Agen Cerdas', 'Membedakan otomatisasi kaku (if/then), AI kognitif (analisis niat prospek), dan Agen Otonom (riset, susun draf, update CRM & eskalasi).', 'Matriks Komparasi AI vs Otomatisasi vs Agen', 'Kegagalan Otomatisasi Kaku Tanpa AI')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    0.2 · AI vs Otomatisasi vs Agen
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-0-3" onclick="switchModule(0, 3, 'Pelajaran 0.3 — Di Mana AI Ditempatkan dalam Bisnis', 'Memetakan tugas berulang pada Marketing, Sales, Operasi, CS, dan Finance menjadi peluang AI dengan ROI tertinggi.', 'Template Pemetaan Peluang AI (AI Opportunity Map)', 'Biaya Tinggi Tugas Berulang Karyawan Manual')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    0.3 · Di Mana AI Ditempatkan
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 1 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(1)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 1 — Fondasi Instruksi &amp; Konteks</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-1" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-1" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-1-1" onclick="switchModule(1, 1, 'Pelajaran 1.1 — Memberi Instruksi Presisi kepada AI', 'Struktur universal: Role, Objective, Context, Input, Constraints, Process, Output Format, dan Quality Criteria.', 'Universal AI Prompting Framework', 'Prompt Generik Tanpa Batasan Jelas')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.1 · Instruksi Presisi (Universal Interface)
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-2" onclick="switchModule(1, 2, 'Pelajaran 1.2 — Context Engineering', 'Konteks jauh lebih penting daripada prompt engineering. Menentukan data otoritatif, terminologi bisnis, dan aturan keputusan.', 'Panduan Rekayasa Konteks Dokumen Bisnis', 'Halusinasi AI Akibat Minim Konteks')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.2 · Context Engineering
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-3" onclick="switchModule(1, 3, 'Pelajaran 1.3 — Few-Shot Learning & Contoh Nyata', 'Mengajarkan pola kepada AI melalui contoh output buruk vs contoh output ideal yang menghasilkan akurasi seketika.', 'Bank Contoh Few-Shot untuk Bisnis Jasa & Coaching', 'Output AI yang Melenceng dari Standar Brand')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.3 · Few-Shot Examples
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-4" onclick="switchModule(1, 4, 'Pelajaran 1.4 — Loop Iterasi Cepat', 'Berhenti mengetik ulang prompt dari awal. Gunakan alur: Generate → Evaluasi → Temukan Titik Gagal → Tambahkan Batasan → Generate Ulang.', '10 Prompt Bisnis Siap Pakai untuk Bisnis Anda', 'Frustrasi Memperbaiki Prompt Berulang Kali')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.4 · Loop Iterasi &amp; Penambahan Batasan
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 2 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(2)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 2 — Tiga Raksasa (The Big 3)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-2" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-2" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-2-1" onclick="switchModule(2, 1, 'Pelajaran 2.1 — Ekosistem ChatGPT (OpenAI)', 'Memanfaatkan ChatGPT Projects untuk menyatukan file, instruksi khusus, dan alur kerja berulang tanpa kehilangan memori.', 'Setup Checklist ChatGPT Projects Bisnis', 'Percakapan AI Tercecer Tanpa Konteks')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.1 · ChatGPT Projects &amp; Files
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-2" onclick="switchModule(2, 2, 'Pelajaran 2.2 — Ekosistem Claude (Anthropic)', 'Claude Projects & Project Knowledge untuk analisis dokumen tebal serta Artifacts interaktif untuk membuat diagram, web, dan kode.', 'Claude Project Knowledge Structure Template', 'Kesulitan Memproses Dokumen Pengetahuan Panjang')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.2 · Claude Projects &amp; Artifacts
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-3" onclick="switchModule(2, 3, 'Pelajaran 2.3 — Ekosistem Gemini (Google)', 'Gems untuk konfigurasi tugas modular yang dapat dipakai berulang kali, terintegrasi mulus dengan Docs, Sheets, Drive, & Gmail.', 'Kumpulan 5 Gems Esensial untuk Operasional Harian', 'Pekerjaan Bolak-Balik Copy-Paste Antar Dokumen')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.3 · Gemini Gems &amp; Google Workspace
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-4" onclick="switchModule(2, 4, 'Pelajaran 2.4 — Matriks Seleksi Alat & AI Judgment', 'Bandingkan satu masalah bisnis di ketiga platform. Evaluasi kualitas, kecepatan, penanganan konteks, integrasi, dan biaya.', 'Matriks Penilaian Pemilihan Model AI Bisnis', 'Fanatisme Merek AI yang Merugikan Finansial')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.4 · Matriks Komparasi &amp; Seleksi Alat
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 3 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(3)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 3 — Bangun Business Brain</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-3" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-3" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-3-1" onclick="switchModule(3, 1, 'Pelajaran 3.1 — Dokumentasi Bisnis via AI Interview', 'Alih-alih menulis manual, jadikan AI pewawancara: menanyakan model bisnis, ICP, penawaran, dan batasan satu per satu.', 'Prompt Wawancara Ekstraksi Pengetahuan Bisnis', 'Pengetahuan Bisnis Tertahan di Kepala Owner')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.1 · Ekstraksi Pengetahuan via AI Interview
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-2" onclick="switchModule(3, 2, 'Pelajaran 3.2 — Dokumen Pengetahuan Terstruktur', 'Menghasilkan ICP.md, offer.md, brand_voice.md, sales_process.md, objections.md, dan sop_lead_followup.md.', 'Paket 7 Template Markdown Business Brain', 'Instruksi AI yang Tidak Konsisten')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.2 · Dokumentasi Modular (Markdown Brain)
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-3" onclick="switchModule(3, 3, 'Pelajaran 3.3 — Hirarki Otoritas Informasi', 'Mengatur hirarki: Sumber Utama → Dokumen Primer → Dokumen Sekunder → Inferensi AI → Tebakan untuk membabat tuntas sampah output.', 'Protokol Hirarki Otoritas Kebenaran Data', 'Jawaban AI yang Bertentangan dengan SOP')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.3 · Hirarki Otoritas Sumber Kebenaran
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-4" onclick="switchModule(3, 4, 'Pelajaran 3.4 — Organisasi Folder & Sinkronisasi', 'Menata folder Company, Customer, Product, Marketing, Sales, Operations, dan Knowledge yang siap di-attach ke AI Projects.', 'Folder Master AI Business Brain Siap Pakai', 'Data Pengetahuan Rusak & Usang')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.4 · Master Repositori Business Brain
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 4 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(4)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 4 — Desain Karyawan AI</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-4" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-4" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-4-1" onclick="switchModule(4, 1, 'Pelajaran 4.1 — Job Description Karyawan AI', 'Menentukan Role, Mission, Responsibilities, Inputs, Tools, Decision Rights, Outputs, dan Escalation Rules.', 'Template Job Description Karyawan AI Eksekutif', 'Tugas AI Mengambang Tanpa Batasan')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.1 · Job Description Karyawan AI
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-2" onclick="switchModule(4, 2, 'Pelajaran 4.2 — Spesifikasi Sistem Operasional', 'Perbedaan fundamental: Prompt santai vs Spesifikasi Operasional Ketat dengan DO, DO NOT, dan ESCALATE WHEN.', 'Spesifikasi Sistem Sales Setter & CS AI', 'Kesalahan Fatal Menjanjikan Diskon Tanpa Izin')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.2 · Spesifikasi Operasional (System Spec)
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-3" onclick="switchModule(4, 3, 'Pelajaran 4.3 — Prinsip Human-in-the-Loop', 'Amankan proses bisnis: AI Mengonsep Draf → Persetujuan Manusia → Eksekusi Tindakan sebelum menuju otonom penuh.', 'Checklist Persetujuan Human-in-the-Loop', 'Risiko Blunder Pesan Otomatis Tanpa Review')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.3 · Human-in-the-Loop (Draf → Cek → Eksekusi)
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-4" onclick="switchModule(4, 4, 'Pelajaran 4.4 — Kalibrasi & Deployment Karyawan AI', 'Menguji peran dengan skenario ekstrem dan merilis karyawan AI pertama Anda ke operasional.', 'Protokol Kalibrasi & Penilaian Karyawan Digital', 'Karyawan AI Mogok atau Keluar Jalur')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.4 · Kalibrasi &amp; Rilis Karyawan AI Pertama
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 5 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(5)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 5 — Rekayasa Alur Kerja Bisnis</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-5" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-5" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-5-1" onclick="switchModule(5, 1, 'Pelajaran 5.1 — Alur Penanganan Prospek (Lead Workflow)', 'Desain alur: Prospek Baru → Kumpul Info → Analisis AI → Kualifikasi BANT → Update CRM → Respons Personal → Booking Kalender.', 'Bagan Alur Penanganan Prospek Standar Enterprise', 'Leads Dingin Akibat Respons Lambat')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.1 · Lead Intake &amp; Qualification Workflow
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-2" onclick="switchModule(5, 2, 'Pelajaran 5.2 — Alur Produksi Konten (Content Workflow)', 'Desain alur: Ide → Riset Angle → Skrip → Draf → Review → Publikasi → Ukur Metrik → Pembelajaran Ulang.', 'Bagan Alur Produksi Konten Multi-Kanal Berulang', 'Stagnasi Produksi Konten Mingguan')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.2 · Content Production Engine Workflow
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-3" onclick="switchModule(5, 3, 'Pelajaran 5.3 — Alur Layanan Pelanggan (CS Workflow)', 'Desain alur: Pesan Masuk → Klasifikasi Niat → Ambil Konteks Brain → Jawab → Cek Confidence → Eskalasi → Catat Log.', 'Bagan Alur Layanan Pelanggan AI Terintegrasi', 'Tiket Bantuan Pelanggan Menumpuk')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.3 · Customer Support &amp; Ticket Workflow
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-4" onclick="switchModule(5, 4, 'Pelajaran 5.4 — Standarisasi SOP & Handover', 'Mengonversi ketiga alur kerja menjadi SOP digital yang dapat dieksekusi manusia maupun sistem otomatisasi.', 'Dokumen 3 Master Workflow Bisnis Siap Eksekusi', 'Kekacauan Operasional Saat Pergantian Tim')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.4 · Standard Operating Procedure (SOP)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 6 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(6)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 6 — Integrasi Data Bisnis + AI</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-6" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-6" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-6-1" onclick="switchModule(6, 1, 'Pelajaran 6.1 — Data Terstruktur vs Tidak Terstruktur', 'Membedakan spreadsheet/CRM vs riwayat chat WA, panggilan telepon, dan dokumen PDF untuk diproses AI.', 'Data Audit Sheet untuk Pemilik Bisnis', 'Data Bisnis Tersimpan Mati Tanpa Guna')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.1 · Data Sources &amp; Formats
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-6-2" onclick="switchModule(6, 2, 'Pelajaran 6.2 — AI + Spreadsheet Intelligence', 'Menggunakan AI untuk pembersihan data kotor, klasifikasi penjualan, pencarian anomali, dan segmentasi prospek.', 'Prompt & Rumus Integrasi AI di Google Sheets', 'Waktu Berjam-jam Menata Spreadsheet Manual')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.2 · AI + Google Sheets &amp; Database
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-6-3" onclick="switchModule(6, 3, 'Pelajaran 6.3 — Telemetri Metrik & KPI Bisnis', 'Alur intelijen: Data → Metrik Kunci (CAC, LTV, Speed-to-Lead) → Diagnosis Masalah → Rekomendasi Aksi Nyata.', 'Template Dashboard KPI Telemetri Pendapatan', 'Keputusan Bisnis Berdasarkan Firasat')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.3 · KPI Telemetry &amp; Bottleneck Diagnosis
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-6-4" onclick="switchModule(6, 4, 'Pelajaran 6.4 — AI Weekly Business Review', 'Setiap minggu AI menjawab: Apa yang terjadi? Mengapa? Apa yang rusak? Dan keputusan apa yang harus diambil owner.', 'Template Laporan AI Weekly Business Review (WBR)', 'Owner Buta terhadap Kondisi Riil Perusahaan')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.4 · Laporan Review Bisnis Mingguan Otomatis
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 7 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(7)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 7 — Otomatisasi Sistem (Automation)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-7" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-7" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-7-1" onclick="switchModule(7, 1, 'Pelajaran 7.1 — Logika Trigger & Action', 'Memahami arsitektur integrasi n8n, Make, Zapier, Webhook, dan API tanpa perlu jadi programmer.', 'Arsitektur Trigger-Action untuk Bisnis', 'Ketergantungan pada Input Data Manual')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    7.1 · Trigger &amp; Action Mechanics
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-7-2" onclick="switchModule(7, 2, 'Pelajaran 7.2 — Langkah AI dalam Otomatisasi', 'Kapan menyisipkan modul AI untuk analisis sentimen, pengelompokan prospek, atau pembuatan ringkasan otomatis.', 'Blueprint Integrasi Node AI di n8n & Webhooks', 'Alur Otomatisasi Kaku yang Gagal Beradaptasi')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    7.2 · Menyisipkan Langkah AI (AI Steps)
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-7-3" onclick="switchModule(7, 3, 'Pelajaran 7.3 — Mengelola Status Sistem (State)', 'Mengingat status pelanggan: Nama, histori chat, status deal, jadwal janji temu, dan aksi berikutnya yang tertata rapi.', 'Skema State Management Sederhana (JSON / DB)', 'Pesan Dobel atau Lupa Follow-Up')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    7.3 · State Management (Sistem Ingatan)
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-7-4" onclick="switchModule(7, 4, 'Pelajaran 7.4 — Penanganan Kegagalan (Failure Handling)', 'Sistem anti-rusak: Jika gagal → Ulangi (Retry) → Kirim Peringatan Telegram Owner → Catat Riwayat Error.', 'Blueprint Otomatisasi 1 Alur Kerja End-to-End', 'Webhook Putus Tanpa Sepengetahuan Tim')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    7.4 · Failure Handling &amp; Alerting
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 8 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(8)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 8 — Agen Cerdas (AI Agents)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">3 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-8" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-8" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-8-1" onclick="switchModule(8, 1, 'Pelajaran 8.1 — Chatbot vs Copilot vs Agen', 'Chatbot menjawab, Copilot mendampingi, Otomatisasi menjalankan resep, Agen memutuskan langkah demi mencapai tujuan.', 'Diagram Evolusi Chatbot Menuju Agen Cerdas', 'Salah Memilih Solusi untuk Masalah Kompleks')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    8.1 · Evolusi: Chatbot → Copilot → Agent
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-8-2" onclick="switchModule(8, 2, 'Pelajaran 8.2 — Arsitektur & Loop Agen', 'Observe → Think → Plan → Act → Observe Hasil → Verify → Selesai/Eskalasi. Menghubungkan Goal ke Knowledge, Tools, Memory, & Rules.', 'Diagram Alur Kerja & Eksekusi Loop Agen', 'Agen Berputar-Putar Tanpa Hasil Nyata')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    8.2 · Agent Architecture &amp; Loop
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-8-3" onclick="switchModule(8, 3, 'Pelajaran 8.3 — Batasan & Guardrail Agen', 'Menetapkan batasan mutlak: Apa yang boleh diputuskan agen, apa yang butuh persetujuan manusia, dan apa yang dilarang keras.', 'Spesifikasi Konfigurasi 1 Agen Semi-Otonom', 'Agen Berhalusinasi Melampaui Batas Kewenangan')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    8.3 · Agent Boundaries &amp; Safety Guardrails
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 9 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(9)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 9 — AI IDE &amp; Vibe Engineering</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-9" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-9" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-9-1" onclick="switchModule(9, 1, 'Pelajaran 9.1 — Mengelola AI Software Engineer', 'Bukan belajar koding manual, tapi belajar me-manage AI programmer (Claude Code, Cursor, Antigravity) di lingkungan editor, terminal, & browser.', 'Checklist Spesifikasi Teknis untuk AI Engineer', 'Membayar Puluhan Juta untuk Aplikasi Internal Simpel')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    9.1 · Managing an AI Software Engineer
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-9-2" onclick="switchModule(9, 2, 'Pelajaran 9.2 — Fondasi Proyek, Git & Terminal Cepat', 'Hanya yang esensial: struktur folder proyek, commit, branch, diff (+/-), rollback, dan perintah dasar terminal.', 'Cheat Sheet Terminal & Git untuk Non-Developer', 'Takut Membuka Terminal & Merusak File')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    9.2 · Project Structure, Git &amp; Essential CLI
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-9-3" onclick="switchModule(9, 3, 'Pelajaran 9.3 — AI Coding Loop & Membaca Diff', 'Alur kerja: Spec → Plan → Implement → Run → Test → Inspect Diff (+ hijau / - merah) → Fix → Commit.', 'Panduan Membaca Diff Perubahan Kode AI', 'AI Merusak Kode yang Sudah Bekerja')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    9.3 · Spec → Plan → Diff → Verify Loop
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-9-4" onclick="switchModule(9, 4, 'Pelajaran 9.4 — Proyek Akhir: Membangun Internal Tool', 'Membangun aplikasi bisnis nyata: Dashboard Lead, Quotation Generator, atau Portal Klien Internal menggunakan AI coding.', 'Source Code 1 Internal Tool Bisnis Siap Pakai', 'Ketergantungan Software Vendor yang Lambat')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    9.4 · Proyek Nyata: Internal Tool &amp; Dashboard
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ── LEVEL 10 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(10)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Level 10 — Bisnis AI-Native</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">2 Pelajaran</span>
+                                    <svg id="mod-accordion-chevron-10" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-10" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-10-1" onclick="switchModule(10, 1, 'Pelajaran 10.1 — Arsitektur AI Command Center', 'Menghubungkan Pemilik Bisnis → AI Command Center → Karyawan AI Pemasaran, Penjualan & Operasi → Data Terpadu → Otomatisasi.', 'Cetak Biru Arsitektur AI Command Center Perusahaan', 'Operasional Bisnis yang Membengkak Tanpa Profit')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    10.1 · AI Command Center Architecture
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-10-2" onclick="switchModule(10, 2, 'Pelajaran 10.2 — Roadmap 90 Hari Skalabilitas AI-Native', 'Menyusun roadmap transformasi perusahaan, audit performa sistem berkala, dan skala bisnis tanpa menambah headcount linier.', 'Dokumen Master AI Operating System Blueprint', 'Gagal Bersaing dengan Perusahaan Berkecepatan AI')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    10.2 · 90-Day AI Transformation Roadmap
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ── COLUMN 2: VIDEO PLAYER & PRIMARY CTA (Center Column) ── -->
+            <section id="video-player" class="w-full md:w-[46%] lg:w-[47%] flex flex-col">
+                <!-- Video Container (16:9 Aspect Ratio) -->
+                <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                    <video id="course-video-element" class="w-full h-full object-cover" controls poster="images/infra.webp">
+                        <source src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung video HTML5.
+                    </video>
+                </div>
+
+                <!-- Video Title & Module Info Card -->
+                <div class="mt-4 p-5 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col gap-2.5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#6f00ff] block mb-0.5" id="video-module-badge">LEVEL 0 · PELAJARAN 0.1</span>
+                            <h2 class="font-extrabold text-base md:text-xl text-[#131628] leading-snug" id="video-module-title">Pelajaran 0.1 — Apa Itu AI Sebenarnya</h2>
+                        </div>
+                        <span class="material-symbols-outlined text-[#6f00ff] font-bold text-2xl">verified</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed" id="video-module-desc">
+                        Membongkar mitos: AI bukan sekadar chatbot. Pahami LLM, context window, token, reasoning, structured output, dan koordinasi workflow untuk operasional bisnis modern.
+                    </p>
+                    <div class="mt-2 pt-3 border-t border-gray-100 flex flex-col gap-2 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-[#6f00ff] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">inventory_2</span> Aset Dihasilkan:
+                            </span>
+                            <span class="text-gray-700 font-medium" id="video-module-resource">Lembar Kerja Struktur Operasional AI</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-[#ee2f2f] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">warning</span> Target Leak Audit:
+                            </span>
+                            <span class="text-gray-700 font-medium" id="video-module-leak">Pemborosan Waktu Chatbot Coba-Coba</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Selection Pill Tabs for Levels -->
+                <div class="mt-3 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                    <button onclick="switchModule(0, 1, 'Pelajaran 0.1 — Apa Itu AI Sebenarnya', 'Membongkar mitos: AI bukan sekadar chatbot. Pahami LLM, context window, token, reasoning, structured output, dan koordinasi workflow.', 'Lembar Kerja Struktur Operasional AI', 'Pemborosan Waktu Chatbot Coba-Coba')" class="video-nav-btn px-4 py-2 bg-[#6f00ff] text-white font-semibold text-xs uppercase tracking-wide rounded-full shadow-sm whitespace-nowrap transition-all">
+                        L0: Mental Model
+                    </button>
+                    <button onclick="switchModule(1, 1, 'Pelajaran 1.1 — Memberi Instruksi Presisi kepada AI', 'Struktur universal: Role, Objective, Context, Input, Constraints, Process, Output Format, dan Quality Criteria.', 'Universal AI Prompting Framework', 'Prompt Generik Tanpa Batasan Jelas')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L1: Fundamentals
+                    </button>
+                    <button onclick="switchModule(2, 1, 'Pelajaran 2.1 — Ekosistem ChatGPT (OpenAI)', 'Memanfaatkan ChatGPT Projects untuk menyatukan file, instruksi khusus, dan alur kerja berulang tanpa kehilangan memori.', 'Setup Checklist ChatGPT Projects Bisnis', 'Percakapan AI Tercecer Tanpa Konteks')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L2: The Big 3
+                    </button>
+                    <button onclick="switchModule(3, 1, 'Pelajaran 3.1 — Dokumentasi Bisnis via AI Interview', 'Alih-alih menulis manual, jadikan AI pewawancara: menanyakan model bisnis, ICP, penawaran, dan batasan satu per satu.', 'Prompt Wawancara Ekstraksi Pengetahuan Bisnis', 'Pengetahuan Bisnis Tertahan di Kepala Owner')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L3: Business Brain
+                    </button>
+                    <button onclick="switchModule(4, 1, 'Pelajaran 4.1 — Job Description Karyawan AI', 'Menentukan Role, Mission, Responsibilities, Inputs, Tools, Decision Rights, Outputs, dan Escalation Rules.', 'Template Job Description Karyawan AI Eksekutif', 'Tugas AI Mengambang Tanpa Batasan')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L4: AI Employees
+                    </button>
+                    <button onclick="switchModule(5, 1, 'Pelajaran 5.1 — Alur Penanganan Prospek (Lead Workflow)', 'Desain alur: Prospek Baru → Kumpul Info → Analisis AI → Kualifikasi BANT → Update CRM → Respons Personal → Booking Kalender.', 'Bagan Alur Penanganan Prospek Standar Enterprise', 'Leads Dingin Akibat Respons Lambat')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L5: Workflows
+                    </button>
+                    <button onclick="switchModule(6, 1, 'Pelajaran 6.1 — Data Terstruktur vs Tidak Terstruktur', 'Membedakan spreadsheet/CRM vs riwayat chat WA, panggilan telepon, dan dokumen PDF untuk diproses AI.', 'Data Audit Sheet untuk Pemilik Bisnis', 'Data Bisnis Tersimpan Mati Tanpa Guna')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L6: Data + AI
+                    </button>
+                    <button onclick="switchModule(7, 1, 'Pelajaran 7.1 — Logika Trigger & Action', 'Memahami arsitektur integrasi n8n, Make, Zapier, Webhook, dan API tanpa perlu jadi programmer.', 'Arsitektur Trigger-Action untuk Bisnis', 'Ketergantungan pada Input Data Manual')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L7: Automation
+                    </button>
+                    <button onclick="switchModule(8, 1, 'Pelajaran 8.1 — Chatbot vs Copilot vs Agen', 'Chatbot menjawab, Copilot mendampingi, Otomatisasi menjalankan resep, Agen memutuskan langkah demi mencapai tujuan.', 'Diagram Evolusi Chatbot Menuju Agen Cerdas', 'Salah Memilih Solusi untuk Masalah Kompleks')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L8: Agents
+                    </button>
+                    <button onclick="switchModule(9, 1, 'Pelajaran 9.1 — Mengelola AI Software Engineer', 'Bukan belajar koding manual, tapi belajar me-manage AI programmer (Claude Code, Cursor, Antigravity) di lingkungan editor, terminal, & browser.', 'Checklist Spesifikasi Teknis untuk AI Engineer', 'Membayar Puluhan Juta untuk Aplikasi Internal Simpel')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L9: AI IDE
+                    </button>
+                    <button onclick="switchModule(10, 1, 'Pelajaran 10.1 — Arsitektur AI Command Center', 'Menghubungkan Pemilik Bisnis → AI Command Center → Karyawan AI Pemasaran, Penjualan & Operasi → Data Terpadu → Otomatisasi.', 'Cetak Biru Arsitektur AI Command Center Perusahaan', 'Operasional Bisnis yang Membengkak Tanpa Profit')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        L10: AI-Native
+                    </button>
+                </div>
+
+                <!-- Primary Pill CTA Button (Signature Acquisition Style) -->
+                <div class="mt-4 flex flex-col w-full">
+                    <a href="https://cal.com/agentz/revenue-leak-audit" target="_blank" class="w-full block py-[16px] md:py-[18px] px-8 text-white text-center bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] border-2 border-[#6f00ff] rounded-[100px] text-[15px] md:text-[17px] font-bold shadow-lg hover:shadow-xl transition-all duration-300">
+                        Audit Kesiapan AI &amp; Kebocoran Finansial Bisnis Anda (Gratis) →
+                    </a>
+                </div>
+            </section>
+
+            <!-- ── COLUMN 3: LEAD CAPTURE / PLAYBOOK ACCESS FORM (Right Sidebar) ── -->
+            <aside id="audit-form" class="w-full md:w-[28%] lg:w-[27%] shrink-0 bg-white rounded-2xl p-5 sm:p-6 shadow-xl border border-gray-100">
+                <div class="text-center mb-5">
+                    <h3 class="w-full text-xs font-extrabold text-white text-center leading-tight mb-2">
+                        <span class="bg-[#6f00ff] px-3 py-1 rounded-full inline-block">** AI Business Operating System **</span>
+                    </h3>
+                    <h2 class="text-center text-base sm:text-[17px] text-[#131628] font-extrabold leading-snug">
+                        Buka Akses Master Template &amp; Blueprint
+                    </h2>
+                    <p class="text-gray-500 text-xs mt-1.5 font-medium leading-relaxed">
+                        Isi data Anda untuk membuka 10 portofolio aset, template markdown Business Brain, prompt siap pakai, dan jadwal sesi audit privat.
+                    </p>
+                </div>
+
+                <form class="space-y-3.5" onsubmit="handleCourseFormSubmit(event)">
+                    <!-- First & Last Name -->
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div>
+                            <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="firstName">Nama Depan*</label>
+                            <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="firstName" name="firstName" placeholder="Jordan" required="" type="text"/>
+                        </div>
+                        <div>
+                            <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="lastName">Nama Belakang*</label>
+                            <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="lastName" name="lastName" placeholder="Engo" required="" type="text"/>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="email">Email Bisnis*</label>
+                        <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="email" name="email" placeholder="owner@perusahaan.com" required="" type="email"/>
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="phone">Nomor WhatsApp Aktif*</label>
+                        <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="phone" name="phone" placeholder="08123456789" required="" type="tel"/>
+                    </div>
+
+                    <!-- Stage & Role -->
+                    <div>
+                        <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="revenue">Peran &amp; Target Implementasi*</label>
+                        <select class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="revenue" name="revenue" required="">
+                            <option disabled="" selected="" value="">Pilih Target Utama Anda</option>
+                            <option value="owner_diy">Business Owner (Mau Bangun AI Operating System Mandiri)</option>
+                            <option value="owner_dfy">Business Owner (Tertarik Implementasi DFY oleh AGentZ)</option>
+                            <option value="team_training">Enablement / Training Tim Internal Perusahaan</option>
+                            <option value="engineer_operator">Operator / Engineer (Ingin Kuasai Agentic Workflow & IDE)</option>
+                        </select>
+                    </div>
+
+                    <!-- Privacy Trust Note -->
+                    <div class="text-[11px] text-gray-500 font-medium leading-tight pt-1 flex items-start gap-1.5">
+                        <span>🔒</span>
+                        <span>Data Anda 100% rahasia. Tautan template Business Brain dan blueprint dikirimkan langsung ke WhatsApp Anda.</span>
+                    </div>
+
+                    <!-- Submit CTA -->
+                    <div class="pt-2">
+                        <button class="w-full bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase tracking-wide py-3.5 px-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300" type="submit">
+                            Buka Akses Master Template &amp; Blueprint →
+                        </button>
+                    </div>
+
+                    <!-- Logo Under CTA -->
+                    <div class="mt-3 flex justify-center">
+                        <img src="images/learnzlogo.webp" alt="LearnZ Logo" class="h-6 w-auto opacity-70">
+                    </div>
+                </form>
+            </aside>
+
+        </div>
+
+        <!-- ═══════════ VALUE LADDER BANNER (Learnz DIY to AGentZ DFY) ═══════════ -->
+        <div class="w-full bg-[#131628] text-white py-6 px-4 mt-12 mb-6 border-y border-white/10">
+            <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div>
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+                        <span class="bg-[#fde047] text-black font-extrabold text-[11px] px-2.5 py-0.5 rounded-[50px] uppercase">Dua Jalur Eksekusi</span>
+                        <span class="font-bold text-sm md:text-base text-white">Bangun Sendiri (DIY) atau Terima Jadi (DFY)?</span>
+                    </div>
+                    <p class="text-xs md:text-sm text-gray-400 max-w-2xl">
+                        Pelajari kurikulum teknis di Learnz untuk kemandirian tim Anda, atau serahkan kepada AGentZ untuk membangun, mengoperasikan, dan menjamin performa Revenue Infrastructure Anda.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a class="font-bold text-[#131628] bg-[#fde047] hover:bg-yellow-400 text-xs md:text-sm py-2.5 px-5 rounded-full flex items-center gap-1 transition-all" href="agentz.html">
+                        Pelajari AGentZ DFY →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ═══════════ MOBILE BOTTOM NAVIGATION BAR ═══════════ -->
+    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#131628] border-t border-white/10 flex justify-around items-center h-16 px-2 shadow-2xl">
+        <a class="flex flex-col items-center justify-center text-[#6f00ff] font-bold text-[10px]" href="learnz-course.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+            <span>Kurikulum</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-white/70 hover:text-white font-medium text-[10px]" href="https://cal.com/agentz/revenue-leak-audit" target="_blank">
+            <span class="material-symbols-outlined">map</span>
+            <span>Audit</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-white/70 hover:text-white font-medium text-[10px]" href="learnz.html">
+            <span class="material-symbols-outlined">home</span>
+            <span>Beranda</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-white/70 hover:text-white font-medium text-[10px]" href="https://wa.me/6287881647878?text=Halo%20Jordan,%20saya%20tertarik%20AI%20Business%20Operating%20System" target="_blank">
+            <span class="material-symbols-outlined">chat</span>
+            <span>WhatsApp</span>
+        </a>
+    </nav>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="w-full bg-[#131628] text-white flex flex-col items-center text-center px-6 md:px-8 pt-12 pb-24 md:pb-12 gap-6 border-t border-white/10">
+        <!-- Footer Pill CTA -->
+        <a href="https://cal.com/agentz/revenue-leak-audit" target="_blank" id="footer-cta" class="inline-block bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] text-white text-base md:text-xl font-bold py-4 px-10 rounded-full shadow-lg border-2 border-[#6f00ff] uppercase transition-all duration-300">
+            Jadwalkan Konsultasi Revenue &amp; AI Audit Gratis →
+        </a>
+
+        <!-- Footer Navigation Links -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 w-full max-w-5xl border-t border-white/10 pt-8 mt-2">
+            <a href="learnz.html" class="flex items-center gap-2">
+                <img alt="LearnZ Logo" class="h-8 brightness-0 invert opacity-90" src="images/learnzlogo.webp"/>
+                <span class="font-bold text-xl text-white">LearnZ</span>
+            </a>
+            <div class="flex flex-wrap justify-center gap-6 font-medium text-xs uppercase tracking-wider text-white/70">
+                <a class="hover:text-white transition-colors" href="learnz.html">Beranda</a>
+                <a class="hover:text-white transition-colors" href="learnz-course.html">Kurikulum 10 Level</a>
+                <a class="hover:text-white transition-colors" href="agentz.html">AGentZ DFY</a>
+                <a class="hover:text-white transition-colors" href="https://cal.com/agentz/revenue-leak-audit" target="_blank">Jadwalkan Konsultasi</a>
+            </div>
+        </div>
+
+        <!-- Disclaimer & Copyright -->
+        <div class="max-w-4xl w-full text-[11px] text-white/50 leading-relaxed text-center border-t border-white/10 pt-6">
+            Hasil penguasaan dan implementasi bervariasi tergantung komitmen eksekusi teknis dan fondasi bisnis Anda. Seluruh kurikulum dan codebase dirancang sebagai standar industri untuk operasional bisnis modern.<br/><br/>
+            © 2026 LearnZ &amp; AGentZ — AI Business Operating System. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+    <!-- ═══════════ SCRIPTS ═══════════ -->
+    <script>
+    function toggleMobileMenu() {
+        const drawer = document.getElementById("mobile-nav-drawer");
+        if (drawer) {
+            drawer.classList.toggle("hidden");
+        }
+    }
+
+    function toggleCourseNav() {
+        const list = document.getElementById("course-nav-list");
+        const chevron = document.getElementById("course-nav-chevron");
+        if (list) {
+            list.classList.toggle("hidden");
+        }
+        if (chevron) {
+            chevron.classList.toggle("rotate-180");
+        }
+    }
+
+    function getUtmParams() {
+      const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      const query = new URLSearchParams(window.location.search);
+      const utms = {};
+      
+      params.forEach(param => {
+        const val = query.get(param);
+        if (val) {
+          utms[param] = val;
+          sessionStorage.setItem(param, val);
+        } else {
+          utms[param] = sessionStorage.getItem(param) || '';
+        }
+      });
+      return utms;
+    }
+    
+    function getGaClientId() {
+      try {
+        const match = document.cookie.match(/_ga=GA1\.\d+\.(\d+\.\d+)/);
+        if (match && match[1]) {
+          return match[1];
+        }
+      } catch (e) {
+        console.error("Gagal membaca cookie GA Client ID:", e);
+      }
+      return '';
+    }
+
+    function toggleModuleAccordion(levelNum) {
+        const body = document.getElementById(`mod-accordion-body-${levelNum}`);
+        const chevron = document.getElementById(`mod-accordion-chevron-${levelNum}`);
+        if (body) {
+            body.classList.toggle("hidden");
+        }
+        if (chevron) {
+            chevron.classList.toggle("rotate-180");
+        }
+    }
+
+    function switchModule(levelNum, lessonNum, title, desc, resource, leak) {
+        const activeBody = document.getElementById(`mod-accordion-body-${levelNum}`);
+        const activeChevron = document.getElementById(`mod-accordion-chevron-${levelNum}`);
+        if (activeBody && activeBody.classList.contains("hidden")) {
+            activeBody.classList.remove("hidden");
+        }
+        if (activeChevron && !activeChevron.classList.contains("rotate-180")) {
+            activeChevron.classList.add("rotate-180");
+        }
+
+        const badgeEl = document.getElementById("video-module-badge");
+        const titleEl = document.getElementById("video-module-title");
+        const descEl = document.getElementById("video-module-desc");
+        const resEl = document.getElementById("video-module-resource");
+        const leakEl = document.getElementById("video-module-leak");
+
+        if (badgeEl) badgeEl.textContent = `LEVEL ${levelNum} · PELAJARAN ${levelNum}.${lessonNum}`;
+        if (titleEl) titleEl.textContent = title;
+        if (descEl) descEl.textContent = desc;
+        if (resEl) resEl.textContent = resource;
+        if (leakEl) leakEl.textContent = leak;
+
+        const videoEl = document.getElementById("course-video-element");
+        if (videoEl) {
+            let targetSrc = "";
+            if (window.CONFIG && window.CONFIG.videoBaseUrl && window.CONFIG.videoBaseUrl.trim() !== '') {
+                const base = window.CONFIG.videoBaseUrl.replace(/\/+$/, '');
+                targetSrc = `${base}/level-${levelNum}-lesson-${lessonNum}.mp4`;
+            } else if (window.CONFIG && window.CONFIG.defaultVideo) {
+                targetSrc = window.CONFIG.defaultVideo;
+            }
+            if (targetSrc) {
+                videoEl.src = targetSrc;
+                videoEl.play().catch(() => {});
+            }
+        }
+        
+        const buttons = document.querySelectorAll(".video-nav-btn");
+        buttons.forEach((btn, idx) => {
+            if (idx === levelNum) {
+                btn.classList.remove("bg-white", "text-gray-700", "border", "border-gray-200");
+                btn.classList.add("bg-[#6f00ff]", "text-white");
+            } else {
+                btn.classList.remove("bg-[#6f00ff]", "text-white");
+                btn.classList.add("bg-white", "text-gray-700", "border", "border-gray-200");
+            }
+        });
+
+        const sidebarLinks = document.querySelectorAll(".sidebar-module-link");
+        const targetId = `sidebar-mod-${levelNum}-${lessonNum}`;
+        
+        sidebarLinks.forEach((link) => {
+            if (link.id === targetId) {
+                link.classList.remove("text-white/70", "font-normal", "border-transparent");
+                link.classList.add("bg-[#455876]", "text-white", "font-medium", "border-[#6f00ff]");
+            } else {
+                link.classList.remove("bg-[#455876]", "border-[#6f00ff]");
+                link.classList.add("text-white/70", "font-normal", "border-transparent");
+            }
+        });
+    }
+
+    async function handleCourseFormSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        
+        const utms = getUtmParams();
+        const eventId = 'lead_' + (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15));
+        const payload = {
+            event_id: eventId,
+            name: `${formData.get("firstName")} ${formData.get("lastName")}`,
+            phone: formData.get("phone"),
+            email: formData.get("email") || '',
+            service: 'LearnZ AI OS Playbook Access',
+            message: `Pendaftaran LearnZ 10-Level OS (Fokus: ${formData.get("revenue")})`,
+            site: window.CONFIG.site,
+            landing_page: window.location.pathname + window.location.search,
+            referrer: document.referrer || '',
+            ga_client_id: getGaClientId(),
+            utm_source: utms.utm_source,
+            utm_medium: utms.utm_medium,
+            utm_campaign: utms.utm_campaign,
+            utm_content: utms.utm_content
+        };
+
+        try {
+            fetch(window.CONFIG.api, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                if (typeof fbq === 'function') {
+                  fbq('track', 'Contact');
+                  fbq('track', 'Lead', { value: 0, currency: 'USD' }, { eventID: eventId });
+                }
+                if (typeof gtag === 'function') {
+                  gtag('event', 'generate_lead', {
+                    site: window.CONFIG.site,
+                    service: 'LearnZ AI OS Playbook Access'
+                  });
+                }
+            }).catch(err => console.error("Background lead sync failed:", err));
+        } catch (err) {
+            console.error("Submit error:", err);
+        }
+
+        alert("Terima kasih! Akses blueprint 10 Level & template Business Brain telah dikirimkan ke WhatsApp Anda.");
+        window.open("https://cal.com/agentz/revenue-leak-audit", "_blank");
+    }
+    </script>
+
+    <!-- ═══════════ FLOATING WIDGETS ═══════════ -->
+    <div id="agentz-wa-wrapper" style="position:fixed;bottom:160px;right:24px;z-index:2147483645;display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+      <span id="wa-text-pill" style="background:#ffffff;color:#18181b;font-size:12px;font-weight:700;padding:6px 12px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);letter-spacing:0.2px;pointer-events:none;">WhatsApp chat</span>
+      <a id="main-wa-link" href="https://wa.me/6287881647878?text=Halo%20Jordan,%20saya%20mau%20konsultasi%20AI%20Business%20Operating%20System" target="_blank" style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#ffffff;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform 0.2s, box-shadow 0.2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.45)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.35)';" title="Chat WhatsApp" aria-label="WhatsApp">
+        <img src="https://vsl.jordanengo.com/embed/wa.webp" alt="WhatsApp" style="width:36px;height:36px;object-fit:contain;" />
+      </a>
+    </div>
+
+</body>
+</html>
