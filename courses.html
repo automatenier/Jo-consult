@@ -190,145 +190,237 @@
                         Course Modules
                     </div>
 
-                    <!-- Modules List -->
-                    <div id="course-nav-list" class="flex flex-col py-1 transition-all">
-                        <!-- Module 1 Group -->
-                        <div class="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#6f00ff]/70">Modul 1 — Revenue</div>
-                        <a href="#video-player" id="sidebar-mod-1" onclick="switchModule(1, 1, 'Anda Tidak Membutuhkan Lebih Banyak Leads', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white text-xs font-medium transition-colors bg-[#455876] block border-l-4 border-[#6f00ff]">
-                            1.1 · Anda Tidak Butuh Lebih Banyak Leads
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-1-2" onclick="switchModule(1, 2, 'Alur Pendapatan (The Revenue Pipeline)', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            1.2 · Alur Pendapatan
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-1-3" onclick="switchModule(1, 3, 'Dari Mana Pendapatan Sebenarnya Berasal', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            1.3 · Dari Mana Revenue Berasal
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-1-4" onclick="switchModule(1, 4, 'Mengapa Lebih Banyak Traffic Tidak Memperbaiki Funnel yang Rusak', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            1.4 · Traffic ≠ Solusi Funnel Rusak
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-1-5" onclick="switchModule(1, 5, 'Revenue Infrastructure — Penjelasan Lengkap', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            1.5 · Revenue Infrastructure Explained
-                        </a>
+                    <!-- Modules List (FAQ Accordion Style) -->
+                    <div id="course-nav-list" class="flex flex-col transition-all divide-y divide-white/10">
+                        
+                        <!-- ── MODUL 1 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(1)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Modul 1 — Revenue</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">5 Materi</span>
+                                    <svg id="mod-accordion-chevron-1" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-1" class="flex flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-1" onclick="switchModule(1, 1, 'Anda Tidak Membutuhkan Lebih Banyak Leads', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white text-xs font-medium transition-colors bg-[#455876] block border-l-4 border-[#6f00ff]">
+                                    1.1 · Anda Tidak Butuh Lebih Banyak Leads
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-2" onclick="switchModule(1, 2, 'Alur Pendapatan (The Revenue Pipeline)', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.2 · Alur Pendapatan
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-3" onclick="switchModule(1, 3, 'Dari Mana Pendapatan Sebenarnya Berasal', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.3 · Dari Mana Revenue Berasal
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-4" onclick="switchModule(1, 4, 'Mengapa Lebih Banyak Traffic Tidak Memperbaiki Funnel yang Rusak', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.4 · Traffic ≠ Solusi Funnel Rusak
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-1-5" onclick="switchModule(1, 5, 'Revenue Infrastructure — Penjelasan Lengkap', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    1.5 · Revenue Infrastructure Explained
+                                </a>
+                            </div>
+                        </div>
 
-                        <!-- Module 2 Group -->
-                        <div class="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#6f00ff]/70 border-t border-white/10 mt-1">Modul 2 — Diagnosis</div>
-                        <a href="#video-player" id="sidebar-mod-2-1" onclick="switchModule(2, 1, 'Cara Memetakan Perjalanan Leads Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.1 · Petakan Perjalanan Leads Anda
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-2" onclick="switchModule(2, 2, 'Di Mana Leads Masuk', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.2 · Di Mana Leads Masuk
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-3" onclick="switchModule(2, 3, 'Di Mana Leads Menghilang', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.3 · Di Mana Leads Menghilang
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-4" onclick="switchModule(2, 4, 'Speed-to-Lead: Kecepatan Respons Pertama', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.4 · Speed-to-Lead
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-5" onclick="switchModule(2, 5, 'Kebocoran Follow-Up', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.5 · Kebocoran Follow-Up
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-6" onclick="switchModule(2, 6, 'Kualifikasi Leads', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.6 · Kualifikasi
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-7" onclick="switchModule(2, 7, 'Hambatan Janji Temu (Appointment Friction)', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.7 · Hambatan Janji Temu
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-8" onclick="switchModule(2, 8, 'No-Shows: Kenapa Prospek Tidak Hadir', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.8 · No-Shows
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-9" onclick="switchModule(2, 9, 'Serah Terima Sales (Sales Handoff)', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.9 · Sales Handoff
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-2-10" onclick="switchModule(2, 10, 'Cara Menghitung Kebocoran Revenue Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            2.10 · Hitung Kebocoran Revenue
-                        </a>
+                        <!-- ── MODUL 2 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(2)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Modul 2 — Diagnosis</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">10 Materi</span>
+                                    <svg id="mod-accordion-chevron-2" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-2" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-2-1" onclick="switchModule(2, 1, 'Cara Memetakan Perjalanan Leads Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.1 · Petakan Perjalanan Leads Anda
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-2" onclick="switchModule(2, 2, 'Di Mana Leads Masuk', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.2 · Di Mana Leads Masuk
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-3" onclick="switchModule(2, 3, 'Di Mana Leads Menghilang', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.3 · Di Mana Leads Menghilang
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-4" onclick="switchModule(2, 4, 'Speed-to-Lead: Kecepatan Respons Pertama', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.4 · Speed-to-Lead
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-5" onclick="switchModule(2, 5, 'Kebocoran Follow-Up', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.5 · Kebocoran Follow-Up
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-6" onclick="switchModule(2, 6, 'Kualifikasi Leads', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.6 · Kualifikasi
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-7" onclick="switchModule(2, 7, 'Hambatan Janji Temu (Appointment Friction)', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.7 · Hambatan Janji Temu
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-8" onclick="switchModule(2, 8, 'No-Shows: Kenapa Prospek Tidak Hadir', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.8 · No-Shows
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-9" onclick="switchModule(2, 9, 'Serah Terima Sales (Sales Handoff)', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.9 · Sales Handoff
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-2-10" onclick="switchModule(2, 10, 'Cara Menghitung Kebocoran Revenue Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    2.10 · Hitung Kebocoran Revenue
+                                </a>
+                            </div>
+                        </div>
 
-                        <!-- Module 3 Group -->
-                        <div class="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#6f00ff]/70 border-t border-white/10 mt-1">Modul 3 — Desain Sistem</div>
-                        <a href="#video-player" id="sidebar-mod-3-1" onclick="switchModule(3, 1, 'Manusia vs Mesin: Apa yang Harus Dilakukan Siapa?', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            3.1 · Manusia vs Mesin
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-3-2" onclick="switchModule(3, 2, 'Apa yang Harus Diotomatiskan?', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            3.2 · Apa yang Harus Diotomatiskan?
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-3-3" onclick="switchModule(3, 3, 'Alur Leads Ideal', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            3.3 · Alur Leads Ideal
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-3-4" onclick="switchModule(3, 4, 'Merancang Sistem Respons Leads Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            3.4 · Desain Sistem Respons Leads
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-3-5" onclick="switchModule(3, 5, 'Merancang Sistem Follow-Up Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            3.5 · Desain Sistem Follow-Up
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-3-6" onclick="switchModule(3, 6, 'Merancang Sistem Janji Temu Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            3.6 · Desain Sistem Janji Temu
-                        </a>
+                        <!-- ── MODUL 3 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(3)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Modul 3 — Desain Sistem</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">6 Materi</span>
+                                    <svg id="mod-accordion-chevron-3" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-3" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-3-1" onclick="switchModule(3, 1, 'Manusia vs Mesin: Apa yang Harus Dilakukan Siapa?', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.1 · Manusia vs Mesin
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-2" onclick="switchModule(3, 2, 'Apa yang Harus Diotomatiskan?', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.2 · Apa yang Harus Diotomatiskan?
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-3" onclick="switchModule(3, 3, 'Alur Leads Ideal', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.3 · Alur Leads Ideal
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-4" onclick="switchModule(3, 4, 'Merancang Sistem Respons Leads Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.4 · Desain Sistem Respons Leads
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-5" onclick="switchModule(3, 5, 'Merancang Sistem Follow-Up Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.5 · Desain Sistem Follow-Up
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-3-6" onclick="switchModule(3, 6, 'Merancang Sistem Janji Temu Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    3.6 · Desain Sistem Janji Temu
+                                </a>
+                            </div>
+                        </div>
 
-                        <!-- Module 4 Group -->
-                        <div class="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#6f00ff]/70 border-t border-white/10 mt-1">Modul 4 — AI</div>
-                        <a href="#video-player" id="sidebar-mod-4-1" onclick="switchModule(4, 1, 'Di Mana AI Sebenarnya Masuk Akal', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.1 · Di Mana AI Masuk Akal
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-2" onclick="switchModule(4, 2, 'AI Chat vs AI Voice: Perbedaan &amp; Kegunaannya', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.2 · AI Chat vs AI Voice
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-3" onclick="switchModule(4, 3, 'Website AI Voice: Ubah Pengunjung Jadi Janji Temu 24/7', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.3 · Website AI Voice
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-4" onclick="switchModule(4, 4, 'WhatsApp AI: Konversi Leads Masuk Secara Otomatis', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.4 · WhatsApp AI
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-5" onclick="switchModule(4, 5, 'AI Voice Calls: Panggilan Otomatis yang Terasa Manusiawi', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.5 · AI Voice Calls
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-6" onclick="switchModule(4, 6, 'AI Qualification: Saring Leads Tanpa Tim Manual', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.6 · AI Qualification
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-7" onclick="switchModule(4, 7, 'AI Follow-Up: Jangan Biarkan Leads Dingin', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.7 · AI Follow-Up
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-4-8" onclick="switchModule(4, 8, 'AI Appointment Setting: Booking Otomatis 24/7', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            4.8 · AI Appointment Setting
-                        </a>
+                        <!-- ── MODUL 4 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(4)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Modul 4 — AI</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">8 Materi</span>
+                                    <svg id="mod-accordion-chevron-4" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-4" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-4-1" onclick="switchModule(4, 1, 'Di Mana AI Sebenarnya Masuk Akal', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.1 · Di Mana AI Masuk Akal
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-2" onclick="switchModule(4, 2, 'AI Chat vs AI Voice: Perbedaan &amp; Kegunaannya', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.2 · AI Chat vs AI Voice
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-3" onclick="switchModule(4, 3, 'Website AI Voice: Ubah Pengunjung Jadi Janji Temu 24/7', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.3 · Website AI Voice
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-4" onclick="switchModule(4, 4, 'WhatsApp AI: Konversi Leads Masuk Secara Otomatis', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.4 · WhatsApp AI
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-5" onclick="switchModule(4, 5, 'AI Voice Calls: Panggilan Otomatis yang Terasa Manusiawi', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.5 · AI Voice Calls
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-6" onclick="switchModule(4, 6, 'AI Qualification: Saring Leads Tanpa Tim Manual', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.6 · AI Qualification
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-7" onclick="switchModule(4, 7, 'AI Follow-Up: Jangan Biarkan Leads Dingin', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.7 · AI Follow-Up
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-4-8" onclick="switchModule(4, 8, 'AI Appointment Setting: Booking Otomatis 24/7', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    4.8 · AI Appointment Setting
+                                </a>
+                            </div>
+                        </div>
 
-                        <!-- Module 5 Group -->
-                        <div class="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#6f00ff]/70 border-t border-white/10 mt-1">Modul 5 — Revenue Infrastructure</div>
-                        <a href="#video-player" id="sidebar-mod-5-1" onclick="switchModule(5, 1, 'CRM: Pusat Data Leads Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.1 · CRM
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-5-2" onclick="switchModule(5, 2, 'Lead Memory: Sistem Ingatan Bisnis Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.2 · Lead Memory
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-5-3" onclick="switchModule(5, 3, 'Sales Pipeline: Visualisasi Alur Penjualan', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.3 · Sales Pipeline
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-5-4" onclick="switchModule(5, 4, 'Serah Terima Marketing → Sales', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.4 · Marketing → Sales Handoff
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-5-5" onclick="switchModule(5, 5, 'Serah Terima Sales → Customer', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.5 · Sales → Customer Handoff
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-5-6" onclick="switchModule(5, 6, 'Reporting: Ukur Apa yang Penting', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.6 · Reporting
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-5-7" onclick="switchModule(5, 7, 'Revenue OS: Semua Sistem Bekerja Bersama', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            5.7 · Revenue OS
-                        </a>
+                        <!-- ── MODUL 5 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(5)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Modul 5 — Revenue Infrastructure</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">7 Materi</span>
+                                    <svg id="mod-accordion-chevron-5" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-5" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-5-1" onclick="switchModule(5, 1, 'CRM: Pusat Data Leads Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.1 · CRM
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-2" onclick="switchModule(5, 2, 'Lead Memory: Sistem Ingatan Bisnis Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.2 · Lead Memory
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-3" onclick="switchModule(5, 3, 'Sales Pipeline: Visualisasi Alur Penjualan', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.3 · Sales Pipeline
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-4" onclick="switchModule(5, 4, 'Serah Terima Marketing → Sales', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.4 · Marketing → Sales Handoff
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-5" onclick="switchModule(5, 5, 'Serah Terima Sales → Customer', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.5 · Sales → Customer Handoff
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-6" onclick="switchModule(5, 6, 'Reporting: Ukur Apa yang Penting', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.6 · Reporting
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-5-7" onclick="switchModule(5, 7, 'Revenue OS: Semua Sistem Bekerja Bersama', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    5.7 · Revenue OS
+                                </a>
+                            </div>
+                        </div>
 
-                        <!-- Module 6 Group -->
-                        <div class="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-[#6f00ff]/70 border-t border-white/10 mt-1">Modul 6 — Implementasi</div>
-                        <a href="#video-player" id="sidebar-mod-6-1" onclick="switchModule(6, 1, 'Bangun Mesin Pembuat Janji Temu Pertama Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            6.1 · Bangun Appointment Engine Pertama
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-6-2" onclick="switchModule(6, 2, 'Bangun Sistem Penjualan WhatsApp Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            6.2 · Bangun WhatsApp Sales System
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-6-3" onclick="switchModule(6, 3, 'Bangun Revenue OS Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            6.3 · Bangun Revenue OS
-                        </a>
-                        <a href="#video-player" id="sidebar-mod-6-4" onclick="switchModule(6, 4, 'Peta Jalan Revenue Infrastructure 90 Hari', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
-                            6.4 · Roadmap Revenue 90 Hari
-                        </a>
+                        <!-- ── MODUL 6 ACCORDION ── -->
+                        <div class="module-accordion-item">
+                            <button type="button" onclick="toggleModuleAccordion(6)" class="w-full flex items-center justify-between px-4 py-3 bg-[#171b30] hover:bg-[#1f2542] text-left transition-colors cursor-pointer focus:outline-none group">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-[#6f00ff]"></span>
+                                    <span class="text-xs font-bold text-white tracking-wide">Modul 6 — Implementasi</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-white/50 bg-white/5 px-2 py-0.5 rounded-full font-medium">4 Materi</span>
+                                    <svg id="mod-accordion-chevron-6" class="w-3.5 h-3.5 text-white/60 group-hover:text-white transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="mod-accordion-body-6" class="hidden flex-col py-1 bg-[#131628]">
+                                <a href="#video-player" id="sidebar-mod-6-1" onclick="switchModule(6, 1, 'Bangun Mesin Pembuat Janji Temu Pertama Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.1 · Bangun Appointment Engine Pertama
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-6-2" onclick="switchModule(6, 2, 'Bangun Sistem Penjualan WhatsApp Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.2 · Bangun WhatsApp Sales System
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-6-3" onclick="switchModule(6, 3, 'Bangun Revenue OS Anda', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.3 · Bangun Revenue OS
+                                </a>
+                                <a href="#video-player" id="sidebar-mod-6-4" onclick="switchModule(6, 4, 'Peta Jalan Revenue Infrastructure 90 Hari', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-2 px-5 text-left text-white/70 hover:text-white hover:bg-white/5 text-xs font-normal transition-colors block border-l-4 border-transparent">
+                                    6.4 · Roadmap Revenue 90 Hari
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </aside>
@@ -628,7 +720,28 @@
 
     document.addEventListener("DOMContentLoaded", initVideoTracking);
 
+    function toggleModuleAccordion(modNum) {
+        const body = document.getElementById(`mod-accordion-body-${modNum}`);
+        const chevron = document.getElementById(`mod-accordion-chevron-${modNum}`);
+        if (body) {
+            body.classList.toggle("hidden");
+        }
+        if (chevron) {
+            chevron.classList.toggle("rotate-180");
+        }
+    }
+
     function switchModule(moduleNum, chapterNum, title, videoUrl) {
+        // Automatically expand the active module accordion if collapsed
+        const activeBody = document.getElementById(`mod-accordion-body-${moduleNum}`);
+        const activeChevron = document.getElementById(`mod-accordion-chevron-${moduleNum}`);
+        if (activeBody && activeBody.classList.contains("hidden")) {
+            activeBody.classList.remove("hidden");
+        }
+        if (activeChevron && !activeChevron.classList.contains("rotate-180")) {
+            activeChevron.classList.add("rotate-180");
+        }
+
         // Update module info card
         const badgeEl = document.getElementById("video-module-badge");
         const titleEl = document.getElementById("video-module-title");
