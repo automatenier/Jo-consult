@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -42,9 +42,12 @@
     <title>Course Gratis &amp; Pusat Materi - AGentZ</title>
     <meta name="description" content="Akses gratis bootcamp modul dan materi Revenue Infrastructure untuk scale bisnis coaching & jasa Anda tanpa tim tambahan."/>
     <link rel="icon" type="image/webp" href="images/agentzlogo.webp"/>
+    
+    <!-- Google Fonts: Poppins (Acquisition.com Primary Font) & Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -52,259 +55,357 @@
             theme: {
                 extend: {
                     colors: {
-                        "nav-midnight": "#0a0a0a",
-                        "primary-container": "#2563eb",
-                        "primary": "#1e40af",
-                        "text-primary": "#0A1F44",
-                        "surface-gray": "#F3F4F6",
-                        "tertiary-fixed": "#fde047"
+                        "ink-blue": "#131628",
+                        "dark-navy": "#131628",
+                        "electric-purple": "#6f00ff",
+                        "electric-purple-hover": "#5800cc",
+                        "module-active": "#455876",
+                        "page-bg": "#f9fafb"
                     },
                     fontFamily: {
-                        "display-xl": ["Montserrat", "sans-serif"],
-                        "headline-md": ["Montserrat", "sans-serif"],
-                        "body-md": ["Plus Jakarta Sans", "sans-serif"]
+                        poppins: ["Poppins", "sans-serif"],
+                        body: ["Poppins", "sans-serif"]
                     }
                 }
             }
         }
     </script>
     <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #131628;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-smoothing: grayscale;
+        }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .neo-shadow { box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
-        .neo-shadow-lg { box-shadow: 6px 6px 0px 0px rgba(0,0,0,1); }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-body-md antialiased pt-16 md:pt-20">
+<body class="bg-[#f9fafb] text-[#131628] antialiased">
 
-    <!-- ═══════════ TOP APP BAR / NAVIGATION ═══════════ -->
-    <header class="fixed top-0 w-full z-50 bg-[#0a0a0a] text-white border-b-2 border-black flex justify-between items-center px-4 md:px-8 h-16 md:h-20 shadow-md">
-        <div class="flex items-center gap-6">
+    <!-- ═══════════ TOP ANNOUNCEMENT BANNER (Acquisition Style) ═══════════ -->
+    <div class="w-full bg-[#6f00ff] text-white py-2.5 px-4 text-center z-50 relative">
+        <a href="index.html#booking" class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium hover:underline text-white no-underline transition-all">
+            <span class="text-[11px] py-[2px] px-[8px] font-bold text-black bg-white rounded-[50px] leading-[18px] uppercase">BARU</span>
+            <span><strong>Jadwal Private Scaling Workshop 2026 Telah Dibuka:</strong> Cek Ketersediaan Slot</span>
+            <svg class="inline-block w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- ═══════════ GLOBAL NAVIGATION HEADER (bg-ink-blue) ═══════════ -->
+    <header class="w-full bg-[#131628] text-white sticky top-0 z-40 shadow-md border-b border-white/10">
+        <div class="max-w-[1300px] mx-auto px-4 md:px-8 py-3.5 flex items-center justify-between">
+            <!-- Brand Logo -->
             <a href="index.html" class="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
                 <img alt="AGentZ Logo" class="h-8 md:h-9 w-auto" src="images/agentzlogo.webp"/>
-                <span class="font-black text-xl md:text-2xl text-white tracking-tight font-display-xl">Agentz</span>
+                <span class="font-extrabold text-xl md:text-2xl text-white tracking-tight">Agentz</span>
             </a>
-            <nav class="hidden md:flex items-center gap-6 text-sm font-bold">
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors">Beranda</a>
-                <a href="courses.html" class="text-yellow-300 font-extrabold relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-yellow-300">Course Gratis</a>
-                <a href="index.html#booking" class="text-gray-300 hover:text-white transition-colors">Konsultasi</a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+                <a href="index.html" class="text-white/80 hover:text-white transition-colors">Beranda</a>
+                <a href="courses.html" class="text-white font-semibold relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#6f00ff]">Course Gratis</a>
+                <a href="index.html#booking" class="text-white/80 hover:text-white transition-colors">Konsultasi</a>
             </nav>
+
+            <!-- CTA & Mobile Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="index.html#booking" class="hidden sm:inline-block bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs md:text-sm font-semibold py-2.5 px-6 rounded-full shadow-md transition-all duration-300">
+                    Jadwalkan Konsultasi Gratis →
+                </a>
+                <!-- Mobile Hamburger Toggle -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white p-1 focus:outline-none" aria-label="Open Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <div class="flex items-center gap-3">
-            <a href="index.html#booking" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-black uppercase tracking-wider px-3.5 sm:px-5 py-2 sm:py-2.5 border-2 border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-0.5 transition-all">
-                Jadwalkan Konsultasi Gratis →
-            </a>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-nav-drawer" class="hidden md:hidden bg-[#131628] border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="index.html" class="block text-white/80 hover:text-white py-2 text-sm font-medium">Beranda</a>
+            <a href="courses.html" class="block text-white font-bold py-2 text-sm">Course Gratis</a>
+            <a href="index.html#booking" class="block text-white/80 hover:text-white py-2 text-sm font-medium">Konsultasi</a>
+            <div class="pt-2">
+                <a href="index.html#booking" class="block w-full text-center bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs font-semibold py-3 px-4 rounded-full">
+                    Jadwalkan Konsultasi Gratis →
+                </a>
+            </div>
         </div>
     </header>
 
-    <main class="w-full pb-24 md:pb-0">
-        <!-- ═══════════ COURSE MODULES ACCORDION ═══════════ -->
-        <section class="w-full bg-[#171717] text-white border-b-2 border-black">
-            <details class="group max-w-6xl mx-auto" open>
-                <summary class="flex justify-between items-center px-6 md:px-8 py-4 cursor-pointer font-bold text-sm md:text-base list-none hover:bg-black/30 transition-colors">
-                    <span class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-yellow-400">menu_book</span>
-                        Modul Course: Revenue Infrastructure Bootcamp
-                    </span>
-                    <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-                </summary>
-                <div class="px-6 md:px-8 py-4 bg-white text-gray-900 border-t-2 border-black">
-                    <ul class="flex flex-col md:flex-row md:flex-wrap gap-3 md:gap-6 text-sm font-bold">
-                        <li><a class="text-blue-600 underline font-black" href="#video-player" onclick="switchVideo(1, '$100M Money Models & Revenue Architecture', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')">Modul 1: Mulai di Sini &amp; Konteks</a></li>
-                        <li><a class="hover:text-blue-600 transition-colors text-gray-700" href="#video-player" onclick="switchVideo(2, 'Stage 0: Menghentikan Kebocoran Leads & Ghosting', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')">Modul 2: Stage 0 - Diagnosis Kebocoran Leads</a></li>
-                        <li><a class="hover:text-blue-600 transition-colors text-gray-700" href="#video-player" onclick="switchVideo(3, 'Stage 1: Otomasi Speed-to-Lead <60 Detik', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')">Modul 3: Stage 1 - Mesin Speed-to-Lead</a></li>
-                        <li><a class="hover:text-blue-600 transition-colors text-gray-700" href="#video-player" onclick="switchVideo(4, 'Stage 2: Full Operating System & 100% Ownership', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')">Modul 4: Stage 2 - OS Closing 24/7</a></li>
-                    </ul>
-                </div>
-            </details>
-        </section>
-
-        <!-- ═══════════ DESKTOP HERO SECTION: 2 COLUMNS ═══════════ -->
-        <section class="max-w-6xl mx-auto px-4 md:px-8 py-10 md:py-16">
-            <div class="text-center md:text-left mb-8">
-                <div class="inline-block bg-yellow-300 text-black text-xs font-black uppercase px-3 py-1 mb-3 border-2 border-black neo-shadow">
-                    TRAINING LANJUTAN GRATIS
-                </div>
-                <h1 class="font-display-xl text-3xl sm:text-4xl md:text-5xl font-black text-black tracking-tight leading-tight">
-                    Scale Bisnis Anda Dengan Revenue Infrastructure
-                </h1>
-                <p class="text-gray-600 text-base md:text-lg mt-2 max-w-2xl font-medium">
-                    Pelajari bagaimana membangun sistem follow up, speed-to-lead, dan kualifikasi otomatis tanpa perlu menambah tim sales manual.
-                </p>
+    <!-- ═══════════ MAIN CONTENT AREA ═══════════ -->
+    <main id="main-content" class="w-full pb-16">
+        
+        <!-- ═══════════ PAGE TITLE SECTION (Acquisition Signature Layout) ═══════════ -->
+        <div class="py-8 md:py-10 max-w-[1170px] mx-auto text-center px-4">
+            <div class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">
+                TRAINING LANJUTAN GRATIS
             </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#131628] tracking-tight leading-[1.15]">
+                Scale Bisnis Anda Dengan Revenue Infrastructure
+            </h1>
+            <!-- Acquisition's colored accent divider -->
+            <hr class="w-[120px] md:w-[150px] border-[2.5px] border-[#6f00ff] mx-auto mt-4 mb-3"/>
+            <p class="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+                Pelajari bagaimana membangun sistem follow up, speed-to-lead, dan kualifikasi otomatis tanpa perlu menambah tim sales manual.
+            </p>
+        </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Left Column: Video Player (7 Cols) -->
-                <div id="video-player" class="lg:col-span-7 flex flex-col gap-5">
-                    <div class="relative w-full aspect-video bg-gray-900 border-4 border-black neo-shadow overflow-hidden group">
-                        <!-- Video embed / VSL -->
-                        <video id="course-video-element" class="w-full h-full object-cover" controls poster="images/infra.webp">
-                            <source src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4" type="video/mp4">
-                            Browser Anda tidak mendukung video HTML5.
-                        </video>
+        <!-- ═══════════ 3-COLUMN CORE TRAINING LAYOUT ═══════════ -->
+        <div class="max-w-[1300px] mx-auto py-2 flex flex-col md:flex-row items-start gap-6 px-4 md:px-6">
+
+            <!-- ── COLUMN 1: COURSE MODULES NAVIGATION (Left Sidebar) ── -->
+            <aside class="w-full md:w-[23%] shrink-0">
+                <div class="bg-[#131628] rounded-2xl overflow-hidden shadow-lg border border-slate-800">
+                    
+                    <!-- Mobile Accordion Trigger -->
+                    <button onclick="toggleCourseNav()" type="button" class="w-full flex justify-between items-center px-5 py-4 cursor-pointer text-white font-medium text-base md:hidden focus:outline-none">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#6f00ff]">menu_book</span>
+                            <span>Course Modules</span>
+                        </span>
+                        <svg id="course-nav-chevron" class="w-4 h-4 transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+
+                    <!-- Desktop Header Title -->
+                    <div class="hidden md:block py-4 px-4 bg-[#1b2038] border-b border-white/10 text-center font-bold text-white text-xs uppercase tracking-wider">
+                        Course Modules
                     </div>
 
-                    <!-- Video Title Header -->
-                    <div class="bg-white border-3 border-black p-4 neo-shadow flex justify-between items-center">
-                        <div>
-                            <span class="text-xs font-black uppercase tracking-wider text-blue-600 block mb-0.5" id="video-module-badge">MODUL 1</span>
-                            <h2 class="font-black text-base md:text-lg text-black leading-snug" id="video-module-title">$100M Money Models &amp; Revenue Architecture</h2>
-                        </div>
-                        <span class="material-symbols-outlined text-green-600 font-bold text-2xl">verified</span>
+                    <!-- Modules List -->
+                    <div id="course-nav-list" class="flex flex-col py-1 transition-all">
+                        <a href="#video-player" id="sidebar-mod-1" onclick="switchVideo(1, '$100M Money Models & Revenue Architecture', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-3 px-4 text-center text-white text-sm font-medium transition-colors bg-[#455876] block border-l-4 border-[#6f00ff]">
+                            Modul 1: Mulai di Sini &amp; Konteks
+                        </a>
+                        <a href="#video-player" id="sidebar-mod-2" onclick="switchVideo(2, 'Stage 0: Menghentikan Kebocoran Leads & Ghosting', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-3 px-4 text-center text-white/80 hover:text-white hover:bg-white/5 text-sm font-normal transition-colors block border-l-4 border-transparent">
+                            Modul 2: Stage 0 - Audit Kebocoran Leads
+                        </a>
+                        <a href="#video-player" id="sidebar-mod-3" onclick="switchVideo(3, 'Stage 1: Otomasi Speed-to-Lead <60 Detik', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-3 px-4 text-center text-white/80 hover:text-white hover:bg-white/5 text-sm font-normal transition-colors block border-l-4 border-transparent">
+                            Modul 3: Stage 1 - Mesin Speed-to-Lead
+                        </a>
+                        <a href="#video-player" id="sidebar-mod-4" onclick="switchVideo(4, 'Stage 2: Full Operating System & 100% Ownership', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="sidebar-module-link py-3 px-4 text-center text-white/80 hover:text-white hover:bg-white/5 text-sm font-normal transition-colors block border-l-4 border-transparent">
+                            Modul 4: Stage 2 - OS Closing 24/7
+                        </a>
                     </div>
+                </div>
+            </aside>
 
-                    <!-- Video Selection Row -->
-                    <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                        <button onclick="switchVideo(1, '$100M Money Models & Revenue Architecture', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-5 py-2.5 bg-blue-600 text-white font-black text-xs uppercase tracking-wide border-2 border-black neo-shadow whitespace-nowrap active:scale-95 transition-all">
-                            Video 1: Mulai di Sini
-                        </button>
-                        <button onclick="switchVideo(2, 'Stage 0: Menghentikan Kebocoran Leads & Ghosting', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-5 py-2.5 bg-white hover:bg-gray-100 text-black font-black text-xs uppercase tracking-wide border-2 border-black neo-shadow whitespace-nowrap active:scale-95 transition-all">
-                            Video 2: Audit Kebocoran
-                        </button>
-                        <button onclick="switchVideo(3, 'Stage 1: Otomasi Speed-to-Lead <60 Detik', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-5 py-2.5 bg-white hover:bg-gray-100 text-black font-black text-xs uppercase tracking-wide border-2 border-black neo-shadow whitespace-nowrap active:scale-95 transition-all">
-                            Video 3: Mesin Speed-to-Lead
-                        </button>
-                        <button onclick="switchVideo(4, 'Stage 2: Full Operating System & 100% Ownership', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-5 py-2.5 bg-white hover:bg-gray-100 text-black font-black text-xs uppercase tracking-wide border-2 border-black neo-shadow whitespace-nowrap active:scale-95 transition-all">
-                            Video 4: Revenue OS
-                        </button>
+            <!-- ── COLUMN 2: VIDEO PLAYER & PRIMARY CTA (Center Column) ── -->
+            <section id="video-player" class="w-full md:w-[49%] lg:w-[50%] flex flex-col">
+                <!-- Video Container (16:9 Aspect Ratio) -->
+                <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+                    <video id="course-video-element" class="w-full h-full object-cover" controls poster="images/infra.webp">
+                        <source src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung video HTML5.
+                    </video>
+                </div>
+
+                <!-- Video Title & Module Info Card -->
+                <div class="mt-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#6f00ff] block mb-0.5" id="video-module-badge">MODUL 1</span>
+                        <h2 class="font-extrabold text-base md:text-lg text-[#131628] leading-snug" id="video-module-title">$100M Money Models &amp; Revenue Architecture</h2>
                     </div>
+                    <span class="material-symbols-outlined text-[#6f00ff] font-bold text-2xl">verified</span>
+                </div>
 
-                    <a href="index.html#booking" class="w-full text-center bg-blue-600 text-white font-black text-sm md:text-base uppercase tracking-tight py-4 px-6 border-4 border-black neo-shadow hover:bg-blue-700 active:scale-95 transition-all mt-2 block">
+                <!-- Video Selection Pill Tabs -->
+                <div class="mt-3 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                    <button onclick="switchVideo(1, '$100M Money Models & Revenue Architecture', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-4 py-2 bg-[#6f00ff] text-white font-semibold text-xs uppercase tracking-wide rounded-full shadow-sm whitespace-nowrap transition-all">
+                        Video 1: Mulai di Sini
+                    </button>
+                    <button onclick="switchVideo(2, 'Stage 0: Menghentikan Kebocoran Leads & Ghosting', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        Video 2: Audit Kebocoran
+                    </button>
+                    <button onclick="switchVideo(3, 'Stage 1: Otomasi Speed-to-Lead <60 Detik', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        Video 3: Mesin Speed-to-Lead
+                    </button>
+                    <button onclick="switchVideo(4, 'Stage 2: Full Operating System & 100% Ownership', 'https://vsl.jordanengo.com/v/jo-consult/pitch.mp4')" class="video-nav-btn px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-semibold text-xs uppercase tracking-wide rounded-full border border-gray-200 shadow-sm whitespace-nowrap transition-all">
+                        Video 4: Revenue OS
+                    </button>
+                </div>
+
+                <!-- Primary Pill CTA Button (Signature Acquisition Style) -->
+                <div class="mt-4 flex flex-col w-full">
+                    <a href="index.html#booking" class="w-full block py-[16px] md:py-[18px] px-8 text-white text-center bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] border-2 border-[#6f00ff] rounded-[100px] text-[16px] md:text-[18px] font-bold shadow-lg hover:shadow-xl transition-all duration-300">
                         Dapatkan Roadmap Revenue Personal Anda →
                     </a>
                 </div>
+            </section>
 
-                <!-- Right Column: Lead Form (5 Cols) -->
-                <div class="lg:col-span-5 bg-white p-6 sm:p-8 border-4 border-black neo-shadow">
-                    <div class="text-center mb-6">
-                        <div class="inline-block bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 mb-3 border-2 border-black">
-                            ★ KHUSUS BUSINESS OWNER ★
+            <!-- ── COLUMN 3: LEAD CAPTURE / WORKSHOP FORM (Right Sidebar) ── -->
+            <aside class="w-full md:w-[28%] lg:w-[27%] shrink-0 bg-white rounded-2xl p-5 sm:p-6 shadow-xl border border-gray-100">
+                <div class="text-center mb-5">
+                    <h3 class="w-full text-sm font-extrabold text-white text-center leading-tight mb-2">
+                        <span class="bg-[#6f00ff] px-3.5 py-1 rounded-full inline-block">** Business Owners **</span>
+                    </h3>
+                    <h2 class="text-center text-base sm:text-[17px] text-[#131628] font-extrabold leading-snug">
+                        Konsultasi &amp; Akses Lengkap Master Template
+                    </h2>
+                    <p class="text-gray-500 text-xs mt-1.5 font-medium leading-relaxed">
+                        Isi data bisnis Anda untuk membuka semua dokumen SOP, script bot, dan jadwal sesi audit privat.
+                    </p>
+                </div>
+
+                <form class="space-y-3.5" onsubmit="handleCourseFormSubmit(event)">
+                    <!-- First & Last Name -->
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div>
+                            <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="firstName">Nama Depan*</label>
+                            <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="firstName" name="firstName" placeholder="Jordan" required="" type="text"/>
                         </div>
-                        <h2 class="font-display-xl text-xl sm:text-2xl font-black text-black leading-tight">
-                            Konsultasi &amp; Akses Lengkap Master Template
-                        </h2>
-                        <p class="text-gray-600 text-xs sm:text-sm mt-1.5 font-medium">
-                            Isi data bisnis Anda untuk membuka semua dokumen SOP, script bot, dan jadwal sesi audit privat.
-                        </p>
+                        <div>
+                            <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="lastName">Nama Belakang*</label>
+                            <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="lastName" name="lastName" placeholder="Engo" required="" type="text"/>
+                        </div>
                     </div>
 
-                    <form class="space-y-4" onsubmit="handleCourseFormSubmit(event)">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- First Name -->
-                            <div>
-                                <label class="block font-black text-xs uppercase text-gray-800 mb-1" for="firstName">Nama Depan*</label>
-                                <input class="w-full bg-gray-50 border-2 border-black p-3 font-bold text-sm text-gray-900 focus:bg-yellow-50 focus:outline-none transition-all" id="firstName" name="firstName" placeholder="Jordan" required="" type="text"/>
-                            </div>
-                            <!-- Last Name -->
-                            <div>
-                                <label class="block font-black text-xs uppercase text-gray-800 mb-1" for="lastName">Nama Belakang*</label>
-                                <input class="w-full bg-gray-50 border-2 border-black p-3 font-bold text-sm text-gray-900 focus:bg-yellow-50 focus:outline-none transition-all" id="lastName" name="lastName" placeholder="Engo" required="" type="text"/>
-                            </div>
-                        </div>
+                    <!-- Email -->
+                    <div>
+                        <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="email">Email Bisnis*</label>
+                        <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="email" name="email" placeholder="nama@perusahaan.com" required="" type="email"/>
+                    </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- Email -->
-                            <div>
-                                <label class="block font-black text-xs uppercase text-gray-800 mb-1" for="email">Email Bisnis*</label>
-                                <input class="w-full bg-gray-50 border-2 border-black p-3 font-bold text-sm text-gray-900 focus:bg-yellow-50 focus:outline-none transition-all" id="email" name="email" placeholder="nama@perusahaan.com" required="" type="email"/>
-                            </div>
+                    <!-- Phone -->
+                    <div>
+                        <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="phone">Nomor WhatsApp / HP*</label>
+                        <input class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="phone" name="phone" placeholder="08123456789" required="" type="tel"/>
+                    </div>
 
-                            <!-- Phone -->
-                            <div>
-                                <label class="block font-black text-xs uppercase text-gray-800 mb-1" for="phone">Nomor WhatsApp / HP*</label>
-                                <input class="w-full bg-gray-50 border-2 border-black p-3 font-bold text-sm text-gray-900 focus:bg-yellow-50 focus:outline-none transition-all" id="phone" name="phone" placeholder="08123456789" required="" type="tel"/>
-                            </div>
-                        </div>
+                    <!-- Revenue -->
+                    <div>
+                        <label class="block font-bold text-[11px] uppercase text-gray-700 mb-1" for="revenue">Estimasi Revenue Bulanan*</label>
+                        <select class="w-full bg-gray-50 border border-gray-300 rounded-lg p-2.5 font-medium text-xs text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-1 focus:ring-[#6f00ff] outline-none transition-all" id="revenue" name="revenue" required="">
+                            <option disabled="" selected="" value="">Pilih Estimasi Revenue</option>
+                            <option value="under_15m">Di bawah Rp 15 Juta / bln</option>
+                            <option value="15m_75m">Rp 15 - 75 Juta / bln</option>
+                            <option value="75m_150m">Rp 75 - 150 Juta / bln</option>
+                            <option value="above_150m">Di atas Rp 150 Juta / bln</option>
+                        </select>
+                    </div>
 
-                        <!-- Revenue -->
-                        <div>
-                            <label class="block font-black text-xs uppercase text-gray-800 mb-1" for="revenue">Estimasi Revenue Bulanan*</label>
-                            <select class="w-full bg-gray-50 border-2 border-black p-3 font-bold text-sm text-gray-900 focus:bg-yellow-50 focus:outline-none transition-all" id="revenue" name="revenue" required="">
-                                <option disabled="" selected="" value="">Pilih Estimasi Revenue</option>
-                                <option value="under_15m">Di bawah Rp 15 Juta / bln</option>
-                                <option value="15m_75m">Rp 15 - 75 Juta / bln</option>
-                                <option value="75m_150m">Rp 75 - 150 Juta / bln</option>
-                                <option value="above_150m">Di atas Rp 150 Juta / bln</option>
-                            </select>
-                        </div>
+                    <!-- Privacy Trust Note -->
+                    <div class="text-[11px] text-gray-500 font-medium leading-tight pt-1 flex items-start gap-1.5">
+                        <span>🔒</span>
+                        <span>Data Anda 100% aman. Tim AGentZ akan mengirimkan link resource &amp; verifikasi jadwal langsung via WhatsApp.</span>
+                    </div>
 
-                        <div class="text-[11px] text-gray-500 font-medium leading-tight pt-1">
-                            🔒 Data Anda 100% aman. Tim AGentZ akan mengirimkan link resource &amp; verifikasi jadwal langsung via WhatsApp.
-                        </div>
+                    <!-- Submit CTA -->
+                    <div class="pt-2">
+                        <button class="w-full bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase tracking-wide py-3.5 px-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300" type="submit">
+                            Buka Akses &amp; Jadwalkan Audit →
+                        </button>
+                    </div>
 
-                        <div class="pt-3">
-                            <button class="w-full bg-yellow-300 hover:bg-yellow-400 text-black font-black text-sm uppercase tracking-wide py-4 border-3 border-black neo-shadow hover:-translate-y-0.5 active:scale-95 transition-all" type="submit">
-                                Buka Akses &amp; Jadwalkan Audit →
-                            </button>
-                        </div>
+                    <!-- Logo Under CTA -->
+                    <div class="mt-3 flex justify-center">
+                        <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-6 w-auto opacity-70">
+                    </div>
+                </form>
+            </aside>
 
-                        <!-- Logo Under CTA -->
-                        <div class="mt-4 flex justify-center">
-                            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-8 w-auto">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════ ANNOUNCEMENT BANNER ═══════════ -->
-        <div class="w-full bg-blue-600 text-white py-5 px-4 flex flex-col md:flex-row items-center justify-center gap-3 text-center border-y-4 border-black">
-            <div class="flex items-center gap-2">
-                <span class="bg-white text-blue-700 font-black text-xs px-2.5 py-1 uppercase border-2 border-black neo-shadow">BARU</span>
-                <span class="font-bold text-sm md:text-base">Jadwal Private Scaling Workshop 2026 Telah Dibuka:</span>
-            </div>
-            <a class="font-black text-yellow-300 text-sm md:text-base flex items-center gap-1 hover:underline uppercase tracking-wide" href="index.html#booking">
-                Cek Ketersediaan Slot <span class="material-symbols-outlined">arrow_right_alt</span>
-            </a>
         </div>
+
+        <!-- ═══════════ ANNOUNCEMENT BANNER (Acquisition Scaling Workshop Callout) ═══════════ -->
+        <div class="w-full bg-[#6f00ff] text-white py-4 px-4 mt-12 mb-6">
+            <div class="max-w-[1170px] mx-auto flex flex-col md:flex-row items-center justify-center gap-3 text-center">
+                <div class="flex items-center gap-2">
+                    <span class="bg-white text-black font-bold text-[11px] md:text-xs px-2.5 py-0.5 rounded-[50px] leading-[18px]">BARU</span>
+                    <span class="font-medium text-sm md:text-base">Jadwal Private Scaling Workshop 2026 Telah Dibuka:</span>
+                </div>
+                <a class="font-bold text-white hover:underline text-sm md:text-base flex items-center gap-1" href="index.html#booking">
+                    Cek Ketersediaan Slot
+                    <svg class="w-4 h-4 inline-block ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+            </div>
+        </div>
+
     </main>
 
-    <!-- ═══════════ MOBILE BOTTOM NAVIGATION ═══════════ -->
-    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-white border-t-2 border-black flex justify-around items-center h-16 px-2 shadow-lg">
-        <a class="flex flex-col items-center justify-center text-blue-600 font-black text-[10px]" href="courses.html">
+    <!-- ═══════════ MOBILE BOTTOM NAVIGATION BAR ═══════════ -->
+    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#131628] border-t border-white/10 flex justify-around items-center h-16 px-2 shadow-2xl">
+        <a class="flex flex-col items-center justify-center text-[#6f00ff] font-bold text-[10px]" href="courses.html">
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
             <span>Course</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-gray-600 hover:text-black font-bold text-[10px]" href="index.html#booking">
+        <a class="flex flex-col items-center justify-center text-white/70 hover:text-white font-medium text-[10px]" href="index.html#booking">
             <span class="material-symbols-outlined">map</span>
             <span>Audit</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-gray-600 hover:text-black font-bold text-[10px]" href="index.html">
+        <a class="flex flex-col items-center justify-center text-white/70 hover:text-white font-medium text-[10px]" href="index.html">
             <span class="material-symbols-outlined">home</span>
             <span>Beranda</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-gray-600 hover:text-black font-bold text-[10px]" href="https://wa.me/15556523818?text=Halo%20Jordan,%20saya%20tertarik%20diskusi%20AGentZ" target="_blank">
+        <a class="flex flex-col items-center justify-center text-white/70 hover:text-white font-medium text-[10px]" href="https://wa.me/15556523818?text=Halo%20Jordan,%20saya%20tertarik%20diskusi%20AGentZ" target="_blank">
             <span class="material-symbols-outlined">chat</span>
             <span>WhatsApp</span>
         </a>
     </nav>
 
-    <!-- ═══════════ FOOTER ═══════════ -->
-    <footer class="w-full bg-black text-white flex flex-col items-center text-center px-6 md:px-8 py-12 gap-6 border-t-4 border-black">
-        <a href="index.html#booking" id="footer-cta" class="mb-4 inline-block bg-blue-600 text-white text-lg md:text-2xl font-black py-5 px-12 border-4 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] uppercase hover:bg-blue-700 hover:scale-105 transition-all">
+    <!-- ═══════════ FOOTER (Acquisition Style) ═══════════ -->
+    <footer class="w-full bg-[#131628] text-white flex flex-col items-center text-center px-6 md:px-8 pt-12 pb-24 md:pb-12 gap-6 border-t border-white/10">
+        <!-- Footer Pill CTA -->
+        <a href="index.html#booking" id="footer-cta" class="inline-block bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] text-white text-base md:text-xl font-bold py-4 px-10 rounded-full shadow-lg border-2 border-[#6f00ff] uppercase transition-all duration-300">
             Jadwalkan Konsultasi Gratis →
         </a>
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 w-full max-w-6xl border-t border-gray-800 pt-6">
+
+        <!-- Footer Navigation Links -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 w-full max-w-5xl border-t border-white/10 pt-8 mt-2">
             <a href="index.html" class="flex items-center gap-2">
-                <img alt="AGentZ Logo" class="h-8 brightness-0 invert" src="images/agentzlogo.webp"/>
-                <span class="font-black text-xl text-white font-display-xl">AGentZ</span>
+                <img alt="AGentZ Logo" class="h-8 brightness-0 invert opacity-90" src="images/agentzlogo.webp"/>
+                <span class="font-bold text-xl text-white">AGentZ</span>
             </a>
-            <div class="flex flex-wrap justify-center gap-4 md:gap-6 font-bold text-xs uppercase tracking-wider text-gray-300">
-                <a class="hover:text-yellow-300 transition-colors" href="index.html">Beranda</a>
-                <a class="hover:text-yellow-300 transition-colors" href="courses.html">Course Gratis</a>
-                <a class="hover:text-yellow-300 transition-colors" href="index.html#booking">Jadwalkan Konsultasi</a>
+            <div class="flex flex-wrap justify-center gap-6 font-medium text-xs uppercase tracking-wider text-white/70">
+                <a class="hover:text-white transition-colors" href="index.html">Beranda</a>
+                <a class="hover:text-white transition-colors" href="courses.html">Course Gratis</a>
+                <a class="hover:text-white transition-colors" href="index.html#booking">Jadwalkan Konsultasi</a>
             </div>
         </div>
-        <div class="max-w-4xl w-full text-xs text-gray-400 leading-relaxed text-center border-t border-gray-800 pt-6">
+
+        <!-- Disclaimer & Copyright (Preserving Indonesian Text) -->
+        <div class="max-w-4xl w-full text-[11px] text-white/50 leading-relaxed text-center border-t border-white/10 pt-6">
+            Hasil setiap bisnis bervariasi tergantung penawaran, kesiapan operasional, dan konsistensi eksekusi. AGentZ tidak memberikan kepastian hasil finansial tanpa implementasi nyata sistem. Konsultasi dan materi pelatihan ditujukan untuk edukasi serta akselerasi operasional bisnis.<br/><br/>
             © 2026 AGentZ — Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa. Hak Cipta Dilindungi.
         </div>
     </footer>
 
+    <!-- ═══════════ SCRIPTS ═══════════ -->
     <script>
-        // 1. UTM Parameter Capture and Persistence
+    // Mobile navigation toggles
+    function toggleMobileMenu() {
+        const drawer = document.getElementById("mobile-nav-drawer");
+        if (drawer) {
+            drawer.classList.toggle("hidden");
+        }
+    }
+
+    function toggleCourseNav() {
+        const list = document.getElementById("course-nav-list");
+        const chevron = document.getElementById("course-nav-chevron");
+        if (list) {
+            list.classList.toggle("hidden");
+        }
+        if (chevron) {
+            chevron.classList.toggle("rotate-180");
+        }
+    }
+
+    // 1. UTM Parameter Capture and Persistence
     function getUtmParams() {
       const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
       const query = new URLSearchParams(window.location.search);
@@ -394,8 +495,12 @@
     document.addEventListener("DOMContentLoaded", initVideoTracking);
 
     function switchVideo(moduleNum, title, videoUrl) {
-        document.getElementById("video-module-badge").textContent = `MODULE ${moduleNum}`;
-        document.getElementById("video-module-title").textContent = title;
+        // Update module info card
+        const badgeEl = document.getElementById("video-module-badge");
+        const titleEl = document.getElementById("video-module-title");
+        if (badgeEl) badgeEl.textContent = `MODUL ${moduleNum}`;
+        if (titleEl) titleEl.textContent = title;
+
         const videoEl = document.getElementById("course-video-element");
         if (videoEl) {
             // Reset tracking states for the new video
@@ -408,15 +513,27 @@
             videoEl.play().catch(() => {});
         }
         
-        // Highlight active button
+        // Highlight active button in quick switch row
         const buttons = document.querySelectorAll(".video-nav-btn");
         buttons.forEach((btn, idx) => {
             if (idx === moduleNum - 1) {
-                btn.classList.remove("bg-white", "text-black");
-                btn.classList.add("bg-blue-600", "text-white");
+                btn.classList.remove("bg-white", "text-gray-700", "border", "border-gray-200");
+                btn.classList.add("bg-[#6f00ff]", "text-white");
             } else {
-                btn.classList.remove("bg-blue-600", "text-white");
-                btn.classList.add("bg-white", "text-black");
+                btn.classList.remove("bg-[#6f00ff]", "text-white");
+                btn.classList.add("bg-white", "text-gray-700", "border", "border-gray-200");
+            }
+        });
+
+        // Highlight active item in Left Sidebar
+        const sidebarLinks = document.querySelectorAll(".sidebar-module-link");
+        sidebarLinks.forEach((link, idx) => {
+            if (idx === moduleNum - 1) {
+                link.classList.remove("text-white/80", "font-normal", "border-transparent");
+                link.classList.add("bg-[#455876]", "text-white", "font-medium", "border-[#6f00ff]");
+            } else {
+                link.classList.remove("bg-[#455876]", "border-[#6f00ff]");
+                link.classList.add("text-white/80", "font-normal", "border-transparent");
             }
         });
     }
