@@ -82,16 +82,36 @@
     <link rel="preload" as="image" href="images/founder-left.webp" type="image/webp">
     <link rel="preload" as="image" href="images/founder-right.webp" type="image/webp">
     <link rel="stylesheet" href="tailwind.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "ink-blue": "#131628",
+                        "dark-navy": "#131628",
+                        "electric-purple": "#6f00ff",
+                        "electric-purple-hover": "#5800cc",
+                        "module-active": "#455876",
+                        "page-bg": "#f9fafb"
+                    },
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                        body: ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         .hidden { display: none !important; }
         :root {
-            --blue: #1e40af;
-            --blue-light: #2563eb;
-            --green: #16a34a;
-            --yellow: #fde047;
-            --red: #dc2626;
-            --ink: #0a0a0a;
+            --purple: #6f00ff;
+            --purple-hover: #5800cc;
+            --ink: #131628;
+            --page-bg: #f9fafb;
         }
 
         * { box-sizing: border-box; }
@@ -99,72 +119,34 @@
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
-            background: #fff;
+            background: #f9fafb;
             color: var(--ink);
             line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         .hl {
-            background: var(--yellow);
-            padding: 0 5px;
-            font-weight: 800;
-            font-style: italic;
-            color: #000;
+            background: #f3e8ff;
+            color: #6f00ff;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
         }
 
         .btn-pulse {
             animation: ctaPulse 2.4s ease-in-out infinite;
         }
         @keyframes ctaPulse {
-            0%   { box-shadow: 0 0 0 0 rgba(37,99,235,0.55); }
-            60%  { box-shadow: 0 0 0 14px rgba(37,99,235,0); }
-            100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+            0%   { box-shadow: 0 0 0 0 rgba(111,0,255,0.45); }
+            60%  { box-shadow: 0 0 0 14px rgba(111,0,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(111,0,255,0); }
         }
 
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
-        .faq-item.open .faq-answer { max-height: 600px; }
-        .faq-icon { transition: transform 0.3s ease; display: inline-block; }
-        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
+        .faq-item.open .faq-answer { max-height: 800px; }
+        .faq-chevron { transition: transform 0.3s ease; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
 
-        .stage-card {
-            font-family: 'Inter', sans-serif;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .stage-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .neo-border {
-            border: 3px solid #0a0a0a;
-        }
-        .neo-border-sm {
-            border: 2px solid #0a0a0a;
-        }
-        .neo-shadow {
-            box-shadow: 4px 4px 0px #0a0a0a;
-        }
-        .neo-shadow-lg {
-            box-shadow: 6px 6px 0px #0a0a0a;
-        }
-        .highlight-badge {
-            background-color: #fde047;
-            color: #0a0a0a;
-            font-weight: 800;
-            font-style: italic;
-            padding: 2px 8px;
-            display: inline-block;
-        }
-
-        @keyframes ticker {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .ticker-track {
-            display: block;
-            width: max-content;
-            animation: ticker 22s linear infinite;
-            white-space: nowrap;
-        }
         .progress-bar-transition {
             transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -172,9 +154,9 @@
         .option-card {
             transition: all 0.2s ease-in-out;
             cursor: pointer;
-            border: 2px solid #e0e3e5;
+            border: 1.5px solid #e5e7eb;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 14px;
             padding: 16px;
             width: 100%;
             text-align: left;
@@ -182,18 +164,19 @@
             align-items: center;
             gap: 16px;
             outline: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
         
         .option-card:hover {
-            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.12);
-            border-color: #006a61;
+            box-shadow: 0 8px 25px rgba(111, 0, 255, 0.08);
+            border-color: #6f00ff;
             transform: translateY(-2px);
         }
 
         .option-card.selected {
-            background-color: #F0FDFA;
-            border-color: #006a61;
-            box-shadow: none;
+            background-color: #faf5ff;
+            border-color: #6f00ff;
+            box-shadow: 0 0 0 2px #6f00ff;
         }
 
         .option-grid-card {
@@ -203,8 +186,8 @@
             justify-content: center !important;
             text-align: center !important;
             padding: 24px 12px 16px 12px !important;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            border: 1.5px solid #e5e7eb;
             background-color: #ffffff;
             min-height: 135px;
             aspect-ratio: 1 / 0.95;
@@ -212,29 +195,30 @@
             cursor: pointer;
             outline: none;
             width: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .option-grid-card:hover {
-            border-color: #006a61;
-            box-shadow: 0 6px 20px rgba(0, 106, 97, 0.12);
+            border-color: #6f00ff;
+            box-shadow: 0 8px 25px rgba(111, 0, 255, 0.1);
             transform: translateY(-2px);
         }
 
         .option-grid-card.selected {
-            background-color: #F0FDFA !important;
-            border-color: #006a61 !important;
-            box-shadow: 0 0 0 2px #006a61 !important;
+            background-color: #faf5ff !important;
+            border-color: #6f00ff !important;
+            box-shadow: 0 0 0 2px #6f00ff !important;
         }
 
         .option-grid-card.selected .option-badge {
-            background-color: #006a61 !important;
+            background-color: #6f00ff !important;
             color: #ffffff !important;
-            border-color: #006a61 !important;
+            border-color: #6f00ff !important;
         }
 
         .option-grid-card.selected .option-icon-box {
-            background-color: #006a61 !important;
+            background-color: #6f00ff !important;
             color: #ffffff !important;
         }
 
@@ -318,16 +302,16 @@
 </head>
 <body>
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black flex items-center justify-between px-3 sm:px-6 py-2 sm:py-3">
-        <a href="index.html" class="flex items-center gap-2 text-black hover:opacity-80 transition-opacity">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#131628] border-b border-white/10 flex items-center justify-between px-4 sm:px-8 py-3 shadow-md">
+        <a href="index.html" class="flex items-center gap-2 text-white hover:opacity-90 transition-opacity">
             <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="nav-logo-img">
-            <span class="font-black text-lg sm:text-xl text-black tracking-tight">Agentz</span>
+            <span class="font-extrabold text-lg sm:text-xl text-white tracking-tight">Agentz</span>
         </a>
         <div class="flex items-center gap-2 sm:gap-4">
-            <a href="courses.html" class="bg-gray-100 hover:bg-gray-200 text-black text-xs sm:text-sm font-bold uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all whitespace-nowrap">
+            <a href="courses.html" class="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide px-4 py-2 rounded-full border border-white/15 transition-all whitespace-nowrap">
                 Course Gratis
             </a>
-            <a href="#booking" id="nav-cta" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all whitespace-nowrap">
+            <a href="#booking" id="nav-cta" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs sm:text-sm font-semibold tracking-wide px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all whitespace-nowrap">
                 <span class="hidden sm:inline">Jadwalkan </span>Konsultasi<span class="hidden sm:inline"> Gratis</span> →
             </a>
         </div>
@@ -335,7 +319,7 @@
 
     <main id="main-content">
         <!-- ═══════════ TICKER ═══════════ -->
-        <div class="overflow-hidden bg-blue-600 text-white text-xs font-bold uppercase tracking-widest py-3 border-b-2 border-black mt-[66px] flex items-center">
+        <div class="overflow-hidden bg-[#6f00ff] text-white text-xs font-semibold uppercase tracking-widest py-2.5 shadow-sm mt-[62px] flex items-center">
             <div id="ticker-track" style="display: flex; width: max-content; white-space: nowrap; align-items: center; line-height: 1;">
                 <div id="ticker-original" style="display: inline-flex; align-items: center; line-height: 1;">
                     <span style="padding: 0 1.5rem; display: inline-block; line-height: 1;">Speed-to-Lead</span>
@@ -379,11 +363,11 @@
         </div>
 
         <!-- ═══════════ HERO ═══════════ -->
-        <header id="hero" class="pt-10 pb-16 px-4 sm:px-6 text-center border-b-4 border-black relative overflow-hidden bg-white">
+        <header id="hero" class="pt-8 pb-16 px-4 sm:px-6 text-center border-b border-gray-200/70 relative overflow-hidden bg-white">
             <div class="max-w-5xl mx-auto relative">
-                <p class="font-black text-blue-600 tracking-widest uppercase text-xs mb-4">
+                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-4">
                     UNTUK Bisnis Coaching &amp; Jasa
-                </p>
+                </span>
 
                 <div class="flex items-end justify-center gap-1 sm:gap-3 md:gap-6 my-2 mb-6">
                     <!-- Left Founder Image (pointing right towards headline) -->
@@ -391,8 +375,8 @@
 
                     <!-- Center H1 -->
                     <div class="max-w-3xl text-center px-1 sm:px-2">
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight text-black">
-                            Ubah Leads Jadi Jadwal Meeting <br class="hidden md:block"><span class="italic underline decoration-blue-500 decoration-4">Tanpa Tim Tambahan</span>
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-[1.2] tracking-tight text-[#131628]">
+                            Ubah Leads Jadi Jadwal Meeting <br class="hidden md:block"><span class="italic underline decoration-[#6f00ff] decoration-4">Tanpa Tim Tambahan</span>
                         </h1>
                     </div>
 
@@ -404,43 +388,46 @@
                 Agentz bangun sistem yang menghubungkan konten anda dengan sistem sales sehingga setiap lead baru akan direspons, dikualifikasi, dan diarahkan ke sesi konsultasi secara otomatis.
             </p>
 
-            <p class="text-lg md:text-xl font-bold text-gray-800 mb-10 max-w-xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl font-bold text-[#131628] mb-10 max-w-xl mx-auto leading-relaxed">
                 Transisi dari<br>
                 <span class="hl">Leads menghilang</span>
-                <span class="mx-2 text-blue-600 font-black">→</span>
+                <span class="mx-2 text-[#6f00ff] font-black">→</span>
                 <span class="hl">Follow up dan Closing 24/7</span>
             </p>
 
             <!-- VSL Video Player -->
-            <div id="vsl-video" class="vsl-container mb-10 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden max-w-3xl mx-auto"
+            <div id="vsl-video" class="vsl-container mb-10 rounded-2xl border border-gray-200 shadow-2xl overflow-hidden max-w-3xl mx-auto bg-black"
                 data-src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
                 data-analytics="https://analytics.jordanengo.com"
                 data-site-id="GANTI_DENGAN_SITE_ID_UMAMI"
-                data-accent="#2563eb">
+                data-accent="#6f00ff">
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#booking" id="hero-cta" class="btn-pulse w-full sm:w-auto text-center bg-blue-600 text-white text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
+                <a href="#booking" id="hero-cta" class="btn-pulse w-full sm:w-auto text-center bg-[#6f00ff] hover:bg-[#5800cc] text-white text-base md:text-lg font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-[#6f00ff] uppercase tracking-wide">
                     Jadwalkan Konsultasi Gratis
                 </a>
-                <a href="courses.html" class="w-full sm:w-auto text-center bg-gray-100 text-black text-lg md:text-xl font-black py-5 px-10 border-4 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-200 hover:-translate-y-0.5 transition-all uppercase tracking-tight">
+                <a href="courses.html" class="w-full sm:w-auto text-center bg-white hover:bg-gray-50 text-[#131628] text-base md:text-lg font-bold py-4 px-10 rounded-full border-2 border-gray-200 shadow-md hover:shadow-lg transition-all uppercase tracking-wide">
                     Resource Gratis
                 </a>
             </div>
-            <p class="mt-4 text-red-600 font-bold text-sm uppercase tracking-wide">⚠ Slot Terbatas</p>
+            <p class="mt-4 text-red-500 font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-1">
+                <span>⚠</span>
+                <span>Slot Terbatas untuk Bulan Ini</span>
+            </p>
 
             <!-- Calendar embed & Quiz Form -->
             <div id="booking" class="mt-10 max-w-2xl mx-auto">
                 <!-- 1. Cal.com container (hidden by default, shown after form submission) -->
-                <div id="cal-container" class="w-full hidden p-6 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                <div id="cal-container" class="w-full hidden p-6 bg-white rounded-2xl border border-gray-100 shadow-xl">
                     <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
                 </div>
 
                 <!-- 2. Detailed Form container (shown first as interactive quiz) -->
-                <div id="form-container" class="w-full p-6 sm:p-8 bg-white border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left">
+                <div id="form-container" class="w-full p-6 sm:p-8 bg-white rounded-2xl border border-gray-100 shadow-xl text-left">
                         <!-- Progress Indicator Header -->
-                        <div class="w-full h-3 bg-gray-200 relative overflow-hidden mb-6 border-2 border-black">
-                            <div class="absolute top-0 left-0 h-full bg-[#006a61] progress-bar-transition" id="progress-bar" style="width: 20%;"></div>
+                        <div class="w-full h-2.5 bg-gray-100 rounded-full relative overflow-hidden mb-6 border border-gray-200/70">
+                            <div class="absolute top-0 left-0 h-full bg-[#6f00ff] progress-bar-transition" id="progress-bar" style="width: 20%;"></div>
                         </div>
 
                         <!-- Meta Info -->
@@ -520,7 +507,7 @@
                                     </button>
                                 </div>
                                 <div class="mt-8 flex justify-end pt-4 border-t border-gray-100">
-                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-1">
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-7 rounded-full shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-1">
                                         Lanjut →
                                     </button>
                                 </div>
@@ -528,31 +515,31 @@
 
                             <!-- Step 2: Bottleneck Terbesar -->
                             <div class="quiz-step hidden" data-step="2">
-                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Bottleneck Terbesar Saat Ini:</h1>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-[#131628] uppercase tracking-tight">Bottleneck Terbesar Saat Ini:</h1>
                                 <input type="hidden" name="bottleneck" id="input_bottleneck" required>
                                 <div class="flex flex-col gap-3">
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Habis waktu editing konten / posting')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
-                                        <span class="font-bold text-base text-gray-800">Habis waktu editing konten / posting</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">A</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Habis waktu editing konten / posting</span>
                                     </button>
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Bingung cara datangkan leads berkualitas')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
-                                        <span class="font-bold text-base text-gray-800">Bingung cara datangkan leads berkualitas</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">B</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Bingung cara datangkan leads berkualitas</span>
                                     </button>
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Leads banyak tapi chat sales tidak closing')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
-                                        <span class="font-bold text-base text-gray-800">Leads banyak tapi chat sales tidak closing</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">C</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Leads banyak tapi chat sales tidak closing</span>
                                     </button>
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Tidak ada sistem follow-up otomatis')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
-                                        <span class="font-bold text-base text-gray-800">Tidak ada sistem follow-up otomatis</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">D</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Tidak ada sistem follow-up otomatis</span>
                                     </button>
                                 </div>
                                 <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-all flex items-center gap-2 text-sm">
                                         ← Kembali
                                     </button>
-                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-2">
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-7 rounded-full shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-2">
                                         Lanjut →
                                     </button>
                                 </div>
@@ -560,31 +547,31 @@
 
                             <!-- Step 3: Estimasi Revenue Bulanan -->
                             <div class="quiz-step hidden" data-step="3">
-                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Estimasi Revenue Bulanan Saat Ini:</h1>
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-[#131628] uppercase tracking-tight">Estimasi Revenue Bulanan Saat Ini:</h1>
                                 <input type="hidden" name="revenue" id="input_revenue" required>
                                 <div class="flex flex-col gap-3">
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', 'under_1k')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">A</span>
-                                        <span class="font-bold text-base text-gray-800">Di bawah Rp 15 Juta ($1,000 / bln)</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">A</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Di bawah Rp 15 Juta ($1,000 / bln)</span>
                                     </button>
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', '1k_5k')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">B</span>
-                                        <span class="font-bold text-base text-gray-800">Rp 15 - 75 Juta ($1,000 - $5,000 / bln)</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">B</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Rp 15 - 75 Juta ($1,000 - $5,000 / bln)</span>
                                     </button>
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', '5k_10k')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">C</span>
-                                        <span class="font-bold text-base text-gray-800">Rp 75 - 150 Juta ($5,000 - $10,000 / bln)</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">C</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Rp 75 - 150 Juta ($5,000 - $10,000 / bln)</span>
                                     </button>
                                     <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'revenue', 'above_10k')">
-                                        <span class="w-8 h-8 rounded-full bg-gray-200 text-black flex items-center justify-center font-bold text-sm shrink-0">D</span>
-                                        <span class="font-bold text-base text-gray-800">Di atas Rp 150 Juta ($10,000 / bln)</span>
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">D</span>
+                                        <span class="font-bold text-sm sm:text-base text-gray-800">Di atas Rp 150 Juta ($10,000 / bln)</span>
                                     </button>
                                 </div>
                                 <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-all flex items-center gap-2 text-sm">
                                         ← Kembali
                                     </button>
-                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-3">
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-7 rounded-full shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-3">
                                         Lanjut →
                                     </button>
                                 </div>
@@ -592,13 +579,13 @@
 
                             <!-- Step 4: Nomor WhatsApp -->
                             <div class="quiz-step hidden" data-step="4">
-                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Nomor WhatsApp / Telegram Anda:</h1>
-                                <input type="tel" name="contact" required oninput="validateInputAndEnableNext(this, 4)" class="w-full border-4 border-black p-4 font-bold text-lg focus:outline-none focus:bg-yellow-50" placeholder="Contoh: 08123456789">
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-[#131628] uppercase tracking-tight">Nomor WhatsApp / Telegram Anda:</h1>
+                                <input type="tel" name="contact" required oninput="validateInputAndEnableNext(this, 4)" class="w-full border border-gray-300 rounded-xl p-4 font-semibold text-base text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-2 focus:ring-[#6f00ff]/20 outline-none transition-all" placeholder="Contoh: 08123456789">
                                 <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-all flex items-center gap-2 text-sm">
                                         ← Kembali
                                     </button>
-                                    <button type="button" onclick="nextStep()" class="bg-[#006a61] text-white font-bold py-3 px-6 rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-4">
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-7 rounded-full shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-4">
                                         Lanjut →
                                     </button>
                                 </div>
@@ -606,13 +593,13 @@
 
                             <!-- Step 5: Nama Lengkap -->
                             <div class="quiz-step hidden" data-step="5">
-                                <h1 class="text-xl md:text-2xl font-black mb-6 text-black uppercase tracking-tight">Nama Lengkap Anda:</h1>
-                                <input type="text" name="name" required oninput="validateInputAndEnableNext(this, 5)" class="w-full border-4 border-black p-4 font-bold text-lg focus:outline-none focus:bg-yellow-50" placeholder="Contoh: Mathew Jordan">
+                                <h1 class="text-xl md:text-2xl font-black mb-6 text-[#131628] uppercase tracking-tight">Nama Lengkap Anda:</h1>
+                                <input type="text" name="name" required oninput="validateInputAndEnableNext(this, 5)" class="w-full border border-gray-300 rounded-xl p-4 font-semibold text-base text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-2 focus:ring-[#6f00ff]/20 outline-none transition-all" placeholder="Contoh: Mathew Jordan">
                                 <div class="mt-8 flex justify-between pt-4 border-t border-gray-100">
-                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-black font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-all flex items-center gap-2">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded-full hover:bg-gray-200 transition-all flex items-center gap-2 text-sm">
                                         ← Kembali
                                     </button>
-                                    <button type="submit" class="bg-[#22c55e] text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-[#16a34a] active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-5">
+                                    <button type="submit" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-5">
                                         Kirim & Jadwalkan ✓
                                     </button>
                                 </div>
@@ -621,11 +608,11 @@
                     </div>
 
                     <!-- 3. Thank You container (hidden by default) -->
-                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-green-50 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] text-center my-4">
+                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl border border-green-200 shadow-xl text-center my-4">
                         <div class="text-6xl mb-4">🎉</div>
-                        <h3 class="text-3xl font-black mb-3 uppercase text-black">Pendaftaran Berhasil!</h3>
-                        <p class="text-xl font-bold text-gray-700 mb-6">Kami telah menerima data kualifikasi Anda. Tim AGentZ akan menghubungi Anda melalui WhatsApp / Telegram dalam waktu dekat untuk konfirmasi jadwal.</p>
-                        <button onclick="resetBookingFlow()" class="inline-block bg-blue-600 text-white font-black py-3 px-6 border-4 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-700 transition-all uppercase">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold mb-3 text-[#131628]">Pendaftaran Berhasil!</h3>
+                        <p class="text-base sm:text-lg font-medium text-gray-600 mb-6">Kami telah menerima data kualifikasi Anda. Tim AGentZ akan menghubungi Anda melalui WhatsApp / Telegram dalam waktu dekat untuk konfirmasi jadwal.</p>
+                        <button onclick="resetBookingFlow()" class="inline-block bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3.5 px-8 rounded-full shadow-md hover:shadow-lg transition-all uppercase text-sm tracking-wide">
                             Isi Ulang Form
                         </button>
                     </div>
@@ -951,82 +938,88 @@
                     </script>
             </div>
 
+
             <!-- ═══════════ FREE ADVANCED TRAINING SECTION ═══════════ -->
-            <div class="mt-16 text-center">
-                <h2 class="text-2xl md:text-4xl font-black text-black mb-2 uppercase tracking-tight">
-                    <span class="text-blue-600">FREE</span> ADVANCED TRAINING
+            <div class="mt-20 text-center">
+                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                    Pusat Materi &amp; Resources
+                </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-[#131628] mb-2 tracking-tight uppercase">
+                    <span class="text-[#6f00ff]">FREE</span> ADVANCED TRAINING
                 </h2>
-                <p class="text-gray-600 text-sm md:text-base mb-4">
+                <p class="text-gray-500 text-sm md:text-base mb-8 max-w-xl mx-auto">
                     Videos, eBooks, Guides, Templates, Downloads &amp; more to help you succeed:
                 </p>
-                <div class="w-16 h-1 bg-black mx-auto mb-8"></div>
 
                 <div class="training-grid text-center">
                     <!-- Course Card 1: Revenue Infrastructure -->
-                    <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
-                        <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">New Release</span>
-                        <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">REVENUE INFRASTRUCTURE</h3>
-                        <div class="w-full max-w-[220px] aspect-square rounded-xl border-2 border-black shadow-sm mb-4 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">New Release</span>
+                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">REVENUE INFRASTRUCTURE</h3>
+                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
                             <img alt="Revenue Infrastructure Playbook" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-revenue-infra.webp" onerror="this.onerror=null; this.src='images/infra.webp';"/>
                         </div>
-                        <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Take This Course</a>
+                        <a href="courses.html" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Take This Course</a>
                     </div>
 
                     <!-- Course Card 2: Revenue Leak Audit -->
-                    <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
-                        <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">It's Free</span>
-                        <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">REVENUE LEAK AUDIT</h3>
-                        <div class="w-full max-w-[220px] aspect-square rounded-xl border-2 border-black shadow-sm mb-4 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">It's Free</span>
+                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">REVENUE LEAK AUDIT</h3>
+                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
                             <img alt="Revenue Leak Audit Course" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-leak-audit.webp" onerror="this.onerror=null; this.src='images/agentzlogo.webp';"/>
                         </div>
-                        <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Take This Course</a>
+                        <a href="courses.html" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Take This Course</a>
                     </div>
 
                     <!-- Course Card 3: AI Revenue Automation -->
-                    <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
-                        <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">It's Free</span>
-                        <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">AI REVENUE AUTOMATION</h3>
-                        <div class="w-full max-w-[220px] aspect-square rounded-xl border-2 border-black shadow-sm mb-4 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">It's Free</span>
+                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">AI REVENUE AUTOMATION</h3>
+                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
                             <img alt="AI Revenue Automation Course" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-ai-automation.webp" onerror="this.onerror=null; this.src='images/content-to-sales-layer.webp';"/>
                         </div>
-                        <a href="courses.html" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Take This Course</a>
+                        <a href="courses.html" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Take This Course</a>
                     </div>
 
                     <!-- Course Card 4: Scaling Workshop -->
-                    <div class="flex flex-col items-center bg-white p-5 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-all">
-                        <span class="bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 mb-3 border-2 border-black">Live In-Person</span>
-                        <h3 class="font-black text-sm text-black uppercase mb-3 h-12 flex items-center justify-center leading-snug">SCALING WORKSHOP</h3>
-                        <div class="w-full max-w-[220px] aspect-square rounded-xl border-2 border-black shadow-sm mb-4 overflow-hidden bg-gray-100 flex items-center justify-center">
+                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">Live In-Person</span>
+                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">SCALING WORKSHOP</h3>
+                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
                             <img alt="Scaling Workshop" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-scaling-workshop.webp" onerror="this.onerror=null; this.src='images/Workshop-1.webp';"/>
                         </div>
-                        <a href="#booking" class="bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-4 w-full border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:scale-95 transition-all mt-auto block text-center">Attend a Workshop</a>
+                        <a href="#booking" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Attend a Workshop</a>
                     </div>
                 </div>
             </div>
 
             <!-- ═══════════ KISAH SUKSES PARTNER KAMI (9:16 Single Video) ═══════════ -->
-            <div class="mt-16 text-center max-w-xl mx-auto">
-                <h3 class="text-2xl md:text-3xl font-black text-black mb-2 uppercase tracking-tight">Kisah Sukses Partner Kami</h3>
-                <p class="text-gray-600 mb-8 text-sm md:text-base">Melihat bagaimana Revenue Infrastructure membantu bisnis melipatgandakan booked appointment mereka secara konsisten.</p>
+            <div class="mt-20 text-center max-w-xl mx-auto">
+                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                    Studi Kasus
+                </span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-[#131628] mb-2 tracking-tight">Kisah Sukses Partner Kami</h3>
+                <p class="text-gray-500 mb-8 text-sm md:text-base">Melihat bagaimana Revenue Infrastructure membantu bisnis melipatgandakan booked appointment mereka secara konsisten.</p>
                 
                 <!-- 9:16 Portrait Video Player -->
-                <div class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-gray-900 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between p-5 text-white relative group overflow-hidden mb-6">
-                    <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-blue-600/0 transition-colors"></div>
-                    <div class="z-10 bg-blue-600 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 self-start border border-black shadow-sm">
+                <div class="w-full max-w-[320px] mx-auto aspect-[9/16] bg-[#131628] rounded-2xl border border-gray-800 shadow-2xl flex flex-col justify-between p-5 text-white relative group overflow-hidden mb-6">
+                    <div class="absolute inset-0 bg-[#6f00ff]/10 group-hover:bg-transparent transition-colors"></div>
+                    <div class="z-10 bg-[#6f00ff] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full self-start shadow-sm">
                         PARTNER CASE STUDY
                     </div>
                     <div class="z-10 text-left mt-auto">
-                        <h4 class="font-bold text-base md:text-lg mb-1">Transformasi Partner Kami</h4>
+                        <h4 class="font-bold text-base md:text-lg mb-1 text-white">Transformasi Partner Kami</h4>
                         <p class="text-gray-300 text-xs">"Meeting booking naik 210% dalam 14 hari tanpa tambah tim sales."</p>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                        <div class="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center text-xl font-bold shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] group-hover:scale-110 transition-transform">▶</div>
+                        <div class="w-14 h-14 bg-white text-[#6f00ff] rounded-full flex items-center justify-center text-xl font-bold shadow-xl group-hover:scale-110 transition-transform">▶</div>
                     </div>
                 </div>
 
                 <!-- Description below video player -->
-                <div class="bg-gray-50 border-2 border-black p-4 text-left shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                    <p class="text-sm font-bold text-gray-800 leading-relaxed">
+                <div class="bg-white rounded-2xl border border-gray-100 p-5 text-left shadow-md">
+                    <p class="text-sm font-medium text-gray-700 leading-relaxed">
                         Studi kasus bagaimana automasi speed-to-lead dan CRM pipeline terintegrasi mengubah lead yang terbengkalai menjadi jadwal konsultasi rutin setiap hari secara otomatis.
                     </p>
                 </div>
@@ -1035,145 +1028,204 @@
     </header>
 
     <!-- ═══════════ LAYER ANTARA CONTENT DENGAN SALES ═══════════ -->
-    <section class="py-16 md:py-24 px-5 bg-white border-b-4 border-black text-center">
+    <section class="py-16 md:py-24 px-5 bg-white border-b border-gray-100 text-center">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl md:text-4xl font-black text-black mb-8 uppercase tracking-tight">
-                Layer antara Content anda dengan Sales <br class="hidden sm:block"><span class="text-blue-600">(visually our system)</span>
+            <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                Arsitektur Sistem
+            </span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-[#131628] mb-8 tracking-tight">
+                Layer antara Content anda dengan Sales <br class="hidden sm:block"><span class="text-[#6f00ff]">(visually our system)</span>
             </h2>
-            <div class="border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden bg-black p-2 sm:p-4 inline-block max-w-full">
-                <img src="images/content-to-sales-layer.webp" alt="Layer antara Content anda dengan Sales - AGentZ System" loading="lazy" decoding="async" class="w-full h-auto object-contain mx-auto">
+            <div class="rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-[#131628] p-3 sm:p-6 inline-block max-w-full">
+                <img src="images/content-to-sales-layer.webp" alt="Layer antara Content anda dengan Sales - AGentZ System" loading="lazy" decoding="async" class="w-full h-auto object-contain mx-auto rounded-xl">
             </div>
         </div>
     </section>
 
     <!-- ═══════════ 100% OWNERSHIP & GUARANTEE ═══════════ -->
-    <section class="py-20 px-5 bg-gray-950 text-white border-b-4 border-black">
+    <section class="py-20 px-5 bg-[#0e111f] text-white border-b border-white/10">
         <div class="max-w-4xl mx-auto space-y-10">
             <!-- 100% Ownership & BYOK Box -->
-            <div class="border-4 border-blue-500 bg-gray-900 p-8 md:p-12 shadow-[8px_8px_0px_0px_#2563eb] text-left">
-                <div class="inline-block bg-blue-600 text-white text-xs font-black uppercase px-3 py-1 mb-4 tracking-widest border-2 border-black">
+            <div class="rounded-2xl border border-slate-800 bg-[#131628] p-8 md:p-12 shadow-2xl text-left">
+                <div class="inline-block bg-[#6f00ff] text-white text-xs font-bold uppercase px-3.5 py-1 rounded-full mb-4 tracking-wider">
                     100% OWNERSHIP
                 </div>
-                <h2 class="text-2xl md:text-4xl font-black mb-4 uppercase text-white leading-tight">
+                <h2 class="text-2xl md:text-4xl font-extrabold mb-4 text-white leading-tight tracking-tight">
                     You Don't Rent Your Digital Space.
                 </h2>
-                <p class="text-base md:text-xl font-bold text-gray-200 mb-6 leading-relaxed">
+                <p class="text-base md:text-xl font-medium text-gray-300 mb-6 leading-relaxed">
                     We built your needs and set it up one time — 100% ownership.
                 </p>
-                <div class="bg-black border-2 border-blue-400 p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                    <p class="font-black text-sky-300 text-sm md:text-base uppercase tracking-wider mb-2">
-                        ⚡ SISTEM AGENT AGNOSTIC BYOK MILIK ANDA
+                <div class="bg-white/5 border border-white/10 rounded-xl p-5 shadow-sm">
+                    <p class="font-bold text-purple-300 text-sm md:text-base uppercase tracking-wider mb-1.5 flex items-center gap-2">
+                        <span>⚡</span>
+                        <span>SISTEM AGENT AGNOSTIC BYOK MILIK ANDA</span>
                     </p>
-                    <p class="text-gray-300 text-xs md:text-sm font-medium leading-relaxed">
+                    <p class="text-gray-300 text-xs md:text-sm font-normal leading-relaxed">
                         (40 infrastruktur dihandover langsung ke business owners tanpa vendor lock-in)
                     </p>
                 </div>
             </div>
 
             <!-- Jaminan Delivery Milestone Box -->
-            <div class="border-4 border-yellow-500 bg-yellow-50 p-8 md:p-12 shadow-[8px_8px_0px_0px_#ca8a04] text-center text-black">
-                <div class="text-5xl md:text-6xl mb-4">🏆</div>
-                <div class="inline-block bg-yellow-400 text-black text-xs font-black uppercase px-4 py-2 mb-4 tracking-widest border-2 border-black">Jaminan Delivery</div>
-                <h2 class="text-2xl md:text-4xl font-black mb-4 leading-tight uppercase text-black">
+            <div class="rounded-2xl border border-gray-100 bg-white p-8 md:p-12 shadow-2xl text-center text-[#131628]">
+                <div class="text-5xl mb-4">🏆</div>
+                <div class="inline-block bg-amber-100 text-amber-900 text-xs font-bold uppercase px-4 py-1.5 rounded-full mb-4 tracking-wider">Jaminan Delivery</div>
+                <h2 class="text-2xl md:text-4xl font-extrabold mb-4 leading-tight text-[#131628] tracking-tight">
                     Milestone yang Disepakati Harus Selesai.
                 </h2>
-                <p class="text-gray-700 text-left text-sm md:text-base leading-relaxed mb-4">
+                <p class="text-gray-600 text-center text-sm md:text-base leading-relaxed mb-3 max-w-2xl mx-auto">
                     Kami menetapkan scope, deliverables, dependency, dan timeline sebelum implementasi.
                 </p>
-                <p class="text-gray-700 text-left text-sm md:text-base leading-relaxed">
-                    Jika milestone implementasi yang berada dalam tanggung jawab AGentZ tidak selesai sesuai timeline yang disepakati, kami melanjutkan pekerjaan implementasi tersebut tanpa biaya implementasi tambahan sampai milestone tersebut selesai.
+                <p class="text-gray-600 text-center text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                    Jika milestone implementasi yang berada dalam tanggung jawab AGentZ tidak selesai sesuai timeline yang disepakati, kami melanjutkan pekerjaan implementasi tersebut tanpa biaya tambahan sampai milestone tersebut tuntas.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- ═══════════ FAQ (Scrollable Direct View) ═══════════ -->
-    <section class="py-20 px-5 bg-gray-50 border-b-4 border-black">
+    <!-- ═══════════ FAQ (Interactive Accordions in courses.html Style) ═══════════ -->
+    <section class="py-20 px-5 bg-[#f9fafb] border-b border-gray-200/70">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-black mb-4 uppercase text-center font-bold text-black">Pertanyaan yang Sering Ditanya</h2>
-            <p class="text-center text-gray-600 text-sm md:text-base mb-12">Scroll untuk menemukan jawaban:</p>
+            <div class="text-center mb-10">
+                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                    Pertanyaan Umum
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-[#131628] tracking-tight mb-2">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-gray-500 text-sm md:text-base">Klik pertanyaan untuk membuka rincian jawaban:</p>
+            </div>
 
-            <div class="space-y-5" id="faq-list">
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Saya nggak ngerti coding atau teknis. Apakah tetap bisa pakai?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
-                        Ya. Justru ini dibuat untuk pemilik bisnis — bukan developer. Kami yang handle seluruh setup teknis. Anda tinggal pakai sistem yang sudah jalan: balas lead, terima notifikasi, lihat dashboard. Semua didesain sesederhana chatting biasa.
-                    </p>
+            <div class="space-y-3.5" id="faq-list">
+                <!-- FAQ 1 (Open by default) -->
+                <div class="faq-item open bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Saya nggak ngerti coding atau teknis. Apakah tetap bisa pakai?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
+                        Ya. Justru sistem ini dibuat untuk pemilik bisnis — bukan developer. Kami yang handle seluruh setup teknis. Anda tinggal pakai sistem yang sudah jalan: balas lead, terima notifikasi, lihat dashboard. Semua didesain sesederhana chatting WhatsApp biasa.
+                    </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Berapa biaya tools dan API yang dipakai?</span>
-                    </h3>
-                    <div class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200 space-y-1">
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Berapa biaya tools dan API yang dipakai?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14 space-y-1.5">
                         <p>Biaya API langsung terhubung ke akun Anda.</p>
                         <p>• Tools yang kami gunakan 90% open-source dan industry leading sehingga cost per-task sangat rendah tanpa kompromi pada hasil.</p>
                         <p>• Total biaya operasional sistem ini secara konsisten jauh di bawah gaji satu admin atau setter manusia per bulan.</p>
                     </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Lebih hemat dibanding cari vendor sendiri?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Lebih hemat dibanding cari vendor sendiri?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
                         Hampir pasti iya. Riset vendor, bandingkan harga, trial berbayar, setup ulang — semua ada biayanya, termasuk waktu Anda. Kami bantu konsultasi dan bangun infrastruktur terintegrasi tanpa trial-and-error yang membuang biaya.
-                    </p>
+                    </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Berapa lama sampai sistemnya live?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Berapa lama sampai sistemnya live?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
                         Implementasi live cepat dalam hitungan hari. Begitu live, sistem langsung bekerja — speed-to-lead, follow-up otomatis, booking flow, semuanya aktif.
-                    </p>
+                    </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Apa bedanya dengan hire VA atau setter?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Apa bedanya dengan hire VA atau setter?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
                         Sistem kami nggak tidur, nggak cuti, nggak resign, dan merespons lead dalam hitungan detik — bukan jam. Biaya operasional bulanannya adalah fraksi kecil dari gaji satu admin manusia (Rp4–6jt/bulan). Setup sekali, sistem kerja 24/7. Dan Anda punya kepemilikan penuh — bukan bergantung pada orang.
-                    </p>
+                    </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Apakah sistem ini bisa dikustomisasi untuk bisnis saya?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
+                <!-- FAQ 6 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Apakah sistem ini bisa dikustomisasi untuk bisnis saya?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
                         Ya. Setiap sistem dibangun khusus untuk bisnis Anda — bukan template generik. Workflow, script AI, integrasi channel, dan pipeline CRM disesuaikan dengan offer, audiens, dan cara Anda closing deal.
-                    </p>
+                    </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Setelah setup, apakah ada maintenance?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
+                <!-- FAQ 7 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Setelah setup, apakah ada maintenance?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
                         Sistem diserahkan penuh ke Anda, lengkap dengan dokumentasi dan SOP. Kami juga punya opsi Revenue Partnership bulanan bagi yang ingin kami maintain, update, dan optimasi sistem secara berkelanjutan — tapi bukan kewajiban.
-                    </p>
+                    </div>
                 </div>
 
-                <div class="border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 text-left">
-                    <h3 class="font-black text-base md:text-lg text-black mb-2 flex items-start gap-2">
-                        <span class="text-blue-600 font-mono font-black">Q.</span>
-                        <span>Saya sudah punya tools sendiri. Apakah bisa diintegrasikan?</span>
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-700 font-medium leading-relaxed pl-6 border-l-2 border-gray-200">
+                <!-- FAQ 8 -->
+                <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                    <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                        <div class="flex items-center gap-3.5 pr-4">
+                            <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                            <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Saya sudah punya tools sendiri. Apakah bisa diintegrasikan?</h3>
+                        </div>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
                         Bisa. Selama ada API atau webhook, kami sambungkan ke infrastruktur yang kami bangun. Anda tidak perlu buang tools yang sudah berjalan.
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1181,8 +1233,8 @@
     </main>
 
     <!-- ═══════════ FOOTER ═══════════ -->
-    <footer class="py-14 bg-white text-center border-t-4 border-black">
-        <a href="#booking" id="footer-cta" class="mb-10 inline-block bg-blue-600 text-white text-lg md:text-2xl font-black py-5 px-12 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] uppercase hover:bg-blue-700 hover:scale-105 transition-all">
+    <footer class="py-16 bg-[#131628] text-center border-t border-white/10 text-white">
+        <a href="#booking" id="footer-cta" class="mb-10 inline-block bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] text-white text-base md:text-xl font-bold py-4.5 px-10 rounded-full shadow-xl hover:shadow-2xl border-2 border-[#6f00ff] uppercase transition-all duration-300">
             Jadwalkan Konsultasi Gratis →
         </a>
 
@@ -1190,7 +1242,8 @@
             <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-10 w-auto">
         </div>
 
-        <p class="font-black text-sm text-gray-500 uppercase tracking-widest mb-2">Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa</p>
+        <p class="font-medium text-xs sm:text-sm text-gray-400 uppercase tracking-widest mb-2">Revenue Infrastructure untuk Bisnis Coaching &amp; Jasa</p>
+        <p class="text-[11px] text-gray-500 font-normal">© 2026 AGentZ. All rights reserved.</p>
     </footer>
 
     <!-- VSL Player — self-hosted, zero dependencies -->
