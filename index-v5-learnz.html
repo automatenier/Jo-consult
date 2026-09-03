@@ -1266,5 +1266,74 @@
       loadCalEmbed();
     }
   </script>
+
+  <!-- ═══════════ ORIGINAL CLEAN FLOATING WIDGETS (WITH DYNAMIC WHATSAPP BRIDGE) ═══════════ -->
+  
+  <!-- WhatsApp Floating Button (Above Voice Button & High Z-Index) -->
+  <div id="agentz-wa-wrapper" style="position:fixed;bottom:160px;right:24px;z-index:2147483645;display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <span id="wa-text-pill" style="background:#ffffff;color:#18181b;font-size:12px;font-weight:700;padding:6px 12px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);letter-spacing:0.2px;pointer-events:none;">WhatsApp chat</span>
+    <a id="main-wa-link" href="https://wa.me/6287881647878?text=Halo%20Jordan,%20saya%20mau%20konsultasi%20AGentZ%20System" target="_blank" style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#ffffff;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform 0.2s, box-shadow 0.2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.45)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.35)';" title="Chat WhatsApp" aria-label="WhatsApp">
+      <img src="https://vsl.jordanengo.com/embed/wa.webp" alt="WhatsApp" style="width:36px;height:36px;object-fit:contain;" />
+    </a>
+  </div>
+
+  <!-- ElevenLabs Native Floating Voice Widget (Exact jordanengo.com original) -->
+  <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+  <elevenlabs-convai id="eleven-widget" agent-id="agent_9601kf7rm6pheekv40vd6w550gs9"></elevenlabs-convai>
+
+  <!-- Auto-Sync WhatsApp Bridge Token on Voice Call Initiation -->
+  <script>
+    (function() {
+      const BUSINESS_WA = "6287881647878";
+      let sessionToken = null;
+      let activeSessionId = null;
+
+      async function initVoiceSessionBridge() {
+        try {
+          const res = await fetch("https://engo-1.jordanengo.com/api/voice/session/initiate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ duration_minutes: 30 })
+          });
+          const data = await res.json();
+          if (data.success && data.session) {
+            sessionToken = data.session.sessionRef;
+            activeSessionId = data.session.id;
+            updateWALinks();
+          }
+        } catch (e) {
+          sessionToken = "V" + Math.random().toString(36).substring(2, 7).toUpperCase();
+          updateWALinks();
+        }
+      }
+
+      function updateWALinks() {
+        const waLink = document.getElementById("main-wa-link");
+        const waPill = document.getElementById("wa-text-pill");
+        if (!waLink) return;
+
+        const prefilled = `Halo Jordan, saya yang tadi telepon di website.\n\n[ID: ${sessionToken}]`;
+        waLink.href = `https://wa.me/${BUSINESS_WA}?text=${encodeURIComponent(prefilled)}`;
+        
+        if (waPill) {
+          waPill.innerText = `WhatsApp chat`;
+        }
+
+        waLink.onclick = async () => {
+          if (activeSessionId) {
+            try {
+              await fetch("https://engo-1.jordanengo.com/api/voice/events", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ session_id: activeSessionId, event_type: "WHATSAPP_CTA_CLICKED" })
+              });
+            } catch(err) {}
+          }
+        };
+      }
+
+      window.addEventListener("load", initVoiceSessionBridge);
+    })();
+  </script>
 </body>
 </html>
