@@ -238,6 +238,177 @@
             }
         }
 
+        /* ==================== CAROUSEL CONTAINERS & CARDS ==================== */
+        .carousel-renderer {
+            width: 100% !important;
+            overflow: hidden !important;
+        }
+        .carousel-scroll-container {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 16px !important;
+            overflow-x: auto !important;
+            padding-bottom: 14px !important;
+            scroll-behavior: smooth !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: rgba(24, 62, 54, 0.25) transparent !important;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-scroll-container::-webkit-scrollbar {
+            height: 6px !important;
+        }
+        .carousel-scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(24, 62, 54, 0.25) !important;
+            border-radius: 9999px !important;
+        }
+        .carousel-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(24, 62, 54, 0.45) !important;
+        }
+
+        .carousel-item-wrapper {
+            flex: 0 0 220px !important;
+            width: 220px !important;
+            max-width: 220px !important;
+        }
+
+        .carousel-card {
+            width: 100% !important;
+            background: #ffffff !important;
+            border: 1px solid #dce2d8 !important;
+            border-radius: 18px !important;
+            overflow: hidden !important;
+            box-shadow: 0 4px 16px rgba(24, 62, 54, 0.05) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+            cursor: pointer !important;
+            color: #183e36 !important;
+            height: 100% !important;
+            box-sizing: border-box !important;
+            text-align: left !important;
+        }
+        .carousel-card:hover {
+            transform: translateY(-4px) !important;
+            border-color: #9bac99 !important;
+            box-shadow: 0 16px 36px rgba(24, 62, 54, 0.12) !important;
+        }
+
+        .carousel-card-image {
+            width: 100% !important;
+            height: 136px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            background: #ffffff !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+        .carousel-card-image img {
+            max-width: 100% !important;
+            max-height: 100% !important;
+            object-fit: cover !important;
+        }
+        .carousel-card-image video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        .carousel-card-content {
+            padding: 14px 16px 16px 16px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 !important;
+            justify-content: space-between !important;
+            box-sizing: border-box !important;
+        }
+        .carousel-card-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #183e36 !important;
+            line-height: 1.35 !important;
+            font-family: 'Poppins', sans-serif !important;
+            min-height: 38px;
+        }
+        .carousel-card-cta {
+            margin-top: 12px !important;
+            padding: 8px 12px !important;
+            border-radius: 10px !important;
+            background: #195846 !important;
+            color: #ffffff !important;
+            font-size: 12px !important;
+            font-weight: 650 !important;
+            border: none !important;
+            cursor: pointer !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            transition: background 0.2s, filter 0.2s !important;
+            font-family: 'Poppins', sans-serif !important;
+        }
+        .carousel-card-cta:hover {
+            filter: brightness(0.92) !important;
+        }
+        .carousel-card-cta span {
+            color: #ffffff !important;
+        }
+
+        /* Vault Unlock Modal */
+        .follow-modal-overlay, .vault-modal-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(5px) !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 99999 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 0.3s ease !important;
+        }
+        .follow-modal-overlay.active, .vault-modal-overlay.active {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        .follow-modal-card, .vault-modal-card {
+            background: #ffffff !important;
+            border: 1px solid #dce2d8 !important;
+            border-radius: 16px !important;
+            width: 90% !important;
+            max-width: 440px !important;
+            padding: 28px !important;
+            box-shadow: 0 16px 36px rgba(24, 62, 54, 0.15) !important;
+            transform: scale(0.9) !important;
+            transition: transform 0.3s ease !important;
+            color: #183e36 !important;
+            font-family: 'Poppins', sans-serif !important;
+            position: relative !important;
+        }
+        .follow-modal-overlay.active .follow-modal-card,
+        .vault-modal-overlay.active .vault-modal-card {
+            transform: scale(1) !important;
+        }
+        .follow-modal-close, .vault-modal-close {
+            background: none !important;
+            border: none !important;
+            color: #61796f !important;
+            font-size: 26px !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+            position: absolute !important;
+            right: 18px !important;
+            top: 18px !important;
+        }
+
         .nav-logo-img {
             height: 32px !important;
             width: auto !important;
@@ -939,59 +1110,349 @@
             </div>
 
 
-            <!-- ═══════════ FREE ADVANCED TRAINING SECTION ═══════════ -->
+            <!-- ═══════════ FREE RESOURCES / BAHAN GRATIS SECTION ═══════════ -->
             <div class="mt-20 text-center">
                 <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
-                    Pusat Materi &amp; Resources
+                    Bahan Gratis
                 </span>
                 <h2 class="text-2xl md:text-4xl font-extrabold text-[#131628] mb-2 tracking-tight uppercase">
-                    <span class="text-[#6f00ff]">FREE</span> ADVANCED TRAINING
+                    <span class="text-[#6f00ff]">FREE</span> RESOURCES
                 </h2>
                 <p class="text-gray-500 text-sm md:text-base mb-8 max-w-xl mx-auto">
                     Videos, eBooks, Guides, Templates, Downloads &amp; more to help you succeed:
                 </p>
 
-                <div class="training-grid text-center">
-                    <!-- Course Card 1: Revenue Infrastructure -->
-                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">New Release</span>
-                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">REVENUE INFRASTRUCTURE</h3>
-                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
-                            <img alt="Revenue Infrastructure Playbook" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-revenue-infra.webp" onerror="this.onerror=null; this.src='images/infra.webp';"/>
+                <!-- Offer Catalog: Bahan Gratis (1/7 Modul Terbuka) -->
+                <div class="max-w-4xl mx-auto text-left" data-id="6986608c350e1a0014bcfb19">
+                        <div class="superProfileHeader" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 12px;">
+                            <div class="head font-bold text-base sm:text-lg text-[#131628] font-['Poppins'] flex items-center">
+                                Bahan Gratis
+                                <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#22c55e; background:rgba(34,197,94,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(34,197,94,0.3);">
+                                    🔓 1/7 Modul Terbuka
+                                </span>
+                            </div>
+                            <div style="font-size: 11px; color: #888888; font-family: Poppins, sans-serif; white-space: nowrap; margin-bottom: 8px; user-select: none;">
+                                <button type="button" onclick="scrollVaultCarousel(-1)" class="hover:text-black cursor-pointer font-bold px-1" title="Geser Kiri">←</button>
+                                Geser / Scroll
+                                <button type="button" onclick="scrollVaultCarousel(1)" class="hover:text-black cursor-pointer font-bold px-1" title="Geser Kanan">→</button>
+                            </div>
                         </div>
-                        <a href="courses.html" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Take This Course</a>
+                        <div class="carousel-renderer">
+                            <div class="carousel-scroll-container">
+                                <!-- Card 1: Website 24/7 Telefon Respsionis & Whatsapp -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="wa_chatbot_voice_cs">
+                                        <div class="carousel-card-image" style="background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                                            <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+                                                <source src="images/widgetswa.webm" type="video/webm">
+                                                <source src="images/widgetswa_opt.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">Website 24/7 Telefon Respsionis &amp; Whatsapp</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">WA Chatbot open source + Voice CS untuk website</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #16a34a;">
+                                                <span>Buka Modul ↗</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Whatsapp Invoice System & AI Agent -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="whatsapp_invoice_system">
+                                        <div class="carousel-card-image" style="background:#101720; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                            <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                            <img src="images/whatsapp_invoice.png" alt="Whatsapp Invoice System &amp; AI Agent" style="width:100%; height:100%; object-fit:cover;">
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">Whatsapp Invoice System &amp; AI Agent</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Invoice template bisnismu dikirimkan via Whatsapp</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                                <span>🔒 Terkunci</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3: Ai Agent Social Media (Posting, Monitor, Konten & ADS) -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="telegram_admin_agent">
+                                        <div class="carousel-card-image" style="background:#111; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                            <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                            <img src="images/admin_preview.gif" alt="Ai Agent Social Media (Posting, Monitor, Konten &amp; ADS)" style="width:100%; height:100%; object-fit:cover;">
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">Ai Agent Social Media (Posting, Monitor, Konten &amp; ADS)</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Auto-kelola konten &amp; iklan via Telegram</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                                <span>🔒 Terkunci</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 4: 5 Coaching Video Editing Template -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="video_editor_templates">
+                                        <div class="carousel-card-image" style="background:#0f172a; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                            <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                            <img src="images/coaching_video_templates.gif" alt="5 Coaching Video Editing Template" style="width:100%; height:100%; object-fit:cover;">
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">5 Coaching Video Editing Template</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">5 coaching video editing template dengan AI</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                                <span>🔒 Terkunci</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 5: Bisnis Dashbor + Excel Template -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="bisnis_dashboard_excel">
+                                        <div class="carousel-card-image" style="background:#f8fafc; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                            <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                            <img src="images/bisnis_dashboard.png" alt="Bisnis Dashbor + Excel Template" style="width:100%; height:100%; object-fit:cover;">
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">Bisnis Dashbor + Excel Template</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Dashboard bisnis &amp; template Excel otomatis</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                                <span>🔒 Terkunci</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 6: Bisnis AI Integrasi Audit -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="bisnis_ai_audit">
+                                        <div class="carousel-card-image" style="background:#f8fafc; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                            <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                            <img src="images/bisnis_ai_audit.png" alt="Bisnis AI Integrasi Audit" style="width:100%; height:100%; object-fit:cover;">
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">Bisnis AI Integrasi Audit</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Diagnosa 4 pilar bisnis &amp; temukan kebocoran profit</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                                <span>🔒 Terkunci</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 7: Fb & IG DM Automation -->
+                                <div class="carousel-item-wrapper">
+                                    <div class="carousel-card" data-key="fb_ig_dm_automation">
+                                        <div class="carousel-card-image" style="background:#111; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                            <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                            <img src="images/instagram_dm.gif" alt="Fb &amp; IG DM Automation" style="width:100%; height:100%; object-fit:cover;">
+                                        </div>
+                                        <div class="carousel-card-content">
+                                            <div class="carousel-card-title">Fb &amp; IG DM Automation</div>
+                                            <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Otomatisasi DM Facebook &amp; Instagram</div>
+                                            <div class="title-price-wrapper"></div>
+                                            <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                                <span>🔒 Terkunci</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Course Card 2: Revenue Leak Audit -->
-                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">It's Free</span>
-                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">REVENUE LEAK AUDIT</h3>
-                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
-                            <img alt="Revenue Leak Audit Course" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-leak-audit.webp" onerror="this.onerror=null; this.src='images/agentzlogo.webp';"/>
-                        </div>
-                        <a href="courses.html" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Take This Course</a>
+                <!-- Vault Unlocker Modal (Gamified Lock) -->
+                <div class="vault-modal-overlay" id="vaultUnlockModal" onclick="handleVaultOverlayClick(event)">
+                  <div class="vault-modal-card">
+                    <button class="vault-modal-close" onclick="closeVaultUnlockModal()" type="button">&times;</button>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                      <span style="font-size: 24px;">🔒</span>
+                      <div style="font-size: 17px; font-weight: 700; color: #183e36; font-family: Poppins, sans-serif;">Modul Ini Terkunci di Master Vault</div>
+                    </div>
+                    <p style="font-size: 13px; color: #61796f; line-height: 1.6; margin-bottom: 20px; font-family: Poppins, sans-serif;">
+                      Anda sudah meng-unlock 1 modul gratis. Seluruh <strong>6 modul lainnya senilai Rp 4.500.000</strong> terkunci di Master Vault.
+                    </p>
+
+                    <!-- Audit Bridge Card (Sole Unlock Method) -->
+                    <div style="border: 1.5px solid #195846; background: #e5eedf; border-radius: 14px; padding: 18px; margin-bottom: 16px; cursor: pointer; transition: transform 0.15s;" onclick="handleVaultAuditClick()">
+                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                        <span style="font-size: 11px; font-weight: 700; color: #183e36; text-transform: uppercase; letter-spacing: 0.5px; font-family: Poppins, sans-serif;">🔥 Unlock Full Master Vault</span>
+                        <span style="font-size: 11px; background: #195846; color: #ffffff; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: Poppins, sans-serif;">GRATIS</span>
+                      </div>
+                      <div style="font-size: 15px; font-weight: 700; color: #183e36; margin-bottom: 6px; font-family: Poppins, sans-serif;">Book 15-Min Free Revenue Leak Audit</div>
+                      <div style="font-size: 12.5px; color: #61796f; line-height: 1.5; margin-bottom: 14px; font-family: Poppins, sans-serif;">
+                        Kita review bottleneck sistem lead generation Anda, hitung revenue leak, dan berikan Master Access Key untuk membuka seluruh 6 tools + script automation secara GRATIS.
+                      </div>
+                      <button type="button" style="width: 100%; padding: 12px; background: #195846; color: #ffffff; font-size: 13px; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; font-family: Poppins, sans-serif; box-shadow: 0 4px 12px rgba(24,62,54,0.15);">
+                        Jadwalkan Audit Gratis via Cal.com →
+                      </button>
                     </div>
 
-                    <!-- Course Card 3: AI Revenue Automation -->
-                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">It's Free</span>
-                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">AI REVENUE AUTOMATION</h3>
-                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
-                            <img alt="AI Revenue Automation Course" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-ai-automation.webp" onerror="this.onerror=null; this.src='images/content-to-sales-layer.webp';"/>
-                        </div>
-                        <a href="courses.html" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Take This Course</a>
+                    <div style="text-align: center;">
+                      <button type="button" onclick="closeVaultUnlockModal()" style="background: none; border: none; font-size: 12px; color: #61796f; cursor: pointer; font-family: Poppins, sans-serif;">
+                        Kembali ke Modul yang Sudah Dibuka
+                      </button>
                     </div>
-
-                    <!-- Course Card 4: Scaling Workshop -->
-                    <div class="flex flex-col items-center bg-white p-6 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                        <span class="bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full mb-3">Live In-Person</span>
-                        <h3 class="font-extrabold text-sm text-[#131628] uppercase mb-3 h-12 flex items-center justify-center leading-snug">SCALING WORKSHOP</h3>
-                        <div class="w-full max-w-[200px] aspect-square rounded-xl border border-gray-100 shadow-sm mb-4 overflow-hidden bg-gray-50 flex items-center justify-center">
-                            <img alt="Scaling Workshop" class="w-full h-full object-cover" loading="lazy" decoding="async" src="images/course-scaling-workshop.webp" onerror="this.onerror=null; this.src='images/Workshop-1.webp';"/>
-                        </div>
-                        <a href="#booking" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold text-xs uppercase py-3.5 px-4 w-full rounded-full shadow-md hover:shadow-lg transition-all mt-auto block text-center">Attend a Workshop</a>
-                    </div>
+                  </div>
                 </div>
+
+                <script>
+                  const ASSET_DELIVERY_LINKS = {
+                    'wa_chatbot_voice_cs': 'https://jordanengo.com/p/whatsapp-chatbot-crm.html',
+                    'whatsapp_invoice_system': 'https://jordanengo.com/p/whatsapp-chatbot-crm.html',
+                    'telegram_admin_agent': 'https://jordanengo.com/p/social-media-posting-agent.html',
+                    'video_editor_templates': 'https://jordanengo.com/p/ai-video-editor.html',
+                    'bisnis_dashboard_excel': 'https://jordanengo.com/p/linktree-alternative-template.html',
+                    'coaching_website_template': 'https://jordanengo.com/p/linktree-alternative-template.html',
+                    'bisnis_ai_audit': 'https://jordanengo.com/p/lead-magnet-dm-automation.html',
+                    'vsl_prompt': 'https://jordanengo.com/p/lead-magnet-dm-automation.html',
+                    'fb_ig_dm_automation': 'https://jordanengo.com/p/lead-magnet-dm-automation.html'
+                  };
+
+                  function getClaimedAssets() {
+                    try {
+                      const saved = localStorage.getItem('claimed_assets');
+                      const list = saved ? JSON.parse(saved) : [];
+                      if (!list.includes('wa_chatbot_voice_cs')) {
+                        list.push('wa_chatbot_voice_cs');
+                      }
+                      return list;
+                    } catch (e) {
+                      return ['wa_chatbot_voice_cs'];
+                    }
+                  }
+
+                  function addClaimedAsset(key) {
+                    try {
+                      const assets = getClaimedAssets();
+                      if (!assets.includes(key)) {
+                        assets.push(key);
+                        localStorage.setItem('claimed_assets', JSON.stringify(assets));
+                      }
+                      applyGamifiedVaultLock();
+                    } catch (e) {}
+                  }
+
+                  function openVaultUnlockModal(targetKey, targetTitle) {
+                    const modal = document.getElementById('vaultUnlockModal');
+                    if (modal) {
+                      modal.classList.add('active');
+                      document.body.style.overflow = 'hidden';
+                    }
+                  }
+
+                  function closeVaultUnlockModal() {
+                    const modal = document.getElementById('vaultUnlockModal');
+                    if (modal) {
+                      modal.classList.remove('active');
+                      document.body.style.overflow = '';
+                    }
+                  }
+
+                  function handleVaultOverlayClick(e) {
+                    if (e.target.id === 'vaultUnlockModal') {
+                      closeVaultUnlockModal();
+                    }
+                  }
+
+                  function handleVaultAuditClick() {
+                    closeVaultUnlockModal();
+                    const bookingEl = document.getElementById('booking');
+                    if (bookingEl) {
+                      bookingEl.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      window.location.hash = '#booking';
+                    }
+                  }
+
+                  function scrollVaultCarousel(direction) {
+                    const container = document.querySelector('[data-id="6986608c350e1a0014bcfb19"] .carousel-scroll-container');
+                    if (container) {
+                      const scrollAmount = direction * 240;
+                      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                  }
+
+                  function applyGamifiedVaultLock() {
+                    const claimed = getClaimedAssets();
+                    const bgContainer = document.querySelector('[data-id="6986608c350e1a0014bcfb19"]');
+                    if (!bgContainer) return;
+
+                    const headEl = bgContainer.querySelector('.head');
+                    if (headEl) {
+                      headEl.innerHTML = `Bahan Gratis <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#22c55e; background:rgba(34,197,94,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(34,197,94,0.3);">🔓 ${claimed.length}/7 Modul Terbuka</span>`;
+                    }
+
+                    const cards = bgContainer.querySelectorAll('.carousel-card');
+                    cards.forEach(card => {
+                      const key = card.getAttribute('data-key');
+                      if (!key) return;
+
+                      const ctaBtn = card.querySelector('.carousel-card-cta');
+                      let lockBadge = card.querySelector('.vault-lock-badge');
+
+                      if (claimed.includes(key)) {
+                        if (lockBadge) lockBadge.remove();
+                        if (ctaBtn) {
+                          ctaBtn.innerHTML = `<span>Buka Modul ↗</span>`;
+                          ctaBtn.style.background = '#16a34a';
+                        }
+                      } else {
+                        if (!lockBadge) {
+                          const imgWrap = card.querySelector('.carousel-card-image');
+                          if (imgWrap) {
+                            const badge = document.createElement('div');
+                            badge.className = 'vault-lock-badge';
+                            badge.style.cssText = 'position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;';
+                            badge.innerHTML = '🔒 LOCKED';
+                            imgWrap.appendChild(badge);
+                          }
+                        }
+                        if (ctaBtn) {
+                          ctaBtn.innerHTML = `<span>🔒 Terkunci</span>`;
+                          ctaBtn.style.background = '#61796f';
+                        }
+                      }
+                    });
+                  }
+
+                  // Intercept clicks on carousel cards in Bahan Gratis
+                  document.addEventListener('click', function(e) {
+                    const card = e.target.closest('[data-id="6986608c350e1a0014bcfb19"] .carousel-card');
+                    if (card) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      const key = card.getAttribute('data-key');
+                      const titleEl = card.querySelector('.carousel-card-title');
+                      const title = titleEl ? titleEl.textContent.trim() : '';
+
+                      const claimed = getClaimedAssets();
+                      if (claimed.includes(key)) {
+                        const assetUrl = ASSET_DELIVERY_LINKS[key] || 'https://jordanengo.com/p/whatsapp-chatbot-crm.html';
+                        window.open(assetUrl, '_blank');
+                        return;
+                      }
+
+                      openVaultUnlockModal(key, title);
+                    }
+                  });
+
+                  // Initialize vault status
+                  if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', applyGamifiedVaultLock);
+                  } else {
+                    applyGamifiedVaultLock();
+                  }
+                </script>
             </div>
 
             <!-- ═══════════ KISAH SUKSES PARTNER KAMI (9:16 Single Video) ═══════════ -->

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+  <title>Rp 0 WhatsApp Chatbot & CRM Setup — Mathew Jordan</title>
+  <meta name="description" content="Blueprint step-by-step menghubungkan WhatsApp Web/Baileys ke Webhook CRM dan Google Sheets dalam <10 menit modal API sendiri.">
+  <link rel="icon" type="image/webp" href="../Jo.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              gold: '#FFCA3A',
+              green: '#25D366',
+              dark: '#0e1017',
+              card: '#161926',
+              border: '#23283c',
+              accent: '#3b82f6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0e1017;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-mono-code {
+      font-family: 'Roboto Mono', monospace;
+    }
+    .callout-box {
+      border-left: 3px solid #25D366;
+      background: rgba(37, 211, 102, 0.05);
+    }
+    .trojan-box {
+      border: 1px solid rgba(255, 202, 58, 0.3);
+      background: linear-gradient(180deg, rgba(255, 202, 58, 0.08) 0%, rgba(22, 25, 38, 0.9) 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 selection:bg-brand-gold selection:text-black">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0e1017]/85 border-b border-brand-border">
+    <div class="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="../" class="flex items-center gap-3 group">
+        <img src="../Jo.webp" alt="Mathew Jordan" class="w-9 h-9 rounded-full object-cover border border-white/20 group-hover:scale-105 transition-transform">
+        <div>
+          <div class="text-sm font-semibold text-white tracking-wide group-hover:text-brand-gold transition-colors">Mathew Jordan</div>
+          <div class="text-[11px] text-gray-400 font-mono-code">AGentZ Revenue Vault ⚡</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-2">
+        <a href="../" class="text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition font-mono-code">
+          ← Kembali ke Vault
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="max-w-3xl mx-auto px-4 pt-10">
+
+    <!-- Post Metadata Tag -->
+    <div class="flex flex-wrap items-center gap-2 text-xs font-mono-code mb-4">
+      <span class="px-2.5 py-1 rounded-full bg-[#25D366]/15 text-[#25D366] border border-[#25D366]/30 font-medium">
+        ⚡ Modul Gratis #1
+      </span>
+      <span class="text-gray-400">•</span>
+      <span class="text-gray-400">⏱ 8-Min Deploy</span>
+      <span class="text-gray-400">•</span>
+      <span class="text-gray-400">WhatsApp Automation & CRM</span>
+    </div>
+
+    <!-- Title & Subtitle -->
+    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-4 leading-tight font-mono-code">
+      Rp 0 WhatsApp Chatbot + CRM Setup (Pakai API Sendiri)
+    </h1>
+    <p class="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed">
+      Panduan langsung copas tanpa biaya langganan bulanan SaaS. Hubungkan WhatsApp ke webhook auto-tagging, Google Sheets CRM, dan AI reply engine dalam 10 menit.
+    </p>
+
+    <!-- Author & Social Share Bar -->
+    <div class="flex items-center justify-between py-4 border-y border-brand-border mb-10 text-xs text-gray-400 font-mono-code">
+      <div class="flex items-center gap-3">
+        <span>Oleh <strong>Mathew Jordan</strong></span>
+        <span>•</span>
+        <span>Update September 2026</span>
+      </div>
+      <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link berhasil disalin!')" class="hover:text-white flex items-center gap-1.5 transition">
+        <span>🔗 Salin Link</span>
+      </button>
+    </div>
+
+    <!-- Article Content -->
+    <article class="space-y-8 text-gray-200 leading-relaxed text-[15px] sm:text-base">
+
+      <p>
+        Mayoritas bisnis lokal dan agency kehilangan <strong>60% sampai 80% lead WhatsApp</strong> karena 2 masalah klasik:
+      </p>
+
+      <ul class="list-disc pl-6 space-y-2 text-gray-300">
+        <li><strong>Response Time Lambat:</strong> Lead masuk tengah malam atau saat CS istirahat, lalu kabur ke kompetitor.</li>
+        <li><strong>Database Berantakan:</strong> Chat cuma ditumpuk di HP tanpa status deal (Cold, Warm, Hot, Lost), sehingga follow-up tidak pernah terjadi.</li>
+      </ul>
+
+      <div class="callout-box p-4 rounded-r-lg my-6">
+        <p class="text-sm text-gray-200 font-mono-code">
+          💡 <strong>Prinsip Inti:</strong> Anda tidak butuh bayar platform mahal Rp 800rb - Rp 2jt/bulan cuma untuk auto-reply dan rekap database WhatsApp. Gunakan Baileys / Node webhook lokal + Google Sheets untuk zero marginal cost.
+        </p>
+      </div>
+
+      <hr class="border-brand-border my-8">
+
+      <!-- Step 1 -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs font-mono-code">1</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-white font-mono-code">Arsitektur & Dependency Stack</h2>
+        </div>
+        <p>
+          Pipeline ini berjalan dengan 3 komponen ringan yang bisa di-host di laptop lokal atau VPS Rp 50rb/bulan:
+        </p>
+
+        <div class="bg-brand-card p-5 rounded-xl border border-brand-border space-y-3 font-mono-code text-xs sm:text-sm">
+          <div class="text-brand-gold font-semibold">[Arsitektur Flow]</div>
+          <div class="text-gray-300">
+            1. Prospect Chat Masuk ➔ WhatsApp Web Socket (Baileys Node)<br>
+            2. Webhook Dispatcher ➔ Cek Keyword / Intent Scoring<br>
+            3. Auto-Insert Row ➔ Google Sheets CRM (Name, Phone, Tag, Timestamp)<br>
+            4. Instant Auto-Reply ➔ Balas dengan template lead magnet / kualifikasi
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs font-mono-code">2</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-white font-mono-code">Source Code: Webhook Auto-Logger</h2>
+        </div>
+        <p>
+          Berikut script Node.js minimal untuk menangkap pesan WhatsApp dan melemparnya ke Google Sheets CRM secara real-time:
+        </p>
+
+        <!-- Code Block with 1-Tap Copy -->
+        <div class="relative bg-[#090b10] rounded-xl border border-brand-border overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2.5 bg-brand-card border-b border-brand-border">
+            <span class="text-xs font-mono-code text-gray-400">server.js (WhatsApp Webhook Handler)</span>
+            <button onclick="copyCode(this, 'code-block-1')" class="text-xs font-mono-code bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded transition flex items-center gap-1">
+              <span>📋 Salin Kode</span>
+            </button>
+          </div>
+          <pre id="code-block-1" class="p-4 text-xs sm:text-sm font-mono-code text-emerald-400 overflow-x-auto"><code>const express = require('express');
+const axios = require('axios');
+const app = express();
+app.use(express.json());
+
+// Endpoint untuk menerima webhook dari WhatsApp Client
+app.post('/webhook/whatsapp', async (req, res) => {
+  const { sender, message, pushName, timestamp } = req.body;
+  
+  console.log(`[INCOMING] ${pushName} (${sender}): ${message}`);
+
+  // 1. Klasifikasi Intent sederhana berdasarkan keyword
+  let tag = 'GENERAL_INQUIRY';
+  if (/harga|biaya|pricelist|paket/i.test(message)) tag = 'HOT_PRICING';
+  if (/audit|jadwal|konsul|call/i.test(message)) tag = 'HIGH_INTENT_AUDIT';
+  if (/wacrm|template|gratis/i.test(message)) tag = 'LEAD_MAGNET_CLAIM';
+
+  // 2. Kirim ke Google Apps Script / Google Sheets CRM
+  const GOOGLE_SHEETS_WEBHOOK = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+  
+  try {
+    await axios.post(GOOGLE_SHEETS_WEBHOOK, {
+      name: pushName,
+      phone: sender,
+      message: message,
+      intentTag: tag,
+      receivedAt: new Date(timestamp || Date.now()).toISOString()
+    });
+    
+    res.status(200).json({ status: 'success', tagLogged: tag });
+  } catch (err) {
+    console.error('Error logging to Sheets:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.listen(3000, () => console.log('WA CRM Webhook running on port 3000'));</code></pre>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-7 h-7 rounded-full bg-brand-gold text-black font-bold flex items-center justify-center text-xs font-mono-code">3</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-white font-mono-code">Script Balasan Otomatis (High-Converting Copy)</h2>
+        </div>
+        <p>
+          Jangan gunakan auto-reply kaku seperti <em>"Terima kasih telah menghubungi kami, silakan tunggu..."</em>. Gunakan direct-response framework berikut:
+        </p>
+
+        <div class="relative bg-[#090b10] rounded-xl border border-brand-border overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2.5 bg-brand-card border-b border-brand-border">
+            <span class="text-xs font-mono-code text-gray-400">WhatsApp Speed-to-Lead Response</span>
+            <button onclick="copyCode(this, 'code-block-2')" class="text-xs font-mono-code bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded transition flex items-center gap-1">
+              <span>📋 Salin Script</span>
+            </button>
+          </div>
+          <pre id="code-block-2" class="p-4 text-xs sm:text-sm font-mono-code text-gray-200 overflow-x-auto whitespace-pre-wrap"><code>Halo Kak {{name}}! 👋 
+
+Ini Mathew Jordan. Akses modul dan script WhatsApp CRM yang Kakak minta sudah siap di sini:
+👉 https://jordanengo.com/p/whatsapp-chatbot-crm.html
+
+Btw, kalau Kakak mau kita bantu audit seluruh alur lead gen & WhatsApp bisnis Kakak secara gratis (agar auto-closing 24/7 tanpa balas manual), kita ada slot 15-Min Revenue Leak Audit minggu ini.
+
+Mau kita jadwalkan 15 menit besok siang via Zoom?</code></pre>
+        </div>
+      </section>
+
+      <hr class="border-brand-border my-8">
+
+      <!-- The Logical Ceiling Section (Trojan Horse Bridge) -->
+      <section class="space-y-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-red-400 font-mono-code flex items-center gap-2">
+          <span>⚠️</span> Di Mana Sistem Ini Mencapai Batasnya?
+        </h2>
+        <p class="text-gray-300">
+          Script auto-reply dan webhook Google Sheets di atas menyelesaikan masalah <strong>Pencatatan Lead</strong>. Tapi memiliki pencatatan lead <em>tidak otomatis</em> mencetak profit jika:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-gray-300">
+          <li>Pesan penawaran (offer) Anda tidak memiliki urgency dan diferensiasi tajam.</li>
+          <li>Chatbot Anda tidak bisa menghandle penolakan harga (objection handling) secara natural seperti top setter.</li>
+          <li>Database tidak terintegrasi ke Voice AI Dialler atau Multi-touch Follow-up engine.</li>
+        </ul>
+      </section>
+
+      <!-- The High-Converting Trojan Horse Bridge Box -->
+      <div class="trojan-box p-6 sm:p-8 rounded-2xl my-10 space-y-6">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-mono-code font-bold">
+            🔥 THE NEXT STEP BRIDGE
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white font-mono-code">
+            Mau Kita Bedah & Setup Sistem Leadgen Bisnis Anda?
+          </h3>
+          <p class="text-sm sm:text-base text-gray-300">
+            Jadwalkan <strong>15-Minute Revenue Leak Audit</strong> bersama Mathew Jordan. Kami akan menganalisis titik kebocoran lead Anda, memberikan rekomendasi arsitektur automasi, dan membuka Master Access Key untuk seluruh 5 tools di AGentZ Vault.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <a href="../" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-brand-gold hover:bg-yellow-400 text-black font-bold text-sm tracking-wide transition shadow-lg shadow-brand-gold/20 font-mono-code">
+            📅 Jadwalkan 15-Min Free Audit →
+          </a>
+          <a href="../" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-sm transition border border-white/10 font-mono-code">
+            🔓 Buka Modul Lain di Vault
+          </a>
+        </div>
+        <div class="text-[11px] text-gray-400 font-mono-code">
+          *Audit gratis 100% tanpa komitmen. Kuota dibatasi 5 sesi per minggu.
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-brand-border text-center text-xs text-gray-500 font-mono-code space-y-2">
+      <p>© 2026 Mathew Jordan • AGentZ Lead Generation Architecture</p>
+      <p>
+        <a href="../" class="text-gray-400 hover:text-brand-gold underline">jordanengo.com</a> • 
+        <a href="https://instagram.com/jordan_engo" target="_blank" class="text-gray-400 hover:text-brand-gold underline">Instagram</a> • 
+        <a href="https://www.youtube.com/@jordanengolo" target="_blank" class="text-gray-400 hover:text-brand-gold underline">YouTube</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    function copyCode(btn, elementId) {
+      const code = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span>✅ Tersalin!</span>';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

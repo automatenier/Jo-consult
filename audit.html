@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGentZ | 4-Pillar AI Business Audit & Diagnostic OS</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,400..600,0..1,0" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#F5F3FF',
+              100: '#EDE9FE',
+              500: '#8B5CF6',
+              600: '#7C3AED',
+              700: '#6D28D9',
+              900: '#4C1D95',
+            }
+          },
+          boxShadow: {
+            'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+            'elevated': '0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03)',
+            'glow-purple': '0 0 25px -5px rgba(124, 58, 237, 0.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Range input styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 9999px;
+      background: #E2E8F0;
+      outline: none;
+    }
+    .dark input[type=range] {
+      background: #334155;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #7C3AED;
+      cursor: pointer;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+      transition: all 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 5px rgba(124, 58, 237, 0.28);
+    }
+    
+    .tab-active {
+      background-color: #7C3AED !important;
+      color: #FFFFFF !important;
+      border-color: #7C3AED !important;
+      box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#0B0F19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Background Ambient Gradient Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-32 -left-32 w-[550px] h-[550px] bg-purple-500/10 dark:bg-purple-600/15 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 -right-24 w-[450px] h-[450px] bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 left-1/4 w-[500px] h-[500px] bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- STICKY TOP NAV -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <!-- Logo & Hub Label -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 via-indigo-600 to-sky-500 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-purple-600/20 group-hover:scale-105 transition">
+            OS
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">AGentZ</span>
+              <span class="px-2 py-0.5 text-[10px] font-mono font-bold tracking-wide uppercase bg-purple-100 text-purple-800 dark:bg-purple-950/70 dark:text-purple-300 rounded-md border border-purple-200/70 dark:border-purple-800/80">
+                Master Hub
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">4-Pillar AI Business Audit OS</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Live Counters & Theme Switcher -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200/80 dark:border-purple-800/60">
+          <span class="material-symbols-outlined text-purple-600 dark:text-purple-400 text-base">hourglass_bottom</span>
+          <span class="text-xs text-slate-600 dark:text-slate-300 font-medium">Jam Terbuang:</span>
+          <span id="header-total-hours" class="font-mono font-bold text-xs sm:text-sm text-purple-600 dark:text-purple-400">0 Jam / bln</span>
+        </div>
+
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200/80 dark:border-rose-900/60">
+          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+          <span class="text-xs text-slate-600 dark:text-slate-300 font-medium hidden xs:inline">Total Bocor:</span>
+          <span id="header-total-leak" class="font-mono font-bold text-xs sm:text-sm text-rose-600 dark:text-rose-400">Rp 0 / bln</span>
+        </div>
+
+        <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors">
+          <span class="material-symbols-outlined text-lg leading-none" id="theme-icon">dark_mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1 flex flex-col gap-6 sm:gap-8">
+
+    <!-- HERO SECTION -->
+    <section class="text-center max-w-3xl mx-auto space-y-3 pt-2">
+      <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800/80 text-purple-700 dark:text-purple-300 text-xs font-semibold">
+        <span class="material-symbols-outlined text-sm">hub</span>
+        Pusat Diagnostik & Kalkulator Eksekutif
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+        Berapa Miliar Rupiah Bocor <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-800 bg-clip-text text-transparent">
+          Di Seluruh Lini Bisnis Anda?
+        </span>
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        Diagnosa 4 pilar bisnis secara komprehensif: Operasional, Funnel Penjualan, Engine Media, serta Produk Edukasi & Coaching. Temukan titik kebocoran kas terbesar dalam hitungan menit.
+      </p>
+    </section>
+
+    <!-- PILLAR SELECTOR TABS -->
+    <nav class="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle max-w-4xl mx-auto w-full">
+      <button type="button" onclick="switchTab('ops')" id="tab-btn-ops" class="tab-btn tab-active flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition">
+        <span class="material-symbols-outlined text-base">precision_manufacturing</span>
+        <span>01 Ops</span>
+        <span id="tab-leak-ops" class="hidden sm:inline font-mono text-[10px] py-0.5 px-1.5 rounded bg-black/10 dark:bg-white/10">Bocor</span>
+      </button>
+
+      <button type="button" onclick="switchTab('sales')" id="tab-btn-sales" class="tab-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <span class="material-symbols-outlined text-base">shopping_cart_checkout</span>
+        <span>02 Sales</span>
+        <span id="tab-leak-sales" class="hidden sm:inline font-mono text-[10px] py-0.5 px-1.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Bocor</span>
+      </button>
+
+      <button type="button" onclick="switchTab('media')" id="tab-btn-media" class="tab-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <span class="material-symbols-outlined text-base">video_library</span>
+        <span>03 Media</span>
+        <span id="tab-leak-media" class="hidden sm:inline font-mono text-[10px] py-0.5 px-1.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Bocor</span>
+      </button>
+
+      <button type="button" onclick="switchTab('coaching')" id="tab-btn-coaching" class="tab-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <span class="material-symbols-outlined text-base">school</span>
+        <span>04 Coaching</span>
+        <span id="tab-leak-coaching" class="hidden sm:inline font-mono text-[10px] py-0.5 px-1.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Bocor</span>
+      </button>
+
+      <button type="button" onclick="switchTab('scorecard')" id="tab-btn-scorecard" class="tab-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <span class="material-symbols-outlined text-base">analytics</span>
+        <span class="text-purple-600 dark:text-purple-400 font-extrabold">05 Scorecard</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: OPERATIONS AUDIT -->
+    <div id="panel-ops" class="tab-panel space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Checklist Audit -->
+        <section class="lg:col-span-6 bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">
+                <span class="material-symbols-outlined text-lg">checklist_rtl</span>
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-slate-900 dark:text-white">1. Audit Titik Rawan Operasional</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Pilih opsi yang paling menggambarkan kondisi tim saat ini</p>
+              </div>
+            </div>
+            <a href="audit-ops.html" target="_blank" class="text-[11px] font-mono px-2 py-0.5 rounded bg-purple-50 hover:bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-800 flex items-center gap-1">
+              <span>Buka Standalone</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+          <div class="space-y-4">
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">A. Rekap Data Order & Laporan Harian</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">receipt_long</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Berapa lama staf admin menghabiskan waktu mengetik ulang chat WhatsApp, nota fisik, dan menyalin ke spreadsheet?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="ops">
+                <button type="button" onclick="selectAnswer(this, 100, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Otomatis</span>&lt;30 Menit
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual</span>1–3 Jam
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Kritis</span>&gt;4 Jam / Hari
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">B. Monitoring Stok & Bahan Baku Kritis</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">inventory_2</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah sistem gudang memberi notifikasi otomatis real-time ke WA saat stok menyentuh batas aman minimum?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="ops">
+                <button type="button" onclick="selectAnswer(this, 100, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto-Alert</span>Bot WA
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual</span>Sheet/Fisik
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Blindspot</span>Pas Habis
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">C. Visibility Jam 8 Pagi Bagi Owner</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">monitoring</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Bagaimana owner mengetahui omzet bersih, margin kotor, serta anomali biaya operasional hari kemarin?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="ops">
+                <button type="button" onclick="selectAnswer(this, 100, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Daily Pulse</span>Bot WA 8 AM
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Tanya Admin</span>Sore Hari
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Buta Data</span>Mingguan
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">D. Pencatatan Kasbon & Petty Cash Lapangan</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">payments</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Bagaimana nota pengeluaran operasional, bensin, atau logistik belanja harian diverifikasi dan dicatat?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="ops">
+                <button type="button" onclick="selectAnswer(this, 100, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● AI OCR</span>Foto Nota Sync
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Semi-Manual</span>Buku Kasbon
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'ops')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Selisih</span>Nota Hilang
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live Simulator & Bleed Output -->
+        <section class="lg:col-span-6 space-y-6">
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-2">
+                <div class="p-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300">
+                  <span class="material-symbols-outlined text-lg">calculate</span>
+                </div>
+                <div>
+                  <h2 class="text-sm font-bold text-slate-900 dark:text-white">2. Kalkulator Kebocoran Operasional</h2>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Geser slider sesuai data riil operasional saat ini</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                Pilar 01
+              </span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="ops-staff" class="font-medium text-slate-700 dark:text-slate-300">Jumlah Staf Admin & Lapangan</label>
+                  <span id="ops-staff-val" class="font-mono font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">3 Orang</span>
+                </div>
+                <input id="ops-staff" type="range" min="1" max="15" step="1" value="3" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="ops-hours" class="font-medium text-slate-700 dark:text-slate-300">Jam Rekap Manual per Staf / Hari</label>
+                  <span id="ops-hours-val" class="font-mono font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">3 Jam / Hari</span>
+                </div>
+                <input id="ops-hours" type="range" min="1" max="8" step="0.5" value="3" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="ops-salary" class="font-medium text-slate-700 dark:text-slate-300">Rata-rata Gaji per Staf / Bulan</label>
+                  <span id="ops-salary-val" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Rp 3.500.000</span>
+                </div>
+                <input id="ops-salary" type="range" min="2000000" max="8000000" step="250000" value="3500000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="ops-shrink" class="font-medium text-slate-700 dark:text-slate-300">Estimasi Selisih Stok / Susut Belanja / Bulan</label>
+                  <span id="ops-shrink-val" class="font-mono font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800">Rp 4.000.000</span>
+                </div>
+                <input id="ops-shrink" type="range" min="0" max="25000000" step="500000" value="4000000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+            </div>
+
+            <!-- Total Bleed Box -->
+            <div class="p-4 rounded-xl bg-gradient-to-br from-rose-50 via-rose-50/80 to-purple-50 dark:from-rose-950/40 dark:via-slate-900 dark:to-purple-950/30 border border-rose-200 dark:border-rose-900/80 space-y-3">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Jam Sia-sia</span>
+                  <p id="ops-hours-wasted" class="text-xl sm:text-2xl font-black font-mono text-purple-600 dark:text-purple-400 tracking-tight">234 Jam <span class="text-xs font-normal text-slate-500">/bln</span></p>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Kebocoran / Bulan</span>
+                  <p id="ops-monthly-bleed" class="text-xl sm:text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 7.937.500</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-700 dark:text-slate-200">Akumulasi 1 Tahun:</span>
+                <span id="ops-annual-bleed" class="font-mono font-black text-rose-600 dark:text-rose-400 text-sm sm:text-base">Rp 95.250.000</span>
+              </div>
+            </div>
+
+            <!-- Tier 1 Quick Win Box -->
+            <div class="p-4 rounded-xl bg-emerald-50/90 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/80 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase text-emerald-700 dark:text-emerald-300">Solusi Quick Win Tier 1</span>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-200 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-200">1 MINGGU SELESAI</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">8 AM Owner Daily Pulse Bot + Stock Alert Bot</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Owner terima rekap laba kotor & stok kritis otomatis tiap jam 8 pagi di WhatsApp.</p>
+              <div class="pt-1 flex items-center justify-between">
+                <span class="text-xs font-semibold text-emerald-800 dark:text-emerald-300">Rp 5.000.000</span>
+                <button type="button" onclick="orderPillarQuickWin('Ops')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1 transition">
+                  <span>Pesan</span><span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB 2: SALES & CRM AUDIT -->
+    <div id="panel-sales" class="tab-panel hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Checklist Audit -->
+        <section class="lg:col-span-6 bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+                <span class="material-symbols-outlined text-lg">shopping_cart_checkout</span>
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-slate-900 dark:text-white">1. Audit Titik Rawan Funnel Penjualan</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Kecepatan respon WA & pengelolaan prospek</p>
+              </div>
+            </div>
+            <a href="audit-sales.html" target="_blank" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-50 hover:bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-300 border border-sky-200 dark:border-sky-800 flex items-center gap-1">
+              <span>Buka Standalone</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+          <div class="space-y-4">
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">A. Speed-to-Lead WhatsApp dari Iklan / Web</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">timer</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Berapa lama rata-rata calon pembeli menunggu balasan pertama saat chat masuk di luar jam kantor atau akhir pekan?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="sales">
+                <button type="button" onclick="selectAnswer(this, 100, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● &lt;60 Detik</span>Auto-AI
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● 15–60 Mnt</span>Staf CS
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● &gt;2 Jam</span>Besok Pagi
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">B. Follow-up Prospek Tertunda (Dormant Leads)</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">mark_email_unread</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah ada automasi broadcast pintar berjadwal yang menyapa ulang prospek yang sudah lebih dari 7 hari tidak merespon?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="sales">
+                <button type="button" onclick="selectAnswer(this, 100, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto Drip</span>3-Step Sequence
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual</span>Ingatan CS
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Dilupakan</span>Kontak Mati
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">C. Booking Jadwal & Kualifikasi Prospek</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">calendar_month</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Bagaimana calon klien memesan sesi demo atau konsultasi langsung tanpa bolak-balik tanya jadwal luang via chat?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="sales">
+                <button type="button" onclick="selectAnswer(this, 100, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto Cal</span>Cal.com Sync
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Chat Manual</span>Tanya Jam
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● No-Show</span>Sering Batal
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">D. Re-Order & Aktivasi Pelanggan Lama</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">published_with_changes</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah pelanggan yang sudah beli 30–60 hari lalu disapa otomatis dengan penawaran repeat order atau review?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="sales">
+                <button type="button" onclick="selectAnswer(this, 100, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto Flow</span>CRM Tagging
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Kadang</span>Saat Promo
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'sales')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Nol Followup</span>Hanya Nunggu
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live Simulator & Bleed Output -->
+        <section class="lg:col-span-6 space-y-6">
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-2">
+                <div class="p-1.5 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+                  <span class="material-symbols-outlined text-lg">calculate</span>
+                </div>
+                <div>
+                  <h2 class="text-sm font-bold text-slate-900 dark:text-white">2. Kalkulator Kebocoran Omzet Sales</h2>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Simulasikan kerugian akibat lambat respon & kontak dorman</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
+                Pilar 02
+              </span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="sales-leads" class="font-medium text-slate-700 dark:text-slate-300">Inbound Leads Baru / Bulan</label>
+                  <span id="sales-leads-val" class="font-mono font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/60 px-2 py-0.5 rounded border border-sky-200 dark:border-sky-800">150 Lead</span>
+                </div>
+                <input id="sales-leads" type="range" min="20" max="1000" step="10" value="150" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="sales-deal" class="font-medium text-slate-700 dark:text-slate-300">Rata-rata Nilai Transaksi (Deal Value)</label>
+                  <span id="sales-deal-val" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Rp 5.000.000</span>
+                </div>
+                <input id="sales-deal" type="range" min="1000000" max="50000000" step="1000000" value="5000000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="sales-dormant" class="font-medium text-slate-700 dark:text-slate-300">Kontak Database Mengendap (Dorman)</label>
+                  <span id="sales-dormant-val" class="font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">800 Kontak</span>
+                </div>
+                <input id="sales-dormant" type="range" min="100" max="5000" step="100" value="800" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="sales-speed" class="font-medium text-slate-700 dark:text-slate-300">Kecepatan Balas Rata-rata Tim CS</label>
+                  <span id="sales-speed-val" class="font-mono font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800">15–60 Menit</span>
+                </div>
+                <input id="sales-speed" type="range" min="0.15" max="0.85" step="0.35" value="0.5" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+            </div>
+
+            <!-- Total Bleed Box -->
+            <div class="p-4 rounded-xl bg-gradient-to-br from-rose-50 via-rose-50/80 to-sky-50 dark:from-rose-950/40 dark:via-slate-900 dark:to-sky-950/30 border border-rose-200 dark:border-rose-900/80 space-y-3">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Lead Hangus</span>
+                  <p id="sales-lost-leads" class="text-xl sm:text-2xl font-black font-mono text-sky-600 dark:text-sky-400 tracking-tight">75 Lead <span class="text-xs font-normal text-slate-500">/bln</span></p>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Omzet Hangus / Bln</span>
+                  <p id="sales-monthly-bleed" class="text-xl sm:text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 37.950.000</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-700 dark:text-slate-200">Akumulasi 1 Tahun:</span>
+                <span id="sales-annual-bleed" class="font-mono font-black text-rose-600 dark:text-rose-400 text-sm sm:text-base">Rp 455.400.000</span>
+              </div>
+            </div>
+
+            <!-- Tier 1 Quick Win Box -->
+            <div class="p-4 rounded-xl bg-sky-50/90 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-800/80 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase text-sky-700 dark:text-sky-300">Solusi Quick Win Tier 1</span>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-sky-200 text-sky-900 dark:bg-sky-900 dark:text-sky-200">1 MINGGU SELESAI</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">60-Second Speed-to-Lead WA Bot + Pipeline Sync</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Balas chat prospek dalam &lt;60 detik 24/7, kualifikasi otomatis, dan jadwalkan meeting.</p>
+              <div class="pt-1 flex items-center justify-between">
+                <span class="text-xs font-semibold text-sky-800 dark:text-sky-300">Rp 5.000.000</span>
+                <button type="button" onclick="orderPillarQuickWin('Sales')" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-1 transition">
+                  <span>Pesan</span><span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB 3: MEDIA PIPELINE AUDIT -->
+    <div id="panel-media" class="tab-panel hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Checklist Audit -->
+        <section class="lg:col-span-6 bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
+                <span class="material-symbols-outlined text-lg">video_library</span>
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-slate-900 dark:text-white">1. Audit Titik Rawan Pipeline Media</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Efisiensi produksi konten & founder leverage</p>
+              </div>
+            </div>
+            <a href="audit-media.html" target="_blank" class="text-[11px] font-mono px-2 py-0.5 rounded bg-rose-50 hover:bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-300 border border-rose-200 dark:border-rose-800 flex items-center gap-1">
+              <span>Buka Standalone</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+          <div class="space-y-4">
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">A. Riset Ide, Hook & Scripting Konten</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">lightbulb</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah founder menghabiskan berjam-jam bingung mencari ide konten viral tanpa bank data hook teruji?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="media">
+                <button type="button" onclick="selectAnswer(this, 100, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● AI Director</span>Bank Hook Siap
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual</span>Riset Seharian
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Spontan</span>Asal Rekam
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">B. Konversi DM Instagram / TikTok ke WhatsApp</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">forum</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah ada DM Automation yang otomatis membagikan lead magnet / checklist saat audiens berkomentar kata kunci?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="media">
+                <button type="button" onclick="selectAnswer(this, 100, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto DM</span>Instant Bridge
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual</span>Balas 1 per 1
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Terabaikan</span>Banyak Lewat
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">C. Waktu Founder Terkunci di Ruang Rekam</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">videocam</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Berapa jam per minggu waktu founder dihabiskan untuk take video berulang karena tidak ada teleprompter / SOP rekam rapi?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="media">
+                <button type="button" onclick="selectAnswer(this, 100, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● &lt;2 Jam</span>Batch Rekam SOP
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● 4–8 Jam</span>Tiap Hari Rekam
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Burnout</span>&gt;10 Jam/Mgg
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">D. Manajemen Aset Footage & Editing</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">folder_open</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah footage tersimpan di cloud terpusat dengan penamaan standar atau berserakan di galeri HP?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="media">
+                <button type="button" onclick="selectAnswer(this, 100, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto Cloud</span>Immich Sync
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual Drive</span>Gdrive Campur
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'media')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Di HP Saja</span>Memory Penuh
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live Simulator & Bleed Output -->
+        <section class="lg:col-span-6 space-y-6">
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-2">
+                <div class="p-1.5 rounded-lg bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
+                  <span class="material-symbols-outlined text-lg">calculate</span>
+                </div>
+                <div>
+                  <h2 class="text-sm font-bold text-slate-900 dark:text-white">2. Kalkulator Kebocoran Media & Waktu</h2>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Valuasi waktu berharga founder yang terkuras</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+                Pilar 03
+              </span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="media-views" class="font-medium text-slate-700 dark:text-slate-300">Total Views / Bulan (Reels / TikTok)</label>
+                  <span id="media-views-val" class="font-mono font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2 py-0.5 rounded border border-rose-200 dark:border-rose-800">60.000 Views</span>
+                </div>
+                <input id="media-views" type="range" min="5000" max="500000" step="5000" value="60000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="media-dms" class="font-medium text-slate-700 dark:text-slate-300">Komentar / Inbound DM Masuk / Bulan</label>
+                  <span id="media-dms-val" class="font-mono font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">300 Orang</span>
+                </div>
+                <input id="media-dms" type="range" min="20" max="2000" step="20" value="300" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="media-hours" class="font-medium text-slate-700 dark:text-slate-300">Jam Founder Sibuk Konten / Minggu</label>
+                  <span id="media-hours-val" class="font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">8 Jam / Minggu</span>
+                </div>
+                <input id="media-hours" type="range" min="2" max="30" step="1" value="8" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="media-rate" class="font-medium text-slate-700 dark:text-slate-300">Valuasi Tarif Jam Founder</label>
+                  <span id="media-rate-val" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Rp 250.000 / Jam</span>
+                </div>
+                <input id="media-rate" type="range" min="100000" max="2000000" step="50000" value="250000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+            </div>
+
+            <!-- Total Bleed Box -->
+            <div class="p-4 rounded-xl bg-gradient-to-br from-rose-50 via-rose-50/80 to-purple-50 dark:from-rose-950/40 dark:via-slate-900 dark:to-purple-950/30 border border-rose-200 dark:border-rose-900/80 space-y-3">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Waktu Founder Terkunci</span>
+                  <p id="media-hours-wasted" class="text-xl sm:text-2xl font-black font-mono text-purple-600 dark:text-purple-400 tracking-tight">32 Jam <span class="text-xs font-normal text-slate-500">/bln</span></p>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Kebocoran / Bulan</span>
+                  <p id="media-monthly-bleed" class="text-xl sm:text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 19.250.000</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-700 dark:text-slate-200">Akumulasi 1 Tahun:</span>
+                <span id="media-annual-bleed" class="font-mono font-black text-rose-600 dark:text-rose-400 text-sm sm:text-base">Rp 231.000.000</span>
+              </div>
+            </div>
+
+            <!-- Tier 1 Quick Win Box -->
+            <div class="p-4 rounded-xl bg-rose-50/90 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-800/80 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase text-rose-700 dark:text-rose-300">Solusi Quick Win Tier 1</span>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-rose-200 text-rose-900 dark:bg-rose-900 dark:text-rose-200">1 MINGGU SELESAI</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Social Media DM Setter + Content Director AI</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Auto DM saat ada komen kata kunci, arahkan ke WA, dan sediakan bank hook teruji.</p>
+              <div class="pt-1 flex items-center justify-between">
+                <span class="text-xs font-semibold text-rose-800 dark:text-rose-300">Rp 5.000.000</span>
+                <button type="button" onclick="orderPillarQuickWin('Media')" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs flex items-center gap-1 transition">
+                  <span>Pesan</span><span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB 4: COACHING & LMS AUDIT -->
+    <div id="panel-coaching" class="tab-panel hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Checklist Audit -->
+        <section class="lg:col-span-6 bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
+                <span class="material-symbols-outlined text-lg">school</span>
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-slate-900 dark:text-white">1. Audit Titik Rawan Skalabilitas Edukasi</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Otomasi LMS & eliminasi repetisi konsultasi</p>
+              </div>
+            </div>
+            <a href="audit-coaching.html" target="_blank" class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-50 hover:bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1">
+              <span>Buka Standalone</span>
+              <span class="material-symbols-outlined text-xs">open_in_new</span>
+            </a>
+          </div>
+
+          <div class="space-y-4">
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">A. Pengiriman Akses Modul & Auto-Delivery</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">vpn_key</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah murid yang baru bayar langsung menerima link login & password instan tanpa menunggu admin kirim manual?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="coaching">
+                <button type="button" onclick="selectAnswer(this, 100, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto-Delivery</span>Detik itu juga
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Admin Manual</span>Menunggu Chat
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Sering Komplain</span>Akses Macet
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">B. AI Assistant Penjawab Pertanyaan Murid</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">support_agent</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah coach masih meladeni pertanyaan dasar yang sama berulang kali di grup WA / Telegram murid?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="coaching">
+                <button type="button" onclick="selectAnswer(this, 100, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● AI Bot Kloning</span>24/7 Terlatih
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Coach Manual</span>Ketik Sendiri
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Slow Respon</span>Murid Pasif
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">C. Ketergantungan Omzet pada Jam Fisik Zoom 1-on-1</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">schedule</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah batas pendapatan Anda terbentur fisik karena harus Zoom satu per satu dengan tiap klien?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="coaching">
+                <button type="button" onclick="selectAnswer(this, 100, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Scalable OS</span>1-to-Many
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Hybrid</span>Campur Fisik
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Terkunci Fisik</span>Burnout
+                </button>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">D. Funnel Upsell Otomatis ke High-Ticket</h3>
+                <span class="material-symbols-outlined text-slate-400 text-base">trending_up</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apakah pembeli e-book / webinar otomatis diarahkan oleh funnel untuk naik kelas ke mentoring eksklusif?
+              </p>
+              <div class="grid grid-cols-3 gap-2 pt-1" data-group="coaching">
+                <button type="button" onclick="selectAnswer(this, 100, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-emerald-600 font-bold mb-0.5">● Auto Ascension</span>Otomatis Upsell
+                </button>
+                <button type="button" onclick="selectAnswer(this, 50, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center">
+                  <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual Pitch</span>Di Akhir Sesi
+                </button>
+                <button type="button" onclick="selectAnswer(this, 0, 'coaching')" class="option-btn p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm">
+                  <span class="block text-rose-600 font-bold mb-0.5">● Tanpa Funnel</span>Produk Lepas
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live Simulator & Bleed Output -->
+        <section class="lg:col-span-6 space-y-6">
+          <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div class="flex items-center gap-2">
+                <div class="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">
+                  <span class="material-symbols-outlined text-lg">calculate</span>
+                </div>
+                <div>
+                  <h2 class="text-sm font-bold text-slate-900 dark:text-white">2. Kalkulator Kebocoran Waktu Coach & Upsell</h2>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Simulasikan potensi omzet yang terblokir</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                Pilar 04
+              </span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="coach-clients" class="font-medium text-slate-700 dark:text-slate-300">Jumlah Murid / Klien Aktif</label>
+                  <span id="coach-clients-val" class="font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">30 Orang</span>
+                </div>
+                <input id="coach-clients" type="range" min="5" max="200" step="5" value="30" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="coach-hours" class="font-medium text-slate-700 dark:text-slate-300">Jam Jawab Tanya & Konsultasi / Minggu</label>
+                  <span id="coach-hours-val" class="font-mono font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">12 Jam / Minggu</span>
+                </div>
+                <input id="coach-hours" type="range" min="2" max="30" step="1" value="12" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="coach-rate" class="font-medium text-slate-700 dark:text-slate-300">Valuasi Tarif Jam Konsultasi Coach</label>
+                  <span id="coach-rate-val" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Rp 500.000 / Jam</span>
+                </div>
+                <input id="coach-rate" type="range" min="200000" max="3000000" step="100000" value="500000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+
+              <div class="space-y-1.5">
+                <div class="flex justify-between items-center text-xs">
+                  <label for="coach-ht" class="font-medium text-slate-700 dark:text-slate-300">Harga Paket High-Ticket / Mentoring</label>
+                  <span id="coach-ht-val" class="font-mono font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/60 px-2 py-0.5 rounded border border-sky-200 dark:border-sky-800">Rp 12.000.000</span>
+                </div>
+                <input id="coach-ht" type="range" min="3000000" max="50000000" step="1000000" value="12000000" oninput="recalcAll()" class="w-full cursor-pointer" />
+              </div>
+            </div>
+
+            <!-- Total Bleed Box -->
+            <div class="p-4 rounded-xl bg-gradient-to-br from-rose-50 via-rose-50/80 to-amber-50 dark:from-rose-950/40 dark:via-slate-900 dark:to-amber-950/30 border border-rose-200 dark:border-rose-900/80 space-y-3">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Jam Repetisi Terbuang</span>
+                  <p id="coach-hours-wasted" class="text-xl sm:text-2xl font-black font-mono text-purple-600 dark:text-purple-400 tracking-tight">48 Jam <span class="text-xs font-normal text-slate-500">/bln</span></p>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Kebocoran / Bulan</span>
+                  <p id="coach-monthly-bleed" class="text-xl sm:text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 60.000.000</p>
+                </div>
+              </div>
+              <div class="pt-3 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-700 dark:text-slate-200">Akumulasi 1 Tahun:</span>
+                <span id="coach-annual-bleed" class="font-mono font-black text-rose-600 dark:text-rose-400 text-sm sm:text-base">Rp 720.000.000</span>
+              </div>
+            </div>
+
+            <!-- Tier 1 Quick Win Box -->
+            <div class="p-4 rounded-xl bg-amber-50/90 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/80 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase text-amber-700 dark:text-amber-300">Solusi Quick Win Tier 1</span>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900 dark:bg-amber-900 dark:text-amber-200">1–2 MINGGU SELESAI</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Coach Knowledge Assistant + Auto-Delivery Portal</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Bot AI menjawab tanya jawab modul murid 24/7 dan auto-delivery akses setelah bayar.</p>
+              <div class="pt-1 flex items-center justify-between">
+                <span class="text-xs font-semibold text-amber-800 dark:text-amber-300">Rp 7.500.000</span>
+                <button type="button" onclick="orderPillarQuickWin('Coaching')" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center gap-1 transition">
+                  <span>Pesan</span><span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TAB 5: MASTER EXECUTIVE SCORECARD -->
+    <div id="panel-scorecard" class="tab-panel hidden space-y-8">
+      
+      <!-- TOP 4 METRICS OVERVIEW -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Total Kebocoran / Bln</span>
+            <span class="material-symbols-outlined text-rose-500 text-lg">trending_down</span>
+          </div>
+          <p id="sum-monthly-leak" class="text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 0</p>
+          <p class="text-[11px] text-slate-400">Akumulasi seluruh 4 pilar</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Kerugian 1 Tahun</span>
+            <span class="material-symbols-outlined text-rose-500 text-lg">warning</span>
+          </div>
+          <p id="sum-annual-leak" class="text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 0</p>
+          <p class="text-[11px] text-slate-400">Jika dibiarkan tanpa automasi</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Jam Robotik Terbuang</span>
+            <span class="material-symbols-outlined text-purple-500 text-lg">hourglass_empty</span>
+          </div>
+          <p id="sum-hours-wasted" class="text-2xl font-black font-mono text-purple-600 dark:text-purple-400 tracking-tight">0 Jam <span class="text-xs font-normal text-slate-500">/bln</span></p>
+          <p class="text-[11px] text-slate-400">Waktu staf & founder tersita</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Skor Kesehatan Bisnis</span>
+            <span class="material-symbols-outlined text-emerald-500 text-lg">verified</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <p id="sum-health-score" class="text-2xl font-black font-mono text-slate-900 dark:text-white tracking-tight">50%</p>
+            <span id="sum-health-badge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">Waspada</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Berdasarkan skor checklist</p>
+        </div>
+      </section>
+
+      <!-- 4-PILLAR WATERFALL BREAKDOWN TABLE -->
+      <section class="bg-white dark:bg-slate-900 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <h2 class="text-sm font-bold text-slate-900 dark:text-white">Rincian Perbandingan 4 Pilar Bisnis</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Peta distribusi kebocoran kas dan jam operasional</p>
+          </div>
+          <span class="text-xs font-mono text-purple-600 dark:text-purple-400 font-semibold">Tersinkronisasi Otomatis</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="text-slate-400 border-b border-slate-200 dark:border-slate-800 font-mono uppercase text-[10px]">
+              <tr>
+                <th class="py-2.5 px-3">Pilar Bisnis</th>
+                <th class="py-2.5 px-3">Titik Masalah Utama</th>
+                <th class="py-2.5 px-3">Bocor / Bln</th>
+                <th class="py-2.5 px-3">Jam Terbuang</th>
+                <th class="py-2.5 px-3">Solusi Quick Win Tier 1</th>
+                <th class="py-2.5 px-3 text-right">Aksi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60 font-medium">
+              <!-- Ops Row -->
+              <tr>
+                <td class="py-3 px-3 flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+                  <span class="font-bold text-slate-900 dark:text-white">01. Operasional</span>
+                </td>
+                <td class="py-3 px-3 text-slate-600 dark:text-slate-300">Rekap nota manual & selisih stok</td>
+                <td class="py-3 px-3 font-mono font-bold text-rose-600 dark:text-rose-400" id="tb-ops-leak">Rp 0</td>
+                <td class="py-3 px-3 font-mono" id="tb-ops-hours">0 Jam</td>
+                <td class="py-3 px-3 text-slate-700 dark:text-slate-300">8 AM Pulse Bot (Rp 5M)</td>
+                <td class="py-3 px-3 text-right">
+                  <button type="button" onclick="switchTab('ops')" class="text-purple-600 hover:text-purple-500 font-semibold underline">Edit</button>
+                </td>
+              </tr>
+
+              <!-- Sales Row -->
+              <tr>
+                <td class="py-3 px-3 flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-sky-500"></div>
+                  <span class="font-bold text-slate-900 dark:text-white">02. Penjualan & CRM</span>
+                </td>
+                <td class="py-3 px-3 text-slate-600 dark:text-slate-300">Respon lambat & kontak dorman</td>
+                <td class="py-3 px-3 font-mono font-bold text-rose-600 dark:text-rose-400" id="tb-sales-leak">Rp 0</td>
+                <td class="py-3 px-3 font-mono" id="tb-sales-leads">0 Lead Hangus</td>
+                <td class="py-3 px-3 text-slate-700 dark:text-slate-300">Speed-to-Lead WA (Rp 5M)</td>
+                <td class="py-3 px-3 text-right">
+                  <button type="button" onclick="switchTab('sales')" class="text-sky-600 hover:text-sky-500 font-semibold underline">Edit</button>
+                </td>
+              </tr>
+
+              <!-- Media Row -->
+              <tr>
+                <td class="py-3 px-3 flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-rose-500"></div>
+                  <span class="font-bold text-slate-900 dark:text-white">03. Pipeline Media</span>
+                </td>
+                <td class="py-3 px-3 text-slate-600 dark:text-slate-300">DM tidak ter-bridge & waktu rekam</td>
+                <td class="py-3 px-3 font-mono font-bold text-rose-600 dark:text-rose-400" id="tb-media-leak">Rp 0</td>
+                <td class="py-3 px-3 font-mono" id="tb-media-hours">0 Jam</td>
+                <td class="py-3 px-3 text-slate-700 dark:text-slate-300">DM Setter + Hook AI (Rp 5M)</td>
+                <td class="py-3 px-3 text-right">
+                  <button type="button" onclick="switchTab('media')" class="text-rose-600 hover:text-rose-500 font-semibold underline">Edit</button>
+                </td>
+              </tr>
+
+              <!-- Coaching Row -->
+              <tr>
+                <td class="py-3 px-3 flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+                  <span class="font-bold text-slate-900 dark:text-white">04. Coaching & LMS</span>
+                </td>
+                <td class="py-3 px-3 text-slate-600 dark:text-slate-300">Tanya jawab repetitif & tanpa upsell</td>
+                <td class="py-3 px-3 font-mono font-bold text-rose-600 dark:text-rose-400" id="tb-coach-leak">Rp 0</td>
+                <td class="py-3 px-3 font-mono" id="tb-coach-hours">0 Jam</td>
+                <td class="py-3 px-3 text-slate-700 dark:text-slate-300">Knowledge Bot + Portal (Rp 7.5M)</td>
+                <td class="py-3 px-3 text-right">
+                  <button type="button" onclick="switchTab('coaching')" class="text-amber-600 hover:text-amber-500 font-semibold underline">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TWO CLOSING PATHWAYS -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+        <!-- Path A: AI Business Blueprint -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-50 via-white to-indigo-50/50 dark:from-purple-950/40 dark:via-slate-900 dark:to-indigo-950/30 border border-purple-200 dark:border-purple-800/80 shadow-subtle flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 text-[10px] font-mono font-bold uppercase">
+              Opsi Rekomendasi • High-Leverage
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">AI Business Blueprint Sprint (1 Minggu)</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Audit mendalam 1-on-1 langsung bersama Jordan untuk membedah arsitektur operasional, sales CRM, media engine, dan struktur offer bisnis Anda. Biaya 100% dikreditkan jika lanjut implementasi Business OS.
+            </p>
+            <div class="pt-2 text-xs font-semibold text-purple-800 dark:text-purple-300">
+              Investasi: <span class="font-mono font-bold text-sm">Rp 10.000.000</span> (Dikreditkan 100%)
+            </div>
+          </div>
+
+          <a href="https://cal.com/agentz/revenue-leak-audit" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition shadow-sm hover:shadow-purple-500/25">
+            <span class="material-symbols-outlined text-base">calendar_month</span>
+            <span>Jadwalkan Sesi Blueprint</span>
+          </a>
+        </div>
+
+        <!-- Path B: WhatsApp Quick Win Closing -->
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-sky-50/50 dark:from-emerald-950/40 dark:via-slate-900 dark:to-sky-950/30 border border-emerald-200 dark:border-emerald-800/80 shadow-subtle flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-mono font-bold uppercase">
+              Opsi Cepat • Solusi Spesifik
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Pasang 1 Solusi Quick Win Paling Mendesak</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Tutup kebocoran paling kritis terlebih dahulu dalam 7–14 hari (misal: Daily Pulse Bot Operasional Rp 5M atau Speed-to-Lead WA Rp 5M) tanpa harus merombak seluruh sistem sekaligus.
+            </p>
+            <div class="pt-2 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+              Investasi: Mulai <span class="font-mono font-bold text-sm">Rp 5.000.000</span> (One-time)
+            </div>
+          </div>
+
+          <button type="button" onclick="sendMasterWhatsAppReport()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition shadow-sm">
+            <span class="material-symbols-outlined text-base">chat</span>
+            <span>Kirim Laporan Audit ke WhatsApp</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- GLOBAL ACTION FOOTER DECK -->
+    <footer class="mt-4 p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle flex flex-col sm:flex-row items-center justify-between gap-3.5">
+      <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs text-center sm:text-left">
+        <span class="material-symbols-outlined text-purple-600 text-lg">shield</span>
+        <span>Data audit dihitung otomatis di browser lokal Anda tanpa disimpan ke server pihak ketiga.</span>
+      </div>
+
+      <div class="flex items-center gap-2.5 w-full sm:w-auto">
+        <button type="button" onclick="copyMasterReport()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+          <span class="material-symbols-outlined text-base">content_copy</span>
+          <span>Salin Rangkuman Master</span>
+        </button>
+
+        <button type="button" onclick="switchTab('scorecard')" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-sm hover:shadow-purple-500/25">
+          <span class="material-symbols-outlined text-base">analytics</span>
+          <span>Buka Scorecard</span>
+        </button>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- JAVASCRIPT CALCULATION & ENGINE -->
+  <script>
+    const BUSINESS_WA = "15556523818";
+
+    // Checklist scores tracker
+    const scores = {
+      ops: [50, 50, 0, 50],
+      sales: [50, 50, 50, 0],
+      media: [50, 50, 50, 0],
+      coaching: [50, 50, 50, 0]
+    };
+
+    function formatRp(n) {
+      return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+    }
+
+    function switchTab(tabKey) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = 'tab-btn flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800 transition';
+      });
+
+      const activePanel = document.getElementById(`panel-${tabKey}`);
+      const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
+
+      if (activePanel) activePanel.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.className = 'tab-btn tab-active flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold border border-transparent transition';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectAnswer(btn, score, group) {
+      const container = btn.parentElement;
+      container.querySelectorAll('.option-btn').forEach(b => {
+        b.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-purple-400 transition text-center';
+      });
+
+      if (score === 100) {
+        btn.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200 transition text-center shadow-sm';
+      } else if (score === 50) {
+        btn.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm';
+      } else {
+        btn.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm';
+      }
+
+      recalcAll();
+    }
+
+    function recalcAll() {
+      // 1. OPS CALCULATIONS
+      const opsStaff = parseInt(document.getElementById('ops-staff').value) || 3;
+      const opsHours = parseFloat(document.getElementById('ops-hours').value) || 3;
+      const opsSalary = parseInt(document.getElementById('ops-salary').value) || 3500000;
+      const opsShrink = parseInt(document.getElementById('ops-shrink').value) || 4000000;
+
+      document.getElementById('ops-staff-val').innerText = `${opsStaff} Orang`;
+      document.getElementById('ops-hours-val').innerText = `${opsHours} Jam / Hari`;
+      document.getElementById('ops-salary-val').innerText = formatRp(opsSalary);
+      document.getElementById('ops-shrink-val').innerText = formatRp(opsShrink);
+
+      const opsHoursWasted = Math.round(opsStaff * opsHours * 26);
+      const opsSalaryBleed = (opsHours / 8) * opsSalary * opsStaff;
+      const opsMonthly = opsSalaryBleed + opsShrink;
+      const opsAnnual = opsMonthly * 12;
+
+      document.getElementById('ops-hours-wasted').innerHTML = `${opsHoursWasted} Jam <span class="text-xs font-normal text-slate-500">/bln</span>`;
+      document.getElementById('ops-monthly-bleed').innerText = formatRp(opsMonthly);
+      document.getElementById('ops-annual-bleed').innerText = formatRp(opsAnnual);
+
+      // 2. SALES CALCULATIONS
+      const salesLeads = parseInt(document.getElementById('sales-leads').value) || 150;
+      const salesDeal = parseInt(document.getElementById('sales-deal').value) || 5000000;
+      const salesDormant = parseInt(document.getElementById('sales-dormant').value) || 800;
+      const salesSpeedFactor = parseFloat(document.getElementById('sales-speed').value) || 0.5;
+
+      document.getElementById('sales-leads-val').innerText = `${salesLeads} Lead`;
+      document.getElementById('sales-deal-val').innerText = formatRp(salesDeal);
+      document.getElementById('sales-dormant-val').innerText = `${salesDormant} Kontak`;
+      
+      const speedLabel = salesSpeedFactor <= 0.25 ? '<15 Menit' : (salesSpeedFactor <= 0.6 ? '15–60 Menit' : '>2 Jam');
+      document.getElementById('sales-speed-val').innerText = speedLabel;
+
+      const salesLostLeads = Math.round(salesLeads * (1 - salesSpeedFactor));
+      const salesLeadMoneyLost = salesLostLeads * 0.05 * salesDeal;
+      const salesDormantBleed = Math.round(salesDormant * 0.03 * (salesDeal * 0.4));
+      const salesMonthly = salesLeadMoneyLost + salesDormantBleed;
+      const salesAnnual = salesMonthly * 12;
+
+      document.getElementById('sales-lost-leads').innerHTML = `${salesLostLeads} Lead <span class="text-xs font-normal text-slate-500">/bln</span>`;
+      document.getElementById('sales-monthly-bleed').innerText = formatRp(salesMonthly);
+      document.getElementById('sales-annual-bleed').innerText = formatRp(salesAnnual);
+
+      // 3. MEDIA CALCULATIONS
+      const mediaViews = parseInt(document.getElementById('media-views').value) || 60000;
+      const mediaDms = parseInt(document.getElementById('media-dms').value) || 300;
+      const mediaHours = parseInt(document.getElementById('media-hours').value) || 8;
+      const mediaRate = parseInt(document.getElementById('media-rate').value) || 250000;
+
+      document.getElementById('media-views-val').innerText = `${mediaViews.toLocaleString('id-ID')} Views`;
+      document.getElementById('media-dms-val').innerText = `${mediaDms} Orang`;
+      document.getElementById('media-hours-val').innerText = `${mediaHours} Jam / Minggu`;
+      document.getElementById('media-rate-val').innerText = formatRp(mediaRate) + ' / Jam';
+
+      const mediaHoursWasted = mediaHours * 4;
+      const mediaFounderCost = mediaHoursWasted * mediaRate;
+      const mediaLostDms = Math.round(mediaDms * 0.75);
+      const mediaLostValue = mediaLostDms * 50000;
+      const mediaMonthly = mediaFounderCost + mediaLostValue;
+      const mediaAnnual = mediaMonthly * 12;
+
+      document.getElementById('media-hours-wasted').innerHTML = `${mediaHoursWasted} Jam <span class="text-xs font-normal text-slate-500">/bln</span>`;
+      document.getElementById('media-monthly-bleed').innerText = formatRp(mediaMonthly);
+      document.getElementById('media-annual-bleed').innerText = formatRp(mediaAnnual);
+
+      // 4. COACHING CALCULATIONS
+      const coachClients = parseInt(document.getElementById('coach-clients').value) || 30;
+      const coachHours = parseInt(document.getElementById('coach-hours').value) || 12;
+      const coachRate = parseInt(document.getElementById('coach-rate').value) || 500000;
+      const coachHt = parseInt(document.getElementById('coach-ht').value) || 12000000;
+
+      document.getElementById('coach-clients-val').innerText = `${coachClients} Orang`;
+      document.getElementById('coach-hours-val').innerText = `${coachHours} Jam / Minggu`;
+      document.getElementById('coach-rate-val').innerText = formatRp(coachRate) + ' / Jam';
+      document.getElementById('coach-ht-val').innerText = formatRp(coachHt);
+
+      const coachHoursWasted = coachHours * 4;
+      const coachTimeCost = coachHoursWasted * coachRate;
+      const coachUpsellLeak = Math.round(coachClients * 0.10 * coachHt);
+      const coachMonthly = coachTimeCost + coachUpsellLeak;
+      const coachAnnual = coachMonthly * 12;
+
+      document.getElementById('coach-hours-wasted').innerHTML = `${coachHoursWasted} Jam <span class="text-xs font-normal text-slate-500">/bln</span>`;
+      document.getElementById('coach-monthly-bleed').innerText = formatRp(coachMonthly);
+      document.getElementById('coach-annual-bleed').innerText = formatRp(coachAnnual);
+
+      // 5. MASTER TOTALS
+      const totalMonthly = opsMonthly + salesMonthly + mediaMonthly + coachMonthly;
+      const totalAnnual = totalMonthly * 12;
+      const totalHours = opsHoursWasted + mediaHoursWasted + coachHoursWasted;
+
+      document.getElementById('header-total-leak').innerText = formatRp(totalMonthly) + ' / bln';
+      document.getElementById('header-total-hours').innerText = `${totalHours} Jam / bln`;
+
+      // Update Tab Pill Indicators
+      document.getElementById('tab-leak-ops').innerText = formatRp(opsMonthly);
+      document.getElementById('tab-leak-sales').innerText = formatRp(salesMonthly);
+      document.getElementById('tab-leak-media').innerText = formatRp(mediaMonthly);
+      document.getElementById('tab-leak-coaching').innerText = formatRp(coachMonthly);
+
+      // Update Scorecard View
+      document.getElementById('sum-monthly-leak').innerText = formatRp(totalMonthly);
+      document.getElementById('sum-annual-leak').innerText = formatRp(totalAnnual);
+      document.getElementById('sum-hours-wasted').innerHTML = `${totalHours} Jam <span class="text-xs font-normal text-slate-500">/bln</span>`;
+
+      // Waterfall Table Elements
+      document.getElementById('tb-ops-leak').innerText = formatRp(opsMonthly);
+      document.getElementById('tb-ops-hours').innerText = `${opsHoursWasted} Jam`;
+
+      document.getElementById('tb-sales-leak').innerText = formatRp(salesMonthly);
+      document.getElementById('tb-sales-leads').innerText = `${salesLostLeads} Lead`;
+
+      document.getElementById('tb-media-leak').innerText = formatRp(mediaMonthly);
+      document.getElementById('tb-media-hours').innerText = `${mediaHoursWasted} Jam`;
+
+      document.getElementById('tb-coach-leak').innerText = formatRp(coachMonthly);
+      document.getElementById('tb-coach-hours').innerText = `${coachHoursWasted} Jam`;
+    }
+
+    function copyMasterReport() {
+      const totalBleed = document.getElementById('sum-monthly-leak').innerText;
+      const annualBleed = document.getElementById('sum-annual-leak').innerText;
+      const hours = document.getElementById('sum-hours-wasted').innerText;
+      const ops = document.getElementById('tb-ops-leak').innerText;
+      const sales = document.getElementById('tb-sales-leak').innerText;
+      const media = document.getElementById('tb-media-leak').innerText;
+      const coaching = document.getElementById('tb-coach-leak').innerText;
+
+      const txt = `=== AGENTZ 4-PILLAR AI BUSINESS AUDIT REPORT ===\n` +
+        `• Total Kebocoran Kas Bulanan: ${totalBleed}\n` +
+        `• Akumulasi Kerugian 1 Tahun: ${annualBleed}\n` +
+        `• Jam Robotik Terbuang: ${hours}\n\n` +
+        `[RINCIAN PER PILAR]\n` +
+        `1. Operasional & Stok: ${ops}/bln\n` +
+        `2. Penjualan & CRM: ${sales}/bln\n` +
+        `3. Pipeline Media: ${media}/bln\n` +
+        `4. Coaching & LMS: ${coaching}/bln\n\n` +
+        `Solusi: Pasang AI Business Blueprint / Quick Win Tier 1\n` +
+        `Audit via: agentz.jordanengo.com/audit.html\n` +
+        `================================================`;
+
+      navigator.clipboard.writeText(txt).then(() => {
+        alert("Laporan Master Audit 4 Pilar berhasil disalin ke clipboard!");
+      });
+    }
+
+    function sendMasterWhatsAppReport() {
+      const totalBleed = document.getElementById('sum-monthly-leak').innerText;
+      const hours = document.getElementById('sum-hours-wasted').innerText;
+      const ops = document.getElementById('tb-ops-leak').innerText;
+      const sales = document.getElementById('tb-sales-leak').innerText;
+      const media = document.getElementById('tb-media-leak').innerText;
+      const coach = document.getElementById('tb-coach-leak').innerText;
+
+      const msg = encodeURIComponent(
+        `Halo Tim AGentZ, saya telah menyelesaikan 4-Pillar AI Business Audit.\n\n` +
+        `*Hasil Diagnosa:*\n` +
+        `• Total Kebocoran Kas: *${totalBleed}/bulan*\n` +
+        `• Jam Robotik Terbuang: *${hours}*\n` +
+        `• Breakdown: Ops (${ops}), Sales (${sales}), Media (${media}), Coaching (${coach})\n\n` +
+        `Saya tertarik mendiskusikan *AI Business Blueprint / Solusi Quick Win* untuk menutup kebocoran ini.`
+      );
+      window.open(`https://wa.me/${BUSINESS_WA}?text=${msg}`, '_blank');
+    }
+
+    function orderPillarQuickWin(pillar) {
+      let sol = '';
+      if (pillar === 'Ops') sol = '8 AM Owner Daily Pulse Bot (Rp 5.000.000)';
+      else if (pillar === 'Sales') sol = '60-Second Speed-to-Lead WA Bot (Rp 5.000.000)';
+      else if (pillar === 'Media') sol = 'Social Media DM Setter + Hook AI (Rp 5.000.000)';
+      else if (pillar === 'Coaching') sol = 'Coach Knowledge Assistant + Auto-Delivery (Rp 7.500.000)';
+
+      const msg = encodeURIComponent(`Halo Jordan & Tim AGentZ, saya telah mengisi audit pilar *${pillar}*.\n\nSaya ingin memesan paket implementasi Quick Win Tier 1: *${sol}*. Mohon info timeline pengerjaannya.`);
+      window.open(`https://wa.me/${BUSINESS_WA}?text=${msg}`, '_blank');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      document.getElementById('theme-icon').innerText = isDark ? 'light_mode' : 'dark_mode';
+      localStorage.setItem('agentz-theme', isDark ? 'dark' : 'light');
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('agentz-theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').innerText = 'light_mode';
+      }
+      recalcAll();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGentZ | Sales & CRM AI Audit — CPL, Speed-to-Lead & Repeat Order</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..24,400..600,0..1,0" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              500: '#0EA5E9',
+              600: '#0284C7',
+              700: '#0369A1',
+              900: '#0C4A6E',
+            }
+          },
+          boxShadow: {
+            'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+            'elevated': '0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03)',
+            'glow-sky': '0 0 25px -5px rgba(2, 132, 199, 0.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 9999px;
+      background: #E2E8F0;
+      outline: none;
+    }
+    .dark input[type=range] {
+      background: #334155;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0284C7;
+      cursor: pointer;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+      transition: all 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 5px rgba(2, 132, 199, 0.28);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#0B0F19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Background Ambient Gradient Orbs -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-32 -left-32 w-[550px] h-[550px] bg-sky-500/10 dark:bg-sky-600/15 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/3 -right-24 w-[450px] h-[450px] bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 left-1/4 w-[500px] h-[500px] bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- STICKY TOP NAV -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-[#0F172A]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-sky-600/20">
+          02
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">AGentZ</span>
+            <span class="px-2 py-0.5 text-[10px] font-mono font-bold tracking-wide uppercase bg-sky-100 text-sky-800 dark:bg-sky-950/70 dark:text-sky-300 rounded-md border border-sky-200/70 dark:border-sky-800/80">
+              Pilar 02 • Sales
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Sales Velocity, CRM & Speed-to-Lead AI Diagnostic</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200/80 dark:border-rose-900/60">
+          <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+          <span class="text-xs text-slate-600 dark:text-slate-300 font-medium">Bocor di WA:</span>
+          <span id="header-sales-leak" class="font-mono font-bold text-xs sm:text-sm text-rose-600 dark:text-rose-400">Rp 0 / bln</span>
+        </div>
+
+        <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors">
+          <span class="material-symbols-outlined text-lg leading-none" id="theme-icon">dark_mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 flex-1 flex flex-col gap-8">
+
+    <!-- HERO SECTION -->
+    <section class="text-center max-w-3xl mx-auto space-y-3 pt-2">
+      <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800/80 text-sky-700 dark:text-sky-300 text-xs font-semibold">
+        <span class="material-symbols-outlined text-sm">point_of_sale</span>
+        Kalkulator Diagnostik Funnel & Reaktivasi
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+        Berapa Banyak Omzet Terbakar <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-800 bg-clip-text text-transparent">
+          di WhatsApp & Kontak Pelanggan Pasif?
+        </span>
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        Menambah budget iklan pada funnel yang bocor hanya membakar uang. Ukur berapa prospek yang kabur karena respon lambat di luar jam kerja dan database pelanggan lama yang tidak pernah diingatkan.
+      </p>
+    </section>
+
+    <!-- TWO-COLUMN WORKSPACE -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+
+      <!-- LEFT: CHECKLIST DIAGNOSTIC -->
+      <section class="lg:col-span-6 bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+        
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div class="flex items-center gap-2">
+            <div class="p-1.5 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+              <span class="material-symbols-outlined text-lg">checklist_rtl</span>
+            </div>
+            <div>
+              <h2 class="text-sm font-bold text-slate-900 dark:text-white">1. Audit Titik Rawan Funnel Penjualan</h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Pilih opsi yang paling menggambarkan kondisi sales & WA saat ini</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">4 Indikator</span>
+        </div>
+
+        <div class="space-y-4" id="diagnostic-list">
+          <!-- Question 1 -->
+          <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">A. Kecepatan Balas Chat Baru (Speed-to-Lead)</h3>
+              <span class="material-symbols-outlined text-slate-400 text-base">timer</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Berapa lama calon pembeli harus menunggu sebelum chat pertamanya dibalas saat jam sibuk dan luar jam kerja?
+            </p>
+            <div class="grid grid-cols-3 gap-2 pt-1" data-question="q1">
+              <button type="button" onclick="selectAnswer(this, 100)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition text-center">
+                <span class="block text-emerald-600 font-bold mb-0.5">● AI Kilat</span>
+                &lt; 2 Menit
+              </button>
+              <button type="button" onclick="selectAnswer(this, 50)" class="option-btn active-yellow p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Jeda</span>
+                15–45 Menit
+              </button>
+              <button type="button" onclick="selectAnswer(this, 0)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition text-center">
+                <span class="block text-rose-600 font-bold mb-0.5">● Kritis</span>
+                1–3 Jam / Besok
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">B. Siklus Reaktivasi Pelanggan Dorman (Repeat Order)</h3>
+              <span class="material-symbols-outlined text-slate-400 text-base">sync</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Apa yang terjadi pada pelanggan lama yang sudah 20–40 hari tidak melakukan transaksi kembali?
+            </p>
+            <div class="grid grid-cols-3 gap-2 pt-1" data-question="q2">
+              <button type="button" onclick="selectAnswer(this, 100)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 transition text-center">
+                <span class="block text-emerald-600 font-bold mb-0.5">● Auto-Trigger</span>
+                WA Reaktivasi
+              </button>
+              <button type="button" onclick="selectAnswer(this, 50)" class="option-btn active-yellow p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Manual</span>
+                Broadcast Sporadis
+              </button>
+              <button type="button" onclick="selectAnswer(this, 0)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 transition text-center">
+                <span class="block text-rose-600 font-bold mb-0.5">● Dibiarkan</span>
+                Kontak Mati
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">C. Layanan Chat di Luar Jam Kerja (Malam & Libur)</h3>
+              <span class="material-symbols-outlined text-slate-400 text-base">nightlight</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Apakah ada sistem yang melayani tanya jawab, kualifikasi kebutuhan, dan mengunci order saat admin sedang tidur?
+            </p>
+            <div class="grid grid-cols-3 gap-2 pt-1" data-question="q3">
+              <button type="button" onclick="selectAnswer(this, 100)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 transition text-center">
+                <span class="block text-emerald-600 font-bold mb-0.5">● 24/7 AI</span>
+                Self-Service Bot
+              </button>
+              <button type="button" onclick="selectAnswer(this, 50)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 transition text-center">
+                <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Kaku</span>
+                Pesan Auto-Reply
+              </button>
+              <button type="button" onclick="selectAnswer(this, 0)" class="option-btn active-red p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm">
+                <span class="block text-rose-600 font-bold mb-0.5">● Pending</span>
+                Dibalas Besok
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="p-4 rounded-xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800/80 space-y-2.5">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-xs font-bold text-slate-900 dark:text-slate-100">D. Otomasi Review Google Business (GMB Kredibilitas)</h3>
+              <span class="material-symbols-outlined text-slate-400 text-base">hotel_class</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Apakah pembeli sukses otomatis menerima pesan pengingat untuk memberikan review bintang 5 di profil Google Maps Anda?
+            </p>
+            <div class="grid grid-cols-3 gap-2 pt-1" data-question="q4">
+              <button type="button" onclick="selectAnswer(this, 100)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 transition text-center">
+                <span class="block text-emerald-600 font-bold mb-0.5">● Auto-Flow</span>
+                Trigger Pasca Beli
+              </button>
+              <button type="button" onclick="selectAnswer(this, 50)" class="option-btn active-yellow p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm">
+                <span class="block text-amber-600 dark:text-amber-400 font-bold mb-0.5">● Sporadis</span>
+                Kadang Minta Manual
+              </button>
+              <button type="button" onclick="selectAnswer(this, 0)" class="option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 transition text-center">
+                <span class="block text-rose-600 font-bold mb-0.5">● Nol</span>
+                Tidak Pernah
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: SIMULATOR & FINANCIAL METRICS -->
+      <section class="lg:col-span-6 space-y-6">
+
+        <div class="bg-white dark:bg-slate-900/90 rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-subtle space-y-5">
+          
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-2">
+              <div class="p-1.5 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">
+                <span class="material-symbols-outlined text-lg">calculate</span>
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-slate-900 dark:text-white">2. Kalkulator Omzet Terbakar di WhatsApp</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Geser slider sesuai data riil traffic dan pelanggan Anda</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
+              Live Calc
+            </span>
+          </div>
+
+          <!-- Sliders Grid -->
+          <div class="space-y-4">
+            <!-- Slider 1 -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center text-xs">
+                <label for="sales-leads" class="font-medium text-slate-700 dark:text-slate-300">Chat Masuk / Lead Baru per Bulan</label>
+                <span id="sales-leads-val" class="font-mono font-bold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/60 px-2 py-0.5 rounded border border-sky-200 dark:border-sky-800">150 Lead</span>
+              </div>
+              <input id="sales-leads" type="range" min="30" max="1000" step="10" value="150" oninput="recalcSales()" class="w-full cursor-pointer" />
+            </div>
+
+            <!-- Slider 2 -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center text-xs">
+                <label for="sales-deal" class="font-medium text-slate-700 dark:text-slate-300">Nilai Rata-rata Transaksi (Deal Value)</label>
+                <span id="sales-deal-val" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">Rp 5.000.000</span>
+              </div>
+              <input id="sales-deal" type="range" min="200000" max="25000000" step="500000" value="5000000" oninput="recalcSales()" class="w-full cursor-pointer" />
+            </div>
+
+            <!-- Slider 3 -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center text-xs">
+                <label for="sales-dormant" class="font-medium text-slate-700 dark:text-slate-300">Database Kontak Pelanggan Pasif (&gt;30 hari)</label>
+                <span id="sales-dormant-val" class="font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">800 Kontak</span>
+              </div>
+              <input id="sales-dormant" type="range" min="100" max="5000" step="50" value="800" oninput="recalcSales()" class="w-full cursor-pointer" />
+            </div>
+
+            <!-- Select Option -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between items-center text-xs">
+                <label for="sales-speed" class="font-medium text-slate-700 dark:text-slate-300">Kecepatan Respon Chat Sales</label>
+                <span class="text-[11px] font-mono font-bold text-rose-500">Toleransi Respon</span>
+              </div>
+              <select id="sales-speed" onchange="recalcSales()" class="w-full text-xs font-mono rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 p-2.5 outline-none focus:border-sky-500">
+                <option value="0.95">&lt; 2 Menit (AI Kilat - 95% terjaga)</option>
+                <option value="0.75">15 Menit (75% terjaga)</option>
+                <option value="0.45" selected>45 Menit (55% lead kabur ke kompetitor)</option>
+                <option value="0.20">2+ Jam / Luar Jam Kerja (80% ghosting)</option>
+                <option value="0.05">Besok Pagi (95% hangus)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Total Bleed Output Banner -->
+          <div class="p-4 rounded-xl bg-gradient-to-br from-rose-50 via-rose-50/80 to-sky-50 dark:from-rose-950/40 dark:via-slate-900 dark:to-sky-950/30 border border-rose-200 dark:border-rose-900/80 space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="space-y-1">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Lead Menguap / Bulan</span>
+                <p id="sales-lost-leads" class="text-2xl font-black font-mono text-amber-600 dark:text-amber-400 tracking-tight">82 Lead</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Kabur sebelum sempat dikualifikasi</p>
+              </div>
+              <div class="space-y-1">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Omzet Bocor Tiap Bulan</span>
+                <p id="sales-monthly-bleed" class="text-2xl font-black font-mono text-rose-600 dark:text-rose-400 tracking-tight">Rp 24.500.000</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Chat lambat + 800 kontak tidur</p>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-rose-200/80 dark:border-rose-900/60 flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-rose-500 text-base">warning</span>
+                <span class="text-xs font-semibold text-slate-700 dark:text-slate-200">Akumulasi Omzet Hangus 1 Tahun:</span>
+              </div>
+              <span id="sales-annual-bleed" class="font-mono font-black text-rose-600 dark:text-rose-400 text-base">Rp 294.000.000</span>
+            </div>
+          </div>
+
+          <!-- Quick Win Tier 1 Recommendation Box -->
+          <div class="p-4 rounded-xl bg-emerald-50/90 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/80 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-sm">verified</span>
+                <span class="text-[11px] font-mono font-bold uppercase text-emerald-700 dark:text-emerald-300">Rekomendasi Solusi Tier 1</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-200 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-200">
+                HASIL DALAM 48 JAM
+              </span>
+            </div>
+
+            <div class="space-y-1">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white">Customer Reactivation Engine + 24/7 After-Hour Bot</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                Kirim pesan penawaran personal otomatis ke 800 kontak tidur dan tangkap order malam hari 24/7. Menghasilkan repeat order langsung tanpa keluar biaya iklan tambahan.
+              </p>
+            </div>
+
+            <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div class="text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+                Investasi: <span class="font-mono font-bold text-sm">Rp 6.500.000</span> (one-time)
+              </div>
+              <button type="button" onclick="orderSalesQuickWin()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-sm hover:shadow">
+                <span>Aktifkan Reaktivasi Ini</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- ACTION FOOTER DECK -->
+    <footer class="mt-2 p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-subtle flex flex-col sm:flex-row items-center justify-between gap-3.5">
+      <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs text-center sm:text-left">
+        <span class="material-symbols-outlined text-sky-600 text-lg">shield</span>
+        <span>Simulasi ini menggunakan model analitik konversi WhatsApp SME real-time.</span>
+      </div>
+
+      <div class="flex items-center gap-2.5 w-full sm:w-auto">
+        <button type="button" onclick="copySalesSummary()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+          <span class="material-symbols-outlined text-base">content_copy</span>
+          <span>Salin Hasil Audit</span>
+        </button>
+
+        <a href="https://cal.com/agentz/revenue-leak-audit" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition shadow-sm hover:shadow-sky-500/25">
+          <span class="material-symbols-outlined text-base">calendar_month</span>
+          <span>Konsultasi Blueprint AI</span>
+        </a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    function formatRp(n) {
+      return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+    }
+
+    function selectAnswer(btn, score) {
+      const container = btn.parentElement;
+      container.querySelectorAll('.option-btn').forEach(b => {
+        b.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 hover:border-sky-400 hover:bg-sky-50/50 dark:hover:bg-sky-950/30 transition text-center';
+      });
+
+      if (score === 100) {
+        btn.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200 transition text-center shadow-sm';
+      } else if (score === 50) {
+        btn.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 transition text-center shadow-sm';
+      } else {
+        btn.className = 'option-btn p-2 rounded-lg text-xs font-semibold border border-rose-400 bg-rose-50 dark:bg-rose-950/50 text-rose-900 dark:text-rose-200 transition text-center shadow-sm';
+      }
+    }
+
+    function recalcSales() {
+      const leads = parseInt(document.getElementById('sales-leads').value) || 150;
+      const deal = parseInt(document.getElementById('sales-deal').value) || 5000000;
+      const dormant = parseInt(document.getElementById('sales-dormant').value) || 800;
+      const speedFactor = parseFloat(document.getElementById('sales-speed').value) || 0.45;
+
+      document.getElementById('sales-leads-val').innerText = `${leads} Lead`;
+      document.getElementById('sales-deal-val').innerText = formatRp(deal);
+      document.getElementById('sales-dormant-val').innerText = `${dormant} Kontak`;
+
+      const lostLeads = Math.round(leads * (1 - speedFactor));
+      const leadMoneyLost = lostLeads * 0.05 * deal;
+      const dormantBleed = Math.round(dormant * 0.03 * (deal * 0.4));
+      const totalMonthly = leadMoneyLost + dormantBleed;
+      const totalAnnual = totalMonthly * 12;
+
+      document.getElementById('sales-lost-leads').innerText = `${lostLeads} Lead`;
+      document.getElementById('sales-monthly-bleed').innerText = formatRp(totalMonthly);
+      document.getElementById('sales-annual-bleed').innerText = formatRp(totalAnnual);
+      document.getElementById('header-sales-leak').innerText = formatRp(totalMonthly) + ' / bln';
+    }
+
+    function copySalesSummary() {
+      const lost = document.getElementById('sales-lost-leads').innerText;
+      const bleed = document.getElementById('sales-monthly-bleed').innerText;
+      const annual = document.getElementById('sales-annual-bleed').innerText;
+
+      const txt = `=== AGENTZ SALES & CRM AI AUDIT REPORT ===\n` +
+        `• Lead Menguap karena Chat Lambat: ${lost}\n` +
+        `• Potensi Omzet Hilang Bulanan: ${bleed}\n` +
+        `• Omzet Hangus Setahun: ${annual}\n` +
+        `• Rekomendasi Solusi: Customer Reactivation Engine + 24/7 After-Hour Bot (Rp 6.500.000 - Hasil 48 Jam)\n` +
+        `===========================================`;
+
+      navigator.clipboard.writeText(txt).then(() => {
+        alert("Ringkasan audit sales berhasil disalin ke clipboard!");
+      });
+    }
+
+    function orderSalesQuickWin() {
+      const bleed = document.getElementById('sales-monthly-bleed').innerText;
+      const msg = encodeURIComponent(`Halo Tim AGentZ, saya telah mengisi Sales AI Audit.\n\nEstimasi omzet bocor di WA kami mencapai *${bleed}/bulan*. Saya tertarik memasang Solusi Quick Win Tier 1: *Customer Reactivation Engine + 24/7 After-Hour Bot (Rp 6.500.000)*.`);
+      window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      document.getElementById('theme-icon').innerText = isDark ? 'light_mode' : 'dark_mode';
+    }
+
+    window.addEventListener('DOMContentLoaded', recalcSales);
+  </script>
+</body>
+</html>
