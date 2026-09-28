@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- WebRTC mediaDevices Early Polyfill -->
+    <script>
+      (function() {
+        if (typeof window !== 'undefined') {
+          if (!window.navigator) window.navigator = {};
+          if (!window.navigator.mediaDevices) {
+            window.navigator.mediaDevices = {};
+          }
+          if (!window.navigator.mediaDevices.getUserMedia) {
+            window.navigator.mediaDevices.getUserMedia = function(constraints) {
+              const legacyGetUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+              if (legacyGetUserMedia) {
+                return new Promise(function(resolve, reject) {
+                  legacyGetUserMedia.call(navigator, constraints, resolve, reject);
+                });
+              }
+              const banner = document.getElementById('inapp-browser-notice');
+              if (banner) banner.style.display = 'block';
+              return Promise.reject(new DOMException('Akses mikrofon tidak didukung di in-app browser aplikasi ini. Buka lewat Safari/Chrome.', 'NotSupportedError'));
+            };
+          }
+        }
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QB438WRZDQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QB438WRZDQ');
+    </script>
+    <script src="https://engo-1.jordanengo.com/webhook?action=pixel_js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Centralized Configuration & Tracking Setup -->
+    <script>
+      window.CONFIG = {
+        ga4: "G-QB438WRZDQ",
+        metaPixel: "1064572439618450",
+        api: "/submit-lead",
+        site: "agentz"
+      };
+
+      if (window.CONFIG.ga4) {
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CONFIG.ga4;
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', window.CONFIG.ga4);
+      }
+
+      if (window.CONFIG.metaPixel) {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', window.CONFIG.metaPixel);
+        fbq('track', 'PageView');
+      }
+    </script>
+    <title>AGentZ | Revenue Leak Audit & Sales Infrastructure Engine</title>
+    <meta name="description" content="Kami audit kebocoran funnel Anda & ubah permintaan yang sudah ada menjadi percakapan sales berkualitas yang dihadiri. 100% Owned Infrastructure tanpa vendor lock-in.">
+    <link rel="icon" type="image/webp" href="images/agentzlogo.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/founder-left.webp" type="image/webp">
+    <link rel="preload" as="image" href="images/founder-right.webp" type="image/webp">
+    <link rel="stylesheet" href="tailwind.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "ink-blue": "#131628",
+                        "dark-navy": "#131628",
+                        "electric-purple": "#6f00ff",
+                        "electric-purple-hover": "#5800cc",
+                        "module-active": "#455876",
+                        "page-bg": "#f9fafb"
+                    },
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                        body: ["Poppins", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .hidden { display: none !important; }
+        :root {
+            --purple: #6f00ff;
+            --purple-hover: #5800cc;
+            --ink: #131628;
+            --page-bg: #f9fafb;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background: #f9fafb;
+            color: var(--ink);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hl {
+            background: #f3e8ff;
+            color: #6f00ff;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .btn-pulse {
+            animation: ctaPulse 2.4s ease-in-out infinite;
+        }
+        @keyframes ctaPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(111,0,255,0.45); }
+            60%  { box-shadow: 0 0 0 14px rgba(111,0,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(111,0,255,0); }
+        }
+
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
+        .faq-item.open .faq-answer { max-height: 800px; }
+        .faq-chevron { transition: transform 0.3s ease; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+        .progress-bar-transition {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .option-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: 1.5px solid #e5e7eb;
+            background-color: #ffffff;
+            border-radius: 14px;
+            padding: 16px;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            outline: none;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .option-card:hover {
+            box-shadow: 0 8px 25px rgba(111, 0, 255, 0.08);
+            border-color: #6f00ff;
+            transform: translateY(-2px);
+        }
+
+        .option-card.selected {
+            background-color: #faf5ff;
+            border-color: #6f00ff;
+            box-shadow: 0 0 0 2px #6f00ff;
+        }
+
+        .option-grid-card {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            padding: 20px 12px 16px 12px !important;
+            border-radius: 16px;
+            border: 1.5px solid #e5e7eb;
+            background-color: #ffffff;
+            min-height: 125px;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .option-grid-card:hover {
+            border-color: #6f00ff;
+            box-shadow: 0 8px 25px rgba(111, 0, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .option-grid-card.selected {
+            background-color: #faf5ff !important;
+            border-color: #6f00ff !important;
+            box-shadow: 0 0 0 2px #6f00ff !important;
+        }
+
+        .option-grid-card.selected .option-badge {
+            background-color: #6f00ff !important;
+            color: #ffffff !important;
+            border-color: #6f00ff !important;
+        }
+
+        .option-grid-card.selected .option-icon-box {
+            background-color: #6f00ff !important;
+            color: #ffffff !important;
+        }
+
+        /* Carousel styles for Vault */
+        .carousel-renderer {
+            width: 100% !important;
+            overflow: hidden !important;
+        }
+        .carousel-scroll-container {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 16px !important;
+            overflow-x: auto !important;
+            padding-bottom: 14px !important;
+            scroll-behavior: smooth !important;
+            scrollbar-width: thin !important;
+            scrollbar-color: rgba(24, 62, 54, 0.25) transparent !important;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-scroll-container::-webkit-scrollbar {
+            height: 6px !important;
+        }
+        .carousel-scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(24, 62, 54, 0.25) !important;
+            border-radius: 9999px !important;
+        }
+        .carousel-item-wrapper {
+            flex: 0 0 220px !important;
+            width: 220px !important;
+            max-width: 220px !important;
+        }
+        .carousel-card {
+            width: 100% !important;
+            background: #ffffff !important;
+            border: 1px solid #dce2d8 !important;
+            border-radius: 18px !important;
+            overflow: hidden !important;
+            box-shadow: 0 4px 16px rgba(24, 62, 54, 0.05) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+            cursor: pointer !important;
+            color: #183e36 !important;
+            height: 100% !important;
+            box-sizing: border-box !important;
+            text-align: left !important;
+        }
+        .carousel-card:hover {
+            transform: translateY(-4px) !important;
+            border-color: #9bac99 !important;
+            box-shadow: 0 16px 36px rgba(24, 62, 54, 0.12) !important;
+        }
+        .carousel-card-image {
+            width: 100% !important;
+            height: 136px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            background: #ffffff !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+        .carousel-card-image img, .carousel-card-image video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+        .carousel-card-content {
+            padding: 14px 16px 16px 16px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 !important;
+            justify-content: space-between !important;
+            box-sizing: border-box !important;
+        }
+        .carousel-card-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #183e36 !important;
+            line-height: 1.35 !important;
+            font-family: 'Poppins', sans-serif !important;
+            min-height: 38px;
+        }
+        .carousel-card-cta {
+            margin-top: 12px !important;
+            padding: 8px 12px !important;
+            border-radius: 10px !important;
+            background: #195846 !important;
+            color: #ffffff !important;
+            font-size: 12px !important;
+            font-weight: 650 !important;
+            border: none !important;
+            cursor: pointer !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            transition: background 0.2s, filter 0.2s !important;
+            font-family: 'Poppins', sans-serif !important;
+        }
+        .carousel-card-cta:hover { filter: brightness(0.92) !important; }
+
+        /* Vault Unlock Modal */
+        .vault-modal-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(5px) !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 99999 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 0.3s ease !important;
+        }
+        .vault-modal-overlay.active { opacity: 1 !important; pointer-events: auto !important; }
+        .vault-modal-card {
+            background: #ffffff !important;
+            border: 1px solid #dce2d8 !important;
+            border-radius: 16px !important;
+            width: 90% !important;
+            max-width: 440px !important;
+            padding: 28px !important;
+            box-shadow: 0 16px 36px rgba(24, 62, 54, 0.15) !important;
+            transform: scale(0.9) !important;
+            transition: transform 0.3s ease !important;
+            color: #183e36 !important;
+            font-family: 'Poppins', sans-serif !important;
+            position: relative !important;
+        }
+        .vault-modal-overlay.active .vault-modal-card { transform: scale(1) !important; }
+        .vault-modal-close {
+            position: absolute !important;
+            top: 14px !important;
+            right: 14px !important;
+            background: none !important;
+            border: none !important;
+            font-size: 22px !important;
+            color: #888888 !important;
+            cursor: pointer !important;
+        }
+
+        .leak-step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body class="bg-[#f9fafb] text-[#131628] antialiased">
+
+    <!-- ═══════════ TOP NAVIGATION ═══════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#131628]/95 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 py-3.5 flex items-center justify-between transition-all">
+        <a href="#" class="flex items-center gap-2 text-white font-extrabold text-lg tracking-tight">
+            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-8 w-auto">
+            <span>AGent<span class="text-[#6f00ff]">Z</span></span>
+        </a>
+        
+        <div class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-300">
+            <a href="#revenue-leaks" class="hover:text-white transition-colors">7 Titik Kebocoran</a>
+            <a href="#arsitektur" class="hover:text-white transition-colors">Arsitektur Sistem</a>
+            <a href="#kpi-outcomes" class="hover:text-white transition-colors">Hasil &amp; Metrik</a>
+            <a href="#ownership-guarantee" class="hover:text-white transition-colors">100% Kepemilikan</a>
+            <a href="#vault-resources" class="hover:text-white transition-colors">Resource Gratis</a>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+            <a href="courses.html" class="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide px-3.5 py-2 rounded-full border border-white/15 transition-all whitespace-nowrap">
+                Course Gratis
+            </a>
+            <a href="#booking" id="nav-cta" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs sm:text-sm font-semibold tracking-wide px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all whitespace-nowrap">
+                Audit Kebocoran Funnel →
+            </a>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- ═══════════ TICKER ═══════════ -->
+        <div class="overflow-hidden bg-[#6f00ff] text-white text-xs font-semibold uppercase tracking-widest py-2.5 shadow-sm mt-[62px] flex items-center">
+            <div id="ticker-track" style="display: flex; width: max-content; white-space: nowrap; align-items: center; line-height: 1;">
+                <div id="ticker-original" style="display: inline-flex; align-items: center; line-height: 1;">
+                    <span style="padding: 0 1.25rem;">Revenue Leak Audit</span>
+                    <span>·</span>
+                    <span style="padding: 0 1.25rem;">Speed-to-Lead (&lt;60s SLA)</span>
+                    <span>·</span>
+                    <span style="padding: 0 1.25rem;">Pre-Call Lead Qualification</span>
+                    <span>·</span>
+                    <span style="padding: 0 1.25rem;">Zero-Friction Booking</span>
+                    <span>·</span>
+                    <span style="padding: 0 1.25rem;">No-Show Recovery</span>
+                    <span>·</span>
+                    <span style="padding: 0 1.25rem;">Content-to-Sales Layer</span>
+                    <span>·</span>
+                    <span style="padding: 0 1.25rem;">100% Owned Infrastructure (BYOK)</span>
+                    <span>·</span>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function() {
+                var original = document.getElementById('ticker-original');
+                var track = document.getElementById('ticker-track');
+                for (var i = 0; i < 6; i++) {
+                    track.appendChild(original.cloneNode(true));
+                }
+                var singleWidth = original.offsetWidth;
+                var pos = 0;
+                var speed = 0.8;
+                function animate() {
+                    pos -= speed;
+                    if (Math.abs(pos) >= singleWidth) {
+                        pos += singleWidth;
+                    }
+                    track.style.transform = 'translateX(' + pos + 'px)';
+                    requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+            })();
+        </script>
+
+        <!-- Logo Centered Under Ticker -->
+        <div class="flex justify-center mt-8">
+            <img src="images/agentzlogo.webp" alt="AGentZ Logo" style="height: 56px; width: auto; object-fit: contain;">
+        </div>
+
+        <!-- ═══════════ HERO: ACCURATE TO CORE USP ═══════════ -->
+        <header id="hero" class="pt-6 pb-16 px-4 sm:px-6 text-center border-b border-gray-200/70 relative overflow-hidden bg-white">
+            <div class="max-w-5xl mx-auto relative">
+                <!-- Entry Offer Pill -->
+                <div class="inline-flex items-center gap-2 bg-[#6f00ff]/10 border border-[#6f00ff]/20 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-4">
+                    <span class="w-2 h-2 rounded-full bg-[#6f00ff] animate-pulse"></span>
+                    <span>ENTRY OFFER: 15-MINUTE REVENUE LEAK AUDIT</span>
+                </div>
+
+                <div class="flex items-end justify-center gap-1 sm:gap-3 md:gap-6 my-2 mb-4">
+                    <!-- Left Founder Image -->
+                    <img src="images/founder-left.webp" alt="Jordan - Founder AGentZ" class="founder-left-img pointer-events-none select-none hidden sm:block max-w-[110px] md:max-w-[140px]" style="aspect-ratio: 1312/3208;" fetchpriority="high">
+
+                    <!-- Center H1 (Direct from USP.md Section 2 Customer-Facing Phrasing) -->
+                    <div class="max-w-3xl text-center px-1 sm:px-2">
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-[1.2] tracking-tight text-[#131628]">
+                            Ubah Permintaan yang Sudah Ada Menjadi <br class="hidden md:block">
+                            <span class="text-[#6f00ff] underline decoration-[#6f00ff]/30 decoration-4">Percakapan Sales Berkualitas</span> yang Dihadiri
+                        </h1>
+                    </div>
+
+                    <!-- Right Founder Image -->
+                    <img src="images/founder-right.webp" alt="Jordan - Founder AGentZ" class="founder-right-img pointer-events-none select-none hidden sm:block max-w-[110px] md:max-w-[140px]" style="aspect-ratio: 228/609;" fetchpriority="high">
+                </div>
+
+                <!-- Subheadline strictly aligned to USP customer-facing core outcome -->
+                <p class="text-base md:text-lg font-medium text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+                    Kami membantu Anda mengonversi lebih banyak <em>inquiry</em> yang sudah Anda terima menjadi jadwal percakapan penjualan berkualitas yang benar-benar dihadiri—serta memperlihatkan secara transparan di mana prospek Anda terlepas (*revenue leaks*).
+                </p>
+
+                <!-- Status Transition Block -->
+                <div class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm md:text-base font-bold text-[#131628] mb-8 bg-gray-50 border border-gray-200/80 rounded-2xl px-5 py-3 shadow-sm">
+                    <span class="text-red-600 line-through">Prospek Terabaikan &amp; Respon Lambat</span>
+                    <span class="text-[#6f00ff] font-black text-lg">➔</span>
+                    <span class="hl">Speed-to-Lead &lt;60s, Kualifikasi Otomatis &amp; Show Rate Terukur</span>
+                </div>
+
+                <!-- VSL Video Player -->
+                <div id="vsl-video" class="vsl-container mb-10 rounded-2xl border border-gray-200 shadow-2xl overflow-hidden max-w-3xl mx-auto bg-black"
+                    data-src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
+                    data-analytics="https://analytics.jordanengo.com"
+                    data-site-id="GANTI_DENGAN_SITE_ID_UMAMI"
+                    data-accent="#6f00ff">
+                </div>
+
+                <!-- CTA Cluster -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#booking" id="hero-cta" class="btn-pulse w-full sm:w-auto text-center bg-[#6f00ff] hover:bg-[#5800cc] text-white text-base md:text-lg font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-[#6f00ff] uppercase tracking-wide">
+                        Klaim Audit Kebocoran Funnel (Gratis 15-Min) →
+                    </a>
+                    <a href="#revenue-leaks" class="w-full sm:w-auto text-center bg-white hover:bg-gray-50 text-[#131628] text-base md:text-lg font-bold py-4 px-8 rounded-full border-2 border-gray-200 shadow-md hover:shadow-lg transition-all uppercase tracking-wide">
+                        Pelajari 7 Titik Kebocoran ↓
+                    </a>
+                </div>
+                <p class="mt-4 text-gray-500 font-medium text-xs flex items-center justify-center gap-1.5">
+                    <span class="text-[#6f00ff] font-bold">ℹ</span>
+                    <span>Diagnosis objektif sebelum meresepkan sistem. Tanpa komitmen sewa platform proprietary.</span>
+                </p>
+
+                <!-- ═══════════ BOOKING / QUIZ DIAGNOSTIC FUNNEL ═══════════ -->
+                <div id="booking" class="mt-12 max-w-2xl mx-auto scroll-mt-24">
+                    <!-- Cal.com container -->
+                    <div id="cal-container" class="w-full hidden p-6 bg-white rounded-2xl border border-gray-100 shadow-xl">
+                        <div class="mb-4 text-center">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Data Diterima</span>
+                            <h3 class="text-xl font-bold text-[#131628]">Pilih Jadwal 15-Menit Audit Kebocoran Revenue Anda</h3>
+                            <p class="text-sm text-gray-500">Pilih waktu di kalender bawah ini untuk sesi review diagnosis 1-on-1:</p>
+                        </div>
+                        <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
+                    </div>
+
+                    <!-- Detailed Interactive Quiz Form (The Revenue Leak Diagnostic) -->
+                    <div id="form-container" class="w-full p-6 sm:p-8 bg-white rounded-2xl border border-gray-200/80 shadow-xl text-left">
+                        <div class="border-b border-gray-100 pb-4 mb-6">
+                            <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold px-3 py-1 rounded-md uppercase tracking-wider mb-1">
+                                DIAGNOSIS PRA-AUDIT (1 Menit)
+                            </span>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-[#131628]">Kualifikasi Awal: Di Mana Kebocoran Bisnis Anda?</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 mt-1">Bantu kami memahami titik hambatan Anda sebelum sesi konsultasi audit dimulai.</p>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full h-2.5 bg-gray-100 rounded-full relative overflow-hidden mb-6 border border-gray-200/70">
+                            <div class="absolute top-0 left-0 h-full bg-[#6f00ff] progress-bar-transition" id="progress-bar" style="width: 20%;"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-bold text-xs uppercase tracking-widest text-gray-500">Pertanyaan <span id="current-step-num">1</span> dari 5</span>
+                        </div>
+
+                        <form id="qualification-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                            <!-- Step 1: Model Bisnis -->
+                            <div class="quiz-step" data-step="1">
+                                <h4 class="text-lg md:text-xl font-black mb-4 text-[#131628] uppercase tracking-tight">1. Model Bisnis &amp; Penawaran Utama Anda:</h4>
+                                <input type="hidden" name="business_model" id="input_business_model" required>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Agency / B2B Services')">
+                                        <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs border border-gray-300">A</span>
+                                        <div class="font-bold text-sm text-[#131628]">Agency / B2B Services</div>
+                                        <div class="text-xs text-gray-500 mt-1">Jasa retainers, konsultasi B2B, dev</div>
+                                    </button>
+                                    <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Coaching / Konsultasi / Edukasi')">
+                                        <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs border border-gray-300">B</span>
+                                        <div class="font-bold text-sm text-[#131628]">Coaching &amp; Konsultasi</div>
+                                        <div class="text-xs text-gray-500 mt-1">High-ticket coach, trainer, kursus</div>
+                                    </button>
+                                    <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'Klinik / Properti / Bisnis Lokal')">
+                                        <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs border border-gray-300">C</span>
+                                        <div class="font-bold text-sm text-[#131628]">Bisnis Lokal / Klinik / Sales</div>
+                                        <div class="text-xs text-gray-500 mt-1">Klinik, properti, otomotif, cabang lokal</div>
+                                    </button>
+                                    <button type="button" class="option-card option-grid-card group" onclick="selectQuizOption(this, 'business_model', 'High-Ticket Produk / E-commerce')">
+                                        <span class="option-badge absolute top-2.5 left-2.5 w-6 h-6 rounded-lg bg-gray-100 text-black flex items-center justify-center font-bold text-xs border border-gray-300">D</span>
+                                        <div class="font-bold text-sm text-[#131628]">High-Ticket Produk / E-com</div>
+                                        <div class="text-xs text-gray-500 mt-1">Penjualan bernilai tinggi dengan inquiry chat</div>
+                                    </button>
+                                </div>
+                                <div class="mt-6 flex justify-end pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-7 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-1">
+                                        Lanjut →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Bottleneck / Titik Kebocoran -->
+                            <div class="quiz-step hidden" data-step="2">
+                                <h4 class="text-lg md:text-xl font-black mb-4 text-[#131628] uppercase tracking-tight">2. Di mana titik kebocoran terbesar yang paling merugikan Anda?</h4>
+                                <input type="hidden" name="bottleneck" id="input_bottleneck" required>
+                                <div class="flex flex-col gap-3">
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Respon chat lambat (>15 menit) & prospek kabur')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">A</span>
+                                        <div>
+                                            <span class="font-bold text-sm text-gray-900 block">Respon chat lambat (&gt;15 menit) &amp; prospek keburu dingin</span>
+                                            <span class="text-xs text-gray-500">Inquiry masuk saat jam istirahat atau malam hari tanpa ada yang membalas.</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Follow-up berhenti setelah 1-2 chat & prospek ghosting')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">B</span>
+                                        <div>
+                                            <span class="font-bold text-sm text-gray-900 block">Follow-up berhenti setelah 1–2 kali chat &amp; prospek ghosting</span>
+                                            <span class="text-xs text-gray-500">Bergantung pada ingatan staf untuk follow-up manual, akhirnya ratusan lead terbuang.</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Tingkat no-show meeting tinggi / waktu sales terbuang untuk lead salah target')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">C</span>
+                                        <div>
+                                            <span class="font-bold text-sm text-gray-900 block">Tingkat no-show meeting tinggi &amp; kualifikasi minim</span>
+                                            <span class="text-xs text-gray-500">Sales rep sering masuk ke sesi konsultasi tanpa brief prospek atau jadwal dibatalkan sepihak.</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" class="option-card w-full" onclick="selectQuizOption(this, 'bottleneck', 'Banyak konten/iklan tapi tidak terhubung ke inquiry & closing terukur')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">D</span>
+                                        <div>
+                                            <span class="font-bold text-sm text-gray-900 block">Banyak konten &amp; ads tapi tidak ada jalur sales terukur</span>
+                                            <span class="text-xs text-gray-500">Views ramai tetapi sulit melacak mana konten atau channel yang benar-benar menghasilkan cash.</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="mt-6 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-2.5 px-5 rounded-full hover:bg-gray-200 transition-all text-sm">
+                                        ← Kembali
+                                    </button>
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-2.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-2">
+                                        Lanjut →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Estimasi Revenue Bulanan -->
+                            <div class="quiz-step hidden" data-step="3">
+                                <h4 class="text-lg md:text-xl font-black mb-4 text-[#131628] uppercase tracking-tight">3. Berapa estimasi omset/revenue bulanan bisnis Anda saat ini?</h4>
+                                <input type="hidden" name="revenue" id="input_revenue" required>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <button type="button" class="option-card" onclick="selectQuizOption(this, 'revenue', 'under_15m')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">A</span>
+                                        <span class="font-bold text-sm text-gray-900">Di bawah Rp 15 Juta/bln</span>
+                                    </button>
+                                    <button type="button" class="option-card" onclick="selectQuizOption(this, 'revenue', '15m_75m')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">B</span>
+                                        <span class="font-bold text-sm text-gray-900">Rp 15 – 75 Juta/bln</span>
+                                    </button>
+                                    <button type="button" class="option-card" onclick="selectQuizOption(this, 'revenue', '75m_200m')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">C</span>
+                                        <span class="font-bold text-sm text-gray-900">Rp 75 – 200 Juta/bln</span>
+                                    </button>
+                                    <button type="button" class="option-card" onclick="selectQuizOption(this, 'revenue', 'above_200m')">
+                                        <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center font-bold text-xs shrink-0">D</span>
+                                        <span class="font-bold text-sm text-gray-900">Di atas Rp 200 Juta/bln</span>
+                                    </button>
+                                </div>
+                                <div class="mt-6 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-2.5 px-5 rounded-full hover:bg-gray-200 transition-all text-sm">
+                                        ← Kembali
+                                    </button>
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-2.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-3">
+                                        Lanjut →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Kontak WhatsApp -->
+                            <div class="quiz-step hidden" data-step="4">
+                                <h4 class="text-lg md:text-xl font-black mb-2 text-[#131628] uppercase tracking-tight">4. Nomor WhatsApp / Telegram Aktif Anda:</h4>
+                                <p class="text-xs text-gray-500 mb-4">Kami akan mengirimkan ringkasan audit kebocoran dan konfirmasi link sesi konsultasi ke nomor ini.</p>
+                                <input type="tel" name="contact" required oninput="validateInputAndEnableNext(this, 4)" class="w-full border border-gray-300 rounded-xl p-4 font-semibold text-base text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-2 focus:ring-[#6f00ff]/20 outline-none transition-all" placeholder="Contoh: 08123456789 atau +62812...">
+                                <div class="mt-6 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-2.5 px-5 rounded-full hover:bg-gray-200 transition-all text-sm">
+                                        ← Kembali
+                                    </button>
+                                    <button type="button" onclick="nextStep()" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-2.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-4">
+                                        Lanjut →
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: Nama Lengkap -->
+                            <div class="quiz-step hidden" data-step="5">
+                                <h4 class="text-lg md:text-xl font-black mb-2 text-[#131628] uppercase tracking-tight">5. Nama Lengkap Anda:</h4>
+                                <p class="text-xs text-gray-500 mb-4">Siapa nama Anda (Founder / Marketing Lead / Business Owner)?</p>
+                                <input type="text" name="name" required oninput="validateInputAndEnableNext(this, 5)" class="w-full border border-gray-300 rounded-xl p-4 font-semibold text-base text-gray-900 focus:bg-white focus:border-[#6f00ff] focus:ring-2 focus:ring-[#6f00ff]/20 outline-none transition-all" placeholder="Contoh: Mathew Jordan">
+                                <div class="mt-6 flex justify-between pt-4 border-t border-gray-100">
+                                    <button type="button" onclick="prevStep()" class="bg-gray-100 text-gray-800 font-bold py-2.5 px-5 rounded-full hover:bg-gray-200 transition-all text-sm">
+                                        ← Kembali
+                                    </button>
+                                    <button type="submit" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center gap-2 opacity-50 cursor-not-allowed" disabled id="next-btn-5">
+                                        Buka Kalender Audit 15-Menit ✓
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Thank You Notification -->
+                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl border border-green-200 shadow-xl text-center my-4">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold mb-3 text-[#131628]">Sesi Audit Berhasil Dijadwalkan!</h3>
+                        <p class="text-base sm:text-lg font-medium text-gray-600 mb-6">Kami telah mencatat kualifikasi awal Anda. Konfirmasi link pertemuan Google Meet &amp; ringkasan persiapan audit telah dikirimkan via WhatsApp.</p>
+                        <button onclick="resetBookingFlow()" class="inline-block bg-[#6f00ff] hover:bg-[#5800cc] text-white font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all uppercase text-sm tracking-wide">
+                            Kembali ke Halaman Awal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══════════ 7 TITIK KEBOCORAN PENDAPATAN (REVENUE LEAK MATRIX) ═══════════ -->
+        <section id="revenue-leaks" class="py-20 px-4 sm:px-6 bg-[#f9fafb] border-b border-gray-200/80">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                        DIAGNOSIS INTI DARI USP.MD
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-[#131628] tracking-tight mb-4">
+                        7 Titik Kebocoran Funnel: Di Mana Uang &amp; Peluang Anda Lenyap?
+                    </h2>
+                    <p class="text-base text-gray-600 leading-relaxed">
+                        Sebelum membangun atau mengotomatisasi sistem, kami mengaudit titik penurunan (*drop-off*) terbesar antara saat prospek pertama kali melihat Anda hingga transaksi penjualan ditutup.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Leak 1: Discovery & Konten -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">01</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Discovery</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Konten Hanya Jadi "Vanity Views"</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Banyak penonton &amp; likes, tapi tidak ada jembatan langsung ke inquiry penjualan.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> Menautkan alur *lead-magnet* otomatis, kata kunci pemicu DM, dan link tracking terintegrasi langsung ke CRM.
+                        </p>
+                    </div>
+
+                    <!-- Leak 2: Inquiry Capture -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">02</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Inquiry</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Data Prospek Tersebar &amp; Tidak Tercatat</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Pertanyaan di DM IG, TikTok, form web, dan WA tersebar di chat pribadi staf.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> Unified Lead Intake: seluruh channel masuk ke satu pipeline terpusat dengan atribusi sumber (*source tracking*).
+                        </p>
+                    </div>
+
+                    <!-- Leak 3: Response Time (Speed-to-Lead) -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">03</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Respon</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Respon Lambat (&gt;15–30 Menit)</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Minat prospek mendingin 10x lipat dan mereka sudah chat kompetitor lain.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> Target SLA Respon &lt;60 Detik secara otomatis 24/7 untuk menyapa dan mempertahankan atensi prospek hangat.
+                        </p>
+                    </div>
+
+                    <!-- Leak 4: Qualification -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">04</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Kualifikasi</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Sales Habis Waktu Meladeni Bad Leads</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Panggilan meeting diisi orang yang salah target atau tidak memiliki kesiapan budget.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> AI Kualifikasi pra-percakapan memverifikasi kebutuhan dan budget sebelum mengizinkan proses booking meeting.
+                        </p>
+                    </div>
+
+                    <!-- Leak 5: Booking Janji Temu -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">05</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Booking</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Friksi Bolak-Balik Mencocokkan Jam</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: "Bisa hari Rabu jam 2?" "Oh maaf penuh, gimana kalau Kamis?" Prospek keburu hilang minat.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> Zero-friction calendar sync (Cal.com / Google Calendar) yang langsung mengunci slot hanya dalam 2 kali klik.
+                        </p>
+                    </div>
+
+                    <!-- Leak 6: Show Rate (Kehadiran Sesi) -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">06</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Kehadiran</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Tingkat No-Show Tinggi (30%–50%)</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Prospek lupa jadwal meeting atau tidak ada pengingat kontekstual.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> Protokol pengingat multi-step WhatsApp + pre-call brief kontekstual bagi sales rep sebelum meeting dimulai.
+                        </p>
+                    </div>
+
+                    <!-- Leak 7: Reaktivasi & Penjualan Berulang -->
+                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all md:col-span-2 lg:col-span-3">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">07</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Closing &amp; Retention</span>
+                        </div>
+                        <h3 class="text-base font-bold text-[#131628] mb-2">Ribuan Prospek Lama &amp; Pelanggan Dibiarkan "Mati" (*Dormant*)</h3>
+                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Prospek yang belum beli tidak pernah difollow-up lagi, dan riwayat pelanggan lama tidak pernah ditawarkan reorder.</p>
+                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
+                            <strong>Solusi AGentZ:</strong> Mesin reaktivasi lead otomatis: memicu follow-up yang relevan berdasarkan histori chat dan mendeteksi jadwal pemesanan ulang (*repeat purchase*) secara otomatis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="#booking" class="inline-block bg-[#131628] hover:bg-[#6f00ff] text-white font-bold py-3.5 px-8 rounded-full shadow-md transition-all text-sm uppercase tracking-wide">
+                        Hitung Estimasi Kebocoran Bisnis Anda Bersama Kami →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ ARSITEKTUR SISTEM (LAYER ANTARA CONTENT DENGAN SALES) ═══════════ -->
+        <section id="arsitektur" class="py-20 px-5 bg-white border-b border-gray-200/80 text-center">
+            <div class="max-w-4xl mx-auto">
+                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                    Arsitektur Solusi
+                </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-[#131628] mb-4 tracking-tight">
+                    Jembatan Antara Konten / Ads Anda dengan Closing Penjualan
+                </h2>
+                <p class="text-sm md:text-base text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+                    Sistem AGentZ duduk tepat di tengah: mengubah atensi dari media sosial dan kampanye iklan menjadi percakapan terverifikasi di kalender tim sales Anda.
+                </p>
+                <div class="rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-[#131628] p-3 sm:p-6 inline-block max-w-full">
+                    <img src="images/content-to-sales-layer.webp" alt="Layer antara Content anda dengan Sales - AGentZ System" loading="lazy" decoding="async" class="w-full h-auto object-contain mx-auto rounded-xl">
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ 6 PILAR HASIL & SUDUT VALUE DARI USP.MD ═══════════ -->
+        <section id="kpi-outcomes" class="py-20 px-4 sm:px-6 bg-[#f9fafb] border-b border-gray-200/80">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                        DELIVERABLES &amp; OUTCOMES
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-[#131628] tracking-tight mb-4">
+                        Hasil Terukur yang Dibangun ke Dalam Bisnis Anda
+                    </h2>
+                    <p class="text-base text-gray-600 leading-relaxed">
+                        Kami tidak menjual janji abstrak. Setiap modul infrastruktur memiliki indikator kinerja (*KPI*) yang dapat diuji dan dipantau setiap hari.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Outcome 1: Speed to Lead & Response SLA -->
+                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-10 h-10 rounded-xl bg-purple-50 text-[#6f00ff] flex items-center justify-center font-bold text-lg">⚡</span>
+                                <h3 class="text-lg font-bold text-[#131628]">1. Speed-to-Lead &amp; SLA Respon &lt;60 Detik</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                Menjangkau prospek tepat di puncak minat mereka sebelum mereka menutup aplikasi atau menghubungi kompetitor. Melayani pertanyaan di luar jam kerja normal tanpa jeda.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
+                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
+                            <span class="text-gray-600">Median &amp; 90th-percentile response time, SLA completion rate, dan contact rate prospek baru.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 2: Pre-Call Qualification & Briefing -->
+                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg">🎯</span>
+                                <h3 class="text-lg font-bold text-[#131628]">2. Kualifikasi Prospek &amp; Pre-Call Briefing</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                Menyaring prospek berdasarkan kebutuhan dan budget sebelum panggilan sales. Salesperson menerima ringkasan (*brief*) konteks prospek sebelum sesi dimulai, sehingga obrolan langsung terarah.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
+                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
+                            <span class="text-gray-600">Qualified-lead rate, rasio lead-to-booking, dan close rate tim penjualan.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 3: No-Show Recovery -->
+                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg">📅</span>
+                                <h3 class="text-lg font-bold text-[#131628]">3. Pengurangan No-Show &amp; Auto Reschedule</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                Rangkaian pengingat pra-pertemuan via WhatsApp otomatis beserta tautan sekali klik untuk memilih ulang jadwal jika ada keperluan mendadak.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
+                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
+                            <span class="text-gray-600">Booked-call show rate, no-show recovery rate, dan cost per qualified attended appointment.</span>
+                        </div>
+                    </div>
+
+                    <!-- Outcome 4: Multi-Channel Attribution -->
+                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg">📊</span>
+                                <h3 class="text-lg font-bold text-[#131628]">4. Visibilitas Pipeline &amp; Atribusi Penjualan</h3>
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                Melihat seluruh perjalanan pelanggan dari asal iklan/konten hingga kas masuk. Menghentikan anggaran pada channel boncos dan fokus pada saluran yang benar-benar menghasilkan closing.
+                            </p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
+                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
+                            <span class="text-gray-600">Cost per qualified lead, conversion rate per landing page, attributable revenue, dan ROAS riil.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Realistic Target Benchmark Box (From USP.md Guidance) -->
+                <div class="mt-12 bg-white rounded-2xl border-2 border-[#6f00ff]/20 p-6 sm:p-8 shadow-md">
+                    <div class="flex items-start gap-4">
+                        <span class="text-2xl mt-0.5">📌</span>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#131628] mb-1">
+                                Tolak Ukur Kinerja: Data Nyata &amp; Terukur, Bukan Klaim Bombastis
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                Kami tidak menjanjikan klaim palsu seperti <em>"100% tanpa kerja sama sekali"</em> atau ranking Google Maps instan. Kami mengoptimalkan alur operasional nyata: memangkas waktu respon ke hitungan detik, menaikkan persentase kehadiran janji temu (*show rate*), dan memastikan setiap rupiah anggaran menghasilkan prospek berkualitas yang terdokumentasi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FREE RESOURCES / BAHAN GRATIS SECTION (PRESERVED) ═══════════ -->
+        <section id="vault-resources" class="py-20 px-5 bg-white border-b border-gray-200/80 text-center">
+            <div class="max-w-5xl mx-auto">
+                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                    Bahan Gratis &amp; Resource Hub
+                </span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-[#131628] mb-2 tracking-tight uppercase">
+                    <span class="text-[#6f00ff]">FREE</span> RESOURCES &amp; TEMPLATES
+                </h2>
+                <p class="text-gray-500 text-sm md:text-base mb-8 max-w-xl mx-auto">
+                    Akses modul, blueprint sistem automasi, template dashboard, dan skrip siap pakai:
+                </p>
+
+                <!-- Offer Catalog: Bahan Gratis (1/7 Modul Terbuka) -->
+                <div class="max-w-4xl mx-auto text-left" data-id="6986608c350e1a0014bcfb19">
+                    <div class="superProfileHeader" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 12px;">
+                        <div class="head font-bold text-base sm:text-lg text-[#131628] font-['Poppins'] flex items-center">
+                            Bahan Gratis
+                            <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#22c55e; background:rgba(34,197,94,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(34,197,94,0.3);">
+                                🔓 1/7 Modul Terbuka
+                            </span>
+                        </div>
+                        <div style="font-size: 11px; color: #888888; font-family: Poppins, sans-serif; white-space: nowrap; margin-bottom: 8px; user-select: none;">
+                            <button type="button" onclick="scrollVaultCarousel(-1)" class="hover:text-black cursor-pointer font-bold px-1" title="Geser Kiri">←</button>
+                            Geser / Scroll
+                            <button type="button" onclick="scrollVaultCarousel(1)" class="hover:text-black cursor-pointer font-bold px-1" title="Geser Kanan">→</button>
+                        </div>
+                    </div>
+                    <div class="carousel-renderer">
+                        <div class="carousel-scroll-container">
+                            <!-- Card 1: Website 24/7 Telefon Respsionis & Whatsapp -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="wa_chatbot_voice_cs">
+                                    <div class="carousel-card-image" style="background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                                        <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+                                            <source src="images/widgetswa.webm" type="video/webm">
+                                            <source src="images/widgetswa_opt.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">Website 24/7 Voice &amp; WhatsApp CS</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">WA Chatbot open source + Voice AI receptionist untuk web</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #16a34a;">
+                                            <span>Buka Modul ↗</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Whatsapp Invoice System & AI Agent -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="whatsapp_invoice_system">
+                                    <div class="carousel-card-image" style="background:#101720; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <img src="images/whatsapp_invoice.png" alt="Whatsapp Invoice System &amp; AI Agent" style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">WhatsApp Invoice System &amp; AI Agent</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Invoice template bisnismu dikirimkan otomatis via WhatsApp</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                            <span>🔒 Terkunci</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Ai Agent Social Media -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="telegram_admin_agent">
+                                    <div class="carousel-card-image" style="background:#111; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <img src="images/admin_preview.gif" alt="Ai Agent Social Media" style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">AI Agent Social Media (Posting &amp; Konten)</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Auto-kelola jadwal konten &amp; monitoring via Telegram</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                            <span>🔒 Terkunci</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: 5 Coaching Video Editing Template -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="video_editor_templates">
+                                    <div class="carousel-card-image" style="background:#0f172a; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <img src="images/coaching_video_templates.gif" alt="5 Coaching Video Editing Template" style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">5 Video Editing Templates untuk Coach</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Framework hook &amp; format video yang terbukti konversi</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                            <span>🔒 Terkunci</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 5: Bisnis Dashboard -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="bisnis_dashboard_excel">
+                                    <div class="carousel-card-image" style="background:#f8fafc; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <img src="images/bisnis_dashboard.png" alt="Bisnis Dashbor + Excel Template" style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">Dashboard Pipeline &amp; KPI Tracker</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Dashboard monitoring cashflow &amp; konversi penjualan</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                            <span>🔒 Terkunci</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 6: Bisnis AI Integrasi Audit -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="bisnis_ai_audit">
+                                    <div class="carousel-card-image" style="background:#f8fafc; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <img src="images/bisnis_ai_audit.png" alt="Bisnis AI Integrasi Audit" style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">Bisnis AI Integrasi Audit</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Diagnosa 4 pilar bisnis &amp; temukan kebocoran profit</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                            <span>🔒 Terkunci</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 7: DM Automation -->
+                            <div class="carousel-item-wrapper">
+                                <div class="carousel-card" data-key="fb_ig_dm_automation">
+                                    <div class="carousel-card-image" style="background:#111; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <img src="images/instagram_dm.gif" alt="Fb &amp; IG DM Automation" style="width:100%; height:100%; object-fit:cover;">
+                                    </div>
+                                    <div class="carousel-card-content">
+                                        <div class="carousel-card-title">Instagram &amp; FB DM Automation</div>
+                                        <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Auto-reply pemicu kata kunci &amp; kirim link lead-magnet</div>
+                                        <div class="title-price-wrapper"></div>
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                            <span>🔒 Terkunci</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vault Unlock Modal -->
+                <div class="vault-modal-overlay" id="vaultUnlockModal" onclick="handleVaultOverlayClick(event)">
+                  <div class="vault-modal-card">
+                    <button class="vault-modal-close" onclick="closeVaultUnlockModal()" type="button">&times;</button>
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                      <span style="font-size: 24px;">🔒</span>
+                      <div style="font-size: 17px; font-weight: 700; color: #183e36; font-family: Poppins, sans-serif;">Modul Ini Terkunci di Master Vault</div>
+                    </div>
+                    <p style="font-size: 13px; color: #61796f; line-height: 1.6; margin-bottom: 20px; font-family: Poppins, sans-serif;">
+                      Anda sudah membuka 1 modul gratis. Seluruh <strong>6 modul lainnya</strong> dapat Anda akses melalui sesi Revenue Leak Audit.
+                    </p>
+
+                    <div style="border: 1.5px solid #195846; background: #e5eedf; border-radius: 14px; padding: 18px; margin-bottom: 16px; cursor: pointer; transition: transform 0.15s;" onclick="handleVaultAuditClick()">
+                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                        <span style="font-size: 11px; font-weight: 700; color: #183e36; text-transform: uppercase; letter-spacing: 0.5px; font-family: Poppins, sans-serif;">🔥 Unlock Full Master Vault</span>
+                        <span style="font-size: 11px; background: #195846; color: #ffffff; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: Poppins, sans-serif;">GRATIS</span>
+                      </div>
+                      <div style="font-size: 15px; font-weight: 700; color: #183e36; margin-bottom: 6px; font-family: Poppins, sans-serif;">Book 15-Min Free Revenue Leak Audit</div>
+                      <div style="font-size: 12.5px; color: #61796f; line-height: 1.5; margin-bottom: 14px; font-family: Poppins, sans-serif;">
+                        Kami review bottleneck konversi Anda, hitung nilai kebocoran prospek, dan berikan akses penuh ke seluruh resource automasi ini.
+                      </div>
+                      <button type="button" style="width: 100%; padding: 12px; background: #195846; color: #ffffff; font-size: 13px; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; font-family: Poppins, sans-serif; box-shadow: 0 4px 12px rgba(24,62,54,0.15);">
+                        Jadwalkan Audit Gratis via Cal.com →
+                      </button>
+                    </div>
+
+                    <div style="text-align: center;">
+                      <button type="button" onclick="closeVaultUnlockModal()" style="background: none; border: none; font-size: 12px; color: #61796f; cursor: pointer; font-family: Poppins, sans-serif;">
+                        Kembali ke Modul yang Sudah Dibuka
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ 100% OWNERSHIP & DELIVERY GUARANTEE ═══════════ -->
+        <section id="ownership-guarantee" class="py-20 px-5 bg-[#0e111f] text-white border-b border-white/10">
+            <div class="max-w-4xl mx-auto space-y-10">
+                <!-- 100% Ownership & BYOK Box -->
+                <div class="rounded-2xl border border-slate-800 bg-[#131628] p-8 md:p-12 shadow-2xl text-left">
+                    <div class="inline-block bg-[#6f00ff] text-white text-xs font-bold uppercase px-3.5 py-1 rounded-full mb-4 tracking-wider">
+                        100% OWNERSHIP (BYOK)
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold mb-4 text-white leading-tight tracking-tight">
+                        Anda Memiliki 100% Infrastruktur &amp; Data Bisnis Anda Sendiri.
+                    </h2>
+                    <p class="text-base md:text-lg font-medium text-gray-300 mb-6 leading-relaxed">
+                        Kami tidak mengunci Anda dalam platform *proprietary* berlangganan mahal. Seluruh database, alur kerja (workflow), integrasi API, dan CRM dipasang langsung di akun server &amp; *tools* milik Anda sendiri (*Bring Your Own Key*).
+                    </p>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5 shadow-sm">
+                        <p class="font-bold text-purple-300 text-sm md:text-base uppercase tracking-wider mb-1.5 flex items-center gap-2">
+                            <span>⚡</span>
+                            <span>ZERO VENDOR LOCK-IN · SERAH TERIMA LENGKAP</span>
+                        </p>
+                        <p class="text-gray-300 text-xs md:text-sm font-normal leading-relaxed">
+                            Semua aset, akun, kode, dan dokumentasi SOP diserahkan sepenuhnya ke bisnis Anda. Jika kerja sama selesai, sistem tetap berjalan mulus di bawah kendali penuh Anda.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Jaminan Delivery Milestone Box -->
+                <div class="rounded-2xl border border-gray-100 bg-white p-8 md:p-12 shadow-2xl text-center text-[#131628]">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <div class="inline-block bg-amber-100 text-amber-900 text-xs font-bold uppercase px-4 py-1.5 rounded-full mb-4 tracking-wider">
+                        Jaminan Delivery Milestone
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-extrabold mb-4 leading-tight text-[#131628] tracking-tight">
+                        Milestone yang Disepakati Harus Tuntas Berjalan.
+                    </h2>
+                    <p class="text-gray-600 text-center text-sm md:text-base leading-relaxed mb-3 max-w-2xl mx-auto">
+                        Kami menetapkan ruang lingkup (*scope*), *deliverables*, dependensi teknis, dan linimasa secara transparan sebelum implementasi dimulai.
+                    </p>
+                    <p class="text-gray-600 text-center text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                        Jika ada milestone implementasi yang menjadi tanggung jawab AGentZ belum selesai sesuai linimasa yang disepakati, kami melanjutkan pekerjaan tanpa biaya tambahan sepeser pun hingga seluruh sistem live dan terbukti berfungsi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ FAQ SECTION (ALIGNED TO USP NUANCES) ═══════════ -->
+        <section class="py-20 px-5 bg-[#f9fafb] border-b border-gray-200/70">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
+                        Tanya Jawab
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-[#131628] tracking-tight mb-2">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="text-gray-500 text-sm md:text-base">Klarifikasi seputar audit, implementasi, dan operasional sistem:</p>
+                </div>
+
+                <div class="space-y-3.5" id="faq-list">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item open bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                        <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                            <div class="flex items-center gap-3.5 pr-4">
+                                <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                                <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Apa yang sebenarnya terjadi di sesi Revenue Leak Audit 15-Menit?</h3>
+                            </div>
+                            <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
+                            Kami memeriksa 7 tahapan funnel Anda: discovery, inquiry, respon, kualifikasi, booking, kehadiran, dan closing. Kami menghitung estimasi rupiah yang bocor karena respon lambat atau follow-up manual yang terhenti, lalu memprioritaskan 1 perbaikan paling berdampak tinggi untuk bisnis Anda—lengkap dengan apa yang sebaiknya diotomatisasi dan apa yang tetap harus ditangani manusia.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                        <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                            <div class="flex items-center gap-3.5 pr-4">
+                                <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                                <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Apakah sistem ini langsung menggantikan seluruh tim sales manusia?</h3>
+                            </div>
+                            <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
+                            Tidak selalu, dan tidak harus. Filosofi kami adalah mengotomatisasi pekerjaan repetitif (speed-to-lead respon pertama, filtering kualifikasi awal, pencatatan CRM, dan pengingat jadwal), sehingga salesperson manusia Anda dapat fokus 100% pada percakapan bernilai tinggi (*closing*) dengan prospek yang sudah terverifikasi dan siap beli.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                        <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                            <div class="flex items-center gap-3.5 pr-4">
+                                <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                                <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Berapa biaya tools, API, dan server bulanannya?</h3>
+                            </div>
+                            <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14 space-y-1.5">
+                            <p>Sistem dibangun di atas fondasi open-source dan API resmi yang terhubung langsung ke akun Anda (BYOK).</p>
+                            <p>• Biaya token LLM dan API hanya dibayar sesuai penggunaan nyata (biasanya hanya puluhan hingga ratusan ribu rupiah per bulan).</p>
+                            <p>• Tidak ada biaya sewa lisensi software proprietary yang dipaksakan dari pihak kami.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                        <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                            <div class="flex items-center gap-3.5 pr-4">
+                                <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                                <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Saya tidak paham coding atau teknis backend. Apakah saya bisa mengelolanya?</h3>
+                            </div>
+                            <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
+                            Sangat bisa. Kami yang menangani seluruh arsitektur dan konfigurasi teknis. Antarmuka harian untuk Anda dan tim hanyalah aplikasi WhatsApp, notifikasi ringkasan, dan dashboard visual sederhana. Kami juga menyertakan SOP serah terima lengkap.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all overflow-hidden text-left">
+                        <button type="button" onclick="this.closest('.faq-item').classList.toggle('open')" class="w-full flex items-center justify-between p-5 sm:p-6 text-left cursor-pointer group">
+                            <div class="flex items-center gap-3.5 pr-4">
+                                <span class="w-7 h-7 rounded-lg bg-[#6f00ff]/10 text-[#6f00ff] flex items-center justify-center font-extrabold text-xs shrink-0">Q</span>
+                                <h3 class="font-bold text-sm sm:text-base text-[#131628] group-hover:text-[#6f00ff] transition-colors">Berapa lama waktu implementasi dari audit hingga sistem live?</h3>
+                            </div>
+                            <svg class="faq-chevron w-5 h-5 text-gray-400 group-hover:text-[#6f00ff] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-6 pt-0 text-sm sm:text-base text-gray-600 font-normal leading-relaxed pl-14">
+                            Implementasi bertahap dimulai dalam hitungan hari kerja setelah audit dan penyelarasan alur selesai. Alur speed-to-lead dan kalender booking biasanya live pertama kali agar kebocoran respon segera teratasi.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="py-16 bg-[#131628] text-center border-t border-white/10 text-white">
+        <a href="#booking" id="footer-cta" class="mb-10 inline-block bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] text-white text-base md:text-xl font-bold py-4 px-10 rounded-full shadow-xl hover:shadow-2xl border-2 border-[#6f00ff] uppercase transition-all duration-300">
+            Klaim Revenue Leak Audit (Gratis 15-Menit) →
+        </a>
+
+        <div class="mb-5 flex justify-center">
+            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-10 w-auto">
+        </div>
+
+        <p class="font-medium text-xs sm:text-sm text-gray-400 uppercase tracking-widest mb-2">Revenue Leak Audit &amp; Sales Infrastructure Engine</p>
+        <p class="text-[11px] text-gray-500 font-normal">© 2026 AGentZ. All rights reserved. 100% Owned Digital Infrastructure.</p>
+    </footer>
+
+    <!-- VSL Player Script -->
+    <script src="https://vsl.jordanengo.com/embed/vsl-player.js"></script>
+
+    <!-- ═══════════ CAL.COM & FORM SCRIPTS ═══════════ -->
+    <script type="text/javascript">
+      let currentStep = 1;
+      const totalSteps = 5;
+
+      function selectQuizOption(button, fieldName, value) {
+        const stepContainer = button.closest('.quiz-step');
+        stepContainer.querySelectorAll('.option-card').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+        button.classList.add('selected');
+
+        const hiddenInput = document.getElementById('input_' + fieldName);
+        if (hiddenInput) {
+          hiddenInput.value = value;
+        }
+
+        const stepNum = parseInt(stepContainer.getAttribute('data-step'));
+        const nextBtn = document.getElementById('next-btn-' + stepNum);
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Auto-advance for step 1 & 3 for smooth UX
+        if (stepNum === 1 || stepNum === 3) {
+          setTimeout(() => {
+            nextStep();
+          }, 250);
+        }
+      }
+
+      function validateInputAndEnableNext(input, stepNum) {
+        const nextBtn = document.getElementById('next-btn-' + stepNum);
+        if (!nextBtn) return;
+        if (input.value.trim().length >= 3) {
+          nextBtn.disabled = false;
+          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+          nextBtn.disabled = true;
+          nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+      }
+
+      function updateStepView() {
+        document.querySelectorAll('.quiz-step').forEach(el => {
+          const step = parseInt(el.getAttribute('data-step'));
+          if (step === currentStep) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        });
+
+        const stepNumEl = document.getElementById('current-step-num');
+        if (stepNumEl) stepNumEl.innerText = currentStep;
+
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+          progressBar.style.width = ((currentStep / totalSteps) * 100) + '%';
+        }
+      }
+
+      function nextStep() {
+        if (currentStep < totalSteps) {
+          currentStep++;
+          updateStepView();
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          updateStepView();
+        }
+      }
+
+      function resetBookingFlow() {
+        currentStep = 1;
+        updateStepView();
+        document.getElementById('cal-container').classList.add('hidden');
+        document.getElementById('thank-you-container').classList.add('hidden');
+        document.getElementById('form-container').classList.remove('hidden');
+      }
+
+      function loadCalEmbed(prefills = {}) {
+        if (window.CalLoaded) return;
+        window.CalLoaded = true;
+
+        (function (C, A, L) {
+          let p = function (a, ar) { a.q.push(ar); };
+          let d = C.document;
+          C.Cal = C.Cal || function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              let api = function () { p(api, arguments); };
+              let namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === "string") {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
+              } else {
+                p(cal, ar);
+              }
+              return;
+            }
+            p(cal, ar);
+          };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+        const CAL_LINK = "mathew-jordan-p2ha2t/30menitkonsultasi"; 
+
+        Cal("init", { origin: "https://cal.com" });
+        Cal("inline", {
+          elementOrSelector: "#my-cal-inline",
+          calLink: CAL_LINK,
+          config: { 
+            layout: "month_view", 
+            theme: "light",
+            name: prefills.name || "",
+            phone: prefills.phone || ""
+          }
+        });
+        Cal("ui", {
+          theme: "light",
+          styles: { branding: { brandColor: "#6f00ff" } },
+          hideEventTypeDetails: false,
+          layout: "month_view"
+        });
+
+        Cal("on", {
+          action: "*",
+          callback: (e) => {
+            if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
+              showThankYou();
+            }
+          }
+        });
+      }
+
+      function showThankYou() {
+        document.getElementById("cal-container").classList.add("hidden");
+        document.getElementById("form-container").classList.add("hidden");
+        document.getElementById("thank-you-container").classList.remove("hidden");
+        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function getUtmParams() {
+        const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        const query = new URLSearchParams(window.location.search);
+        const utms = {};
+        
+        params.forEach(param => {
+          const val = query.get(param);
+          if (val) {
+            utms[param] = val;
+            sessionStorage.setItem(param, val);
+          } else {
+            utms[param] = sessionStorage.getItem(param) || '';
+          }
+        });
+        return utms;
+      }
+      
+      function getGaClientId() {
+        try {
+          const match = document.cookie.match(/_ga=GA1\.\d+\.(\d+\.\d+)/);
+          if (match && match[1]) {
+            return match[1];
+          }
+        } catch (e) {}
+        return '';
+      }
+
+      async function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        const utms = getUtmParams();
+        const eventId = 'lead_' + (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15));
+        const payload = {
+          event_id: eventId,
+          name: formData.get('name'),
+          phone: formData.get('contact'),
+          email: '',
+          service: 'Revenue Leak Audit',
+          message: `Model Bisnis: ${formData.get('business_model')}\nBottleneck/Leak: ${formData.get('bottleneck')}\nRevenue: ${formData.get('revenue')}`,
+          site: window.CONFIG.site,
+          landing_page: window.location.pathname + window.location.search,
+          referrer: document.referrer || '',
+          ga_client_id: getGaClientId(),
+          utm_source: utms.utm_source,
+          utm_medium: utms.utm_medium,
+          utm_campaign: utms.utm_campaign,
+          utm_content: utms.utm_content
+        };
+
+        try {
+          fetch(window.CONFIG.api, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }).then(() => {
+            if (typeof fbq === 'function') {
+              fbq('track', 'Contact');
+              fbq('track', 'Lead', { value: 0, currency: 'USD' }, { eventID: eventId });
+            }
+            if (typeof gtag === 'function') {
+              gtag('event', 'generate_lead', {
+                site: window.CONFIG.site,
+                service: 'Revenue Leak Audit'
+              });
+            }
+          }).catch(err => console.error("Lead sync failed:", err));
+        } catch (err) {}
+
+        loadCalEmbed({
+          name: payload.name,
+          phone: payload.phone
+        });
+        document.getElementById("form-container").classList.add("hidden");
+        document.getElementById("cal-container").classList.remove("hidden");
+        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Lazy load Cal.com script if user reaches booking section
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadCalEmbed();
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: "200px" });
+        observer.observe(document.getElementById("booking"));
+      } else {
+        loadCalEmbed();
+      }
+    </script>
+
+    <!-- ═══════════ VAULT & FREE RESOURCES SCRIPT ═══════════ -->
+    <script>
+      const ASSET_DELIVERY_LINKS = {
+        'wa_chatbot_voice_cs': 'https://jordanengo.com/p/whatsapp-chatbot-crm.html',
+        'whatsapp_invoice_system': 'https://jordanengo.com/p/whatsapp-chatbot-crm.html',
+        'telegram_admin_agent': 'https://jordanengo.com/p/social-media-posting-agent.html',
+        'video_editor_templates': 'https://jordanengo.com/p/ai-video-editor.html',
+        'bisnis_dashboard_excel': 'https://jordanengo.com/p/linktree-alternative-template.html',
+        'bisnis_ai_audit': 'https://jordanengo.com/p/lead-magnet-dm-automation.html',
+        'fb_ig_dm_automation': 'https://jordanengo.com/p/lead-magnet-dm-automation.html'
+      };
+
+      function getClaimedAssets() {
+        try {
+          const saved = localStorage.getItem('claimed_assets');
+          const list = saved ? JSON.parse(saved) : [];
+          if (!list.includes('wa_chatbot_voice_cs')) {
+            list.push('wa_chatbot_voice_cs');
+          }
+          return list;
+        } catch (e) {
+          return ['wa_chatbot_voice_cs'];
+        }
+      }
+
+      function openVaultUnlockModal(targetKey, targetTitle) {
+        const modal = document.getElementById('vaultUnlockModal');
+        if (modal) {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeVaultUnlockModal() {
+        const modal = document.getElementById('vaultUnlockModal');
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+
+      function handleVaultOverlayClick(e) {
+        if (e.target.id === 'vaultUnlockModal') {
+          closeVaultUnlockModal();
+        }
+      }
+
+      function handleVaultAuditClick() {
+        closeVaultUnlockModal();
+        const bookingEl = document.getElementById('booking');
+        if (bookingEl) {
+          bookingEl.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.location.hash = '#booking';
+        }
+      }
+
+      function scrollVaultCarousel(direction) {
+        const container = document.querySelector('[data-id="6986608c350e1a0014bcfb19"] .carousel-scroll-container');
+        if (container) {
+          const scrollAmount = direction * 240;
+          container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      }
+
+      function applyGamifiedVaultLock() {
+        const claimed = getClaimedAssets();
+        const bgContainer = document.querySelector('[data-id="6986608c350e1a0014bcfb19"]');
+        if (!bgContainer) return;
+
+        const headEl = bgContainer.querySelector('.head');
+        if (headEl) {
+          headEl.innerHTML = `Bahan Gratis <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#22c55e; background:rgba(34,197,94,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(34,197,94,0.3);">🔓 ${claimed.length}/7 Modul Terbuka</span>`;
+        }
+
+        const cards = bgContainer.querySelectorAll('.carousel-card');
+        cards.forEach(card => {
+          const key = card.getAttribute('data-key');
+          if (!key) return;
+
+          const ctaBtn = card.querySelector('.carousel-card-cta');
+          let lockBadge = card.querySelector('.vault-lock-badge');
+
+          if (claimed.includes(key)) {
+            if (lockBadge) lockBadge.remove();
+            if (ctaBtn) {
+              ctaBtn.innerHTML = `<span>Buka Modul ↗</span>`;
+              ctaBtn.style.background = '#16a34a';
+            }
+          } else {
+            if (!lockBadge) {
+              const imgWrap = card.querySelector('.carousel-card-image');
+              if (imgWrap) {
+                const badge = document.createElement('div');
+                badge.className = 'vault-lock-badge';
+                badge.style.cssText = 'position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;';
+                badge.innerHTML = '🔒 LOCKED';
+                imgWrap.appendChild(badge);
+              }
+            }
+            if (ctaBtn) {
+              ctaBtn.innerHTML = `<span>🔒 Terkunci</span>`;
+              ctaBtn.style.background = '#61796f';
+            }
+          }
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        const card = e.target.closest('[data-id="6986608c350e1a0014bcfb19"] .carousel-card');
+        if (card) {
+          e.preventDefault();
+          e.stopPropagation();
+          const key = card.getAttribute('data-key');
+          const titleEl = card.querySelector('.carousel-card-title');
+          const title = titleEl ? titleEl.textContent.trim() : '';
+
+          const claimed = getClaimedAssets();
+          if (claimed.includes(key)) {
+            const assetUrl = ASSET_DELIVERY_LINKS[key] || 'https://jordanengo.com/p/whatsapp-chatbot-crm.html';
+            window.open(assetUrl, '_blank');
+            return;
+          }
+
+          openVaultUnlockModal(key, title);
+        }
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyGamifiedVaultLock);
+      } else {
+        applyGamifiedVaultLock();
+      }
+    </script>
+
+    <!-- ═══════════ FLOATING WHATSAPP & VOICE WIDGETS ═══════════ -->
+    <div id="agentz-wa-wrapper" style="position:fixed;bottom:160px;right:24px;z-index:2147483645;display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+      <span id="wa-text-pill" style="background:#ffffff;color:#18181b;font-size:12px;font-weight:700;padding:6px 12px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);letter-spacing:0.2px;pointer-events:none;">WhatsApp chat</span>
+      <a id="main-wa-link" href="https://wa.me/15556523818?text=Halo%20Jordan,%20saya%20mau%20konsultasi%20Revenue%20Leak%20Audit%20AGentZ" target="_blank" style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#ffffff;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform 0.2s, box-shadow 0.2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.45)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.35)';" title="Chat WhatsApp" aria-label="WhatsApp">
+        <img src="https://vsl.jordanengo.com/embed/wa.webp" alt="WhatsApp" style="width:36px;height:36px;object-fit:contain;" />
+      </a>
+    </div>
+
+    <!-- ElevenLabs Floating Voice Widget -->
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+    <elevenlabs-convai id="eleven-widget" agent-id="agent_9601kf7rm6pheekv40vd6w550gs9"></elevenlabs-convai>
+
+    <div id="inapp-browser-notice" style="display:none;position:fixed;top:0;left:0;right:0;background:#09090b;color:#ffffff;padding:12px 16px;z-index:2147483647;border-bottom:3px solid #2563eb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,0.8);">
+      <div style="max-width:600px;margin:0 auto;display:flex;align-items:center;justify-content:between;gap:12px;">
+        <div style="display:flex;align-items:center;gap:10px;text-align:left;">
+          <span style="font-size:22px;">🎙️</span>
+          <div>
+            <div style="font-size:12px;font-weight:800;color:#60a5fa;">Akses Mikrofon Dibatasi Aplikasi</div>
+            <div style="font-size:11px;color:#e4e4e7;line-height:1.35;">Ketuk ikon <b>···</b> di pojok kanan atas lalu pilih <b>"Open in Safari / Chrome"</b> untuk bicara dengan AI Voice.</div>
+          </div>
+        </div>
+        <button onclick="document.getElementById('inapp-browser-notice').style.display='none';" style="background:#27272a;color:#ffffff;border:1px solid rgba(255,255,255,0.15);padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;">Tutup</button>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+        const isInApp = /Instagram|FBAN|FBAV|TikTok|Bytedance|musical_ly|Line|Snapchat/i.test(ua);
+        if (isInApp) {
+          const banner = document.getElementById('inapp-browser-notice');
+          if (banner) {
+            banner.style.display = 'block';
+            document.body.style.paddingTop = '60px';
+          }
+        }
+      })();
+    </script>
+</body>
+</html>
