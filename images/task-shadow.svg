@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="80.3826" height="80.3826" viewBox="0 0 80.3826 80.3826" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Orbit" filter="url(#filter0_f_0_114)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M40.1913 18.0635C52.4121 18.0635 62.3191 27.9705 62.3191 40.1913C62.3191 52.4121 52.4121 62.3191 40.1913 62.3191C27.9705 62.3191 18.0635 52.4121 18.0635 40.1913C18.0635 27.9705 27.9705 18.0635 40.1913 18.0635Z" fill="#B66152" fill-opacity="0.8"/>
+</g>
+<defs>
+<filter id="filter0_f_0_114" x="0" y="0" width="80.3826" height="80.3826" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="9.03175" result="effect1_foregroundBlur_0_114"/>
+</filter>
+</defs>
+</svg>

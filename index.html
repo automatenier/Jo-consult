@@ -1,530 +1,609 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="light" style="color-scheme: light;">
 <head>
-    <!-- WebRTC mediaDevices Early Polyfill -->
-    <script>
-      (function() {
-        if (typeof window !== 'undefined') {
-          if (!window.navigator) window.navigator = {};
-          if (!window.navigator.mediaDevices) {
-            window.navigator.mediaDevices = {};
-          }
-          if (!window.navigator.mediaDevices.getUserMedia) {
-            window.navigator.mediaDevices.getUserMedia = function(constraints) {
-              const legacyGetUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-              if (legacyGetUserMedia) {
-                return new Promise(function(resolve, reject) {
-                  legacyGetUserMedia.call(navigator, constraints, resolve, reject);
-                });
-              }
-              const banner = document.getElementById('inapp-browser-notice');
-              if (banner) banner.style.display = 'block';
-              return Promise.reject(new DOMException('Akses mikrofon tidak didukung di in-app browser aplikasi ini. Buka lewat Safari/Chrome.', 'NotSupportedError'));
-            };
-          }
-        }
-      })();
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QB438WRZDQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-QB438WRZDQ');
-    </script>
-    <script src="https://engo-1.jordanengo.com/webhook?action=pixel_js" defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Centralized Configuration & Tracking Setup -->
-    <script>
-      window.CONFIG = {
-        ga4: "G-QB438WRZDQ",
-        metaPixel: "1064572439618450",
-        api: "/submit-lead",
-        site: "agentz"
-      };
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dots: Always-on agents built to handle everything | ChatGPT</title>
+<link rel="stylesheet" href="./css/root-l322zvtj.css"/>
+<link rel="stylesheet" href="./css/root-nhnbl08z.css"/>
+<link rel="stylesheet" href="./css/dots-fex97gwt.css"/>
+<link rel="stylesheet" href="./css/dots-scenes-b65xtw6k.css"/>
+<link rel="stylesheet" href="./css/layout-dpob9t8h.css"/>
+<link rel="stylesheet" href="./css/interactions-hy4ve8ll.css"/>
+<link rel="stylesheet" href="./css/hero-intro-cddbuni9.css"/>
+<link rel="stylesheet" href="./css/conversation-small-ej7tlkty.css"/>
+<link rel="stylesheet" href="./css/global-modals-m6d51e47.css"/>
+<link rel="stylesheet" href="./css/page-shell-o4ofibvl.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ========================================================
+   AGentZ Brand Styling System for Dots
+   Palette:
+     - Background: #f9fafb (crisp modern light surface)
+     - Navy Ink: #131628 (primary headings, dark text, dark nav)
+     - Electric Purple: #6f00ff (primary brand, CTA, accents)
+     - Electric Purple Hover: #5800cc
+     - Border Subtles: #e5e7eb, #e2e8f0, rgba(19, 22, 40, 0.08)
+     - Card Background: #ffffff
+======================================================== */
 
-      if (window.CONFIG.ga4) {
-        const gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CONFIG.ga4;
-        document.head.appendChild(gaScript);
+:root {
+  --bg-primary: #f9fafb !important;
+  --bg-secondary: #f3f4f6 !important;
+  --bg-secondary-surface: #f9fafb !important;
+  --bg-elevated-primary: #ffffff !important;
+  --bg-elevated-secondary: #f8fafc !important;
+  --dots-surface: #f9fafb !important;
+  --text-primary: #131628 !important;
+  --text-secondary: #4b5563 !important;
+  --text-tertiary: #6b7280 !important;
+  --dots-text: #131628 !important;
+  --dots-text-secondary: #4b5563 !important;
+  --dots-phone-surface: #ffffff !important;
+  --dots-phone-control: #f3f4f6 !important;
+  --purple: #6f00ff !important;
+  --purple-hover: #5800cc !important;
+  --ink: #131628 !important;
+  --page-bg: #f9fafb !important;
+  color-scheme: light !important;
+}
 
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', window.CONFIG.ga4);
-      }
+* {
+  box-sizing: border-box;
+}
 
-      if (window.CONFIG.metaPixel) {
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', window.CONFIG.metaPixel);
-        fbq('track', 'PageView');
-      }
-    </script>
-    <title>AGentZ | Revenue Leak Audit & Sales Infrastructure Engine</title>
-    <meta name="description" content="Kami audit kebocoran funnel Anda & ubah permintaan yang sudah ada menjadi percakapan sales berkualitas yang dihadiri. 100% Owned Infrastructure tanpa vendor lock-in.">
-    <link rel="icon" type="image/webp" href="images/agentzlogo.webp">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="images/founder-left.webp" type="image/webp">
-    <link rel="preload" as="image" href="images/founder-right.webp" type="image/webp">
-    <link rel="stylesheet" href="tailwind.css">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "ink-blue": "#131628",
-                        "dark-navy": "#131628",
-                        "electric-purple": "#6f00ff",
-                        "electric-purple-hover": "#5800cc",
-                        "module-active": "#455876",
-                        "page-bg": "#f9fafb"
-                    },
-                    fontFamily: {
-                        poppins: ["Poppins", "sans-serif"],
-                        body: ["Poppins", "sans-serif"]
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        .hidden { display: none !important; }
-        :root {
-            --purple: #6f00ff;
-            --purple-hover: #5800cc;
-            --ink: #131628;
-            --page-bg: #f9fafb;
-        }
+html, body {
+  background-color: #f9fafb !important;
+  color: #131628 !important;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
 
-        * { box-sizing: border-box; }
+/* Force Poppins font across all typography */
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, div {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            background: #f9fafb;
-            color: var(--ink);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
+/* Base surface overrides */
+.dots-page {
+  background: #f9fafb !important;
+  color: #131628 !important;
+}
 
-        .hl {
-            background: #f3e8ff;
-            color: #6f00ff;
-            padding: 3px 10px;
-            border-radius: 8px;
-            font-weight: 700;
-        }
+/* Header styled like AGentZ Nav: Ink Navy #131628/95 with blur */
+#contentful-header {
+  backdrop-filter: blur(16px) !important;
+  background: rgba(19, 22, 40, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+#contentful-header svg {
+  color: #ffffff !important;
+}
+#contentful-header a, #contentful-header button {
+  color: #e5e7eb !important;
+}
+#contentful-header a:hover, #contentful-header button:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
 
-        .btn-pulse {
-            animation: ctaPulse 2.4s ease-in-out infinite;
-        }
-        @keyframes ctaPulse {
-            0%   { box-shadow: 0 0 0 0 rgba(111,0,255,0.45); }
-            60%  { box-shadow: 0 0 0 14px rgba(111,0,255,0); }
-            100% { box-shadow: 0 0 0 0 rgba(111,0,255,0); }
-        }
+/* Nav Header Buttons */
+#contentful-header [data-testid="login-button"],
+#contentful-header .btn-primary {
+  background-color: #6f00ff !important;
+  color: #ffffff !important;
+  border: 2px solid #6f00ff !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  padding: 8px 20px !important;
+  box-shadow: 0 4px 14px rgba(111, 0, 255, 0.35) !important;
+  transition: all 0.25s ease !important;
+}
+#contentful-header [data-testid="login-button"]:hover,
+#contentful-header .btn-primary:hover {
+  background-color: #5800cc !important;
+  border-color: #5800cc !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(111, 0, 255, 0.45) !important;
+}
 
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
-        .faq-item.open .faq-answer { max-height: 800px; }
-        .faq-chevron { transition: transform 0.3s ease; }
-        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+#contentful-header [data-testid="signup-button"],
+#contentful-header .btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  padding: 8px 18px !important;
+  transition: all 0.25s ease !important;
+}
+#contentful-header [data-testid="signup-button"]:hover,
+#contentful-header .btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px);
+}
 
-        .progress-bar-transition {
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+/* Dropdown menus in nav */
+#contentful-header [id^="header-nav-"] {
+  background: #131628 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+  color: #ffffff !important;
+}
+#contentful-header [id^="header-nav-"] a {
+  color: #cbd5e1 !important;
+}
+#contentful-header [id^="header-nav-"] a:hover {
+  color: #ffffff !important;
+  background-color: rgba(111, 0, 255, 0.25) !important;
+}
 
-        .option-card {
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-            border: 1.5px solid #e5e7eb;
-            background-color: #ffffff;
-            border-radius: 14px;
-            padding: 16px;
-            width: 100%;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            outline: none;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        
-        .option-card:hover {
-            box-shadow: 0 8px 25px rgba(111, 0, 255, 0.08);
-            border-color: #6f00ff;
-            transform: translateY(-2px);
-        }
+/* Primary CTA Button Pulse (from AGentZ) */
+@keyframes ctaPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(111,0,255,0.45); }
+  60%  { box-shadow: 0 0 0 14px rgba(111,0,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(111,0,255,0); }
+}
 
-        .option-card.selected {
-            background-color: #faf5ff;
-            border-color: #6f00ff;
-            box-shadow: 0 0 0 2px #6f00ff;
-        }
+.btn-pulse {
+  animation: ctaPulse 2.4s ease-in-out infinite;
+}
 
-        .option-grid-card {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-align: center !important;
-            padding: 20px 12px 16px 12px !important;
-            border-radius: 16px;
-            border: 1.5px solid #e5e7eb;
-            background-color: #ffffff;
-            min-height: 125px;
-            position: relative;
-            cursor: pointer;
-            outline: none;
-            width: 100%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+/* Universal AGentZ Primary Button Style */
+.dots-cta.btn-primary,
+.btn.btn-primary.dots-cta {
+  background-color: #6f00ff !important;
+  color: #ffffff !important;
+  border: 2px solid #6f00ff !important;
+  border-radius: 9999px !important;
+  padding: 14px 32px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: none !important;
+  box-shadow: 0 10px 25px -3px rgba(111, 0, 255, 0.4), 0 4px 6px -2px rgba(111, 0, 255, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation: ctaPulse 2.4s ease-in-out infinite;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.dots-cta.btn-primary:hover,
+.btn.btn-primary.dots-cta:hover {
+  background-color: #5800cc !important;
+  border-color: #5800cc !important;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -3px rgba(111, 0, 255, 0.5), 0 8px 10px -2px rgba(111, 0, 255, 0.3) !important;
+}
 
-        .option-grid-card:hover {
-            border-color: #6f00ff;
-            box-shadow: 0 8px 25px rgba(111, 0, 255, 0.1);
-            transform: translateY(-2px);
-        }
+/* Universal AGentZ Secondary Button Style */
+.dots-cta-secondary,
+.btn.btn-secondary.dots-cta {
+  background-color: #ffffff !important;
+  color: #131628 !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 9999px !important;
+  padding: 14px 30px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.dots-cta-secondary:hover,
+.btn.btn-secondary.dots-cta:hover {
+  background-color: #f9fafb !important;
+  border-color: #cbd5e1 !important;
+  color: #6f00ff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+}
 
-        .option-grid-card.selected {
-            background-color: #faf5ff !important;
-            border-color: #6f00ff !important;
-            box-shadow: 0 0 0 2px #6f00ff !important;
-        }
+/* Headings in Dark Ink Navy */
+h1, h2, h3, h4, h5 {
+  color: #131628 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+}
 
-        .option-grid-card.selected .option-badge {
-            background-color: #6f00ff !important;
-            color: #ffffff !important;
-            border-color: #6f00ff !important;
-        }
+/* Paragraphs & Secondary text */
+p {
+  color: #4b5563 !important;
+}
 
-        .option-grid-card.selected .option-icon-box {
-            background-color: #6f00ff !important;
-            color: #ffffff !important;
-        }
+.text-token-text-primary {
+  color: #131628 !important;
+}
+.text-token-text-secondary {
+  color: #4b5563 !important;
+}
+.text-token-text-tertiary {
+  color: #6b7280 !important;
+}
 
-        /* Carousel styles for Vault */
-        .carousel-renderer {
-            width: 100% !important;
-            overflow: hidden !important;
-        }
-        .carousel-scroll-container {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 16px !important;
-            overflow-x: auto !important;
-            padding-bottom: 14px !important;
-            scroll-behavior: smooth !important;
-            scrollbar-width: thin !important;
-            scrollbar-color: rgba(24, 62, 54, 0.25) transparent !important;
-            -webkit-overflow-scrolling: touch;
-        }
-        .carousel-scroll-container::-webkit-scrollbar {
-            height: 6px !important;
-        }
-        .carousel-scroll-container::-webkit-scrollbar-thumb {
-            background: rgba(24, 62, 54, 0.25) !important;
-            border-radius: 9999px !important;
-        }
-        .carousel-item-wrapper {
-            flex: 0 0 220px !important;
-            width: 220px !important;
-            max-width: 220px !important;
-        }
-        .carousel-card {
-            width: 100% !important;
-            background: #ffffff !important;
-            border: 1px solid #dce2d8 !important;
-            border-radius: 18px !important;
-            overflow: hidden !important;
-            box-shadow: 0 4px 16px rgba(24, 62, 54, 0.05) !important;
-            display: flex !important;
-            flex-direction: column !important;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-            cursor: pointer !important;
-            color: #183e36 !important;
-            height: 100% !important;
-            box-sizing: border-box !important;
-            text-align: left !important;
-        }
-        .carousel-card:hover {
-            transform: translateY(-4px) !important;
-            border-color: #9bac99 !important;
-            box-shadow: 0 16px 36px rgba(24, 62, 54, 0.12) !important;
-        }
-        .carousel-card-image {
-            width: 100% !important;
-            height: 136px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-            background: #ffffff !important;
-            overflow: hidden !important;
-            position: relative !important;
-        }
-        .carousel-card-image img, .carousel-card-image video {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
-        }
-        .carousel-card-content {
-            padding: 14px 16px 16px 16px !important;
-            display: flex !important;
-            flex-direction: column !important;
-            flex: 1 !important;
-            justify-content: space-between !important;
-            box-sizing: border-box !important;
-        }
-        .carousel-card-title {
-            font-size: 14px !important;
-            font-weight: 700 !important;
-            color: #183e36 !important;
-            line-height: 1.35 !important;
-            font-family: 'Poppins', sans-serif !important;
-            min-height: 38px;
-        }
-        .carousel-card-cta {
-            margin-top: 12px !important;
-            padding: 8px 12px !important;
-            border-radius: 10px !important;
-            background: #195846 !important;
-            color: #ffffff !important;
-            font-size: 12px !important;
-            font-weight: 650 !important;
-            border: none !important;
-            cursor: pointer !important;
-            text-align: center !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 6px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            transition: background 0.2s, filter 0.2s !important;
-            font-family: 'Poppins', sans-serif !important;
-        }
-        .carousel-card-cta:hover { filter: brightness(0.92) !important; }
+/* Elevated Cards & Bento Boxes in AGentZ style */
+.bg-token-bg-elevated-primary,
+.bg-token-bg-elevated-secondary,
+.bg-token-bg-secondary,
+[class*="bg-token-bg-"] {
+  background-color: #ffffff !important;
+}
 
-        /* Vault Unlock Modal */
-        .vault-modal-overlay {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            background: rgba(0, 0, 0, 0.7) !important;
-            backdrop-filter: blur(5px) !important;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            z-index: 99999 !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-            transition: opacity 0.3s ease !important;
-        }
-        .vault-modal-overlay.active { opacity: 1 !important; pointer-events: auto !important; }
-        .vault-modal-card {
-            background: #ffffff !important;
-            border: 1px solid #dce2d8 !important;
-            border-radius: 16px !important;
-            width: 90% !important;
-            max-width: 440px !important;
-            padding: 28px !important;
-            box-shadow: 0 16px 36px rgba(24, 62, 54, 0.15) !important;
-            transform: scale(0.9) !important;
-            transition: transform 0.3s ease !important;
-            color: #183e36 !important;
-            font-family: 'Poppins', sans-serif !important;
-            position: relative !important;
-        }
-        .vault-modal-overlay.active .vault-modal-card { transform: scale(1) !important; }
-        .vault-modal-close {
-            position: absolute !important;
-            top: 14px !important;
-            right: 14px !important;
-            background: none !important;
-            border: none !important;
-            font-size: 22px !important;
-            color: #888888 !important;
-            cursor: pointer !important;
-        }
+/* Card borders and shadows */
+.border-token-border-light,
+.border-token-border-medium,
+.border-token-border-primary,
+[class*="border-token-border-"] {
+  border-color: #e5e7eb !important;
+}
 
-        .leak-step-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 800;
-        }
-    </style>
+/* Section Card Stylings (Bento & Feature Cards) */
+#use-cases .bg-token-bg-elevated-secondary,
+#get-dot .bg-token-bg-elevated-secondary,
+.dots-section-layout [class*="rounded-"] {
+  box-shadow: 0 10px 30px -5px rgba(19, 22, 40, 0.05), 0 2px 6px -1px rgba(19, 22, 40, 0.03) !important;
+  border: 1px solid #e5e7eb !important;
+  background-color: #ffffff !important;
+}
+
+/* Hero Avatar Box */
+.dots-hero-motion-avatar {
+  border-radius: 32px !important;
+  box-shadow: 0 20px 50px rgba(111, 0, 255, 0.25), 0 0 0 4px rgba(111, 0, 255, 0.15) !important;
+  background: #131628 !important;
+}
+
+/* Avatar Images */
+img[src*="avatars/"] {
+  border-radius: 24px !important;
+  box-shadow: 0 10px 25px rgba(19, 22, 40, 0.12) !important;
+  border: 2px solid #ffffff !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+img[src*="avatars/"]:hover {
+  transform: scale(1.06) translateY(-4px) !important;
+  box-shadow: 0 18px 35px rgba(111, 0, 255, 0.22) !important;
+}
+
+/* Pre-footer background section */
+.dots-prefooter {
+  background: linear-gradient(180deg, #f9fafb 0%, #ede9fe 50%, #f9fafb 100%) !important;
+}
+
+/* Footer in AGentZ Ink Navy Theme */
+footer.bg-token-bg-primary,
+footer {
+  background-color: #131628 !important;
+  color: #94a3b8 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+footer h2, footer span[role="heading"], footer .text-token-text-primary {
+  color: #ffffff !important;
+}
+footer a {
+  color: #cbd5e1 !important;
+  transition: color 0.2s ease !important;
+}
+footer a:hover {
+  color: #6f00ff !important;
+}
+footer svg {
+  color: #ffffff !important;
+}
+footer .border-token-border-primary {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+footer #lang-button {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Interactive slider and controls */
+.dots-day-thumbContent {
+  background-color: #6f00ff !important;
+  box-shadow: 0 0 12px rgba(111, 0, 255, 0.6) !important;
+}
+
+/* Links highlight with AGentZ purple */
+a.underline, a.hover\:underline:hover {
+  color: #6f00ff !important;
+  text-decoration-color: rgba(111, 0, 255, 0.4) !important;
+}
+
+/* Input boxes in form */
+input[type="email"], input[type="text"] {
+  background-color: #ffffff !important;
+  border: 1.5px solid #e5e7eb !important;
+  color: #131628 !important;
+  border-radius: 9999px !important;
+}
+input[type="email"]:focus, input[type="text"]:focus {
+  border-color: #6f00ff !important;
+  box-shadow: 0 0 0 3px rgba(111, 0, 255, 0.15) !important;
+  outline: none !important;
+}
+
+/* Highlight badge */
+.badge-agentz {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(111, 0, 255, 0.1);
+  border: 1px solid rgba(111, 0, 255, 0.2);
+  color: #6f00ff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+/* Quiz option cards styling */
+.option-card {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1.5px solid #e5e7eb;
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  outline: none;
+}
+.option-card:hover {
+  border-color: #6f00ff;
+  background-color: #fdfaff;
+  transform: translateY(-1px);
+}
+.option-card.selected {
+  border-color: #6f00ff;
+  background-color: #f5eeff;
+  box-shadow: 0 0 0 1px #6f00ff;
+}
+.option-card.selected .option-radio-dot {
+  background-color: #6f00ff;
+  border-color: #6f00ff;
+}
+
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
+.faq-item.open .faq-answer { max-height: 800px; }
+.faq-chevron { transition: transform 0.3s ease; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+.progress-bar-transition {
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Vault Resource Catalog Carousel */
+.carousel-scroll-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel-item-wrapper {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+}
+.carousel-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.carousel-card-image {
+  height: 140px;
+  position: relative;
+}
+.carousel-card-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.carousel-card-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #131628;
+}
+.carousel-card-cta {
+  margin-top: auto;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.vault-lock-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+
+/* ========================================================
+   EXACT AGENTZ FORM & CARD STYLING (Pixel-Perfect)
+   ======================================================== */
+.option-card {
+    transition: all 0.2s ease-in-out !important;
+    cursor: pointer !important;
+    border: 1.5px solid #e5e7eb !important;
+    background-color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 16px !important;
+    width: 100% !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    outline: none !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+}
+
+.option-card:hover {
+    box-shadow: 0 8px 25px rgba(111, 0, 255, 0.08) !important;
+    border-color: #6f00ff !important;
+    transform: translateY(-2px) !important;
+}
+
+.option-card.selected {
+    background-color: #faf5ff !important;
+    border-color: #6f00ff !important;
+    box-shadow: 0 0 0 2px #6f00ff !important;
+}
+
+.option-grid-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 20px 12px 16px 12px !important;
+    border-radius: 16px !important;
+    border: 1.5px solid #e5e7eb !important;
+    background-color: #ffffff !important;
+    min-height: 125px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    outline: none !important;
+    width: 100% !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.option-grid-card:hover {
+    border-color: #6f00ff !important;
+    box-shadow: 0 8px 25px rgba(111, 0, 255, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.option-grid-card.selected {
+    background-color: #faf5ff !important;
+    border-color: #6f00ff !important;
+    box-shadow: 0 0 0 2px #6f00ff !important;
+}
+
+.option-grid-card.selected .option-badge {
+    background-color: #6f00ff !important;
+    color: #ffffff !important;
+    border-color: #6f00ff !important;
+}
+
+.option-grid-card.selected .option-icon-box {
+    background-color: #6f00ff !important;
+    color: #ffffff !important;
+}
+
+#form-container input[type="text"],
+#form-container input[type="tel"],
+#form-container input[type="email"] {
+    width: 100% !important;
+    border-radius: 12px !important;
+    border: 1.5px solid #e5e7eb !important;
+    padding: 14px 16px !important;
+    font-size: 15px !important;
+    color: #131628 !important;
+    background-color: #ffffff !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+}
+
+#form-container input[type="text"]:focus,
+#form-container input[type="tel"]:focus,
+#form-container input[type="email"]:focus {
+    border-color: #6f00ff !important;
+    box-shadow: 0 0 0 3px rgba(111, 0, 255, 0.15) !important;
+}
+
+.vault-lock-badge {
+    background: #6f00ff !important;
+    color: #ffffff !important;
+}
+
+</style>
+
 </head>
-<body class="bg-[#f9fafb] text-[#131628] antialiased">
+<body class="light font-poppins bg-[#f9fafb] text-[#131628] antialiased">
+<div class="font-oai dots-page"><div class="relative isolate" data-dots-shell="true" data-gpu-tier="0"><div data-dots-brand-shell="true" data-header-replaced="false"><div class="text-token-text-primary font-oai transition-colors duration-500"><div id="contentful-header" class="h-mkt-header-height sticky top-0 z-50 grid w-full grid-cols-[auto_1fr] gap-2 px-4 lg:px-8 lg:grid-cols-[1fr_auto_1fr]"><div class="flex items-center"><a href="/" class="relative flex items-center"><svg width="118" height="28" viewBox="0 0 118 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-primary h-7 w-auto transition-opacity duration-500 opacity-100" aria-label="ChatGPT blossom logo" role="img"><g clip-path="url(#clip0_1116_479)" fill="currentColor"><path d="M25.9489 10.854C26.5806 8.48721 25.968 5.85728 24.1111 4.0005C22.2544 2.14371 19.6244 1.53106 17.2576 2.16271C15.5236 0.432283 12.9397 -0.352139 10.4032 0.32755C7.86677 1.00724 6.02142 2.97849 5.38482 5.34396C3.01935 5.9804 1.0481 7.82591 0.368566 10.3624C-0.311124 12.8988 0.473299 15.4826 2.20372 17.2166C1.57208 19.5834 2.18473 22.2134 4.04152 24.0701C5.89829 25.927 8.52823 26.5396 10.8951 25.9079C12.6291 27.6384 15.213 28.4228 17.7493 27.7431C20.2857 27.0634 22.1311 25.0921 22.7677 22.7267C25.1333 22.0903 27.1046 20.2447 27.7841 17.7083C28.4638 15.1718 27.6794 12.5881 25.9489 10.854ZM16.3108 4.19745C18.4392 2.96691 21.208 3.2621 23.029 5.08306C24.3143 6.36844 24.8391 8.12667 24.6041 9.79791L18.6092 6.33677C18.3724 6.20006 18.0806 6.20006 17.8438 6.33677L10.8241 10.3897V7.66464C10.8241 7.48081 10.9226 7.30904 11.0817 7.21712L16.3107 4.1976L16.3108 4.19745ZM14.0764 10.2797L17.3288 12.1575V15.9131L14.0764 17.7909L10.8239 15.9131V12.1575L14.0764 10.2797ZM6.67376 7.18129C6.67221 4.72282 8.31227 2.47243 10.7998 1.80602C12.5555 1.3355 14.3406 1.76015 15.6705 2.7993L9.67567 6.26046C9.43886 6.39717 9.29303 6.64989 9.29303 6.92332V15.0291L6.93297 13.6665C6.77386 13.5745 6.67422 13.4032 6.67422 13.2196L6.67376 7.18144V7.18129ZM1.84704 10.7583C2.31757 9.00254 3.57778 7.66881 5.14261 7.0367V13.9588C5.14261 14.2323 5.28843 14.485 5.52524 14.6217L12.545 18.6747L10.1849 20.0373C10.0259 20.1292 9.82765 20.1298 9.66856 20.0379L4.43913 17.0193C2.30923 15.7914 1.18049 13.2458 1.84689 10.7585L1.84704 10.7583ZM11.8419 23.8732C9.71352 25.1038 6.94471 24.8085 5.12376 22.9876C3.83838 21.7022 3.31362 19.944 3.54858 18.2727L9.54344 21.7339C9.7802 21.8706 10.0721 21.8706 10.3089 21.7339L17.3286 17.6809V20.406C17.3286 20.5899 17.2301 20.7617 17.071 20.8535L11.842 23.8731L11.8419 23.8732ZM21.479 20.8894C21.4805 23.3479 19.8404 25.5983 17.3529 26.2646C15.5971 26.7352 13.812 26.3105 12.4822 25.2713L18.477 21.8102C18.7139 21.6735 18.8597 21.4207 18.8597 21.1473V13.0416L21.2198 14.4042C21.3788 14.4961 21.4785 14.6675 21.4785 14.8511L21.479 20.8892V20.8894ZM26.3055 17.3123C25.835 19.0681 24.5748 20.4018 23.0099 21.034V14.1118C23.0099 13.8384 22.8641 13.5857 22.6273 13.4489L15.6075 9.39599L17.9676 8.03337C18.1266 7.94146 18.3249 7.94083 18.484 8.03275L23.7134 11.0513C25.8434 12.2792 26.972 14.8249 26.3056 17.3122L26.3055 17.3123Z"></path><path d="M41.9916 18.5672C39.4791 18.5672 37.7343 16.6644 37.7343 14.0346C37.7343 11.4048 39.4817 9.50202 41.9539 9.50202C43.7599 9.50202 45.1515 10.5618 45.5638 11.8565H48.3704C47.8806 9.03104 45.2315 6.9707 41.9141 6.9707C37.93 6.9707 35.0078 10.1306 35.0078 14.0346C35.0078 17.9386 37.852 21.0985 41.9351 21.0985C45.3095 21.0985 47.8995 19.078 48.4295 16.2127H45.6439C45.1729 17.5267 43.8002 18.5672 41.9942 18.5672H41.992H41.9916Z"></path><path d="M55.3097 10.8956C54.0145 10.8956 52.9951 11.4654 52.4251 12.2494V7.16797H49.875V20.9027H52.4251V15.6233C52.4251 14.0927 53.2494 13.0921 54.5844 13.0921C55.8018 13.0921 56.4868 14.0341 56.4868 15.3476V20.9001H59.0369V14.9357C59.0369 12.5033 57.5465 10.8925 55.3097 10.8925V10.8947V10.8956Z"></path><path d="M69.4973 14.5063C69.4973 12.2697 67.9666 10.8965 65.1411 10.8965C62.8264 10.8965 60.9802 12.1917 60.6672 14.0753H63.2387C63.434 13.4279 64.1405 12.9166 65.1227 12.9166C66.3991 12.9166 67.0067 13.5828 67.0067 14.7414V14.8001L64.5152 15.0168C61.9064 15.2335 60.4531 16.2931 60.4531 18.2944C60.4531 19.9827 61.9059 21.101 63.9264 21.101C65.2803 21.101 66.5944 20.571 67.1454 19.6881C67.1454 20.1188 67.1853 20.5123 67.2632 20.9054H69.6369C69.538 20.2768 69.5003 19.5515 69.5003 18.7085V14.5098L69.4977 14.5051L69.4973 14.5063ZM67.0036 16.8425C67.0036 18.0011 66.1396 19.1782 64.3948 19.1782C63.4528 19.1782 62.942 18.726 62.942 18.0598C62.942 17.3344 63.4318 16.8824 64.5314 16.7834L67.0036 16.5667V16.842V16.8425Z"></path><path d="M74.8572 7.91406H72.3071V11.0927H70.2656V13.1532H72.3071V17.9802C72.3071 19.8453 73.2679 20.9047 75.3283 20.9047H77.3698V18.7856H76.0746C75.2105 18.7856 74.8572 18.4915 74.8572 17.6861V13.1535H77.3698V11.0932H74.8572V7.91449V7.91406Z"></path><path d="M90.0387 13.5641H85.6422V15.7609H89.3908C89.1344 17.5858 87.4268 18.6854 85.5245 18.6854C82.7765 18.6854 81.1684 16.6648 81.1684 14.035C81.1684 11.4053 82.9744 9.4832 85.4444 9.4832C87.1327 9.4832 88.508 10.465 88.8608 11.5624H91.6653C91.1352 8.83581 88.6231 6.9707 85.4063 6.9707C81.4432 6.9707 78.5 10.1682 78.5 14.0534C78.5 17.9386 81.2081 21.0985 85.2509 21.0985C87.0968 21.0985 88.764 20.2743 89.5082 19.1559V20.9033H91.7852V15.311C91.7852 14.1926 91.1588 13.5636 90.0382 13.5636L90.0387 13.5641Z"></path><path d="M99.8947 7.16841H93.8125V20.9031H96.4003V15.7416H99.9132C102.624 15.7416 104.545 14.1522 104.545 11.4843C104.545 8.81642 102.624 7.16797 99.8947 7.16797V7.16841ZM99.7178 13.4671H96.4003V9.52289H99.7178C101.054 9.52289 101.917 10.2881 101.917 11.4843C101.917 12.6806 101.054 13.4668 99.7178 13.4668V13.4671Z"></path><path d="M105.189 7.16797V9.52246H109.88V20.9027H112.468V9.52246H117.178V7.16797H105.188H105.19H105.189Z"></path></g><defs><clipPath id="clip0_1116_479"><rect width="117.347" height="28" fill="white"></rect></clipPath></defs></svg><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" aria-hidden="true" class="absolute -start-0.75 top-1/2 -translate-y-1/2 transition-opacity duration-500 opacity-0"><use href="/cdn/assets/sprites-core-bef2fe87.svg#55180d" fill="currentColor"></use></svg></a></div><div class="flex items-center justify-end gap-2 overflow-y-visible"><div class="flex items-center justify-center gap-2 sm:gap-3"><a href="#vault-resources" class="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide px-3.5 py-2 rounded-full border border-white/20 transition-all whitespace-nowrap" style="text-decoration:none;"><div class="flex items-center justify-center">Course Gratis</div></a><a href="#booking" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs sm:text-sm font-semibold tracking-wide px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all whitespace-nowrap" style="text-decoration:none;"><div class="flex items-center justify-center">Audit Kebocoran Funnel →</div></a></div></div></div><main class="flex flex-col"><div class="relative h-0" data-dots-subnav="true"><span aria-hidden="true" class="pointer-events-none absolute size-px" style="top:160px"></span><div class="pointer-events-none fixed inset-x-0 top-2 mx-auto w-[calc(100%-32px)] max-w-[727px] z-50"></div></div><section id="dots-top" aria-labelledby="_R_1mn4kjhjad4m_" class="dots-compact-hero relative mx-auto flex w-full flex-col items-center px-4 pt-10 pb-16 text-center">
+    <!-- Video Player / Hero Motion Avatar -->
+    <div class="dots-hero-intro-wrapper mb-4" style="display:flex;flex-direction:column;align-items:center;">
+        <div class="dots-hero-motion-avatar" style="width:130px;height:130px;border-radius:30px;overflow:hidden;box-shadow:0 16px 40px rgba(111,0,255,0.25),0 0 0 3px rgba(111,0,255,0.2);background:#131628;">
+            <video src="./avatars/gemini_generated_video_352b6cbe.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:30px;display:block;"></video>
+        </div>
+    </div>
 
-    <!-- ═══════════ TOP NAVIGATION ═══════════ -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#131628]/95 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 py-3.5 flex items-center justify-between transition-all">
-        <a href="#" class="flex items-center gap-2 text-white font-extrabold text-lg tracking-tight">
-            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-8 w-auto">
-            <span>AGent<span class="text-[#6f00ff]">Z</span></span>
+    <!-- Booking and Form with Header at Top of Form -->
+    
+<div id="booking" class="w-full max-w-3xl mx-auto mt-6 mb-12 px-4 scroll-mt-24">
+    
+<!-- ═══════════ COMPACT HERO HEADER (TOP OF FORM) ═══════════ -->
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-6 px-4">
+    <!-- Status / Engine Badge -->
+    <div class="inline-flex items-center gap-2 bg-[#6f00ff]/10 border border-[#6f00ff]/20 text-[#6f00ff] font-bold tracking-wider uppercase text-[11px] px-3.5 py-1 rounded-full mb-2.5 shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-[#6f00ff] animate-pulse"></span>
+        <span>GPT-6 Astra Autonomous Engine</span>
+    </div>
+    
+    <!-- Title -->
+    <h1 id="_R_1mn4kjhjad4m_" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#131628] tracking-tight leading-tight mb-2">
+        Memperkenalkan <span class="text-[#6f00ff] underline decoration-[#6f00ff]/30 decoration-3">Dots</span>
+    </h1>
+    
+    <!-- Subtitle -->
+    <p class="text-sm sm:text-base text-gray-600 font-medium max-w-xl leading-relaxed">
+        Agen AI yang luar biasa tangguh dan selalu aktif untuk menangani berbagai hal—ditenagai oleh GPT-6 Astra.
+    </p>
+
+    <!-- Action Buttons Cluster (Pill Style) -->
+    <div class="flex flex-wrap items-center justify-center gap-2.5 mt-4">
+        <a class="dots-cta btn-primary" href="https://www.chatgpt.com/auth/login?next=%2Fdots" target="_self">
+            <span>Buat Dot Anda</span>
         </a>
-        
-        <div class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-300">
-            <a href="#revenue-leaks" class="hover:text-white transition-colors">7 Titik Kebocoran</a>
-            <a href="#arsitektur" class="hover:text-white transition-colors">Arsitektur Sistem</a>
-            <a href="#kpi-outcomes" class="hover:text-white transition-colors">Hasil &amp; Metrik</a>
-            <a href="#ownership-guarantee" class="hover:text-white transition-colors">100% Kepemilikan</a>
-            <a href="#vault-resources" class="hover:text-white transition-colors">Resource Gratis</a>
-        </div>
+        <a class="dots-cta dots-cta-secondary" href="https://chatgpt.com/download" target="_self">
+            <span>Lihat opsi unduhan</span>
+        </a>
+    </div>
+</div>
 
-        <div class="flex items-center gap-2 sm:gap-4">
-            <a href="courses.html" class="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold tracking-wide px-3.5 py-2 rounded-full border border-white/15 transition-all whitespace-nowrap">
-                Course Gratis
-            </a>
-            <a href="#booking" id="nav-cta" class="bg-[#6f00ff] hover:bg-[#5800cc] text-white text-xs sm:text-sm font-semibold tracking-wide px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-lg transition-all whitespace-nowrap">
-                Audit Kebocoran Funnel →
-            </a>
-        </div>
-    </nav>
-
-    <main id="main-content">
-        <!-- ═══════════ TICKER ═══════════ -->
-        <div class="overflow-hidden bg-[#6f00ff] text-white text-xs font-semibold uppercase tracking-widest py-2.5 shadow-sm mt-[62px] flex items-center">
-            <div id="ticker-track" style="display: flex; width: max-content; white-space: nowrap; align-items: center; line-height: 1;">
-                <div id="ticker-original" style="display: inline-flex; align-items: center; line-height: 1;">
-                    <span style="padding: 0 1.25rem;">Revenue Leak Audit</span>
-                    <span>·</span>
-                    <span style="padding: 0 1.25rem;">Speed-to-Lead (&lt;60s SLA)</span>
-                    <span>·</span>
-                    <span style="padding: 0 1.25rem;">Pre-Call Lead Qualification</span>
-                    <span>·</span>
-                    <span style="padding: 0 1.25rem;">Zero-Friction Booking</span>
-                    <span>·</span>
-                    <span style="padding: 0 1.25rem;">No-Show Recovery</span>
-                    <span>·</span>
-                    <span style="padding: 0 1.25rem;">Content-to-Sales Layer</span>
-                    <span>·</span>
-                    <span style="padding: 0 1.25rem;">100% Owned Infrastructure (BYOK)</span>
-                    <span>·</span>
-                </div>
-            </div>
-        </div>
-        <script>
-            (function() {
-                var original = document.getElementById('ticker-original');
-                var track = document.getElementById('ticker-track');
-                for (var i = 0; i < 6; i++) {
-                    track.appendChild(original.cloneNode(true));
-                }
-                var singleWidth = original.offsetWidth;
-                var pos = 0;
-                var speed = 0.8;
-                function animate() {
-                    pos -= speed;
-                    if (Math.abs(pos) >= singleWidth) {
-                        pos += singleWidth;
-                    }
-                    track.style.transform = 'translateX(' + pos + 'px)';
-                    requestAnimationFrame(animate);
-                }
-                requestAnimationFrame(animate);
-            })();
-        </script>
-
-        <!-- Logo Centered Under Ticker -->
-        <div class="flex justify-center mt-8">
-            <img src="images/agentzlogo.webp" alt="AGentZ Logo" style="height: 56px; width: auto; object-fit: contain;">
-        </div>
-
-        <!-- ═══════════ HERO: ACCURATE TO CORE USP ═══════════ -->
-        <header id="hero" class="pt-6 pb-16 px-4 sm:px-6 text-center border-b border-gray-200/70 relative overflow-hidden bg-white">
-            <div class="max-w-5xl mx-auto relative">
-                <!-- Entry Offer Pill -->
-                <div class="inline-flex items-center gap-2 bg-[#6f00ff]/10 border border-[#6f00ff]/20 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-4">
-                    <span class="w-2 h-2 rounded-full bg-[#6f00ff] animate-pulse"></span>
-                    <span>ENTRY OFFER: 15-MINUTE REVENUE LEAK AUDIT</span>
-                </div>
-
-                <div class="flex items-end justify-center gap-1 sm:gap-3 md:gap-6 my-2 mb-4">
-                    <!-- Left Founder Image -->
-                    <img src="images/founder-left.webp" alt="Jordan - Founder AGentZ" class="founder-left-img pointer-events-none select-none hidden sm:block max-w-[110px] md:max-w-[140px]" style="aspect-ratio: 1312/3208;" fetchpriority="high">
-
-                    <!-- Center H1 (Direct from USP.md Section 2 Customer-Facing Phrasing) -->
-                    <div class="max-w-3xl text-center px-1 sm:px-2">
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-[1.2] tracking-tight text-[#131628]">
-                            Ubah Permintaan yang Sudah Ada Menjadi <br class="hidden md:block">
-                            <span class="text-[#6f00ff] underline decoration-[#6f00ff]/30 decoration-4">Percakapan Sales Berkualitas</span> yang Dihadiri
-                        </h1>
-                    </div>
-
-                    <!-- Right Founder Image -->
-                    <img src="images/founder-right.webp" alt="Jordan - Founder AGentZ" class="founder-right-img pointer-events-none select-none hidden sm:block max-w-[110px] md:max-w-[140px]" style="aspect-ratio: 228/609;" fetchpriority="high">
-                </div>
-
-                <!-- Subheadline strictly aligned to USP customer-facing core outcome -->
-                <p class="text-base md:text-lg font-medium text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
-                    Kami membantu Anda mengonversi lebih banyak <em>inquiry</em> yang sudah Anda terima menjadi jadwal percakapan penjualan berkualitas yang benar-benar dihadiri—serta memperlihatkan secara transparan di mana prospek Anda terlepas (*revenue leaks*).
-                </p>
-
-                <!-- Status Transition Block -->
-                <div class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-sm md:text-base font-bold text-[#131628] mb-8 bg-gray-50 border border-gray-200/80 rounded-2xl px-5 py-3 shadow-sm">
-                    <span class="text-red-600 line-through">Prospek Terabaikan &amp; Respon Lambat</span>
-                    <span class="text-[#6f00ff] font-black text-lg">➔</span>
-                    <span class="hl">Speed-to-Lead &lt;60s, Kualifikasi Otomatis &amp; Show Rate Terukur</span>
-                </div>
-
-                <!-- VSL Video Player -->
-                <div id="vsl-video" class="vsl-container mb-10 rounded-2xl border border-gray-200 shadow-2xl overflow-hidden max-w-3xl mx-auto bg-black"
-                    data-src="https://vsl.jordanengo.com/v/jo-consult/pitch.mp4"
-                    data-analytics="https://analytics.jordanengo.com"
-                    data-site-id="GANTI_DENGAN_SITE_ID_UMAMI"
-                    data-accent="#6f00ff">
-                </div>
-
-                <!-- CTA Cluster -->
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="#booking" id="hero-cta" class="btn-pulse w-full sm:w-auto text-center bg-[#6f00ff] hover:bg-[#5800cc] text-white text-base md:text-lg font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-[#6f00ff] uppercase tracking-wide">
-                        Klaim Audit Kebocoran Funnel (Gratis 15-Min) →
-                    </a>
-                    <a href="#revenue-leaks" class="w-full sm:w-auto text-center bg-white hover:bg-gray-50 text-[#131628] text-base md:text-lg font-bold py-4 px-8 rounded-full border-2 border-gray-200 shadow-md hover:shadow-lg transition-all uppercase tracking-wide">
-                        Pelajari 7 Titik Kebocoran ↓
-                    </a>
-                </div>
-                <p class="mt-4 text-gray-500 font-medium text-xs flex items-center justify-center gap-1.5">
-                    <span class="text-[#6f00ff] font-bold">ℹ</span>
-                    <span>Diagnosis objektif sebelum meresepkan sistem. Tanpa komitmen sewa platform proprietary.</span>
-                </p>
-
-                <!-- ═══════════ BOOKING / QUIZ DIAGNOSTIC FUNNEL ═══════════ -->
-                <div id="booking" class="mt-12 max-w-2xl mx-auto scroll-mt-24">
-                    <!-- Cal.com container -->
-                    <div id="cal-container" class="w-full hidden p-6 bg-white rounded-2xl border border-gray-100 shadow-xl">
+    <div id="cal-container" class="w-full hidden p-6 bg-white rounded-2xl border border-gray-100 shadow-xl">
                         <div class="mb-4 text-center">
-                            <span class="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Data Diterima</span>
+                            <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Data Diterima</span>
                             <h3 class="text-xl font-bold text-[#131628]">Pilih Jadwal 15-Menit Audit Kebocoran Revenue Anda</h3>
                             <p class="text-sm text-gray-500">Pilih waktu di kalender bawah ini untuk sesi review diagnosis 1-on-1:</p>
                         </div>
                         <div id="my-cal-inline" style="width:100%;height:100%;min-height:600px;overflow:scroll;"></div>
                     </div>
-
-                    <!-- Detailed Interactive Quiz Form (The Revenue Leak Diagnostic) -->
-                    <div id="form-container" class="w-full p-6 sm:p-8 bg-white rounded-2xl border border-gray-200/80 shadow-xl text-left">
+    <div id="form-container" class="w-full p-6 sm:p-8 bg-white rounded-2xl border border-gray-200/80 shadow-xl text-left">
                         <div class="border-b border-gray-100 pb-4 mb-6">
                             <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] text-[11px] font-bold px-3 py-1 rounded-md uppercase tracking-wider mb-1">
                                 DIAGNOSIS PRA-AUDIT (1 Menit)
@@ -685,7 +764,7 @@
                     </div>
 
                     <!-- Thank You Notification -->
-                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl border border-green-200 shadow-xl text-center my-4">
+                    <div id="thank-you-container" class="hidden w-full max-w-2xl mx-auto p-8 bg-white rounded-2xl border border-[#6f00ff]/30 shadow-xl text-center my-4">
                         <div class="text-6xl mb-4">🎉</div>
                         <h3 class="text-2xl sm:text-3xl font-extrabold mb-3 text-[#131628]">Sesi Audit Berhasil Dijadwalkan!</h3>
                         <p class="text-base sm:text-lg font-medium text-gray-600 mb-6">Kami telah mencatat kualifikasi awal Anda. Konfirmasi link pertemuan Google Meet &amp; ringkasan persiapan audit telah dikirimkan via WhatsApp.</p>
@@ -696,245 +775,12 @@
                 </div>
             </div>
         </header>
+</div>
 
-        <!-- ═══════════ 7 TITIK KEBOCORAN PENDAPATAN (REVENUE LEAK MATRIX) ═══════════ -->
-        <section id="revenue-leaks" class="py-20 px-4 sm:px-6 bg-[#f9fafb] border-b border-gray-200/80">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
-                        DIAGNOSIS INTI DARI USP.MD
-                    </span>
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-[#131628] tracking-tight mb-4">
-                        7 Titik Kebocoran Funnel: Di Mana Uang &amp; Peluang Anda Lenyap?
-                    </h2>
-                    <p class="text-base text-gray-600 leading-relaxed">
-                        Sebelum membangun atau mengotomatisasi sistem, kami mengaudit titik penurunan (*drop-off*) terbesar antara saat prospek pertama kali melihat Anda hingga transaksi penjualan ditutup.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Leak 1: Discovery & Konten -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">01</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Discovery</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Konten Hanya Jadi "Vanity Views"</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Banyak penonton &amp; likes, tapi tidak ada jembatan langsung ke inquiry penjualan.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> Menautkan alur *lead-magnet* otomatis, kata kunci pemicu DM, dan link tracking terintegrasi langsung ke CRM.
-                        </p>
-                    </div>
-
-                    <!-- Leak 2: Inquiry Capture -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">02</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Inquiry</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Data Prospek Tersebar &amp; Tidak Tercatat</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Pertanyaan di DM IG, TikTok, form web, dan WA tersebar di chat pribadi staf.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> Unified Lead Intake: seluruh channel masuk ke satu pipeline terpusat dengan atribusi sumber (*source tracking*).
-                        </p>
-                    </div>
-
-                    <!-- Leak 3: Response Time (Speed-to-Lead) -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">03</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Respon</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Respon Lambat (&gt;15–30 Menit)</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Minat prospek mendingin 10x lipat dan mereka sudah chat kompetitor lain.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> Target SLA Respon &lt;60 Detik secara otomatis 24/7 untuk menyapa dan mempertahankan atensi prospek hangat.
-                        </p>
-                    </div>
-
-                    <!-- Leak 4: Qualification -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">04</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Kualifikasi</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Sales Habis Waktu Meladeni Bad Leads</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Panggilan meeting diisi orang yang salah target atau tidak memiliki kesiapan budget.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> AI Kualifikasi pra-percakapan memverifikasi kebutuhan dan budget sebelum mengizinkan proses booking meeting.
-                        </p>
-                    </div>
-
-                    <!-- Leak 5: Booking Janji Temu -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">05</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Booking</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Friksi Bolak-Balik Mencocokkan Jam</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: "Bisa hari Rabu jam 2?" "Oh maaf penuh, gimana kalau Kamis?" Prospek keburu hilang minat.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> Zero-friction calendar sync (Cal.com / Google Calendar) yang langsung mengunci slot hanya dalam 2 kali klik.
-                        </p>
-                    </div>
-
-                    <!-- Leak 6: Show Rate (Kehadiran Sesi) -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">06</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Kehadiran</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Tingkat No-Show Tinggi (30%–50%)</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Prospek lupa jadwal meeting atau tidak ada pengingat kontekstual.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> Protokol pengingat multi-step WhatsApp + pre-call brief kontekstual bagi sales rep sebelum meeting dimulai.
-                        </p>
-                    </div>
-
-                    <!-- Leak 7: Reaktivasi & Penjualan Berulang -->
-                    <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-all md:col-span-2 lg:col-span-3">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="leak-step-badge bg-purple-100 text-[#6f00ff]">07</span>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Tahap Closing &amp; Retention</span>
-                        </div>
-                        <h3 class="text-base font-bold text-[#131628] mb-2">Ribuan Prospek Lama &amp; Pelanggan Dibiarkan "Mati" (*Dormant*)</h3>
-                        <p class="text-xs text-red-600 font-semibold mb-2">❌ Titik Bocor: Prospek yang belum beli tidak pernah difollow-up lagi, dan riwayat pelanggan lama tidak pernah ditawarkan reorder.</p>
-                        <p class="text-xs text-gray-600 leading-relaxed border-t border-gray-100 pt-2">
-                            <strong>Solusi AGentZ:</strong> Mesin reaktivasi lead otomatis: memicu follow-up yang relevan berdasarkan histori chat dan mendeteksi jadwal pemesanan ulang (*repeat purchase*) secara otomatis.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <a href="#booking" class="inline-block bg-[#131628] hover:bg-[#6f00ff] text-white font-bold py-3.5 px-8 rounded-full shadow-md transition-all text-sm uppercase tracking-wide">
-                        Hitung Estimasi Kebocoran Bisnis Anda Bersama Kami →
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════ ARSITEKTUR SISTEM (LAYER ANTARA CONTENT DENGAN SALES) ═══════════ -->
-        <section id="arsitektur" class="py-20 px-5 bg-white border-b border-gray-200/80 text-center">
-            <div class="max-w-4xl mx-auto">
-                <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
-                    Arsitektur Solusi
-                </span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-[#131628] mb-4 tracking-tight">
-                    Jembatan Antara Konten / Ads Anda dengan Closing Penjualan
-                </h2>
-                <p class="text-sm md:text-base text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-                    Sistem AGentZ duduk tepat di tengah: mengubah atensi dari media sosial dan kampanye iklan menjadi percakapan terverifikasi di kalender tim sales Anda.
-                </p>
-                <div class="rounded-2xl border border-gray-200 shadow-2xl overflow-hidden bg-[#131628] p-3 sm:p-6 inline-block max-w-full">
-                    <img src="images/content-to-sales-layer.webp" alt="Layer antara Content anda dengan Sales - AGentZ System" loading="lazy" decoding="async" class="w-full h-auto object-contain mx-auto rounded-xl">
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════ 6 PILAR HASIL & SUDUT VALUE DARI USP.MD ═══════════ -->
-        <section id="kpi-outcomes" class="py-20 px-4 sm:px-6 bg-[#f9fafb] border-b border-gray-200/80">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
-                        DELIVERABLES &amp; OUTCOMES
-                    </span>
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-[#131628] tracking-tight mb-4">
-                        Hasil Terukur yang Dibangun ke Dalam Bisnis Anda
-                    </h2>
-                    <p class="text-base text-gray-600 leading-relaxed">
-                        Kami tidak menjual janji abstrak. Setiap modul infrastruktur memiliki indikator kinerja (*KPI*) yang dapat diuji dan dipantau setiap hari.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Outcome 1: Speed to Lead & Response SLA -->
-                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-10 h-10 rounded-xl bg-purple-50 text-[#6f00ff] flex items-center justify-center font-bold text-lg">⚡</span>
-                                <h3 class="text-lg font-bold text-[#131628]">1. Speed-to-Lead &amp; SLA Respon &lt;60 Detik</h3>
-                            </div>
-                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                                Menjangkau prospek tepat di puncak minat mereka sebelum mereka menutup aplikasi atau menghubungi kompetitor. Melayani pertanyaan di luar jam kerja normal tanpa jeda.
-                            </p>
-                        </div>
-                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
-                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
-                            <span class="text-gray-600">Median &amp; 90th-percentile response time, SLA completion rate, dan contact rate prospek baru.</span>
-                        </div>
-                    </div>
-
-                    <!-- Outcome 2: Pre-Call Qualification & Briefing -->
-                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg">🎯</span>
-                                <h3 class="text-lg font-bold text-[#131628]">2. Kualifikasi Prospek &amp; Pre-Call Briefing</h3>
-                            </div>
-                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                                Menyaring prospek berdasarkan kebutuhan dan budget sebelum panggilan sales. Salesperson menerima ringkasan (*brief*) konteks prospek sebelum sesi dimulai, sehingga obrolan langsung terarah.
-                            </p>
-                        </div>
-                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
-                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
-                            <span class="text-gray-600">Qualified-lead rate, rasio lead-to-booking, dan close rate tim penjualan.</span>
-                        </div>
-                    </div>
-
-                    <!-- Outcome 3: No-Show Recovery -->
-                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg">📅</span>
-                                <h3 class="text-lg font-bold text-[#131628]">3. Pengurangan No-Show &amp; Auto Reschedule</h3>
-                            </div>
-                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                                Rangkaian pengingat pra-pertemuan via WhatsApp otomatis beserta tautan sekali klik untuk memilih ulang jadwal jika ada keperluan mendadak.
-                            </p>
-                        </div>
-                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
-                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
-                            <span class="text-gray-600">Booked-call show rate, no-show recovery rate, dan cost per qualified attended appointment.</span>
-                        </div>
-                    </div>
-
-                    <!-- Outcome 4: Multi-Channel Attribution -->
-                    <div class="bg-white rounded-2xl p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg">📊</span>
-                                <h3 class="text-lg font-bold text-[#131628]">4. Visibilitas Pipeline &amp; Atribusi Penjualan</h3>
-                            </div>
-                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                                Melihat seluruh perjalanan pelanggan dari asal iklan/konten hingga kas masuk. Menghentikan anggaran pada channel boncos dan fokus pada saluran yang benar-benar menghasilkan closing.
-                            </p>
-                        </div>
-                        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/60 text-xs">
-                            <span class="font-bold text-[#131628] block mb-1">KPI yang Dipantau:</span>
-                            <span class="text-gray-600">Cost per qualified lead, conversion rate per landing page, attributable revenue, dan ROAS riil.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Realistic Target Benchmark Box (From USP.md Guidance) -->
-                <div class="mt-12 bg-white rounded-2xl border-2 border-[#6f00ff]/20 p-6 sm:p-8 shadow-md">
-                    <div class="flex items-start gap-4">
-                        <span class="text-2xl mt-0.5">📌</span>
-                        <div>
-                            <h3 class="text-base sm:text-lg font-bold text-[#131628] mb-1">
-                                Tolak Ukur Kinerja: Data Nyata &amp; Terukur, Bukan Klaim Bombastis
-                            </h3>
-                            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                                Kami tidak menjanjikan klaim palsu seperti <em>"100% tanpa kerja sama sekali"</em> atau ranking Google Maps instan. Kami mengoptimalkan alur operasional nyata: memangkas waktu respon ke hitungan detik, menaikkan persentase kehadiran janji temu (*show rate*), dan memastikan setiap rupiah anggaran menghasilkan prospek berkualitas yang terdokumentasi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════ FREE RESOURCES / BAHAN GRATIS SECTION (PRESERVED) ═══════════ -->
-        <section id="vault-resources" class="py-20 px-5 bg-white border-b border-gray-200/80 text-center">
+</section><section class="dots-section-layout dots-section-layout--media-first dots-film-hero"><div class="min-w-0 dots-grid"><div class="min-w-0 dots-full"><div class="dots-vimeo relative h-full w-full overflow-hidden dots-film-frame" style="aspect-ratio:16/9;border-radius:32px;background:#000;box-shadow:0 24px 60px rgba(0,0,0,0.7);">
+  <video src="./avatars/gemini_generated_video_352b6cbe.mp4" controls autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:32px;"></video>
+</div></div></div></div></section><section id="how-it-works" aria-labelledby="_R_2mn4kjhjad4m_" class="dots-section-layout dots-section-layout--large-subtitle dots-bento"><div class="min-w-0 dots-grid"><div class="min-w-0 dots-primary dots-section-header text-center"><h2 id="_R_2mn4kjhjad4m_" class="dots-section-title"><span class="dots-responsive-heading-desktop">Mulai bekerja dengan Dots</span><span class="dots-responsive-heading-mobile">Mulai bekerja dengan Dots</span></h2><p class="dots-section-subtitle">Anggap Dot Anda sebagai perpanjangan dari diri Anda. Ia mempelajari cara Anda bekerja, mengenali hal-hal yang memerlukan perhatian, dan menggunakan komputernya sendiri untuk memajukan proyek-proyek Anda.</p></div></div><div class="min-w-0 dots-grid"><div class="min-w-0 dots-full dots-bento-list"><div class="dots-bento-row"><article class="dots-bento-tile" style="--dots-bento-mobile-ratio:1"><div class="dots-bento-visual relative" data-bento-presentation="static"><div style="visibility:visible"><div class="h-full w-full h-full w-full"><div class="h-full w-full mx-auto overflow-hidden h-full w-full aspect-auto md:aspect-auto"><picture><source srcSet="./images/bento_context_desktop.png 320w, ./images/bento_context_desktop.png 480w, ./images/bento_context_desktop.png 640w, ./images/bento_context_desktop.png 768w, ./images/bento_context_desktop.png 960w, ./images/bento_context_desktop.png 1200w, ./images/bento_context_desktop.png 1600w, ./images/bento_context_desktop.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-16765.png 320w, ./images/4079-16765.png 480w, ./images/4079-16765.png 640w, ./images/4079-16765.png 768w, ./images/4079-16765.png 960w, ./images/4079-16765.png 1200w, ./images/4079-16765.png 1600w, ./images/4079-16765.png 1609w" sizes="100vw"/><img alt="Help dots get to know you" src="./images/bento_context_desktop.png" srcSet="./images/bento_context_desktop.png 320w, ./images/bento_context_desktop.png 480w, ./images/bento_context_desktop.png 640w, ./images/bento_context_desktop.png 768w, ./images/bento_context_desktop.png 960w, ./images/bento_context_desktop.png 1200w, ./images/bento_context_desktop.png 1600w, ./images/bento_context_desktop.png 1920w" sizes="100vw" class="mx-auto h-full w-full object-cover" width="2407" height="1355"/></picture></div></div></div></div><div class="dots-bento-copy"><h3>Dot Anda bekerja sesuai cara Anda</h3><p>Dot Anda berawal dari konteks memori ChatGPT Anda. Ia menggunakan Codex dan berbagai alat yang terhubung untuk menyelesaikan tugas. Anda yang menentukan aplikasi mana yang dapat diakses, apa fokus utamanya, dan bagaimana cara kerja yang Anda sukai.</p></div></article></div><div class="dots-bento-row"><article class="dots-bento-tile" style="--dots-bento-mobile-ratio:1"><div class="dots-bento-visual relative" data-bento-presentation="static"><div style="visibility:visible"><div class="h-full w-full h-full w-full"><div class="h-full w-full mx-auto overflow-hidden h-full w-full aspect-auto md:aspect-auto"><picture><source srcSet="./images/bento_goal_desktop.png 320w, ./images/bento_goal_desktop.png 480w, ./images/bento_goal_desktop.png 640w, ./images/bento_goal_desktop.png 768w, ./images/bento_goal_desktop.png 960w, ./images/bento_goal_desktop.png 1200w, ./images/bento_goal_desktop.png 1600w, ./images/bento_goal_desktop.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-16871.png 320w, ./images/4079-16871.png 480w, ./images/4079-16871.png 640w, ./images/4079-16871.png 768w, ./images/4079-16871.png 960w, ./images/4079-16871.png 1200w, ./images/4079-16871.png 1600w, ./images/4079-16871.png 1680w" sizes="100vw"/><img alt="Give it a goal to run with" src="./images/bento_goal_desktop.png" srcSet="./images/bento_goal_desktop.png 320w, ./images/bento_goal_desktop.png 480w, ./images/bento_goal_desktop.png 640w, ./images/bento_goal_desktop.png 768w, ./images/bento_goal_desktop.png 960w, ./images/bento_goal_desktop.png 1200w, ./images/bento_goal_desktop.png 1600w, ./images/bento_goal_desktop.png 1920w" sizes="100vw" class="mx-auto h-full w-full object-cover" width="2407" height="1355"/></picture></div></div></div></div><div class="dots-bento-copy"><h3>Beri tanggung jawab untuk dikelola</h3><p>Serahkan proyek besar atau tugas kecil untuk meringankan beban Anda. Dot Anda secara proaktif memikirkan langkah berikutnya dan terus membuat kemajuan di sela-sela percakapan. Ia menyajikan hasil kerja untuk Anda tinjau dan keputusan yang memerlukan pertimbangan Anda.</p></div></article></div><div class="dots-bento-row"><article class="dots-bento-tile" style="--dots-bento-mobile-ratio:1"><div class="dots-bento-visual relative" data-bento-presentation="static"><div style="visibility:visible"><div class="h-full w-full h-full w-full"><div class="max-h-full max-w-full mx-auto overflow-hidden h-full w-full aspect-square md:aspect-16/9"><picture><source srcSet="./images/4079-17313.png 320w, ./images/4079-17313.png 480w, ./images/4079-17313.png 640w, ./images/4079-17313.png 768w, ./images/4079-17313.png 960w, ./images/4079-17313.png 1200w, ./images/4079-17313.png 1600w, ./images/4079-17313.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-17172.png 320w, ./images/4079-17172.png 480w, ./images/4079-17172.png 640w, ./images/4079-17172.png 768w, ./images/4079-17172.png 960w, ./images/4079-17172.png 1200w, ./images/4079-17172.png 1600w, ./images/4079-17172.png 1680w" sizes="100vw"/><img alt="Felipe shares a board meeting deck, receives feedback, and returns the updated presentation." src="./images/4079-17313.png" srcSet="./images/4079-17313.png 320w, ./images/4079-17313.png 480w, ./images/4079-17313.png 640w, ./images/4079-17313.png 768w, ./images/4079-17313.png 960w, ./images/4079-17313.png 1200w, ./images/4079-17313.png 1600w, ./images/4079-17313.png 1920w" sizes="100vw" class="h-full w-full object-cover object-center h-full w-full object-cover" width="2407" height="1355"/></picture></div></div></div></div><div class="dots-bento-copy"><h3>Anda yang memegang kendali</h3><p>Pantau apa yang sedang dikerjakan Dot Anda, tinjau detailnya, dan berikan masukan. Ubah arahan atau jeda kapan saja.</p></div></article></div><div class="dots-bento-row"><article class="dots-bento-tile" style="--dots-bento-mobile-ratio:1"><div class="dots-bento-visual relative" data-bento-presentation="static"><div style="visibility:visible"><div class="h-full w-full h-full w-full"><div class="h-full w-full mx-auto overflow-hidden h-full w-full aspect-auto md:aspect-auto"><picture><source srcSet="./images/bento_work_desktop.png 320w, ./images/bento_work_desktop.png 480w, ./images/bento_work_desktop.png 640w, ./images/bento_work_desktop.png 768w, ./images/bento_work_desktop.png 960w, ./images/bento_work_desktop.png 1200w, ./images/bento_work_desktop.png 1600w, ./images/bento_work_desktop.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-17521.png 320w, ./images/4079-17521.png 480w, ./images/4079-17521.png 640w, ./images/4079-17521.png 768w, ./images/4079-17521.png 960w, ./images/4079-17521.png 1200w, ./images/4079-17521.png 1600w, ./images/4079-17521.png 1680w" sizes="100vw"/><img alt="Bring dots to work" src="./images/bento_work_desktop.png" srcSet="./images/bento_work_desktop.png 320w, ./images/bento_work_desktop.png 480w, ./images/bento_work_desktop.png 640w, ./images/bento_work_desktop.png 768w, ./images/bento_work_desktop.png 960w, ./images/bento_work_desktop.png 1200w, ./images/bento_work_desktop.png 1600w, ./images/bento_work_desktop.png 1920w" sizes="100vw" class="mx-auto h-full w-full object-cover" width="2407" height="1355"/></picture></div></div></div></div><div class="dots-bento-copy"><h3>Bawa Dot Anda ke tempat kerja</h3><p>Your dot can help wherever you work. You manage its permissions and decide when it can act on its own or needs your approval.</p><a class="btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-secondary btn-large dots-cta dots-cta-secondary dots-bento-cta -mkt" href="/contact-sales/" target="_self" data-discover="true"><div class="flex items-center justify-center">Contact sales</div></a></div></article></div></div></div></section><section id="use-cases" aria-labelledby="_R_36n4kjhjad4m_" class="dots-section-layout dots-section-layout--two-column dots-use-cases-section"><div class="min-w-0 dots-grid"><div class="min-w-0 dots-full dots-section-header dots-section-columns"><h2 id="_R_36n4kjhjad4m_" class="dots-section-title"><span class="dots-responsive-heading-desktop">Dirancang untuk hari-hari yang sibuk</span></h2><p class="dots-section-subtitle">Dots membantu Anda meluangkan lebih banyak waktu untuk hal yang penting. Pelajari bagaimana Dots dapat mentransformasi pekerjaan Anda.</p></div></div><div class="@container w-full"><div class="min-w-0 dots-grid"><div class="min-w-0 dots-full dots-use-cases-controls flex items-center justify-between gap-4 min-w-0"><p class="dots-use-cases-label text-token-text-secondary">Eksplorasi</p><div class="flex ms-auto gap-2"><button type="button" class="interactive-button interactive-button-secondary flex size-11 items-center justify-center rounded-full" aria-disabled="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" data-rtl-flip="" class="icon rtl:rotate-180"><use href="/cdn/assets/sprites-core-bef2fe87.svg#085823" fill="currentColor"></use></svg><span class="sr-only">Sebelumnya</span></button><button type="button" class="interactive-button interactive-button-secondary flex size-11 items-center justify-center rounded-full" aria-disabled="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" data-rtl-flip="" class="icon rtl:rotate-180"><use href="/cdn/assets/sprites-core-bef2fe87.svg#07889e" fill="currentColor"></use></svg><span class="sr-only">Berikutnya</span></button></div></div></div><div role="group" dir="ltr" class="no-scrollbar relative mt-6 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain min-w-0 dots-use-cases-viewport" aria-label="Dirancang untuk hari-hari yang sibuk" tabindex="0"><article class="dots-use-case-card" data-card-index="0" data-active="true" data-dots-autoplay-pause="true"><div class="dots-use-case-media"><div class="h-full w-full dots-use-case-artwork"><div class="h-full w-full mx-auto overflow-hidden aspect-auto md:aspect-auto"><picture><source srcSet="./images/4079-19896.png 320w, ./images/4079-19896.png 480w, ./images/4079-19896.png 640w, ./images/4079-19896.png 768w, ./images/4079-19896.png 960w, ./images/4079-19896.png 1200w, ./images/4079-19896.png 1600w, ./images/4079-19896.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-19386.png 320w, ./images/4079-19386.png 480w, ./images/4079-19386.png 640w, ./images/4079-19386.png 768w, ./images/4079-19386.png 960w, ./images/4079-19386.png 1200w, ./images/4079-19386.png 1600w, ./images/4079-19386.png 1609w" sizes="100vw"/><img alt="Felipe reviews product and revenue results while updating an investor deck." src="./images/4079-19896.png" srcSet="./images/4079-19896.png 320w, ./images/4079-19896.png 480w, ./images/4079-19896.png 640w, ./images/4079-19896.png 768w, ./images/4079-19896.png 960w, ./images/4079-19896.png 1200w, ./images/4079-19896.png 1600w, ./images/4079-19896.png 1920w" sizes="100vw" class="mx-auto size-full object-cover" width="2407" height="1355"/></picture></div></div></div><div class="dots-use-case-caption"><h3 class="dots-h4 dots-use-case-heading">Tuntaskan setiap proyek Anda</h3><p class="dots-body text-token-text-secondary mt-3 dots-use-case-description">Anda memimpin tim keuangan yang sedang menyiapkan pembaruan untuk investor. Dot Anda memantau penggunaan produk dan pendapatan, menandai perubahan, serta memperbarui materi presentasi Anda. Dengan persetujuan Anda, Dot membagikan angka terbaru ke tim dan menyelaraskan seluruh dokumen terkait.</p></div></article><article class="dots-use-case-card cursor-pointer" data-card-index="1" data-active="false" data-dots-autoplay-pause="true"><div class="dots-use-case-media"><div class="h-full w-full dots-use-case-artwork"><div class="h-full w-full mx-auto overflow-hidden aspect-auto md:aspect-auto"><picture><source srcSet="./images/4079-20100.png 320w, ./images/4079-20100.png 480w, ./images/4079-20100.png 640w, ./images/4079-20100.png 768w, ./images/4079-20100.png 960w, ./images/4079-20100.png 1200w, ./images/4079-20100.png 1600w, ./images/4079-20100.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-19585.png 320w, ./images/4079-19585.png 480w, ./images/4079-19585.png 640w, ./images/4079-19585.png 768w, ./images/4079-19585.png 960w, ./images/4079-19585.png 1200w, ./images/4079-19585.png 1600w, ./images/4079-19585.png 1609w" sizes="100vw"/><img alt="Alfred checks a customer RFP against product details and prepares an evaluation plan." src="./images/4079-20100.png" srcSet="./images/4079-20100.png 320w, ./images/4079-20100.png 480w, ./images/4079-20100.png 640w, ./images/4079-20100.png 768w, ./images/4079-20100.png 960w, ./images/4079-20100.png 1200w, ./images/4079-20100.png 1600w, ./images/4079-20100.png 1920w" sizes="100vw" class="mx-auto size-full object-cover" width="2407" height="1355"/></picture></div></div></div><div class="dots-use-case-caption"><h3 class="dots-h4 dots-use-case-heading">Lindungi fokus & perhatian Anda</h3><p class="dots-body text-token-text-secondary mt-3 dots-use-case-description">For a sales lead, an enterprise deal comes with plenty of technical details. Your dot checks customer requirements against emails and product docs, flags what needs testing, and prepares an updated evaluation plan for review.</p></div></article><article class="dots-use-case-card" data-card-index="2" data-active="false" data-dots-autoplay-pause="true"><div class="dots-use-case-media"><div class="h-full w-full dots-use-case-artwork"><div class="h-full w-full mx-auto overflow-hidden aspect-auto md:aspect-auto"><picture><source srcSet="./images/4079-19587.png 320w, ./images/4079-19587.png 480w, ./images/4079-19587.png 640w, ./images/4079-19587.png 768w, ./images/4079-19587.png 960w, ./images/4079-19587.png 1200w, ./images/4079-19587.png 1600w, ./images/4079-19587.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-19586.png 320w, ./images/4079-19586.png 480w, ./images/4079-19586.png 640w, ./images/4079-19586.png 768w, ./images/4079-19586.png 960w, ./images/4079-19586.png 1200w, ./images/4079-19586.png 1600w, ./images/4079-19586.png 1609w" sizes="100vw"/><img alt="Todd tracks an API migration, with two passing pull requests and a breaking change to review." src="./images/4079-19587.png" srcSet="./images/4079-19587.png 320w, ./images/4079-19587.png 480w, ./images/4079-19587.png 640w, ./images/4079-19587.png 768w, ./images/4079-19587.png 960w, ./images/4079-19587.png 1200w, ./images/4079-19587.png 1600w, ./images/4079-19587.png 1920w" sizes="100vw" class="mx-auto size-full object-cover" width="2407" height="1355"/></picture></div></div></div><div class="dots-use-case-caption"><h3 class="dots-h4 dots-use-case-heading">Satukan semua bagian informasi</h3><p class="dots-body text-token-text-secondary mt-3 dots-use-case-description">As an engineer, you need to move services across your company off an API before it shuts down. Your dot maps dependencies, prepares code and tests for engineers to review, and tracks remaining calls until they reach zero.</p></div></article><article class="dots-use-case-card" data-card-index="3" data-active="false" data-dots-autoplay-pause="true"><div class="dots-use-case-media"><div class="h-full w-full dots-use-case-artwork"><div class="h-full w-full mx-auto overflow-hidden aspect-auto md:aspect-auto"><picture><source srcSet="./images/4079-22526.png 320w, ./images/4079-22526.png 480w, ./images/4079-22526.png 640w, ./images/4079-22526.png 768w, ./images/4079-22526.png 960w, ./images/4079-22526.png 1200w, ./images/4079-22526.png 1600w, ./images/4079-22526.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-19894.png 320w, ./images/4079-19894.png 480w, ./images/4079-19894.png 640w, ./images/4079-19894.png 768w, ./images/4079-19894.png 960w, ./images/4079-19894.png 1200w, ./images/4079-19894.png 1600w, ./images/4079-19894.png 1609w" sizes="100vw"/><img alt="Jojo turns customer feedback into a tested video editor improvement." src="./images/4079-22526.png" srcSet="./images/4079-22526.png 320w, ./images/4079-22526.png 480w, ./images/4079-22526.png 640w, ./images/4079-22526.png 768w, ./images/4079-22526.png 960w, ./images/4079-22526.png 1200w, ./images/4079-22526.png 1600w, ./images/4079-22526.png 1920w" sizes="100vw" class="mx-auto size-full object-cover" width="2407" height="1355"/></picture></div></div></div><div class="dots-use-case-caption"><h3 class="dots-h4 dots-use-case-heading">Jaga ritme kerja tetap berjalan</h3><p class="dots-body text-token-text-secondary mt-3 dots-use-case-description">You’re a developer building an app. Your dot watches customer feedback for requests, then scopes, builds, and tests improvements. You can keep building the next major feature while those smaller fixes move forward.</p></div></article><article class="dots-use-case-card" data-card-index="4" data-active="false" data-dots-autoplay-pause="true"><div class="dots-use-case-media"><div class="h-full w-full dots-use-case-artwork"><div class="h-full w-full mx-auto overflow-hidden aspect-auto md:aspect-auto"><picture><source srcSet="./images/4079-26650.png 320w, ./images/4079-26650.png 480w, ./images/4079-26650.png 640w, ./images/4079-26650.png 768w, ./images/4079-26650.png 960w, ./images/4079-26650.png 1200w, ./images/4079-26650.png 1600w, ./images/4079-26650.png 1920w" sizes="100vw" media="(min-width: 768px)"/><source srcSet="./images/4079-26458.png 320w, ./images/4079-26458.png 480w, ./images/4079-26458.png 640w, ./images/4079-26458.png 768w, ./images/4079-26458.png 960w, ./images/4079-26458.png 1200w, ./images/4079-26458.png 1600w, ./images/4079-26458.png 1650w" sizes="100vw"/><img alt="Iggy drafts show notes and social posts from a transcript for review." src="./images/4079-26650.png" srcSet="./images/4079-26650.png 320w, ./images/4079-26650.png 480w, ./images/4079-26650.png 640w, ./images/4079-26650.png 768w, ./images/4079-26650.png 960w, ./images/4079-26650.png 1200w, ./images/4079-26650.png 1600w, ./images/4079-26650.png 1920w" sizes="100vw" class="mx-auto size-full object-cover" width="2128" height="1355"/></picture></div></div></div><div class="dots-use-case-caption"><h3 class="dots-h4 dots-use-case-heading">Otomatiskan alur kerja Anda</h3><p class="dots-body text-token-text-secondary mt-3 dots-use-case-description">For content creators, your dot learns your voice and audience, finds interview moments to clip, and drafts show notes and social posts for your approval. It carries your edits across materials and learns what resonates to improve the next batch.</p></div></article></div></div></section><section id="trust" class="dots-section-layout dots-trust" aria-labelledby="_R_3mn4kjhjad4m_"><div class="min-w-0 dots-grid"><div class="min-w-0 dots-primary dots-section-header text-center"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="dots-trust-shield"><path fill-rule="evenodd" clip-rule="evenodd" d="M28.7998 4.6695C30.8435 3.77602 33.1678 3.77808 35.2113 4.67211L51.1878 11.6617C54.0995 12.9357 55.982 15.8116 55.9821 18.9898V34.1799C55.9818 41.5348 53.3875 47.2984 49.2191 51.7138C45.1098 56.0663 39.5782 59.0001 33.8024 61.0133L33.7816 61.0211C32.64 61.4079 31.4019 61.394 30.2686 60.9872C30.2529 60.9818 30.2373 60.977 30.2217 60.9716L30.2087 60.969C24.4411 58.9703 18.9167 56.0514 14.8076 51.719C10.6243 47.3081 8.01882 41.5428 8.01855 34.1799V18.9898C8.01892 15.8116 9.90095 12.9354 12.8128 11.6617L28.7998 4.6695Z" fill="#3C5CD8"></path><path d="M30.9349 9.55745C31.6161 9.25954 32.3917 9.25945 33.0729 9.55745L49.0495 16.547C50.02 16.9717 50.6483 17.9304 50.6484 18.9897V34.1798C50.6482 40.1463 48.5933 44.6072 45.3411 48.0522C42.0335 51.5557 37.3761 54.1135 32.0677 55.9663C32.0485 55.9592 32.0272 55.9548 32.0078 55.9481C26.6781 54.1075 22.0001 51.553 18.6771 48.0496C15.4142 44.6093 13.3518 40.1492 13.3516 34.1798V18.9897C13.3519 17.9305 13.98 16.9715 14.9505 16.547L30.9349 9.55745Z" fill="#608DFF"></path><path d="M32 9.34916V55.9663C31.9964 55.9653 31.9927 55.9646 31.9893 55.9634C26.6595 54.1228 21.9812 51.5683 18.6582 48.065C15.3953 44.6246 13.3333 40.1642 13.333 34.1949V19.0044C13.3336 17.9455 13.9614 16.9865 14.9316 16.5621L30.916 9.57279C31.2612 9.42185 31.6309 9.34715 32 9.34916Z" fill="#7DA2FF"></path></svg><h2 id="_R_3mn4kjhjad4m_" class="dots-section-title">Di sisi Anda, sepenuhnya dalam kendali Anda</h2><p class="dots-section-subtitle">Dots berjalan di atas GPT-6 Astra, model kami yang paling selaras (aligned), dengan perlindungan keamanan dan privasi yang aktif secara bawaan.</p><div class="dots-section-actions"><a class="btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-secondary btn-large dots-cta dots-cta-secondary -mkt" href="https://openai.com/index/how-we-build-safety-security-and-privacy-into-dots/" target="_self"><div class="flex items-center justify-center">Pelajari selengkapnya</div></a></div></div></div><div class="min-w-0 dots-grid"><div class="min-w-0 dots-primary"><div class="dots-trust-cards"><article class="dots-trust-card"><div class="dots-trust-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon"><use href="/cdn/assets/sprites-core-bef2fe87.svg#e13340" fill="currentColor"></use></svg></div><h3>Perlindungan bawaan</h3><p>Dots memperkuat sistem perlindungan ChatGPT dengan perisai keamanan yang mencegah instruksi berbahaya dan mendeteksi perilaku yang mencurigakan.</p></article><article class="dots-trust-card"><div class="dots-trust-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon"><use href="/cdn/assets/sprites-core-bef2fe87.svg#0a0a1b" fill="currentColor"></use></svg></div><h3>Batasan kendali Anda</h3><p>Dots bekerja di komputer cloud mandiri mereka. Pilih aplikasi yang ingin dihubungkan, atur hak aksesnya, dan putuskan apakah komputer pribadi Anda akan dihubungkan. Tetapkan Aturan Kustom untuk mengizinkan tindakan tertentu, meminta persetujuan, atau memblokirnya.</p></article><article class="dots-trust-card"><div class="dots-trust-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon"><use href="/cdn/assets/sprites-core-bef2fe87.svg#2add48" fill="currentColor"></use></svg></div><h3>Pengecekan yang teruji</h3><p>Actions that could affect your accounts or share information go through Auto-review for checks against your instructions, Custom Rules, and safety requirements. Some need your approval. Steps like changing your password stay with you.</p></article></div></div></div></section><section id="get-dot" class="w-full px-4 py-16 min-[768px]:py-32" aria-labelledby="_R_56n4kjhjad4m_"><div class="mx-auto flex w-full max-w-[768px] flex-col items-center rounded-[37px] border border-token-border-light bg-token-bg-elevated-secondary px-4 pt-10 pb-8 text-center [--dots-surface:var(--bg-elevated-secondary)] min-[768px]:p-12"><div class="mb-6 size-14 shrink-0" aria-hidden="true"><div class="h-full w-full"><div class="h-full w-full mx-auto overflow-hidden aspect-auto md:aspect-auto"><picture><source srcSet="./avatars/0f4be691-3b8c-41e3-9360-2fae02faea4f.png" media="(min-width: 768px)"/><img alt="" src="./avatars/0f4be691-3b8c-41e3-9360-2fae02faea4f.png" class="mx-auto" width="81" height="81"/></picture></div></div></div><div class="flex w-full max-w-[572px] flex-col gap-6"><h2 id="_R_56n4kjhjad4m_" class="text-[32px] leading-[1.2] font-medium tracking-[-0.02em] text-token-text-primary min-[768px]:text-[36px]">Cara mendapatkan Dot Anda</h2><div class="text-[17px] leading-[1.45] text-token-text-secondary"><p class="not-last:mb-[1.1em]">Dots sedang diluncurkan di ChatGPT versi web, mobile, dan desktop. Akses kini tersedia untuk pengguna paket Pro, Business Premium, dan Enterprise <a rel="noopener" class="cursor-pointer font-normal underline hover:opacity-60 relative underline-offset-2 decoration-1 underline" target="_blank" href="https://help.openai.com/en/articles/20001530"><u>di wilayah yang memenuhi syarat</u>⁠</a>. Pengguna Enterprise dapat mencoba Dots setelah diaktifkan oleh admin ruang kerja.</p></div></div><div class="mt-10 flex w-full flex-col items-center gap-4"><div class="flex flex-wrap justify-center gap-3"><a class="btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-primary btn-large dots-cta -mkt" href="https://www.chatgpt.com/auth/login?next=%2Fdots" target="_self"><div class="flex items-center justify-center">Buat Dot Anda</div></a></div></div></div></section>
+<section id="vault-resources" class="py-20 px-5 bg-white border-b border-gray-200/80 text-center">
             <div class="max-w-5xl mx-auto">
                 <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
                     Bahan Gratis &amp; Resource Hub
@@ -951,7 +797,7 @@
                     <div class="superProfileHeader" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 12px;">
                         <div class="head font-bold text-base sm:text-lg text-[#131628] font-['Poppins'] flex items-center">
                             Bahan Gratis
-                            <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#22c55e; background:rgba(34,197,94,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(34,197,94,0.3);">
+                            <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#6f00ff; background:rgba(111,0,255,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(111,0,255,0.25);">
                                 🔓 1/7 Modul Terbuka
                             </span>
                         </div>
@@ -976,7 +822,7 @@
                                         <div class="carousel-card-title">Website 24/7 Voice &amp; WhatsApp CS</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">WA Chatbot open source + Voice AI receptionist untuk web</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #16a34a;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>Buka Modul ↗</span>
                                         </button>
                                     </div>
@@ -987,14 +833,14 @@
                             <div class="carousel-item-wrapper">
                                 <div class="carousel-card" data-key="whatsapp_invoice_system">
                                     <div class="carousel-card-image" style="background:#101720; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
-                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
                                         <img src="images/whatsapp_invoice.png" alt="Whatsapp Invoice System &amp; AI Agent" style="width:100%; height:100%; object-fit:cover;">
                                     </div>
                                     <div class="carousel-card-content">
                                         <div class="carousel-card-title">WhatsApp Invoice System &amp; AI Agent</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Invoice template bisnismu dikirimkan otomatis via WhatsApp</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>🔒 Terkunci</span>
                                         </button>
                                     </div>
@@ -1005,14 +851,14 @@
                             <div class="carousel-item-wrapper">
                                 <div class="carousel-card" data-key="telegram_admin_agent">
                                     <div class="carousel-card-image" style="background:#111; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
-                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
                                         <img src="images/admin_preview.gif" alt="Ai Agent Social Media" style="width:100%; height:100%; object-fit:cover;">
                                     </div>
                                     <div class="carousel-card-content">
                                         <div class="carousel-card-title">AI Agent Social Media (Posting &amp; Konten)</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Auto-kelola jadwal konten &amp; monitoring via Telegram</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>🔒 Terkunci</span>
                                         </button>
                                     </div>
@@ -1023,14 +869,14 @@
                             <div class="carousel-item-wrapper">
                                 <div class="carousel-card" data-key="video_editor_templates">
                                     <div class="carousel-card-image" style="background:#0f172a; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
-                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
                                         <img src="images/coaching_video_templates.gif" alt="5 Coaching Video Editing Template" style="width:100%; height:100%; object-fit:cover;">
                                     </div>
                                     <div class="carousel-card-content">
                                         <div class="carousel-card-title">5 Video Editing Templates untuk Coach</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Framework hook &amp; format video yang terbukti konversi</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>🔒 Terkunci</span>
                                         </button>
                                     </div>
@@ -1041,14 +887,14 @@
                             <div class="carousel-item-wrapper">
                                 <div class="carousel-card" data-key="bisnis_dashboard_excel">
                                     <div class="carousel-card-image" style="background:#f8fafc; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
-                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
                                         <img src="images/bisnis_dashboard.png" alt="Bisnis Dashbor + Excel Template" style="width:100%; height:100%; object-fit:cover;">
                                     </div>
                                     <div class="carousel-card-content">
                                         <div class="carousel-card-title">Dashboard Pipeline &amp; KPI Tracker</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Dashboard monitoring cashflow &amp; konversi penjualan</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>🔒 Terkunci</span>
                                         </button>
                                     </div>
@@ -1059,14 +905,14 @@
                             <div class="carousel-item-wrapper">
                                 <div class="carousel-card" data-key="bisnis_ai_audit">
                                     <div class="carousel-card-image" style="background:#f8fafc; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
-                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
                                         <img src="images/bisnis_ai_audit.png" alt="Bisnis AI Integrasi Audit" style="width:100%; height:100%; object-fit:cover;">
                                     </div>
                                     <div class="carousel-card-content">
                                         <div class="carousel-card-title">Bisnis AI Integrasi Audit</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Diagnosa 4 pilar bisnis &amp; temukan kebocoran profit</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>🔒 Terkunci</span>
                                         </button>
                                     </div>
@@ -1077,14 +923,14 @@
                             <div class="carousel-item-wrapper">
                                 <div class="carousel-card" data-key="fb_ig_dm_automation">
                                     <div class="carousel-card-image" style="background:#111; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative;">
-                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
+                                        <div class="vault-lock-badge" style="position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;">🔒 LOCKED</div>
                                         <img src="images/instagram_dm.gif" alt="Fb &amp; IG DM Automation" style="width:100%; height:100%; object-fit:cover;">
                                     </div>
                                     <div class="carousel-card-content">
                                         <div class="carousel-card-title">Instagram &amp; FB DM Automation</div>
                                         <div style="font-size:11px;color:#555;font-family:Poppins,sans-serif;margin-top:2px;line-height:1.4;">Auto-reply pemicu kata kunci &amp; kirim link lead-magnet</div>
                                         <div class="title-price-wrapper"></div>
-                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #61796f;">
+                                        <button type="button" class="carousel-card-cta fill borderRadiusLarge base-button md-button primary-button icon-after-button" style="background: #6f00ff;">
                                             <span>🔒 Terkunci</span>
                                         </button>
                                     </div>
@@ -1100,38 +946,70 @@
                     <button class="vault-modal-close" onclick="closeVaultUnlockModal()" type="button">&times;</button>
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
                       <span style="font-size: 24px;">🔒</span>
-                      <div style="font-size: 17px; font-weight: 700; color: #183e36; font-family: Poppins, sans-serif;">Modul Ini Terkunci di Master Vault</div>
+                      <div style="font-size: 17px; font-weight: 700; color: #131628; font-family: Poppins, sans-serif;">Modul Ini Terkunci di Master Vault</div>
                     </div>
-                    <p style="font-size: 13px; color: #61796f; line-height: 1.6; margin-bottom: 20px; font-family: Poppins, sans-serif;">
+                    <p style="font-size: 13px; color: #6f00ff; line-height: 1.6; margin-bottom: 20px; font-family: Poppins, sans-serif;">
                       Anda sudah membuka 1 modul gratis. Seluruh <strong>6 modul lainnya</strong> dapat Anda akses melalui sesi Revenue Leak Audit.
                     </p>
 
-                    <div style="border: 1.5px solid #195846; background: #e5eedf; border-radius: 14px; padding: 18px; margin-bottom: 16px; cursor: pointer; transition: transform 0.15s;" onclick="handleVaultAuditClick()">
-                      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                        <span style="font-size: 11px; font-weight: 700; color: #183e36; text-transform: uppercase; letter-spacing: 0.5px; font-family: Poppins, sans-serif;">🔥 Unlock Full Master Vault</span>
-                        <span style="font-size: 11px; background: #195846; color: #ffffff; font-weight: 700; padding: 2px 8px; border-radius: 4px; font-family: Poppins, sans-serif;">GRATIS</span>
+                    <div class="my-5 p-6 rounded-[28px] border border-gray-200 bg-gradient-to-b from-white to-[#f5f0ff] shadow-xl text-center relative overflow-hidden" onclick="handleVaultAuditClick()" style="cursor: pointer;">
+                      <div class="inline-flex items-center gap-2 bg-[#6f00ff]/10 border border-[#6f00ff]/20 text-[#6f00ff] font-bold tracking-wider uppercase text-[11px] px-3.5 py-1 rounded-full mb-3 shadow-xs">
+                        <span>🔥 Unlock Full Master Vault</span>
+                        <span class="bg-[#6f00ff] text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full ml-1">GRATIS</span>
                       </div>
-                      <div style="font-size: 15px; font-weight: 700; color: #183e36; margin-bottom: 6px; font-family: Poppins, sans-serif;">Book 15-Min Free Revenue Leak Audit</div>
-                      <div style="font-size: 12.5px; color: #61796f; line-height: 1.5; margin-bottom: 14px; font-family: Poppins, sans-serif;">
+                      
+                      <h3 class="text-xl font-extrabold text-[#131628] tracking-tight mb-2">
+                        Book 15-Min Free Revenue Leak Audit
+                      </h3>
+                      
+                      <p class="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed max-w-md mx-auto mb-5">
                         Kami review bottleneck konversi Anda, hitung nilai kebocoran prospek, dan berikan akses penuh ke seluruh resource automasi ini.
+                      </p>
+                      
+                      <div class="flex items-center justify-center">
+                        <button type="button" class="dots-cta btn-primary w-full text-center" style="border-radius:9999px;">
+                          <span>Jadwalkan Audit Gratis via Cal.com →</span>
+                        </button>
                       </div>
-                      <button type="button" style="width: 100%; padding: 12px; background: #195846; color: #ffffff; font-size: 13px; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; font-family: Poppins, sans-serif; box-shadow: 0 4px 12px rgba(24,62,54,0.15);">
-                        Jadwalkan Audit Gratis via Cal.com →
-                      </button>
                     </div>
 
                     <div style="text-align: center;">
-                      <button type="button" onclick="closeVaultUnlockModal()" style="background: none; border: none; font-size: 12px; color: #61796f; cursor: pointer; font-family: Poppins, sans-serif;">
+                      <button type="button" onclick="closeVaultUnlockModal()" style="background: none; border: none; font-size: 12px; color: #6f00ff; cursor: pointer; font-family: Poppins, sans-serif;">
                         Kembali ke Modul yang Sudah Dibuka
                       </button>
                     </div>
                   </div>
                 </div>
             </div>
-        </section>
+        
+                <!-- ═══════════ FULL MASTER VAULT CTA (STYLE OF LANJUTKAN DARI SINI, DOT) ═══════════ -->
+                <div class="mt-14 max-w-4xl mx-auto p-8 sm:p-12 rounded-[36px] border border-gray-200/90 bg-gradient-to-b from-white via-[#fbfaff] to-[#f3e8ff]/50 shadow-xl text-center relative overflow-hidden">
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="inline-flex items-center gap-2 bg-[#6f00ff]/10 border border-[#6f00ff]/20 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-4 shadow-xs">
+                            <span class="w-2 h-2 rounded-full bg-[#6f00ff] animate-pulse"></span>
+                            <span>🔥 Unlock Full Master Vault</span>
+                            <span class="bg-[#6f00ff] text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full ml-1">GRATIS</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#131628] tracking-tight leading-tight mb-3">
+                            Book 15-Min Free Revenue Leak Audit
+                        </h2>
+                        <p class="text-sm sm:text-base text-gray-600 font-medium max-w-xl leading-relaxed mb-6">
+                            Kami review bottleneck konversi Anda, hitung nilai kebocoran prospek, dan berikan akses penuh ke seluruh resource automasi ini.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
+                            <a href="#booking" class="dots-cta btn-primary w-full sm:w-auto text-center text-sm md:text-base font-bold py-3.5 px-8 rounded-full shadow-lg hover:shadow-xl transition-all">
+                                <span>Jadwalkan Audit Gratis via Cal.com →</span>
+                            </a>
+                            <a href="#booking" class="dots-cta dots-cta-secondary w-full sm:w-auto text-center text-sm md:text-base font-bold py-3.5 px-8 rounded-full border-2 border-gray-200 shadow-md hover:shadow-lg transition-all">
+                                <span>Lihat opsi konsultasi</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- ═══════════ 100% OWNERSHIP & DELIVERY GUARANTEE ═══════════ -->
-        <section id="ownership-guarantee" class="py-20 px-5 bg-[#0e111f] text-white border-b border-white/10">
+</section>
+
+<section id="ownership-guarantee" class="py-20 px-5 bg-[#0e111f] text-white border-b border-white/10">
             <div class="max-w-4xl mx-auto space-y-10">
                 <!-- 100% Ownership & BYOK Box -->
                 <div class="rounded-2xl border border-slate-800 bg-[#131628] p-8 md:p-12 shadow-2xl text-left">
@@ -1174,8 +1052,7 @@
             </div>
         </section>
 
-        <!-- ═══════════ FAQ SECTION (ALIGNED TO USP NUANCES) ═══════════ -->
-        <section class="py-20 px-5 bg-[#f9fafb] border-b border-gray-200/70">
+<section class="py-20 px-5 bg-[#f9fafb] border-b border-gray-200/70">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-10">
                     <span class="inline-block bg-[#6f00ff]/10 text-[#6f00ff] font-bold tracking-wider uppercase text-xs px-4 py-1.5 rounded-full mb-3">
@@ -1272,27 +1149,17 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- ═══════════ FOOTER ═══════════ -->
-    <footer class="py-16 bg-[#131628] text-center border-t border-white/10 text-white">
-        <a href="#booking" id="footer-cta" class="mb-10 inline-block bg-[#6f00ff] hover:bg-white hover:text-[#6f00ff] text-white text-base md:text-xl font-bold py-4 px-10 rounded-full shadow-xl hover:shadow-2xl border-2 border-[#6f00ff] uppercase transition-all duration-300">
-            Klaim Revenue Leak Audit (Gratis 15-Menit) →
-        </a>
 
-        <div class="mb-5 flex justify-center">
-            <img src="images/agentzlogo.webp" alt="AGentZ Logo" class="h-10 w-auto">
-        </div>
 
-        <p class="font-medium text-xs sm:text-sm text-gray-400 uppercase tracking-widest mb-2">Revenue Leak Audit &amp; Sales Infrastructure Engine</p>
-        <p class="text-[11px] text-gray-500 font-normal">© 2026 AGentZ. All rights reserved. 100% Owned Digital Infrastructure.</p>
-    </footer>
 
-    <!-- VSL Player Script -->
-    <script src="https://vsl.jordanengo.com/embed/vsl-player.js"></script>
 
-    <!-- ═══════════ CAL.COM & FORM SCRIPTS ═══════════ -->
-    <script type="text/javascript">
+<section id="download" aria-labelledby="_R_5mn4kjhjad4m_" class="dots-section-layout dots-section-layout--footer"><div data-dots-footer-stage="true" data-motion="false" class="dots-prefooter relative isolate w-full overflow-x-clip overflow-y-visible pt-20 pb-[120px] min-[600px]:pt-[120px] min-[600px]:pb-40 min-[768px]:pt-32 min-[768px]:pb-[313px]"><div class="pointer-events-none relative z-10 mx-auto w-full max-w-[964px] px-4 text-center [&amp;_.dots-grid]:w-full [&amp;_.dots-primary]:col-span-full [&amp;_h2]:text-[32px] [&amp;_h2]:leading-[1.2] min-[600px]:[&amp;_h2]:text-[64px]"><div class="min-w-0 dots-grid"><div class="min-w-0 dots-primary dots-section-header text-center"><h2 id="_R_5mn4kjhjad4m_" class="dots-section-title"><span class="dots-responsive-heading-desktop">Lanjutkan dari sini, Dot</span></h2></div></div><div data-dots-footer-actions="true" class="pointer-events-auto mt-6 flex flex-wrap justify-center gap-3"><div class="flex flex-wrap items-center justify-center gap-3 hidden min-[600px]:flex"><a class="btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-primary btn-large dots-cta -mkt" href="https://www.chatgpt.com/auth/login?next=%2Fdots" target="_self"><div class="flex items-center justify-center">Buat Dot Anda</div></a><a class="btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-secondary btn-large dots-cta dots-cta-secondary -mkt" href="https://chatgpt.com/download" target="_self"><div class="flex items-center justify-center">Lihat opsi unduhan</div></a></div><div class="w-full max-w-sm min-[600px]:hidden"><div class="border-token-border-light bg-token-bg-elevated-primary mt-10 box-border flex w-full flex-col items-center rounded-[36px] border px-4 pt-6 pb-4 text-center shadow-[0_4px_16px_0_rgba(0,0,0,0.05)]"><form class="flex w-full flex-col items-center gap-4" noValidate=""><div class="flex w-full max-w-[275px] flex-col gap-2"><div class="text-token-text-primary text-mkt-h5 font-semibold">Buat Dot Anda in the ChatGPT desktop app.</div><div class="text-token-text-secondary text-body-small">Masukkan email Anda, dan kami akan mengirimkan tautan unduhan.</div></div><div class="flex w-full flex-col gap-2"><div class="relative w-full"><div class="rounded-md border shadow-none border-token-border-medium focus-within:border-token-border-xheavy focus-within:ring-token-text-secondary px-3 py-2 focus-within:ring-1 bg-token-bg-elevated-primary box-border flex h-11.5 flex-col justify-center rounded-full! px-6! py-2.5!"><label for="codex-download-email" class="text-token-text-primary block text-xs font-semibold"></label><div class="relative"><input required="" type="email" id="codex-download-email" aria-label="Email address" class="block w-full border-0 p-0 shadow-none outline-hidden focus-within:shadow-none focus-within:ring-0 focus-within:outline-hidden focus:border-none focus:ring-0 sm:text-sm bg-token-main-surface-primary text-token-text-primary placeholder-gray-500 placeholder:text-body-small placeholder:text-token-text-tertiary bg-transparent!" placeholder="Email address" autoComplete="email" name="codex-download-email" value=""/></div></div></div><button class="btn relative group-focus-within/dialog:focus-visible:[outline-width:1.5px] group-focus-within/dialog:focus-visible:[outline-offset:2.5px] group-focus-within/dialog:focus-visible:[outline-style:solid] group-focus-within/dialog:focus-visible:[outline-color:var(--text-primary)] btn-primary btn-large w-full" type="submit"><div class="flex items-center justify-center">Kirimkan tautan ke email saya</div></button></div></form></div></div></div></div><div class="pointer-events-none absolute inset-x-0 -bottom-[120px] h-[calc(100%+240px)] [clip-path:inset(0_0_120px_0)]"><div class="@container relative h-full w-full [container-type:size]"><div class="relative min-w-0 absolute! inset-0 h-full w-full overflow-hidden [&amp;_*]:pointer-events-none!" role="img" aria-label="Alfred, Felipe, Iggy, and Todd gather together" data-dots-view="_R_3dmn4kjhjad4m_" data-renderer="fallback"><div aria-hidden="true" class="absolute inset-0"><div class="@container absolute start-1/2 w-full max-w-[calc((100cqh-120px)*1280/660)] -translate-x-1/2 [--dots-footer-height-ratio:0.515625] min-[600px]:max-w-[min(768px,calc((100cqh-120px)*768/300))] min-[600px]:-translate-y-[30px] min-[600px]:[--dots-footer-height-ratio:0.390625] min-[768px]:max-w-[min(768px,calc(100%-32px),calc((100cqh-120px)*768/512))] min-[768px]:[--dots-footer-height-ratio:0.6666666667]" style="bottom:120px"><div class="absolute aspect-square -translate-x-1/2 min-[768px]:[--dots-footer-position:var(--dots-footer-desktop-x)]" style="--dots-footer-desktop-x:15%;left:var(--dots-footer-position, 28.999999999999996%);height:calc(var(--dots-footer-height-ratio) * 48cqw);bottom:calc(var(--dots-footer-height-ratio) * -17.999999999999993cqw)"><img src="./avatars/0f4be691-3b8c-41e3-9360-2fae02faea4f.png" alt="" sizes="(max-width: 768px) 25vw, 240px" class="size-full object-contain"/></div><div class="absolute aspect-square -translate-x-1/2 min-[768px]:[--dots-footer-position:var(--dots-footer-desktop-x)]" style="--dots-footer-desktop-x:38%;left:var(--dots-footer-position, 43%);height:calc(var(--dots-footer-height-ratio) * 42cqw);bottom:calc(var(--dots-footer-height-ratio) * -16.499999999999996cqw)"><img src="./avatars/29c74ce2-fccb-4336-b5ce-528cba5e75fb.png" alt="" sizes="(max-width: 768px) 25vw, 240px" class="size-full object-contain"/></div><div class="absolute aspect-square -translate-x-1/2 min-[768px]:[--dots-footer-position:var(--dots-footer-desktop-x)]" style="--dots-footer-desktop-x:62%;left:var(--dots-footer-position, 56.99999999999999%);height:calc(var(--dots-footer-height-ratio) * 39.5cqw);bottom:calc(var(--dots-footer-height-ratio) * -16.500000000000004cqw)"><img src="./avatars/7b53fe04-a395-4cc9-8d5d-b4c74475b7d4.png" alt="" sizes="(max-width: 768px) 25vw, 240px" class="size-full object-contain"/></div><div class="absolute aspect-square -translate-x-1/2 min-[768px]:[--dots-footer-position:var(--dots-footer-desktop-x)]" style="--dots-footer-desktop-x:85%;left:var(--dots-footer-position, 71%);height:calc(var(--dots-footer-height-ratio) * 37cqw);bottom:calc(var(--dots-footer-height-ratio) * -15.750000000000004cqw)"><img src="./avatars/e936dbd0-be59-446f-a363-b64d255cc7ba.png" alt="" sizes="(max-width: 768px) 25vw, 240px" class="size-full object-contain"/></div></div></div></div></div></div></div></section></main><footer class="bg-token-bg-primary" style="background-color:var(--dots-surface)"><div class="max-w-9xl border-token-border-primary mx-auto mb-8 border-t"><div class="px-4 py-8 md:py-10"><div class="grid grid-cols-2 gap-6 md:grid-cols-5"><div class="col-span-full mb-8 flex items-start justify-start md:col-span-1 md:mb-0"><a rel="noopener" class="cursor-pointer font-normal underline group block" target="_self" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="h-10 w-10 group-hover:rotate-[60deg] group-hover:opacity-70 group-hover:transition-transform group-hover:duration-300"><use href="/cdn/assets/sprites-core-bef2fe87.svg#55180d" fill="currentColor"></use></svg></a></div><div class="col-span-1 md:col-start-4"><div><span class="text-token-text-primary/44 text-mkt-p2 font-medium" role="heading" aria-level="2">OpenAI</span><ul class="mt-4 flex flex-col gap-3"><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/research/">Riset</a></li><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/safety/">Safety</a></li><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/api/">API</a></li><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/news/">Berita</a></li></ul></div></div><div class="col-span-1 md:col-start-5"><div><span class="text-token-text-primary/44 text-mkt-p2 font-medium" role="heading" aria-level="2">Terms &amp; Policies</span><ul class="mt-4 flex flex-col gap-3"><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/policies/row-terms-of-use/">Terms of Use</a></li><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/policies/privacy-policy/">Privacy Policy</a></li><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/policies/usage-policies/">Usage Policy</a></li><li><a rel="noopener" class="cursor-pointer font-normal text-mkt-p2 font-medium hover:opacity-70" target="_self" href="https://openai.com/policies/">Other policies</a></li></ul></div></div></div></div><div class="border-token-border-primary border-t"><div class="text-mkt-p2 flex flex-col px-4 py-5 md:flex-row md:items-center md:justify-between md:py-4"><div><span>OpenAI © 2015–<!-- -->2026</span><span class="ms-1 inline-flex items-center gap-1"><a rel="noopener" class="cursor-pointer font-normal underline text-mkt-p2 font-medium underline decoration-gray-300 underline-offset-2" target="_self">Manage cookies</a></span></div><div class="mt-4 flex flex-col md:mt-0 md:flex-row md:justify-end"><div class="flex items-center gap-7"><a href="https://x.com/chatgpt" target="_blank" rel="noopener" alt="https://x.com/chatgpt" aria-label="X"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" class="h-5 w-5"><use href="/cdn/assets/sprites-external-765bddca.svg#2e99e2" fill="currentColor"></use></svg></a><a href="https://www.youtube.com/OpenAI" target="_blank" rel="noopener" alt="https://www.youtube.com/OpenAI" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" class="h-5 w-5"><use href="/cdn/assets/sprites-external-765bddca.svg#202a6d" fill="currentColor"></use></svg></a><a href="https://www.linkedin.com/company/openai/" target="_blank" rel="noopener" alt="https://www.linkedin.com/company/openai/" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" class="h-5 w-5"><use href="/cdn/assets/sprites-external-765bddca.svg#a8e19f" fill="currentColor"></use></svg></a><a href="https://github.com/openai" target="_blank" rel="noopener" alt="https://github.com/openai" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" class="h-5 w-5"><use href="/cdn/assets/sprites-external-765bddca.svg#1a6f23" fill="currentColor"></use></svg></a><a href="https://www.instagram.com/chatgpt/" target="_blank" rel="noopener" alt="https://www.instagram.com/chatgpt/" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" class="h-5 w-5"><use href="/cdn/assets/sprites-external-765bddca.svg#247087" fill="currentColor"></use></svg></a><a href="https://www.tiktok.com/@chatgpt" target="_blank" rel="noopener" alt="https://www.tiktok.com/@chatgpt" aria-label="TikTok"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" class="h-5 w-5"><use href="/cdn/assets/sprites-external-765bddca.svg#2e1a7c" fill="currentColor"></use></svg></a></div><div class="mt-4 md:ms-4 md:mt-0"><div class="relative"><button aria-disabled="true" aria-expanded="false" aria-haspopup="listbox" aria-label="Select language" class="text-mkt-p2 text-token-text-secondary inline-flex items-center gap-2 rounded-lg px-2.5 py-1.5 transition-colors hover:bg-token-bg-secondary/50" id="lang-button" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" aria-hidden="true" class="icon-sm"><use href="/cdn/assets/sprites-core-bef2fe87.svg#6b0d8c" fill="currentColor"></use></svg><span class="text-token-text-primary md:text-mkt-cta flex gap-2 text-[16px]">English<span class="text-token-text-secondary">United States</span></span></button></div></div></div></div></div></div></footer></div></div></div></div></div><script nonce="8b66a908-b7ff-4d43-8ca9-c5f7224a6b12">$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script>
+
+
+
+<script type="text/javascript">
       let currentStep = 1;
       const totalSteps = 5;
 
@@ -1542,8 +1409,257 @@
       }
     </script>
 
-    <!-- ═══════════ VAULT & FREE RESOURCES SCRIPT ═══════════ -->
-    <script>
+<script type="text/javascript">
+      let currentStep = 1;
+      const totalSteps = 5;
+
+      function selectQuizOption(button, fieldName, value) {
+        const stepContainer = button.closest('.quiz-step');
+        stepContainer.querySelectorAll('.option-card').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+        button.classList.add('selected');
+
+        const hiddenInput = document.getElementById('input_' + fieldName);
+        if (hiddenInput) {
+          hiddenInput.value = value;
+        }
+
+        const stepNum = parseInt(stepContainer.getAttribute('data-step'));
+        const nextBtn = document.getElementById('next-btn-' + stepNum);
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Auto-advance for step 1 & 3 for smooth UX
+        if (stepNum === 1 || stepNum === 3) {
+          setTimeout(() => {
+            nextStep();
+          }, 250);
+        }
+      }
+
+      function validateInputAndEnableNext(input, stepNum) {
+        const nextBtn = document.getElementById('next-btn-' + stepNum);
+        if (!nextBtn) return;
+        if (input.value.trim().length >= 3) {
+          nextBtn.disabled = false;
+          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+          nextBtn.disabled = true;
+          nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+      }
+
+      function updateStepView() {
+        document.querySelectorAll('.quiz-step').forEach(el => {
+          const step = parseInt(el.getAttribute('data-step'));
+          if (step === currentStep) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        });
+
+        const stepNumEl = document.getElementById('current-step-num');
+        if (stepNumEl) stepNumEl.innerText = currentStep;
+
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+          progressBar.style.width = ((currentStep / totalSteps) * 100) + '%';
+        }
+      }
+
+      function nextStep() {
+        if (currentStep < totalSteps) {
+          currentStep++;
+          updateStepView();
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          updateStepView();
+        }
+      }
+
+      function resetBookingFlow() {
+        currentStep = 1;
+        updateStepView();
+        document.getElementById('cal-container').classList.add('hidden');
+        document.getElementById('thank-you-container').classList.add('hidden');
+        document.getElementById('form-container').classList.remove('hidden');
+      }
+
+      function loadCalEmbed(prefills = {}) {
+        if (window.CalLoaded) return;
+        window.CalLoaded = true;
+
+        (function (C, A, L) {
+          let p = function (a, ar) { a.q.push(ar); };
+          let d = C.document;
+          C.Cal = C.Cal || function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              let api = function () { p(api, arguments); };
+              let namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === "string") {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal.ns[namespace], ["init", { origin: "https://cal.com" }]);
+              } else {
+                p(cal, ar);
+              }
+              return;
+            }
+            p(cal, ar);
+          };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+        const CAL_LINK = "mathew-jordan-p2ha2t/30menitkonsultasi"; 
+
+        Cal("init", { origin: "https://cal.com" });
+        Cal("inline", {
+          elementOrSelector: "#my-cal-inline",
+          calLink: CAL_LINK,
+          config: { 
+            layout: "month_view", 
+            theme: "light",
+            name: prefills.name || "",
+            phone: prefills.phone || ""
+          }
+        });
+        Cal("ui", {
+          theme: "light",
+          styles: { branding: { brandColor: "#6f00ff" } },
+          hideEventTypeDetails: false,
+          layout: "month_view"
+        });
+
+        Cal("on", {
+          action: "*",
+          callback: (e) => {
+            if (e.detail && (e.detail.type === "bookingSuccessful" || e.detail.type === "bookingSuccessfulV2")) {
+              showThankYou();
+            }
+          }
+        });
+      }
+
+      function showThankYou() {
+        document.getElementById("cal-container").classList.add("hidden");
+        document.getElementById("form-container").classList.add("hidden");
+        document.getElementById("thank-you-container").classList.remove("hidden");
+        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function getUtmParams() {
+        const params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+        const query = new URLSearchParams(window.location.search);
+        const utms = {};
+        
+        params.forEach(param => {
+          const val = query.get(param);
+          if (val) {
+            utms[param] = val;
+            sessionStorage.setItem(param, val);
+          } else {
+            utms[param] = sessionStorage.getItem(param) || '';
+          }
+        });
+        return utms;
+      }
+      
+      function getGaClientId() {
+        try {
+          const match = document.cookie.match(/_ga=GA1\.\d+\.(\d+\.\d+)/);
+          if (match && match[1]) {
+            return match[1];
+          }
+        } catch (e) {}
+        return '';
+      }
+
+      async function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        const utms = getUtmParams();
+        const eventId = 'lead_' + (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15));
+        const payload = {
+          event_id: eventId,
+          name: formData.get('name'),
+          phone: formData.get('contact'),
+          email: '',
+          service: 'Revenue Leak Audit',
+          message: `Model Bisnis: ${formData.get('business_model')}\nBottleneck/Leak: ${formData.get('bottleneck')}\nRevenue: ${formData.get('revenue')}`,
+          site: window.CONFIG.site,
+          landing_page: window.location.pathname + window.location.search,
+          referrer: document.referrer || '',
+          ga_client_id: getGaClientId(),
+          utm_source: utms.utm_source,
+          utm_medium: utms.utm_medium,
+          utm_campaign: utms.utm_campaign,
+          utm_content: utms.utm_content
+        };
+
+        try {
+          fetch(window.CONFIG.api, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }).then(() => {
+            if (typeof fbq === 'function') {
+              fbq('track', 'Contact');
+              fbq('track', 'Lead', { value: 0, currency: 'USD' }, { eventID: eventId });
+            }
+            if (typeof gtag === 'function') {
+              gtag('event', 'generate_lead', {
+                site: window.CONFIG.site,
+                service: 'Revenue Leak Audit'
+              });
+            }
+          }).catch(err => console.error("Lead sync failed:", err));
+        } catch (err) {}
+
+        loadCalEmbed({
+          name: payload.name,
+          phone: payload.phone
+        });
+        document.getElementById("form-container").classList.add("hidden");
+        document.getElementById("cal-container").classList.remove("hidden");
+        document.getElementById("booking").scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Lazy load Cal.com script if user reaches booking section
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadCalEmbed();
+              observer.disconnect();
+            }
+          });
+        }, { rootMargin: "200px" });
+        observer.observe(document.getElementById("booking"));
+      } else {
+        loadCalEmbed();
+      }
+    </script>
+
+<script>
       const ASSET_DELIVERY_LINKS = {
         'wa_chatbot_voice_cs': 'https://jordanengo.com/p/whatsapp-chatbot-crm.html',
         'whatsapp_invoice_system': 'https://jordanengo.com/p/whatsapp-chatbot-crm.html',
@@ -1614,7 +1730,7 @@
 
         const headEl = bgContainer.querySelector('.head');
         if (headEl) {
-          headEl.innerHTML = `Bahan Gratis <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#22c55e; background:rgba(34,197,94,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(34,197,94,0.3);">🔓 ${claimed.length}/7 Modul Terbuka</span>`;
+          headEl.innerHTML = `Bahan Gratis <span class="vault-head-badge" style="font-size:11px; font-weight:600; color:#6f00ff; background:rgba(111,0,255,0.12); padding:3px 8px; border-radius:12px; margin-left:8px; font-family:Poppins,sans-serif; border: 1px solid rgba(111,0,255,0.25);">🔓 ${claimed.length}/7 Modul Terbuka</span>`;
         }
 
         const cards = bgContainer.querySelectorAll('.carousel-card');
@@ -1629,7 +1745,7 @@
             if (lockBadge) lockBadge.remove();
             if (ctaBtn) {
               ctaBtn.innerHTML = `<span>Buka Modul ↗</span>`;
-              ctaBtn.style.background = '#16a34a';
+              ctaBtn.style.background = '#6f00ff';
             }
           } else {
             if (!lockBadge) {
@@ -1637,14 +1753,14 @@
               if (imgWrap) {
                 const badge = document.createElement('div');
                 badge.className = 'vault-lock-badge';
-                badge.style.cssText = 'position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #195846; font-family:Poppins,sans-serif; z-index:2;';
+                badge.style.cssText = 'position:absolute; top:8px; right:8px; background:rgba(24,62,54,0.92); backdrop-filter:blur(4px); color:#ffffff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:6px; display:flex; align-items:center; gap:4px; border:1px solid #6f00ff; font-family:Poppins,sans-serif; z-index:2;';
                 badge.innerHTML = '🔒 LOCKED';
                 imgWrap.appendChild(badge);
               }
             }
             if (ctaBtn) {
               ctaBtn.innerHTML = `<span>🔒 Terkunci</span>`;
-              ctaBtn.style.background = '#61796f';
+              ctaBtn.style.background = '#6f00ff';
             }
           }
         });
@@ -1677,7 +1793,7 @@
       }
     </script>
 
-    <!-- ═══════════ FLOATING WHATSAPP & VOICE WIDGETS ═══════════ -->
+<!-- ═══════════ FLOATING WHATSAPP & VOICE WIDGETS ═══════════ -->
     <div id="agentz-wa-wrapper" style="position:fixed;bottom:160px;right:24px;z-index:2147483645;display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
       <span id="wa-text-pill" style="background:#ffffff;color:#18181b;font-size:12px;font-weight:700;padding:6px 12px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);letter-spacing:0.2px;pointer-events:none;">WhatsApp chat</span>
       <a id="main-wa-link" href="https://wa.me/15556523818?text=Halo%20Jordan,%20saya%20mau%20konsultasi%20Revenue%20Leak%20Audit%20AGentZ" target="_blank" style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#ffffff;box-shadow:0 8px 24px rgba(0,0,0,0.35);transition:transform 0.2s, box-shadow 0.2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.45)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.35)';" title="Chat WhatsApp" aria-label="WhatsApp">
@@ -1715,5 +1831,7 @@
         }
       })();
     </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"423baacd686f4fe1bba4b3e9564fed85","r":1,"spa":2}' crossorigin="anonymous"></script>
+
 </body>
 </html>
