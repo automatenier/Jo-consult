@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://agentz.jordanengo.com/sitemap.xml
