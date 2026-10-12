@@ -2,8 +2,7 @@
   "name": "agentz-landing-page",
   "compatibility_date": "2026-08-20",
   "assets": {
-    "directory": "./dist",
-    "html_handling": "none"
+    "directory": "./dist"
   },
   "routes": [
     { "pattern": "agentz.jordanengo.com", "custom_domain": true }
