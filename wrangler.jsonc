@@ -2,8 +2,18 @@
   "name": "agentz-landing-page",
   "compatibility_date": "2026-08-20",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS"
   },
+  "main": "./worker/index.js",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "agentz-vsl-analytics",
+      "database_id": "fcabcee3-1a75-4ac9-a4cf-dbbc798ec9af",
+      "migrations_dir": "./worker/migrations"
+    }
+  ],
   "routes": [
     { "pattern": "agentz.jordanengo.com", "custom_domain": true }
   ]
